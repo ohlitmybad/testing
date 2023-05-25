@@ -1138,9 +1138,9 @@ function search(query) {
   return results.length > 0 ? results[0] : null;
 }
 
-const searchQuery = prompt("Enter the name of the first winger:");
+const searchQuery = prompt("Enter the last name of the first winger:");
 const results = search(searchQuery);
-const searchQuery2 = prompt("Enter the name of the second winger:");
+const searchQuery2 = prompt("Enter the last name of the second winger:");
 const results2 = search(searchQuery2);
 const headerNames = ['Age', 'Team', 'Progressive carries', 'Successful dribbles', 'Non-penalty goals', 'xG + xA', 'Assists', 'Key passes', 'Successful off actions', 'Minutes played'];
 
