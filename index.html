@@ -139,8 +139,8 @@ tr:first-child td {
   border: 0;
   user-select: none;
   position: absolute;
-  top: 20px;
-  left: 728px;
+  top: 25px;
+  left: 732px;
   width: 120px; 
  
   touch-action: manipulation;
@@ -176,8 +176,8 @@ tr:first-child td {
   border: 0;
   user-select: none;
   position: absolute;
-  top: 85px;
-  left: 728px;
+  top: 90px;
+  left: 732px;
 width: 120px; 
  
   touch-action: manipulation;
@@ -212,8 +212,8 @@ width: 120px;
   border: 0;
   user-select: none;
   position: absolute;
-  top: 150px;
-  left: 728px;
+  top: 155px;
+  left: 732px;
 width: 120px;
  
   touch-action: manipulation;
@@ -248,8 +248,8 @@ width: 120px;
   border: 0;
   user-select: none;
   position: absolute;
-  top: 215px;
-  left: 728px;
+  top: 220px;
+  left: 732px;
 width: 120px;
  
   touch-action: manipulation;
@@ -284,8 +284,8 @@ width: 120px;
   border: 0;
   user-select: none;
   position: absolute;
-  top: 280px;
-  left: 728px;
+  top: 285px;
+  left: 732px;
 width: 120px; 
  
   touch-action: manipulation;
@@ -321,8 +321,8 @@ width: 120px;
   border: 0;
   user-select: none;
   position: absolute;
-  top: 345px;
-  left: 728px;
+  top: 350px;
+  left: 732px;
 width: 120px;
  
   touch-action: manipulation;
@@ -358,8 +358,8 @@ width: 120px;
   border: 0;
   user-select: none;
   position: absolute;
-  top: 410px;
-  left: 728px;
+  top: 415px;
+  left: 732px;
 width: 120px;
  
   touch-action: manipulation;
@@ -396,8 +396,8 @@ width: 120px;
   border: 0;
   user-select: none;
   position: absolute;
-  top: 475px;
-  left: 728px;
+  top: 480px;
+  left: 732px;
  width: 120px; 
   touch-action: manipulation;
 }
@@ -422,8 +422,8 @@ width: 120px;
       align-items: center;
       justify-content: center;
 position: absolute;
-  top: 475px;
-  left: 528px;
+  top: 715px;
+  left: 600px;
  width: 120px; 
     }
 
@@ -503,9 +503,9 @@ position: absolute;
 
 <script>
 const csvData = `1,F. Rivera,Real Madrid,22,2046,0.95,0.07,0.49,0.58,0.65,0.949,0.7
-2,B. Munchen,Juventus,22,3304,0.095,0.67,0.749,0.458,0.965,0.749,0.97
-3,T. Thorne,Milan,22,3293,0.995,0.97,0.949,0.958,0.965,0.949,0.97
-4,A. Blimski,Ostersund FK,22,4438,0.995,0.97,0.949,0.958,0.965,0.949,0.97`;
+2,B. Munchen,Juventus,29,3304,0.095,0.67,0.749,0.458,0.965,0.749,0.97
+3,T. Thorne,Milan,33,3293,0.995,0.97,0.949,0.958,0.965,0.949,0.97
+4,A. Blimski,Ostersund FK,26,4438,0.995,0.97,0.949,0.958,0.965,0.949,0.97`;
 
 const dataArray = csvData.split('\n').map(line => line.split(','));
 
@@ -522,7 +522,7 @@ const searchQuery = prompt("Enter the name of the first winger:");
 const results = search(searchQuery);
 const searchQuery2 = prompt("Enter the name of the second winger:");
 const results2 = search(searchQuery2);
-const headerNames = ['Team', 'Age', 'Minutes Played', 'Progressive runs per 90', 'Successful dribbles per 90', 'Non-penalty goals per 90', 'xG+xA per 90', 'Assists per 90', 'Key passes per 90', 'Successful offensive actions per 90'];
+const headerNames = ['Age', 'Team', 'Minutes', 'Progressive runs per 90', 'Successful dribbles per 90', 'Non-penalty goals per 90', 'xG+xA per 90', 'Assists per 90', 'Key passes per 90', 'Successful offensive actions per 90'];
 
 const table = document.createElement('table');
 
@@ -779,8 +779,8 @@ function toggleFilling() {
 }
 
 // Create the radars
-createRadar(data, radarWrapper, 'rgb(248, 0, 200)', 0.5);
-createRadar(data2, radarWrapper2, 'rgb(28, 63, 213)', 0.5);
+createRadar(data, radarWrapper, 'rgb(248, 0, 200)', 0.4);
+createRadar(data2, radarWrapper2, 'rgb(28, 63, 213)', 0.4);
 
 // Toggle button element
 const toggleButton = document.getElementById('toggleButton');
