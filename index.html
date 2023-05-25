@@ -1200,7 +1200,7 @@ console.log(combResults);
 
 function calculateEuclideanDifference(player1, player2) {
   let difference = 0;
-  for (let i = 2; i < player1.length; i++) {
+  for (let i = 5; i < player1.length; i++) {
     difference += Math.abs(player1[i] - player2[i]);
   }
   return difference;
@@ -1399,8 +1399,8 @@ function toggleFilling() {
 }
 
 // Create the radars
-createRadar(data, radarWrapper, 'rgb(248, 0, 200)', 0.4);
-createRadar(data2, radarWrapper2, 'rgb(28, 63, 213)', 0.4);
+createRadar(data, radarWrapper, 'rgb(248, 0, 200)', 0.3);
+createRadar(data2, radarWrapper2, 'rgb(28, 63, 213)', 0.3);
 
 // Toggle button element
 const toggleButton = document.getElementById('toggleButton');
