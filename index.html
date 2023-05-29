@@ -110,8 +110,8 @@ body.dark-mode .button-8:focus {
 
  .dark-mode-toggle {
     position: absolute;
-    top: 22.5px;
-    left: 960px;
+    top: 24.5px;
+    left: 880px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -126,6 +126,7 @@ body.dark-mode .button-8:focus {
 
 .dark-mode-toggle .toggle-icon::before {
   content: "\263D"; /* Unicode character for sun symbol */
+  font-variant: tabular-nums;
   font-size: 24px; /* Adjust the font size as needed */
 }
 
@@ -134,7 +135,8 @@ body.dark-mode .dark-mode-toggle {
 }
 
 body.dark-mode .dark-mode-toggle .toggle-icon::before {
-  content: "\2600"; /* Unicode character for moon symbol */
+  content: "\2600"; /
+  font-variant: tabular-nums;
   font-size: 24px; /* Adjust the font size as needed */
 }
 
@@ -244,41 +246,22 @@ tr:first-child td {
 
 
 .button-1 {
-  align-items: center;
-  background-color: #e0e0de;
-  border-radius: 25px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: #121212;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 1 1 auto;
-  font-family: Inter,sans-serif;
-  font-size: 1.82rem;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1;
-  margin: 0;
-  outline: none;
-  padding: 0.1rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow .1s,-webkit-box-shadow .1s;
-  white-space: nowrap;
-  border: 0;
-  user-select: none;
   position: absolute;
-  top: 25.5px;
-  left: 810px;
-  width: 120px; 
- 
-  touch-action: manipulation;
+  top: 24.4px;
+  left: 820px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 39.15px;
+  height: 39.15px;
+  background-color: #e0e0de;
+  border: none; /* Remove the border */
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 30px; /* Adjusted font size for better proportion */
+  box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2); /* Slightly adjusted box shadow */
+  outline: none; /* Remove the outline */
 }
-
-.button-1:hover {
-  box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
-}
-
 
 .button-2 {
   align-items: center;
