@@ -780,17 +780,20 @@ opacity: .8;
 
 
 
-<script>function takeScreenshot() {
+<script>
+function takeScreenshot() {
   const x = 0; // X coordinate of the top-left corner of the cropping area
   const y = 0; // Y coordinate of the top-left corner of the cropping area
   const cropPercentageX = 0.10; // Percentage of the image to crop from the left
-  const cropPercentageY = 0.31; // Percentage of the image to crop from the top
-  const cropPercentageRight = 0.43; // Percentage of the image to crop from the right
+  const cropPercentageY = 0.27; // Percentage of the image to crop from the top
+  const cropPercentageRight = 0.375; // Percentage of the image to crop from the right
+  const captureWidth = 1400; // Fixed width for capturing the screenshot
+  const captureHeight = 1080; // Fixed height for capturing the screenshot
 
   // Take a screenshot of the entire document body
   domtoimage.toBlob(document.body, {
-    width: window.innerWidth, // Capture the full width of the page
-    height: 1050, // Capture the full height of the page
+    width: captureWidth,
+    height: captureHeight,
     style: {
       transform: 'none' // Remove any applied transformations
     }
@@ -819,16 +822,16 @@ opacity: .8;
       // Draw the screenshot image onto the canvas with the desired cropping
       ctx.drawImage(img, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
 
-      // Convert the canvas to a PNG image
-      canvas.toBlob(croppedBlob => {
-        // Create a temporary link element
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(croppedBlob);
-        link.download = 'screenshot.png'; // Specify the filename for the downloaded image
+      // Convert the canvas to a JPEG image data URL
+      const jpegDataUrl = canvas.toDataURL('image/jpeg');
 
-        // Simulate a click on the link to trigger the download
-        link.click();
-      }, 'image/png');
+      // Create a temporary link element
+      const link = document.createElement('a');
+      link.href = jpegDataUrl;
+      link.download = 'screenshot.jpg'; // Specify the filename for the downloaded image
+
+      // Simulate a click on the link to trigger the download
+      link.click();
     };
     img.src = URL.createObjectURL(blob);
   });
