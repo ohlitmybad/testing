@@ -782,8 +782,10 @@ opacity: .8;
 
 <script>
 
-function takeScreenshot() {
-  const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+	function takeScreenshot() {
+
+
+ const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
   let x, y, cropPercentageX, cropPercentageY, cropPercentageRight, captureWidth, captureHeight;
 
@@ -806,9 +808,6 @@ function takeScreenshot() {
     captureWidth = 1400;
     captureHeight = 1060;
   }
-
-  const logoImage = new Image();
-  logoImage.src = 'https://i.imgur.com/UurMbGS.png';
 
 
   // Take a screenshot of the entire document body
@@ -844,8 +843,8 @@ function takeScreenshot() {
 
       // Add text to the canvas
       ctx.font = '12px Arial';
-      ctx.fillStyle = 'purple';
-      ctx.fillText('datamb.football', 320, 740);
+      ctx.fillStyle = 'grey';
+      ctx.fillText('datamb.football', 616, 740);
 
       // Convert the canvas to a PNG image
       canvas.toBlob(croppedBlob => {
