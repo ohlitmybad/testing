@@ -782,13 +782,32 @@ opacity: .8;
 
 <script>
 function takeScreenshot() {
-  const x = 0; // X coordinate of the top-left corner of the cropping area
-  const y = 0; // Y coordinate of the top-left corner of the cropping area
-  const cropPercentageX = 0.10; // Percentage of the image to crop from the left
-  const cropPercentageY = 0.27; // Percentage of the image to crop from the top
-  const cropPercentageRight = 0.375; // Percentage of the image to crop from the right
-  const captureWidth = 1400; // Fixed width for capturing the screenshot
-  const captureHeight = 1080; // Fixed height for capturing the screenshot
+
+
+ const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+  let x, y, cropPercentageX, cropPercentageY, cropPercentageRight, captureWidth, captureHeight;
+
+  if (isMobile) {
+    // Values for mobile devices
+    x = 0;
+    y = 0;
+    cropPercentageX = 0.15;
+    cropPercentageY = 0.32;
+    cropPercentageRight = 0.25;
+    captureWidth = 800;
+    captureHeight = 1200;
+  } else {
+    // Values for desktop
+    x = 0;
+    y = 0;
+    cropPercentageX = 0.1038;
+    cropPercentageY = 0.29;
+    cropPercentageRight = 0.38;
+    captureWidth = 1400;
+    captureHeight = 1060;
+  }
+
 
   // Take a screenshot of the entire document body
   domtoimage.toBlob(document.body, {
@@ -822,21 +841,20 @@ function takeScreenshot() {
       // Draw the screenshot image onto the canvas with the desired cropping
       ctx.drawImage(img, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
 
-      // Convert the canvas to a JPEG image data URL
-      const jpegDataUrl = canvas.toDataURL('image/jpeg');
+      // Convert the canvas to a PNG image
+      canvas.toBlob(croppedBlob => {
+        // Create a temporary link element
+        const link = document.createElement('a');
+        link.href = URL.createObjectURL(croppedBlob);
+        link.download = 'screenshot.png'; // Specify the filename for the downloaded image
 
-      // Create a temporary link element
-      const link = document.createElement('a');
-      link.href = jpegDataUrl;
-      link.download = 'screenshot.jpg'; // Specify the filename for the downloaded image
-
-      // Simulate a click on the link to trigger the download
-      link.click();
+        // Simulate a click on the link to trigger the download
+        link.click();
+      }, 'image/png');
     };
     img.src = URL.createObjectURL(blob);
   });
 }
-
 
 
 
