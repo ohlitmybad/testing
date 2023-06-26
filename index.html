@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>	
@@ -154,6 +155,7 @@ body.dark-mode input:checked + .toggle-slider:before {
   background-color: #ccc; /* Darker background color for dark mode */
 }
 
+
 body.dark-mode .button-10 {
   border: 0.1px solid #000000; /* Darker background color for dark mode */
 }
@@ -183,7 +185,7 @@ body.dark-mode .button-10 {
 font-size: 22px;
 }
 
-
+	
 
 text {
   font-family: Arial;
@@ -734,12 +736,13 @@ opacity: .8;
         }	
 
 	
+
 	
 </style>
 </defs>
 
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
-	
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
+
 <script type="text/javascript">
   window._taboola = window._taboola || [];
   _taboola.push({article:'auto'});
@@ -757,7 +760,6 @@ opacity: .8;
   if(window.performance && typeof window.performance.mark == 'function')
     {window.performance.mark('tbl_ic');}
 </script>
-
 	
 </head>
 
@@ -773,12 +775,10 @@ opacity: .8;
 
 
 <body>
-
-
 	
 
 	
-<img src="https://i.imgur.com/UurMbGS.png" alt="Logo">
+ <img src="https://i.imgur.com/UurMbGS.png" alt="Logo">
 	
 
 <div class="toggle-container">
@@ -798,7 +798,6 @@ opacity: .8;
 <button onclick="takeScreenshot()" class="button-10"><div class="icon2"></div></button>
 
 
-
 <script>
 
 	function takeScreenshot() {
@@ -812,11 +811,11 @@ opacity: .8;
     // Values for mobile devices
     x = 0;
     y = 0;
-    cropPercentageX = 0.012;
-    cropPercentageY = 0;
-    cropPercentageRight = 0.23;
-    captureWidth = 930;
-    captureHeight = 770;
+    cropPercentageX = 0.1038;
+    cropPercentageY = 0.29;
+    cropPercentageRight = 0.38;
+    captureWidth = 1400;
+    captureHeight = 1060;
   } else {
     // Values for desktop
     x = 0;
@@ -1204,7 +1203,7 @@ const searchQuery = prompt("Enter last name of keeper:");
 const results = search(searchQuery);
 const searchQuery2 = prompt("Enter last name of keeper:");
 const results2 = search(searchQuery2);
-const headerNames = ['Age', 'Team', 'Successful defensive actions', 'Aerial duels contested', 'Exits (leaving line)', 'Passes', 'Long pass %', 'Short and medium pass %', 'PSxG - GA', 'Minutes played'];
+const headerNames = ['Age', 'Team', 'Defensive actions', 'Aerial duels contested', 'Exits (leaving line)', 'Passes', 'Long pass %', 'Short and medium pass %', 'PSxG - GA', 'Minutes played'];
 
 const table = document.createElement('table');
 
@@ -1358,7 +1357,7 @@ table2.addEventListener('click', handleClick);
 table2.style.marginTop = '550px';
 document.body.appendChild(table2);
 
-
+	
 	
 </script>
 
@@ -1396,6 +1395,7 @@ document.body.appendChild(table2);
   <text class="label" data-type="Shotstopping" data-idx="1" transform="translate(286.42 60.6) rotate(51.99)">Shot-stopping</text>
 </g>
 </svg>
+  	
   							
 
 
@@ -1565,21 +1565,26 @@ toggleButton.addEventListener('click', toggleFilling);
 
   </script>
 
-<div id="taboola-below-article-thumbnails"></div>
+
+
+	<div id="taboola-mid-article-thumbnails"></div>
 <script type="text/javascript">
   window._taboola = window._taboola || [];
   _taboola.push({
-    mode: 'alternating-thumbnails-a',
-    container: 'taboola-below-article-thumbnails',
-    placement: 'Below Article Thumbnails',
+    mode: 'thumbnails-m',
+    container: 'taboola-mid-article-thumbnails',
+    placement: 'Mid Article Thumbnails',
     target_type: 'mix'
   });
-</script>	
+</script>
+
 
 	<script type="text/javascript">
   window._taboola = window._taboola || [];
   _taboola.push({flush: true});
 </script>
+		
+
 
 </body>
 </html>
