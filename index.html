@@ -861,7 +861,7 @@ domtoimage.toBlob(document.getElementById('parent-container'), {
       // Add text to the canvas
    ctx.font = 'bold 25px Arial'; // Adjust the font size for the player name
 ctx.fillStyle = '#F822C6'; // Adjust the color for the player name
-ctx.fillText(playerName1, 104, 50); // Adjust the position as needed
+ctx.fillText(playerName1, 85, 50); // Adjust the position as needed
 
 // Player Name 2
 ctx.font = 'bold 25px Arial'; // Adjust the font size for the player name
@@ -871,7 +871,7 @@ ctx.fillText(playerName2, 405, 50); // Adjust the position as needed
 // Other text
 ctx.font = '12px Arial'; // Adjust the font size for the other text
 ctx.fillStyle = 'grey'; // Adjust the color for the other text
-ctx.fillText('datamb.football', 584, 598);
+ctx.fillText('datamb.football', 584, 600);
 
       // Convert the canvas to a PNG image
       canvas.toBlob(croppedBlob => {
@@ -1205,6 +1205,8 @@ toggleButton.addEventListener('click', toggleFilling);
 </div>
 
 <br>
+<br>
+<br><br>
 <br>
 <br>
 <br>
