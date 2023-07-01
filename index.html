@@ -111,7 +111,7 @@ body.dark-mode .button-8:focus {
 
  .dark-mode-toggle {
     position: absolute;
-    top: 635px;
+    top: 615px;
     left: 850px;
     display: flex;
     align-items: center;
@@ -159,7 +159,7 @@ body.dark-mode .button-10 {
 	
  .button-10 {
     position: absolute;
-    top: 695px;
+    top: 680px;
     left: 850px;
     display: flex;
     align-items: center;
@@ -705,7 +705,24 @@ top: 980px;
 
  <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
 
-
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({article:'auto'});
+  !function (e, f, u, i) {
+    if (!document.getElementById(i)){
+      e.async = 1;
+      e.src = u;
+      e.id = i;
+      f.parentNode.insertBefore(e, f);
+    }
+  }(document.createElement('script'),
+  document.getElementsByTagName('script')[0],
+  '//cdn.taboola.com/libtrc/datamb-pub-pub/loader.js',
+  'tb_loader_script');
+  if(window.performance && typeof window.performance.mark == 'function')
+    {window.performance.mark('tbl_ic');}
+</script>
+	
 </head>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSBMXX80EF"></script>
@@ -1187,6 +1204,22 @@ toggleButton.addEventListener('click', toggleFilling);
   </script>
 </div>
 
+<div id="taboola-below-article-thumbnails"></div>
+<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({
+    mode: 'alternating-thumbnails-a',
+    container: 'taboola-below-article-thumbnails',
+    placement: 'Below Article Thumbnails',
+    target_type: 'mix'
+  });
+</script>	
+
+	<script type="text/javascript">
+  window._taboola = window._taboola || [];
+  _taboola.push({flush: true});
+</script>
+		
 	
 </body>
 </html>
