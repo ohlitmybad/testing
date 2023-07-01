@@ -742,6 +742,8 @@ opacity: .8;
   margin-top: 10px;
 }
 
+
+
 	
 </style>
 </defs>
@@ -830,12 +832,15 @@ opacity: .8;
     // Values for desktop
     x = 0;
     y = 0;
-    cropPercentageX = 0;
-    cropPercentageY = 0;
-    cropPercentageRight = 0.38;
-    captureWidth = 1800;
-    captureHeight = 780;
+    cropPercentageX = 0.03;
+    cropPercentageY = 0.3;
+    cropPercentageRight = 0.389;
+    captureWidth = 1200;
+    captureHeight = 773;
   }
+
+  const playerName1 = results[1];
+  const playerName2 = results2[1];
 
 domtoimage.toBlob(document.getElementById('parent-container'), {
   width: captureWidth,
@@ -868,9 +873,19 @@ domtoimage.toBlob(document.getElementById('parent-container'), {
       ctx.drawImage(img, cropX, cropY, cropWidth, cropHeight, 0, 0, cropWidth, cropHeight);
 
       // Add text to the canvas
-      ctx.font = '12px Arial';
-      ctx.fillStyle = 'grey';
-      ctx.fillText('datamb.football', 616, 746);
+   ctx.font = 'bold 25px Arial'; // Adjust the font size for the player name
+ctx.fillStyle = '#F822C6'; // Adjust the color for the player name
+ctx.fillText(playerName1, 139, 50); // Adjust the position as needed
+
+// Player Name 2
+ctx.font = 'bold 25px Arial'; // Adjust the font size for the player name
+ctx.fillStyle = '#4330FB'; // Adjust the color for the player name
+ctx.fillText(playerName2, 417, 50); // Adjust the position as needed
+
+// Other text
+ctx.font = '12px Arial'; // Adjust the font size for the other text
+ctx.fillStyle = 'grey'; // Adjust the color for the other text
+ctx.fillText('datamb.football', 584, 520);
 
       // Convert the canvas to a PNG image
       canvas.toBlob(croppedBlob => {
