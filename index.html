@@ -780,7 +780,7 @@ opacity: .8;
 </script>
 
 
-
+  <div id="parent-container">
 <body>
 	
 <div id="error"></div>
@@ -830,31 +830,20 @@ opacity: .8;
     // Values for desktop
     x = 0;
     y = 0;
-    cropPercentageX = 0.1038;
-    cropPercentageY = 0.29;
+    cropPercentageX = 0;
+    cropPercentageY = 0;
     cropPercentageRight = 0.38;
-    captureWidth = 1400;
-    captureHeight = 1060;
+    captureWidth = 1800;
+    captureHeight = 780;
   }
 
-const adElements = document.getElementsByClassName('taboola-below-article-thumbnails'); 
-
-// Create a copy of the document body
-const bodyCopy = document.body.cloneNode(true);
-
-// Remove the ad elements from the body copy
-Array.from(adElements).forEach(adElement => {
-  bodyCopy.removeChild(adElement);
-});
-
-  // Take a screenshot of the entire document body
-  domtoimage.toBlob(bodyCopy, {
-    width: captureWidth,
-    height: 1080,
-    style: {
-      transform: 'none' // Remove any applied transformations
-    }
-  }).then(blob => {
+domtoimage.toBlob(document.getElementById('parent-container'), {
+  width: captureWidth,
+  height: captureHeight,
+  style: {
+    transform: 'none' // Remove any applied transformations
+  }
+}).then(blob => {
     // Create an image element to load the screenshot blob
     const img = new Image();
     img.onload = () => {
@@ -1516,7 +1505,7 @@ const _0xfa5ba=_0x4a41;(function(_0x5cb496,_0x59e836){const _0x856623=_0x4a41,_0
     }
 
   </script>
-
+</div>
 	
 	<div id="taboola-below-article-thumbnails"></div>
 <script type="text/javascript">
