@@ -837,9 +837,18 @@ opacity: .8;
     captureHeight = 1060;
   }
 
+const adElements = document.getElementsByClassName('taboola-below-article-thumbnails'); 
+
+// Create a copy of the document body
+const bodyCopy = document.body.cloneNode(true);
+
+// Remove the ad elements from the body copy
+Array.from(adElements).forEach(adElement => {
+  bodyCopy.removeChild(adElement);
+});
 
   // Take a screenshot of the entire document body
-  domtoimage.toBlob(document.body, {
+  domtoimage.toBlob(bodyCopy, {
     width: captureWidth,
     height: 1080,
     style: {
