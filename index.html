@@ -227,7 +227,6 @@ color: black !important;
 height: 32px;
 font-size: 16px;
 cursor: pointer;
-text-align: center !important; /* Center the text horizontally */
 }
 
 
@@ -267,7 +266,7 @@ top: 10px;
 
 <body>
   <input type="text" id="searchInput1" class="search-bar" placeholder="Enter name of team..." />
-  <input type="button" id="searchButton1" value="+   " />
+  <input type="button" id="searchButton1" value="+&nbsp; &nbsp; &nbsp; " />
   <br />
   <div id="resultsTable"></div>
 <div id="matchingNames"></div>
@@ -806,7 +805,7 @@ function createTableForTeam1() {
 
   const teamNamesList = document.createElement('ul');
 teamNamesList.style.fontFamily = 'Arial, sans-serif'; // List to store team names on the left side
-teamNamesList.style.fontSize = '14px'; // List to store team names on the left side
+teamNamesList.style.fontSize = '14px !important';
  resultsTable.appendChild(teamNamesList);
 
 
