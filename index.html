@@ -222,10 +222,9 @@ height: 30px;
 
 
 #searchButton1 {
-  width: 30px;
+  width: 32px;
 color: black !important;
 height: 32px;
-font-size: 16px;
 cursor: pointer;
 }
 
@@ -266,7 +265,7 @@ top: 10px;
 
 <body>
   <input type="text" id="searchInput1" class="search-bar" placeholder="Enter name of team..." />
-  <input type="button" id="searchButton1" value="+&nbsp; &nbsp; &nbsp; " />
+  <input type="button" id="searchButton1" value="+&nbsp;" />
   <br />
   <div id="resultsTable"></div>
 <div id="matchingNames"></div>
@@ -805,7 +804,6 @@ function createTableForTeam1() {
 
   const teamNamesList = document.createElement('ul');
 teamNamesList.style.fontFamily = 'Arial, sans-serif'; // List to store team names on the left side
-teamNamesList.style.fontSize = '14px !important';
  resultsTable.appendChild(teamNamesList);
 
 
