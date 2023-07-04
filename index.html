@@ -51,7 +51,7 @@
  .dark-mode-toggle {
     position: absolute;
     top: 52px;
-    left: 418px;
+    left: 422px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -227,6 +227,7 @@ color: black !important;
 height: 30px;
 font-size: 20px;
 cursor: pointer;
+text-align: center !important; /* Center the text horizontally */
 }
 
 
@@ -266,7 +267,7 @@ top: 10px;
 
 <body>
   <input type="text" id="searchInput1" class="search-bar" placeholder="Enter name of team..." />
-  <input type="button" id="searchButton1" value="+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;" />
+  <input type="button" id="searchButton1" value="+" />
   <br />
   <div id="resultsTable"></div>
 <div id="matchingNames"></div>
@@ -805,7 +806,7 @@ function createTableForTeam1() {
 
   const teamNamesList = document.createElement('ul');
 teamNamesList.style.fontFamily = 'Arial, sans-serif'; // List to store team names on the left side
-teamNamesList.style.fontSize = '14px'; // List to store team names on the left side
+teamNamesList.style.fontSize = '13px'; // List to store team names on the left side
  resultsTable.appendChild(teamNamesList);
 
 
@@ -896,7 +897,7 @@ createTableForTeam1();
 	<br>
 	<br>
 	<br>
-	<br>
+	<br>	<br>
 	
 
 
