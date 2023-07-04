@@ -325,8 +325,8 @@ top: 10px;
 
 <script>
 const names = [
-  "Bruno Fernandes",
-"Enzo Fernández",
+  "Bruno Fernandes,Man United,28",
+"Enzo Fernández,22,Chelsea",
 "Rodri",
 "A. Rabiot",
 "D. Rice",
@@ -485,60 +485,68 @@ const names = [
 "J. Swift"
 ];
   const searchInput = document.getElementById("searchInput1");
-  const matchingNamesContainer = document.getElementById("matchingNames");
-  const searchButton = document.getElementById("searchButton");
+ const matchingNamesContainer = document.getElementById("matchingNames");
+const searchButton = document.getElementById("searchButton");
 
-  function updateMatchingNames() {
-  const searchQuery = searchInput.value.toLowerCase();
+
+function updateMatchingNames() {
+  const searchQuery = removeSpecialChars(searchInput.value.toLowerCase());
   const matchingNames = names.filter(function(name) {
-    return name.toLowerCase().includes(searchQuery);
+    const normalizedName = removeSpecialChars(name.toLowerCase());
+    return normalizedName.includes(searchQuery);
   });
 
   matchingNamesContainer.innerHTML = "";
-matchingNames.forEach(function(name) {
-  const nameElement = document.createElement("div");
-  nameElement.textContent = name;
-  nameElement.classList.add("name"); // Add a CSS class to the name element
-  matchingNamesContainer.appendChild(nameElement);
-});
 
+  matchingNames.forEach(function(name) {
+    const [fullName, team, age] = name.split(","); // Split the name, age, and team using comma as the separator
 
-if (searchQuery === "" && matchingNames.length === 0) {
-  matchingNamesContainer.style.display = "none";
-} else {
-  matchingNamesContainer.style.display = "block";
+    const nameElement = document.createElement("div");
 
-  // Style the matching names container
-  matchingNamesContainer.style.backgroundColor = "lightgrey";
-  matchingNamesContainer.style.width = "370px";
-  matchingNamesContainer.style.padding = "10px";
-      matchingNamesContainer.style.position = "absolute";
-      matchingNamesContainer.style.top = "6%";
-      matchingNamesContainer.style.left = "11px";
+    const fullNameElement = document.createElement("span");
+    fullNameElement.textContent = fullName;
+    fullNameElement.classList.add("fullName"); // Add a CSS class to the full name element
+    nameElement.appendChild(fullNameElement);
 
+    const ageElement = document.createElement("span");
+    ageElement.textContent = " (" + team + ",";
+    ageElement.classList.add("age"); // Add a CSS class to the age element
+    nameElement.appendChild(ageElement);
 
+    const teamElement = document.createElement("span");
+    teamElement.textContent = " " + age + ")";
+    teamElement.classList.add("team"); // Add a CSS class to the team element
+    nameElement.appendChild(teamElement);
 
-  // Style the matching names elements
-  for (let i = 0; i < matchingNames.length; i++) {
-    let nameElement = document.createElement("div");
-    nameElement.textContent = matchingNames[i];
+    nameElement.classList.add("name"); // Add a CSS class to the name element
+    matchingNamesContainer.appendChild(nameElement);
+  });
+
+  if (searchQuery === "" && matchingNames.length === 0) {
+    matchingNamesContainer.style.display = "none";
+  } else {
+    matchingNamesContainer.style.display = "block";
+
+    // Style the matching names container
+    matchingNamesContainer.style.backgroundColor = "lightgrey";
+    matchingNamesContainer.style.width = "370px";
+    matchingNamesContainer.style.padding = "10px";
+    matchingNamesContainer.style.position = "absolute";
+    matchingNamesContainer.style.top = "6%";
+    matchingNamesContainer.style.left = "11px";
   }
-}
-
 
   if (searchQuery === "") {
     matchingNamesContainer.style.display = "none";
   }
 }
 
-
-
-  searchInput.addEventListener("input", updateMatchingNames);
-  searchInput.addEventListener("keyup", function(event) {
-    if (event.key === "Backspace") {
-      updateMatchingNames();
-    }
-  });
+searchInput.addEventListener("input", updateMatchingNames);
+searchInput.addEventListener("keyup", function(event) {
+  if (event.key === "Backspace") {
+    updateMatchingNames();
+  }
+});
 
 </script>
 
@@ -819,7 +827,7 @@ teamNamesList.style.paddingLeft = '9px'; // Adjust the padding to move it furthe
     if (results) {
       const teamId = parseInt(results[0]); // Parse the team ID from the results
 
-      const teamName = results[1] + ' (' + results[2] + ', ' + results[3] + ', ' + results[11] + ' min)';
+      const teamName = results[1] + ' (' + results[2] + ', ' + results[3] + ') - ' + results[11] + ' min';
       const color = colorClasses[searchCounter % colorClasses.length]; // Get the color class based on the search counter
 
       if (!teamNames.has(teamName)) {
