@@ -51,7 +51,7 @@
  .dark-mode-toggle {
     position: absolute;
     top: 52px;
-    left: 420.9px;
+    left: 433.9px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -213,7 +213,7 @@ tr:first-child td {
 }
 
 #searchInput1 {
-  width: 392px;
+  width: 406px;
 height: 30px;
 }
 
@@ -534,11 +534,12 @@ function updateMatchingNames() {
 
     // Style the matching names container
     matchingNamesContainer.style.backgroundColor = "lightgrey";
-    matchingNamesContainer.style.width = "370px";
+    matchingNamesContainer.style.width = "384px";
     matchingNamesContainer.style.padding = "10px";
     matchingNamesContainer.style.position = "absolute";
     matchingNamesContainer.style.top = "6%";
-    matchingNamesContainer.style.left = "11px";
+    matchingNamesContainer.style.left = "12px";
+matchingNamesContainer.style.zIndex = "9999"; // Set a high z-index value
   }
 
   if (searchQuery === "") {
