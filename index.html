@@ -499,26 +499,31 @@ function updateMatchingNames() {
   matchingNamesContainer.innerHTML = "";
 
   matchingNames.forEach(function(name) {
-    const [fullName, team, age] = name.split(","); // Split the name, age, and team using comma as the separator
+    const [fullName, team, age] = name.split(",");
 
     const nameElement = document.createElement("div");
+    nameElement.classList.add("name");
 
     const fullNameElement = document.createElement("span");
     fullNameElement.textContent = fullName;
-    fullNameElement.classList.add("fullName"); // Add a CSS class to the full name element
+    fullNameElement.classList.add("fullName");
     nameElement.appendChild(fullNameElement);
 
     const ageElement = document.createElement("span");
     ageElement.textContent = " (" + team + ",";
-    ageElement.classList.add("age"); // Add a CSS class to the age element
+    ageElement.classList.add("age");
     nameElement.appendChild(ageElement);
 
     const teamElement = document.createElement("span");
     teamElement.textContent = " " + age + ")";
-    teamElement.classList.add("team"); // Add a CSS class to the team element
+    teamElement.classList.add("team");
     nameElement.appendChild(teamElement);
 
-    nameElement.classList.add("name"); // Add a CSS class to the name element
+    nameElement.addEventListener("click", function() {
+      searchInput.value = fullName; // Set the clicked name as the search input value
+      searchButton1.click(); // Trigger the search button click event
+    });
+
     matchingNamesContainer.appendChild(nameElement);
   });
 
@@ -543,7 +548,9 @@ function updateMatchingNames() {
 
 searchInput.addEventListener("input", updateMatchingNames);
 searchInput.addEventListener("keyup", function(event) {
-  if (event.key === "Backspace") {
+  if (event.key === "Enter") {
+    searchButton1.click(); // Trigger the search button click event
+  } else if (event.key === "Backspace") {
     updateMatchingNames();
   }
 });
