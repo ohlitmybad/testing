@@ -103,7 +103,7 @@ font-size: 22px;
 
 body.dark-mode #searchInput1 {
     color: #000; /* Specify the desired text color for dark mode */
-background-color : #999
+background-color : #999;
   }
 	
  body.dark-mode	  #searchInput1::placeholder {
@@ -111,7 +111,8 @@ background-color : #999
   }
 
  body.dark-mode	  #searchButton1 {
-    color: #000; /* Specify the desired color for the placeholder text */
+    color: #fff !important; /* Specify the desired color for the placeholder text */
+background-color : #333333;
   }
 
 
@@ -803,7 +804,9 @@ function createTableForTeam1() {
   const teamNames = new Set(); // Keep track of unique team names
 
   const teamNamesList = document.createElement('ul');
-teamNamesList.style.fontFamily = 'Arial, sans-serif'; // List to store team names on the left side
+teamNamesList.style.fontFamily = 'Arial, sans-serif'; 
+teamNamesList.style.listStyleType = 'none'; // Remove the bullet points
+teamNamesList.style.paddingLeft = '20px'; // Adjust the padding to move it further left
  resultsTable.appendChild(teamNamesList);
 
 
