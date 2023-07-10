@@ -1,22 +1,21 @@
+
+
+
+
 <!DOCTYPE html>
 <html>
   <head>
 	  
-	  
+
     <link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@DataMB_">
-    <meta name="twitter:title" content="DataMB | Visualize Football">
-    <meta name="twitter:description" content="Compare football players using radars and plots">
+    <meta name="twitter:title" content="DataMB | Radars">
+    <meta name="twitter:description" content="Generate radar charts of your choice">
     <meta name="twitter:image" content="https://i.imgur.com/p43wTxg.png">
     <meta property="og:image" content="https://i.imgur.com/p43wTxg.png">
-	    <meta itemprop="name" content="DataMB | Football Data Visuals | Compare Players | Radar Comparison Tool | Plot Comparison Tool">
-  <meta itemprop="description" content="Compare players and make your own football visuals! Plot comparison tool, radar comparison tool, similar players, team radars and plots. Football data visualization made simple.">
-
-    <title translate="no">DataMB | Visualize Football</title>
+    <title translate="no">DataMB | Radars</title>
     <style>
-
-	    
       body {
         font-family: system-ui;
         background-color: #FFFFFF;
@@ -25,6 +24,72 @@
         font-size: 14px;
       }
 
+      .header {
+  background-image: url('https://i.imgur.com/fRz4f6n.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: auto;
+  background-position: center top;
+        color: black;
+        text-align: center;
+        padding: 25px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-flow: column;
+	max-width: 1900px;
+
+
+
+      }
+
+      .title {
+        font-size: 69px;
+        font-weight: bold;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+       
+        
+      }
+
+      .subtitle {
+        font-size: 18px;
+        color: #1f1c1c;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        
+        line-height: 2;
+        
+        
+       
+      }
+      
+      .subtitle2 {
+        font-size: 14px;
+        color: #FFFFFF;
+        margin: 20px;
+        padding: 20px;
+        text-align: center;
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+       
+        line-height: 2;
+        background-color: #F7384F;
+        border: 1px solid white;
+        border-radius: 10px;
+       text-height: 1px;
+        text-decoration: none;
+        width: 500px;
+        
+       
+      }
+      
 
       .container {
         max-width: 960px;
@@ -37,139 +102,106 @@
         flex-wrap: wrap;
         line-height: 1.6;
         font-size: 16px;
-  min-height: 36vh;
-
         
       }
 
-   .container1 {
-        max-width: 960px;
-        margin: 0 auto;
-        padding: -10px;
-        box-sizing: border-box;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-wrap: wrap;
-        line-height: 1.6;
-        font-size: 16px;
-  min-height: 36vh;
 
-        
-      }
-
-      .container2 {
+   .container2 {
         position: absolute;
-	right: 220px;        
+	right: 220px; 
+	top: 1434px;       
       }
 
-	    
-	    
-.button3 {
-  display: block;
-  background-image: url('https://i.imgur.com/fRz4f6n.png');
-  background-size: auto;
-  background-position: center;        
-  color: black;
-  padding: 165px;
-  border: 1px solid white;
-  border-radius: 40px;
-  text-decoration: none;
-  font-size: 36px;
-  font-weight: bold;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-  transition: background-color 0.1s ease;
-  position: relative; /* Add position relative to allow z-index to work */
-  z-index: 1; /* Ensure button appears on top of ::before overlay */
-}
+
+      .button-wrapper {
+        flex-basis: calc((100% - 140px) / 2);
+        margin: 20px;
+        text-align: center;
+        
+      }
+
+      .button {
+        display: block;
+        background-color: black;
+        color: white;
+        padding: 15px;
+        border: 1px solid white;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.1s ease;
+        
+      }
+     
+      .button:hover {
+        background-color: white;
+        color: black;
+      }
 
 
 
-.button3:hover::before {
-  display: none; /* Hide ::before pseudo-element on hover */
-}
-
-.button3::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(0, 0, 0, .01); /* Use a translucent gray color */
-  z-index: -1; /* Ensure ::before appears behind button content */
-  border-radius: 40px;
-}
-
-
+      .button3 {
+        display: block;
+        background-color: pink;
+        color: black;
+        padding: 20px;
+        border: 1px solid white;
+        border-radius: 40px;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.1s ease;
+        
+      }
 
      .button3:hover {
         background-color: white;
         color: pink;
       }
 
-
-    
-	    
-.button4 {
-  display: block;
-  background-image: url('https://i.imgur.com/cSePSV8.png');
-  background-size: auto;
-  background-position: center;        
-  color: black;
-  padding: 165px;
-  border: 1px solid white;
-  border-radius: 40px;
-  text-decoration: none;
-  font-size: 38px;
-  font-weight: bold;
-  box-shadow: 0px 0px 10px rgba(180, 180, 180, 0.1);
-  transition: background-color 0.1s ease;
-  position: relative; /* Add position relative to allow z-index to work */
-  z-index: 1; /* Ensure button appears on top of ::before overlay */
-}
-
-.button4::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
-  background-color: rgba(180, 180, 180, 0.06); /* Use a translucent gray color */
-  z-index: -1; /* Ensure ::before appears behind button content */
-  border-radius: 40px;
-}
+      .description {
+        font-size: 15px;
+        color: #000000;
+        margin-top: 10px;
+        margin-bottom: 50px;
+        border-radius: 10px;
+        
+      }
 
 
+  .button3 {
+        display: block;
+        background-color: pink;
+        color: black;
+        padding: 20px;
+        border: 1px solid white;
+        border-radius: 40px;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.1s ease;
+        
+      }
 
-
-.button4:hover::before {
-  display: none; /* Hide ::before pseudo-element on hover */
-}
-
-	    
-	     .button4:hover {
+     .button3:hover {
         background-color: white;
         color: pink;
       }
 
+      .description {
+        font-size: 15px;
+        color: #000000;
+        margin-top: 10px;
+        margin-bottom: 50px;
+        border-radius: 10px;
+        
+      }
 	    
-	        
- 
-
-   footer {
-  bottom: 0;  
-width: 100%;
-  background-color: #dce3de;
-  color: black;
-  padding: 0.2px;
-  box-sizing: border-box;
-  text-align: center;
-      
-}    
-    
-	    	         img {
+	         img {
             width: 60px;
 position: absolute;
 top: 16px;
@@ -178,7 +210,7 @@ left: 17px;
 opacity: .8;
         } 
 
-	    
+    
     </style>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSBMXX80EF"></script>
@@ -189,35 +221,98 @@ opacity: .8;
 
   gtag('config', 'G-PSBMXX80EF');
 </script>
-
-<br>
-<br>
-<br>
-<br>
 	  
   </head>
   <body>
 
- <img src="https://i.imgur.com/UurMbGS.png" alt="Logo">
+	   <img src="https://i.imgur.com/UurMbGS.png" alt="Logo">
 
+    <div class="header">
+    <style>
+  .header {
+    position: relative; /* Set the header to a relative position */
+    /* Rest of the header styles */
+  }
 
-    <div class="container">
+  .button-wrapper-bottom {
+    position: absolute; /* Set the button to an absolute position */
+    bottom: 0; /* Align the button to the bottom of the header */
+    right: 10; /* Align the button to the bottom of the header */
+    margin: 10px;
+    text-align: center;
+    margin-left: 200%;
+  }
+  
+ 
+      footer {
+  background-color: #333333;
+  background-color: white;
+  color: black;
+  padding: -10px;
+  box-sizing: border-box;
+  text-align: center;
+  width: 90%;
+  height: 100px;
+  margin: 20px;
+  
+        
+}
+header {
+  background-color: #333;
+  color: #fff;
+  padding: 0px;
+  
+}
 
-  <a href="http://datamb.football/radars/" class="button3">RADAR CHART TOOL</a></div>
-<br>
-<br>
- <br>
- <div class="container1">
+</style>
 
-  <a href="http://datamb.football/plots/" class="button4">SCATTER PLOT TOOL</a></div>
+	    
+<div class="header"> 
+</header>
 </div>
-	  
+
+
+
+      <h1 class="title">Radar Comparison Tool</h1>
+    
+      <h3 class="subtitle2"></b>• Click on a position to generate radar charts<br>• Search with last name first, it will find 'haaland' but not 'erling'<br>• Enter 'average' to show the "average" player<br>• Click on a similar player to show his radar<br>
+    </div>
+    <div class="container">
+      <div class="button-wrapper">
+        <a href="http://datamb.football/keepers/" class="button">GOALKEEPERS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• Top 9 European Leagues<br>• Top 2 South-American Leagues<br>• Championship<br>• Minimum 1000 minutes<br>= 305 keepers in database</div>
+      </div>
+      <div class="button-wrapper">
+        <a href="http://datamb.football/centrebacks/" class="button">CENTRE BACKS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• Top 9 European Leagues<br>• Top 2 South-American Leagues<br>• Championship<br>• Minimum 1000 minutes<br>= 830 centre-backs in database</div>
+      </div>
+      <div class="button-wrapper">
+        <a href="http://datamb.football/fullbacks/" class="button">FULL BACKS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• Top 9 European Leagues<br>• Top 2 South-American Leagues<br>• Championship<br>• Minimum 1000 minutes<br>= 767 full-backs in database</div>
+      </div>
+      <div class="button-wrapper">
+        <a href="http://datamb.football/midfielders/" class="button">MIDFIELDERS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• Top 9 European Leagues<br>• Top 2 South-American Leagues<br>• Championship<br>• Minimum 1000 minutes<br>= 1068 midfielders in database</div>
+      </div>
+      <div class="button-wrapper">
+        <a href="http://datamb.football/wingers/" class="button">WINGERS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• Top 9 European Leagues<br>• Top 2 South-American Leagues<br>• Championship<br>• Minimum 1000 minutes<br>= 739 wingers in database</div>
+      </div>
+<div class="button-wrapper">
+        <a href="http://datamb.football/strikers/" class="button">STRIKERS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• Top 9 European Leagues<br>• Top 2 South-American Leagues<br>• Championship<br>• Minimum 1000 minutes<br>= 606 strikers in database</div></div>
+
+
+<div class="button-wrapper">
+        <a href="http://datamb.football/teamradars/" class="button3">TEAM RADARS</a></div>
+	    <div class="button-wrapper">
+        <a href="http://datamb.football/plots/" class="button3">PLOT COMPARISON TOOL</a></div>
+
  <div class="container2">
 <a href='https://play.google.com/store/apps/details?id=com.datamb.datamb.webviewflutter&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png' style='width: 180px; height: 69px;'/></a>
 </div>
 
-
-	 <script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
 <script>
   kofiWidgetOverlay.draw('datamb', {
     'type': 'floating-chat',
@@ -226,17 +321,10 @@ opacity: .8;
     'floating-chat.donateButton.text-color': '#fff'
   });
 </script>
-	    
-	    <br>
-	    <br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+
  <footer>
-      <p>Copyright © 2023. <b><a href="https://datamb.football/privacy">Privacy Policy.</a></b> Made by <b><a href="https://twitter.com/DataMB_">@DataMB_</a></b></p>
+      <p><b><br>2022/2023, all competitions (club and country). Accurate as of 13/06/2023.<br>Copyright © 2023. All Rights Reserved <a href="https://twitter.com/DataMB_">@DataMB_</a><br></b></p>
     </footer>
 </body>
 </html>
+
