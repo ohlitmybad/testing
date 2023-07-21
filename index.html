@@ -95,8 +95,17 @@ footer a,
     width: 93%; /* Change the width to 90% for mobile devices */
   }
 }
-	  .articles-list img {
+	
+.articles-list img {
   width: 100%; /* Set the width to 100% of its parent container's width */
+  height: 200px; /* Set a fixed height for non-mobile devices */
+}
+
+/* Media query for mobile devices with a maximum screen width of 768px */
+@media screen and (max-width: 768px) {
+  .articles-list img {
+    height: auto; /* Set height to auto for mobile devices */
+  }
 }
 
 
