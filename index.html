@@ -85,8 +85,18 @@ footer a,
 
 
 .container10 {
-  width: 80%;
+  width: 75%; /* 80% width for all screen sizes by default */
   margin: 0 auto;
+}
+
+/* Media query for mobile devices with a maximum screen width of 768px */
+@media screen and (max-width: 768px) {
+  .container10 {
+    width: 93%; /* Change the width to 90% for mobile devices */
+  }
+}
+	  .articles-list img {
+  width: 100%; /* Set the width to 100% of its parent container's width */
 }
 
 
@@ -353,7 +363,7 @@ header a {
   display: flex;
   justify-content: center;
   align-items: center;
- max-width: 90%; /* Set the maximum width to 100% of its parent container's width */
+ max-width: 100%; /* Set the maximum width to 100% of its parent container's width */
   margin: 0 auto;
 }
 
