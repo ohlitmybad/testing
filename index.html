@@ -5,24 +5,20 @@
 
 
 
-
 <!DOCTYPE html>
 <html>
 <head>
-  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
-<link href='https://fonts.googleapis.com/css?family=Open Sans' rel='stylesheet'>
-
 
 <link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
-  <title translate="no">West Ham United : A massive overhaul | TeonelMessi x DataMB</title>
-  <meta property="og:image" content="https://i.imgur.com/D2FwAMJ.png">
+  <title translate="no">DataMB | Teonel Messi</title>
+  <meta property="og:image" content="https://i.imgur.com/wUOD8Hj.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@DataMB_">
-  <meta name="twitter:title" content="West Ham United : A massive overhaul | TeonelMessi x DataMB">
+  <meta name="twitter:title" content="DataMB | Teonel Messi">
   <meta name="twitter:description" content="">
-  <meta name="twitter:image" content="https://i.imgur.com/D2FwAMJ.png">
+  <meta name="twitter:image" content="https://i.imgur.com/wUOD8Hj.png">
 
-  <title>West Ham United : A massive overhaul | TeonelMessi x DataMB</title>
+  <title>DataMB | Teonel Messi</title>
 
   <style>
 
@@ -82,12 +78,6 @@ footer a,
 }
 
 
-.container10 {
-  width: 980px;
-  margin: 0 auto;
-}
-
-
 
 .footer-content {
   display: flex;
@@ -121,7 +111,7 @@ footer a,
 	        
 
     body {
-    font-family: 'Open Sans';font-size: 1em;
+      font-family: Arial, sans-serif;
       background-color: #F5F5F5;
       padding: 20px;
       margin: 0;
@@ -130,41 +120,67 @@ footer a,
 
 
     h1 {
-      text-align: left;
-      font-size: 33px;
+      text-align: center;
+      font-size: 50px;
+      margin-bottom: 30px;
       font-family: Arial, sans-serif;
-Margin-top: 0px;
     }
 
-   
     h2 {
-      font-family: Arial, sans-serif;
-      font-size: 22px;
-      text-align: left;
-
+      font-size: 24px;
+      margin-top: 30px;
+      margin-bottom: 20px;
     }
 
     .metric {
+  display: flex;
+  position: relative;
       background-color: #FFFFFF;
       padding: 20px;
       margin-bottom: 20px;
-text-align: justify;
     }
 
     .metric-title {
       font-weight: bold;
-      margin-top: 0px;
-      font-size: 16px;
+      margin-top: 5px;
+      font-size: 25px;
       margin-bottom: 5px;
     }
 
     .metric-definition {
-      font-size: 14px;
+      font-size: 20px;
       margin: 0;
     }
 
-  
 
+.thumbnail-container {
+  margin-right: 10px; /* Adjust the spacing between the thumbnail and the text */
+}
+
+.thumbnail {
+  width: 400px; /* Adjust the width of the thumbnail as needed */
+  height: auto;
+}
+
+.text-container {
+  flex: 1; /* This will make the text container occupy the remaining space */
+}
+
+
+.metadata {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  text-align: right;
+  padding: 10px; /* Adjust the padding around the metadata */
+}
+
+.publish-date,
+.author {
+  font-size: 14px; /* Adjust the font size of the metadata as needed */
+  margin: 0;
+  line-height: 1.2;
+}
 
 .footer {
   font-family: system-ui;
@@ -298,6 +314,11 @@ header a {
       text-decoration: none;
     }
 
+h1 a {
+      color: black;
+      text-decoration: none;
+    }
+
 .header .twitter-link svg {
   width: 25px;
   height: 24px;
@@ -305,118 +326,12 @@ header a {
 }
 
 
+  .metric a {
+      color: black;
+      text-decoration: none;
+    }
 
-.share-buttons {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  margin-top: 20px;
-}
-
-.share-buttons a {
-  display: inline-flex;
-  align-items: center;
-  padding: 10px 20px;
-  margin: 5px;
-  color: #fff;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 16px;
-}
-
-.share-buttons a i {
-  margin-right: 10px;
-}
-
-/* Change the background color and other styles as needed */
-.twitter-share {
-  background-color: #1da1f2;
-}
-
-.whatsapp-share {
-  background-color: #25d366;
-}
-
-.facebook-share {
-  background-color: #3b5998;
-}
     
-.email-share {
-  background-color: #204d74;
-}
-
-.image-container {
-  position: relative;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.image-credit {
-  position: absolute;
-  bottom: 0px;
-  right: 62px;
-  background-color: rgba(0, 0, 0, 0.6);
-  color: #fff;
-  padding: 4px 8px;
-  font-size: 12px;
-  border-radius: 4px;
-}
-
-.written-by {
-  text-align: left;
-}
-
-.written-by a {
-  color: #1da1f2;
-  text-decoration: none;
-  margin-left: 5px;
-}
-
-.article-date {
-  text-align: left;
-  margin-bottom: 25px;
-
-}
-
-.more-stories {
-  margin-top: 30px;
-}
-
-.more-stories h2 {
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.articles-list {
-  list-style: none;
-  padding: 0;
-  display: flex;
-}
-
-.articles-list li {
-  margin-right: 20px;
-}
-
-.articles-list a {
-  text-decoration: none;
-  color: #1da1f2; /* Change the link color to match your design */
-  font-size: 18px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.articles-list a img {
-  margin-bottom: 10px; /* Add spacing between the image and the article title */
-  border-radius: 5px; /* Add a border-radius for rounded corners if desired */
-}
-
-.article-title {
-  font-size: 16px;
-  font-weight: bold;
-}
-
   </style>
 
 
@@ -427,8 +342,9 @@ header a {
     <div class="logo-text"><a href="http://datamb.football">&nbsp;DataMB</a></div>
   </div>
   <nav class="navigation">
-    <a href="http://datamb.football/radars" class="button">Radars&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-    <a href="http://datamb.football/plots" class="button">Plots&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <a href="http://datamb.football/radars" class="button">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Radars&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+    <a href="http://datamb.football/plots" class="button">Plots&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+ <a href="http://datamb.football/analysis" class="button">Analysis&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
   </nav>
   <a href="https://twitter.com/datamb_" target="_blank" class="twitter-link">
     <svg width="25" height="24" fill="#bcbcbc" xmlns="http://www.w3.org/2000/svg">
@@ -437,319 +353,38 @@ header a {
   </a>
 </header>
 
-<script type="text/javascript">
-  window._taboola = window._taboola || [];
-  _taboola.push({article:'auto'});
-  !function (e, f, u, i) {
-    if (!document.getElementById(i)){
-      e.async = 1;
-      e.src = u;
-      e.id = i;
-      f.parentNode.insertBefore(e, f);
-    }
-  }(document.createElement('script'),
-  document.getElementsByTagName('script')[0],
-  '//cdn.taboola.com/libtrc/datamb-pub-pub/loader.js',
-  'tb_loader_script');
-  if(window.performance && typeof window.performance.mark == 'function')
-    {window.performance.mark('tbl_ic');}
-</script>
 
 </head>
 <body>
  
-  <div class="container10">
 
- <br>
- <br>
- <br>
+  <h1><a href="http://twitter.com/teonelmessi">Teonel Messi</a> <img src="https://i.imgur.com/dh1BxSk.png" alt="Logo10" style="height: 70px; width: 70px; vertical-align: middle;"><br> 
 
-  <div class="metric">
- <h1>Analysis : West Ham United, A massive overhaul
 </h1>
- <div class="written-by">
-  Written by<strong><a href="https://datamb.football/teonelmessi" target="_blank" style="text-decoration: none; color: inherit;">Teonel Messi</a></strong>  <img src="https://i.imgur.com/dh1BxSk.png" alt="Logo10" style="height: 20px; width: 20px; vertical-align: middle;">  &nbsp;<a href="https://twitter.com/TeonelMessi" target="_blank"><i class="fab fa-twitter"></i> Follow @TeonelMessi</a><br>
-</div>
 
-  <div class="article-date">
-    July 21, 2023
+
+  <h2 style="font-size: 38px;">Articles</h2>
+<div class="metric">
+  <div class="thumbnail-container">
+    <a href="http://datamb.football/west-ham-teonel-messi/">
+      <img src="https://pbs.twimg.com/media/F1kWHsjWAAAHhT7?format=jpg&name=large" alt="Thumbnail" class="thumbnail">
+    </a>
   </div>
-
-<div class="image-container">
-  <img src="https://pbs.twimg.com/media/F1kWHsjWAAAHhT7?format=jpg&name=large" alt="West Ham celebrating a goal" width="815" height="505">
-
+  <div class="text-container">
+    <h3 class="metric-title"><a href="http://datamb.football/west-ham-teonel-messi/">West Ham United : A Massive Overhaul</a></h3>
+    <p class="metric-definition"><br><a href="http://datamb.football/west-ham-teonel-messi/">
+West Ham United have had their worst Premier League season since 2019/2020 but with Declan Rice leaving the club for a reported 100£ million, the club will need to make sure that the upcoming (crucial) financial decisions are made correctly...</a></p>
+    <div class="metadata">
+      <p class="publish-date">Published: July 21, 2023</p>
+      <p class="author">Author: <a href="http://twitter.com/teonelmessi">@teonelmessi</a></p>
+    </div>
+  </div>
 </div>
 
-<div class="share-buttons">
-  <!-- Twitter Share Button -->
-  <a href="https://twitter.com/intent/tweet?text=http%3A%2F%2Fdatamb.football%2Ftesting" class="twitter-share" target="_blank">
-    <i class="fab fa-twitter"></i> Share on Twitter
-  </a>
-
-  <!-- WhatsApp Share Button -->
-  <a href="whatsapp://send?text=http%3A%2F%2Fdatamb.football%2Ftesting" class="whatsapp-share" target="_blank">
-    <i class="fab fa-whatsapp"></i> Share on WhatsApp
-  </a>
-
-  <!-- Facebook Share Button -->
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fdatamb.football%2Ftesting" class="facebook-share" target="_blank">
-    <i class="fab fa-facebook"></i> Share on Facebook
-  </a>
-
-  <!-- Email Share Button -->
-  <a href="mailto:?subject=Check%20out%20this%20article&body=http%3A%2F%2Fdatamb.football%2Ftesting" class="email-share" target="_blank">
-    <i class="fas fa-envelope"></i> Share via Email
-  </a>
-</div>
-
- 
-</br></br>
-
-West Ham United have had their worst Premier League season since 2019/2020 (16th). Now you could argue this had multiple different causes, on and off the pitch and I will come back to this later in this document. But, with Declan Rice leaving the club for a reported €116 million (100£ million) West Ham will need to make sure that the upcoming (crucial) financial decisions are made correctly. In this document I want to analyse potential incoming transfers, and the players that need to leave the club.
-<br><br>
-• Financial situation : <br><br>
-West Ham United are currently in a healthy financial situation: across the 2021/22 season the club put up an after tax profit of €14.3 million (12.3£ million), this was the first time in 5 years West Ham United FC put up an after tax profit. And in preparation for relegation West Ham cleared all their debts.<br><br>
-
-• New manager : <br><br>
-I thought about this for a long time, and ended up deciding to hire a new manager. David Moyes served the club wonderfully but it is time to move on and this time for real. There are multiple coaches available out of contract, and one of them is Ruud van Nistelrooy. The 43-year-old Dutchman took over a decent at best PSV and led them to a European spot in the Eredivisie. Van Nistelrooy also knows England from his days as a player and he speaks English very well. He has proven to be a very high demanding coach with a mindset of a real professional, and with West Ham’s current situation that might be just what they need. 
-
-At PSV he played a 4-2-3-1 system that dominated the ball much more than the current West Ham team. 
-
-
-<br><br>
-
-<div class="image-container">
-  <img src="https://pbs.twimg.com/media/F1kYfKVWYAEfBo7?format=jpg&name=medium" alt="Team plot chart (possession vs average passes per possession), west ham, psv eindhoven" width="920" height="605">
-  <a href="https://datamb.football/plotteam" target="_blank" class="image-credit">Plot teams</a>
-
-</div>
-<br>
-
-
-<div id="taboola-mid-article-thumbnails"></div>
-<script type="text/javascript">
-  window._taboola = window._taboola || [];
-  _taboola.push({
-    mode: 'thumbnails-m',
-    container: 'taboola-mid-article-thumbnails',
-    placement: 'Mid Article Thumbnails',
-    target_type: 'mix'
-  });
-</script><br><br>
-
-
-In this set up Xavi Simons was the main outlet in the number 10 role. At Left-Back Patrick van Aanholt often found himself in the attacking third of the opposition. In midfield he had the more Casemiro like player in Ibrahima Sangare, and one more creative outlet in Joey Veerman. Veerman put up 6.2 shot creating actions per90 (top 1%), 11.21 progressive passes per90 (top 2%) and 0.37 expected assists per90 (top 1%). Seeing as all this is hypothetical it is difficult to say to which degree Van Nistelrooy would try to replicate his system, but I will be looking for players that replicate this system as well as possible.<br><br>
-• Departures : <br><br>
-
-As well as many signings, the club needs to lose a couple players. There are many high earners in the squad that could/should be moved on. Of course in the Premier League the homegrown rule is something that everyone needs to watch out for. In the Premier League the maximum size of squad is 25, and any given squad at a time can have 17 non home grown players, which means 8 players need to be homegrown. West Ham currently sit on exactly 8: Anang, Michail Antonio, Jarrod Bowen, Aaron Cresswell, Flynn Downes, Danny Ings, Ben Johnson and Declan Rice. Now of course Declan Rice is gone, so that is one thing that needs to be fixed, West Ham need to comply with the homegrown rule. But, first of all are departures, under this I will mention players that need to be moved on.<br><br>
-
-Kurt Zouma<br>                        
-The Frenchman was decent at best this season, and when looking at his numbers when compared to the average, you can see he is very below average in every category besides aerial duels and defensive duels won. Besides this, he is a very controversial player off the pitch and continuing with him might not be the right precedent to set. And also Kurt Zouma is the joint second highest earner in the squad(€7.6 million per year), which is absurd and the salary could be used so much better for a different player. If sold Zouma could bring in a fee of around €15 million.<br><br> 
-
-<div class="image-container">
-  <img src="https://pbs.twimg.com/media/F1kvKDQWIAM4U2S?format=png&name=900x900
-" alt="Kurt Zouma stats radar chart data comparison" width="698" height="605">
-  <a href="https://datamb.football/centrebacks" target="_blank" class="image-credit">Compare CBs</a>
-</div>
-
-<br>
-<br><br> 
-Danny Ings<br> 
-In early 2023 West Ham signed Danny Ings for €12 million, and he was a good emergency signing but he is not someone you can build around partly because of his age of course. And this season he did score 8 goals in the Premier League outscoring Michail Antonio. But also due to his high salary (joined 2nd highest earner) he should be sold, to free up wage money (€7.6 million per year). The fact that Ings is still a decent striker and that he is homegrown, i expect that West Ham could sell him for about €15 million, and assuming he makes a move within England, West Ham will receive an extra 20% of VAT tax on top of the €15 million, which comes out to €18 million.
-<br><br>
-Michael Antonio<br> 
-The Jamaican forward has been a good servant for the club, but at the age of 33 and and the fact he underperformed his XG by 0,07 and that for the first time since the 2018/19 season that he failed to hit double digits in goals in the Premier League which shows that he needs to be moved on. Currently valued at €8 million by Transfermarkt, I think it's feasible that West Ham United could get around €10 million. And again assuming he moves within England, West Ham will receive a fee of €12 million. 
-<br><br>
-Alphonse Aréola<br> 
-Don’t get me wrong, Alphonse Areola is still a very good goalkeeper, but he is the 3rd highest earner in the squad (€7.2 million P/Y) and at the age of 30, alongside Fabianski West Ham have quite old goalkeepers. And yes, I could have gotten rid of Fabianski, but realistically he has barely any value, so with selling Areola there are at least some budgetary advantages. West Ham signed Areola from PSG for only €9 million and I think it's realistic to assume that they would break about even.
-<br><br>
-
-<div class="image-container">
-  <img src="https://pbs.twimg.com/media/F1kvV4cX0AATSBg?format=png&name=900x900
-" alt="Alphonse Aréola stats radar chart data comparison" width="698" height="653">
-  <a href="https://datamb.football/keepers" target="_blank" class="image-credit">Compare GKs</a>
-</div>
-<br><br><br>
-
-
-
-Jarrod Bowen<br> Bowen is someone that doesn’t need to be moved on, as long as West Ham can get the English star to commit to a long term deal. The winger is wanted by Tottenham Hotspur and valued at €52 million, and considering the fact that he has 2 years left on his current deal, I have decided to sell him.<br><br>
-Vladimir Coufal<br>
-The Czech international has again been a wonderful servant for West Ham United, but at the age of 30 he is not getting any younger and the club have already signed Thilo Kehrer who is versatile enough to play Centre-Back but i would prefer to line him up at Right-Back and then there still is youth prospect Ben Johnson.
-Currently valued at €9 million by Transfermakrt a price around €10 million seems fair.<br><br><br>
-
-• Budget and strategy : <br><br>
-
-So, from the Declan Rice sale West Ham will receive €139 million (€116 million + 20% VAT tax). From the Zouma transfer it is about €15 million, from a Danny Ings transfer about an extra €18 million, a after VAT tax add on a fee of €12 million ,Alphonse Areola will bring in another €9 million, of course Jarrad Bowen brings in €52 million and Vladimir Coufal adds another €10 million.  This comes out to a total of €255 million of spendable budget. Alongside the new budget we have cleared money from the annual payroll, the money that has been saved totals out to €37 million a year (including the salary of Declan Rice),  so these are the budgets I will be working with.
-<br><br>
-Under Ruud van Nistelrooy West Ham   would play a much more possession heavy playstyle, Van Nistelrooy also proved he values his striker to drop deeper and help with build up, which shows in Luuk de Jong’s stats: 2.37 progressive passes (top 17%), 68.8% pass completion (top 49%) and 0.17 expected assists per90 (top 8%). This means we are looking for a striker that is happy to drop deep and assist in build up.<br><br>
-
-With Jarrod Bowen having left the club West Ham need to sign two wingers, and considering this is a West Ham under Ruud van Nistelrooy we are looking for a very well rounded winger, one that can pass and shoot, and can help in defence.<br><br>
-
-The midfield is where the most work is needed, Paqueta can fulfil the Veerman role very well. While Veerman’s passing range is better than Paqueta’s, the Brazilian is the better attacking player, and also Paqueta can take up at least a part of the defensive work, but there is still a backup 8 needed and in the situation that Paqueta plays the 10 role, West Ham need to have a quality number 8. But on the topic of the number 10 West Ham are in dire need of one, as currently besides Paqueta that is not really a number 10 there is Pablo Fornals and Manuel Lanzini, who both just can’t start. And then there is the number 6 role, where there really is only Tomas Soucek, who is good but not top quality, West Ham need a young backup that can grow in to a starter over the next 12 months.
-<br><br>
-In defence I am looking for a right sided Centre-Back and a left sided one since the only other Centre-Backs they have are Nayef Aguerd (starter) and Angelo Ogbonna (not good enough) so ideally 2 or even 3 Centre-Backs are signed. And they do have to be at least decent ball players as we are trying to build a more ball dominant team. And as part of the defence the goalkeeper, I will be looking for one starter who doesn't need to be the youngest and one young gun to back him up.<br><br><br>
-
-• Transfer targets : <br><br>
-GK: Alban Lafont - €25 million<br>
-The Frenchman has been on top of his game for the past a couple years. Started as a massive talent at Fiorentina and after his move to Nantes he kept proving himself as a brilliant shotstopper. The 6’3 goalkeeper played a total of 4049 minutes this season, he ended the season with a PSxG-GA of +0.12, comparatively Lukasz Fabianski put up a negative PSxG-GA of -0.03. Lafont has the potential to be a world class goalkeeper and in a year or two he might be, and I do think West Ham have to get him now. In terms of salary that is of course difficult to determine, but i decided to put kind of in the middle of Lukasz Fabianski and Alphons Areola therefore i have put Lafont on €4 million a year.
-<br><br>
-
-
-<div class="image-container">
-  <img src="https://pbs.twimg.com/media/F1kvdYSX0AAr6Hu?format=png&name=900x900" alt="Alban Lafont vs Alphonse Aréola" width="681" height="605">
-  <a href="https://datamb.football/keepers" target="_blank" class="image-credit">Compare GKs</a>
-
-</div>
-
-
-<br><br><br>
-
-
-2nd GK : Plamen Andreev ~ €2 million
-<br>This is a very niche player, currently he plays his trait at Levski Sofia in Bulgaria, his home country. And because he is so niche I will be quoting my good friend @jwmufc_: “Made his senior debut at 16. He’s also been captain of his club since 17, demonstrating the mental strength/maturity…" This season the now 18-year-old played 27 games, conceded just 12 and kept 20 clean sheets.
-In terms of salary with €1 million per year he will be one of the lowest earners in the squad which seems fair at least for his first contract.
-<br><br>RCB: Armel Bella-Kotchap - €20 million<br>
-
-This season he was relegated with Southampton, but that is now a show of his personal quality. He is a  brilliant defender, he reads the game very well and defends proactively. He doesn’t seem to be a ball playing defender but that is quite difficult to judge seeing as he was in a very bad Southampton team. In the figure you can see a plot graph of Bella-Kotchap and Kurt Zouma in which you can see Bella-Kotchap faced more defensive duels and won a bigger percentage of them compared to Zouma. In the figure below you can see a direct comparison between Kurt Zouma and his “successor” Armel Bella-Kotchap and the latter outclasses Zouma by a country mile. In terms of salary he was on a bit less than €1 million a year so upping that to around €1.5 million should be enough. <br><br>
-
-
-
-<div class="image-container">
-  <img src="https://pbs.twimg.com/media/F1kvvL1WIAQdgn6?format=jpg&name=medium" alt="CB plot chart, defensive duels, zouma, bella-kotchap" width="920" height="605">
-  <a href="https://datamb.football/plotcb" target="_blank" class="image-credit">Plot CBs</a>
-
-</div>
-<br> <br>
-
-
-<div class="image-container">
-  <img src="https://pbs.twimg.com/media/F1kvlM_WYAAUIUR?format=png&name=900x900" alt="Kurt Zouma vs Armel Bella-Kotchap" width="681" height="605">
-  <a href="https://datamb.football/centrebacks" target="_blank" class="image-credit">Compare CBs</a>
-
-</div>
-
-
-<br><br><br>
-
-LCB: Alessandro Buongiorno - €18 million<br>
-The Italian international has lit up Torino and the Italian national team. Tough Left-Centre-Back that can cover at Left-Back and maybe replace Emerson/Cresswell at times. He has decent ball playing numbers but we have seen his ability pop out multiple times. He is also dominant in the air which is very useful in the Premier League. As Left-Back he tends to get forward and receives 0.86 progressive passes per 90. Salary wise he currently earns €410k a year, so upping it to €1 million a year should do the trick.
-
-<br><br>Number 6: Tyler Adams - €20 million<br>
-The defensive midfielder was one of Leeed’s better players in an overall bad season. He put up great defensive numbers and that is exactly what I'm looking for as he would be the player together with Soucek to take over a big part of Rice’s defensive responsibilities. As you can see he is not the best passer but I do think he is good enough. And keep in mind that at PSV Van Nistelrooy played with Ibrahima Sangare, who is also not the best ball player. In the figure below you can see that neither Adams or Soucek tend to progress play so it's crucial West Ham have a number 8 that can carry the ball as well as pass.<br><br>
-
-
-<div class="image-container">
-  <img src="https://pbs.twimg.com/media/F1kwoFQWIAQaXQV?format=png&name=small
-" alt="Tyler Adams stats radar chart data comparison" width="698" height="653">
-  <a href="https://datamb.football/midfielders" target="_blank" class="image-credit">Compare midfielders</a>
-</div>
-<br><br><br>
-
-
-Number 8: Yunus Musah - €20 million<br>
-This might just be the perfect fit for what we need, he is capable of playing in a pivot and support defensively as well as playing that advanced 8 role and building up attacks. One of Musah’s main qualities is his press resistance which he will need against many Premier League opponents. He is also a wonderful ball carrier which you can see in his stats, he in general has very good biomechanics: a low centre of gravity. And something that doesn’t show in stats is his understanding of a leadership role. In terms of salary, he is currently on €1.5 million adding €1 million and therefore a total of €2.5 million should be enough
-(inspired upon @jwmufc_)
-<br><br>
-Number 10: Charles de Ketelaere - €30 million<br>
-The Belgian super talent had a awful season at AC Milan as he barely played however when he did play he showed his ability. And again with the Belgium U-21 team he proved he is a brilliant footballer. De Ketelaere can play at multiple positions, at West Ham he could be that forward going number 10. He has decent defensive numbers so he could help with that. And a big positive is he could interchange with my striker target, as both are good passers and tend to drop deep so when one does that the other can be the striker. He wouldn’t earn too big of a salary, most likely around €3 million per year.<br><br>
-
-Right-Wing: Domenico Berardi - €22 million<br>
-Sassuolo’s talisman was at some point tipped to stay at I Neroverdi his whole career, but with reports coming that he is open to leaving the club West Ham should strike. Berardi a wonderful and tricky winger that tends to cut inside and have a shot. Berardi scored 12 goals and gave 7 assists and it would be wonderful for West Ham to have such a productive winger. And off the pitch the Italian would bring plenty of experience to The Hammers. When looking at his stats in the figure below it's clear why he is quite the wanted man. High stats in his playmaking numbers it's something that will be crucial for West Ham. In terms of salary a deal at West Ham would see him become the clubs highest earner, with about €9 million a year.<br><br>
-
-
-
-<div class="image-container">
-  <img src="https://pbs.twimg.com/media/F1kwZ99WcAIXxSr?format=png&name=small
-" alt="Domenico Berardi stats radar chart data comparison" width="698" height="653">
-  <a href="https://datamb.football/wingers" target="_blank" class="image-credit">Compare wingers</a>
-</div>
-<br><br><br>
-
-
-Backup: Johan Bakayoko - €20 million
-Van Nistelrooy knows Bakayoko from his time at PSV and the now Belgium goal scorer has really proven his quality. Hard working right-winger, he can beat his opponents in many ways, a trick from what looks like Neymar’s book or with his nearly absurd pace. The winger was wanted by PSG who bid €15 million for his services but that was rejected by PSV. Bakayoko has very good biomechanics, he has a low centre of gravity which allows him to change direction quickly and it's apparent he uses this to his utmost advantage. This season the red devil clocked up 5 goals and 5 assists in 23 games in the Eredivisie. It is also important to say that Bakayoko doesn’t shy away from helping the defence, and often finds himself near his own box. Well, when looking at his underlying numbers he looks like an even better player and then keep in mind he is still only 20-years-old. In terms of salary, assuming his wage would be doubled he would be earning about €1.4 million per year.
-<br><br>
-
-
-<div class="image-container">
-  <img src="https://pbs.twimg.com/media/F1kweCCWIAQqKHo?format=png&name=small
-" alt="Johan Bakayoko stats radar chart data comparison" width="698" height="653">
-  <a href="https://datamb.football/wingers" target="_blank" class="image-credit">Compare wingers</a>
-</div>
-<br><br><br>
-
-
-
-Striker: Vangelis Pavlidis - €18 million
-<br> The Greek striker  is coming off a brilliant season with AZ Alkmaar, they reached the semi-final of the Conference League and finished 4th in the Eredivisie. And Evangelos “Vangelis” Pavlidis played a crucial role in this success, he ended the season with 17 goals and 8 assists in all competitions. That means he scored only 3 goals less on his own than Michail Antonio and Danny Ings combined, and he also gave 5 more assists than both. Pavlidis is quite a strong and physical striker that doesn’t shy away from dropping in and supporting build up, that's why Domenico Berardi could have such a crucial role, he is a winger that likes to shoot and score which would be perfect if Pavlidis is not there to finish. When looking into his numbers he is absolutely perfect for what we need, great finisher and playmaker and dominant in the air which is difficult to find. He would cost around €18 million euros and in terms of salary he would likely earn around €1.5 million euros.
-<br><br>
-<div class="image-container">
-  <img src="https://pbs.twimg.com/media/F1kwODKWIAAWxUD?format=png&name=small
-" alt="Vangelis Pavlidis stats radar chart data comparison" width="698" height="653">
-  <a href="https://datamb.football/strikers" target="_blank" class="image-credit">Compare STs</a>
-</div>
-<br><br>
-
-<div class="share-buttons">
-  <!-- Twitter Share Button -->
-  <a href="https://twitter.com/intent/tweet?text=http%3A%2F%2Fdatamb.football%2Ftesting" class="twitter-share" target="_blank">
-    <i class="fab fa-twitter"></i> Share on Twitter
-  </a>
-
-  <!-- WhatsApp Share Button -->
-  <a href="whatsapp://send?text=http%3A%2F%2Fdatamb.football%2Ftesting" class="whatsapp-share" target="_blank">
-    <i class="fab fa-whatsapp"></i> Share on WhatsApp
-  </a>
-
-  <!-- Facebook Share Button -->
-  <a href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fdatamb.football%2Ftesting" class="facebook-share" target="_blank">
-    <i class="fab fa-facebook"></i> Share on Facebook
-  </a>
-
-  <!-- Email Share Button -->
-  <a href="mailto:?subject=Check%20out%20this%20article&body=http%3A%2F%2Fdatamb.football%2Ftesting" class="email-share" target="_blank">
-    <i class="fas fa-envelope"></i> Share via Email
-  </a>
-</div>
-
-<div class="more-stories">
-  <h2>More Analysis</h2>
-  <ul class="articles-list">
-    <li>
-      <a href="http://datamb.football/teonelmessi">
-        <img src="https://i.imgur.com/wUOD8Hj.png" alt="Articles by Teonel Messi" width="292" height="160">         <span class="article-title">Articles by Teonel Messi</span>
-
-      </a> 
-    </li>
-    <li>
-      <a href="http://datamb.football/midfielders">
-        <img src="https://i.imgur.com/p43wTxg.png" alt="Compare midfielders" width="292" height="160"><span class="article-title">Compare midfielders</span>
-      </a>
-    </li>
-    <li>
-      <a href="http://datamb.football/mount-man-united-data-analysis">
-        <img src="https://i.imgur.com/XXtt5nK.png" alt="Mason Mount : Data Analysis" width="270" height="160"><span class="article-title">Mason Mount : Data Analysis</span>
-      </a>
-    </li>
-  </ul>
-</div>
-
-
-
-</div></div> <div id="taboola-below-article-thumbnails"></div>
-<script type="text/javascript">
-  window._taboola = window._taboola || [];
-  _taboola.push({
-    mode: 'alternating-thumbnails-a',
-    container: 'taboola-below-article-thumbnails',
-    placement: 'Below Article Thumbnails',
-    target_type: 'mix'
-  });
-</script>
 
    <footer class="footer">
-       <div class="google-play-container">
+   
+    <div class="google-play-container">
 
     <a href='https://play.google.com/store/apps/details?id=com.datamb.datamb.webviewflutter&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'></a>
 <script type='text/javascript' src='https://storage.ko-fi.com/cdn/widget/Widget_2.js'></script><script type='text/javascript'>kofiwidget2.init('Support  Me', '#000000', 'I2I6L8U18');kofiwidget2.draw();</script> 
@@ -775,9 +410,5 @@ Striker: Vangelis Pavlidis - €18 million
       </nav>
     </div>
   </footer>
-<script type="text/javascript">
-  window._taboola = window._taboola || [];
-  _taboola.push({flush: true});
-</script>
 </body>
 </html>
