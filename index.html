@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-	    <meta name="viewport" content="user-scalable=no">
-
   <title>Player Search</title>
 <style>
 /* Add custom CSS to style the layout */
@@ -55,9 +52,17 @@ button {
 table {
   border-collapse: collapse;
   width: 70%;
-position: absolute;
+  position: absolute;
   top: 300px;
-Right: 3%;
+  right: 3%;
+}
+
+/* Media query for mobile devices with a maximum width of 767px */
+@media (max-width: 767px) {
+  table {
+    width: 50%; /* Set the table width to 100% on smaller screens */
+    /* Add any additional mobile-specific styles here */
+  }
 }
 
 /* Apply styles to header cells and data cells */
