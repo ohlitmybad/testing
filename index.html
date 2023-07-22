@@ -87,7 +87,7 @@ text-align: center;
 }
 
 th:first-child {
-  width: 200px;
+  width: 120px;
 }
 
 
@@ -337,8 +337,15 @@ for (const metricLabel of metricLabels) {
 
       // Add the player name and other info in the first column
       const playerNameCell = document.createElement('td');
-      playerNameCell.textContent = playerData[1] + ' (' + playerData[2] + ', ' + playerData[11] + ')';
-      playerRow.appendChild(playerNameCell);
+const playerName = playerData[1];
+const playerData2 = playerData[2];
+const playerData11 = playerData[11];
+
+// Create a formatted HTML string
+const formattedText = `<span>${playerName}</span><br><span style="font-style: italic">${playerData2}, ${playerData11}</span>`;
+
+// Set the formatted HTML as the content of playerNameCell
+playerNameCell.innerHTML = formattedText;      playerRow.appendChild(playerNameCell);
 
       // Add the player metric values in the subsequent columns
       for (let i = 3; i <= 9; i++) {
