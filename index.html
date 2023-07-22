@@ -16,10 +16,10 @@ body {
 }
 
 .inputs {
-  flex: 0 0 10%;
+  flex: 0 0 20%;
   padding: 30px;
-  border-right: 1px solid #ccc;
   flex-direction: column; /* Stack the inputs vertically */
+font-size: 12px;
 }
 
 .inputs input {
@@ -27,12 +27,12 @@ body {
 }
 
     img {
-            width: 40px;
+            width: 35px;
 position: absolute;
-top: 6px;
+top: 30px;
 pointer-events: none;
 z-index: 40000; 
-left: 130px;
+left: 140px;
 opacity: 1;
         }
 
@@ -53,20 +53,49 @@ table {
   border-collapse: collapse;
   width: 70%;
 position: absolute;
-  top: 10px;
-  right: 30px;
-
+  top: 300px;
+Right: 3%;
 }
 
+/* Apply styles to header cells and data cells */
 th, td {
   border: 1px solid #ccc;
   padding: 8px;
   text-align: left;
+  user-select: none; /* Prevent text selection in table cells */
 }
 
+
+td {
+  font-size: 13px;
+}
+
+
+
+/* Set the desired fixed width for the rest of the data cells */
+td:not(:first-child) {
+text-align: center;
+
+}
+
+/* Set the desired fixed width for the header cells (including the first column) */
 th {
   background-color: #f2f2f2;
+  font-size: 10px; /* Set the desired font size for header cells */
+text-align: center;
+
 }
+
+th:first-child {
+  width: 200px;
+}
+
+
+/* Apply fixed table layout */
+table {
+  table-layout: fixed;
+}
+
 
 
 
@@ -88,25 +117,25 @@ th {
 
     <h3></h3>
     <label for="defensiveActions">Defensive Actions</label>
-    <input type="number" id="defensiveActionsLow" min="0" max="100" placeholder="0-100">
+    <input type="number" id="defensiveActionsLow" min="0" max="100" placeholder="Percentile 0-100">
 
     <label for="aerialsContested">Aerials Contested</label>
-    <input type="number" id="aerialsContestedLow" min="0" max="100" placeholder="0-100">
+    <input type="number" id="aerialsContestedLow" min="0" max="100" placeholder="Percentile 0-100">
 
     <label for="exitLine">Exit Line</label>
-    <input type="number" id="exitLineLow" min="0" max="100" placeholder="0-100">
+    <input type="number" id="exitLineLow" min="0" max="100" placeholder="Percentile 0-100">
 
     <label for="passes">Passes</label>
-    <input type="number" id="passesLow" min="0" max="100" placeholder="0-100">
+    <input type="number" id="passesLow" min="0" max="100" placeholder="Percentile 0-100">
 
     <label for="longPassPercentage">Long Pass %</label>
-    <input type="number" id="longPassPercentageLow" min="0" max="100" placeholder="0-100">
+    <input type="number" id="longPassPercentageLow" min="0" max="100" placeholder="Percentile 0-100">
 
     <label for="shortPassPercentage">Short Pass %</label>
-    <input type="number" id="shortPassPercentageLow" min="0" max="100" placeholder="0-100">
+    <input type="number" id="shortPassPercentageLow" min="0" max="100" placeholder="Percentile 0-100">
 
     <label for="psxg">PSxG - GA</label>
-    <input type="number" id="psxgLow" min="0" max="100" placeholder="0-100">
+    <input type="number" id="psxgLow" min="0" max="100" placeholder="Percentile 0-100">
 
  
     <h3></h3>
