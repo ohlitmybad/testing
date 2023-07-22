@@ -16,6 +16,8 @@
   <title>Player Search</title>
 <style>
 
+
+
 button {
 Height: 30px;
 
@@ -70,7 +72,7 @@ table {
   border-collapse: collapse;
   width: 70%;
 position: absolute;
-  top: 100px;
+  top: 84px;
 Right: 3%;
 }
 
@@ -221,6 +223,16 @@ body.dark-mode .dark-mode-toggle .toggle-icon::before {
 body.dark-mode button {
   color: #f2f2f2; /* Set the text color to a light color in dark mode */
   background-color: #333333; /* Set the background color to a dark color in dark mode */
+}
+
+.player-info {
+  font-style: italic;
+  font-size: 12px; /* Adjust the font size as desired */
+}
+
+.no-results-message {
+  margin: 21px; /* Adjust the margin as desired */
+color: red;
 }
 
 </style>
@@ -430,7 +442,8 @@ body.dark-mode button {
 
       if (restrictedPlayers.length === 0) {
         const noResultsMessage = document.createElement('p');
-        noResultsMessage.textContent = 'No players found matching the specified percentiles.';
+        noResultsMessage.textContent = 'No players found';
+    noResultsMessage.classList.add('no-results-message'); // Add a class to the element
         resultsContainer.appendChild(noResultsMessage);
       } else {
         // Create the table element
@@ -456,7 +469,8 @@ body.dark-mode button {
           const playerData11 = playerData[11];
 
           // Create a formatted HTML string
-          const formattedText = `<span>${playerName}</span><br><span style="font-style: italic">${playerData2}, ${playerData11}</span>`;
+          const formattedText = `<span>${playerName}</span><br><span class="player-info">${playerData2}, ${playerData11}</span>`;
+
 
           // Set the formatted HTML as the content of playerNameCell
           playerNameCell.innerHTML = formattedText;
