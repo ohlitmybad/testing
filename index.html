@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
-	  <meta name="viewport" content="width=device-width, initial-scale=0.8">
-    <meta name="viewport" content="user-scalable=no">
-
 <head>
   <title>Player Search</title>
 <style>
 /* Add custom CSS to style the layout */
+
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -19,7 +17,7 @@ body {
 }
 
 .inputs {
-  flex: 0 0 20%; /* Set initial width to full width */
+  flex: 0 0 20%;
   padding: 30px;
   flex-direction: column;
   font-size: 12px;
@@ -52,10 +50,34 @@ button {
   margin-top: 10px;
 }
 
+/* Mobile styles */
+@media (max-width: 600px) {
+
+
+  .inputs {
+    flex: 0 0 40%; /* Change input field width to 100% on mobile */
+    padding: 15px; /* Reduce padding on mobile */
+    font-size: 10px; /* Adjust font size for mobile */
+  }
+
+  table {
+    width: 40%; /* Make the table width 100% on mobile */
+    top: 150px; /* Adjust the position of the table on mobile */
+  }
+
+  th {
+    font-size: 8px; /* Adjust font size for header cells on mobile */
+  }
+
+  td {
+    font-size: 10px; /* Adjust font size for data cells on mobile */
+  }
+}
+
+
 table {
   border-collapse: collapse;
-  width: 70%; /* Set initial width to full width */
-  max-width: 70%; /* Set the maximum width for the table */
+  width: 70%;
 position: absolute;
   top: 300px;
 Right: 3%;
@@ -69,41 +91,37 @@ th, td {
   user-select: none; /* Prevent text selection in table cells */
 }
 
+
 td {
   font-size: 13px;
-  text-align: center;
+}
+
+
+
+/* Set the desired fixed width for the rest of the data cells */
+td:not(:first-child) {
+text-align: center;
+
 }
 
 /* Set the desired fixed width for the header cells (including the first column) */
 th {
   background-color: #f2f2f2;
-  font-size: 10px;
-  text-align: center;
+  font-size: 10px; /* Set the desired font size for header cells */
+text-align: center;
+
 }
 
 th:first-child {
   width: 120px;
 }
 
+
 /* Apply fixed table layout */
 table {
   table-layout: fixed;
 }
 
-/* Media query for mobile devices with a maximum width of 767px */
-@media (max-width: 767px) {
-  .inputs {
-    flex: 0 0 100%; /* Set the input bar to full width on smaller screens */
-  }
-
-  table {
-    width: 100%; /* Set the table width to full width on smaller screens */
-    max-width: 100%; /* Remove the maximum width restriction for the table */
-  }
-}
-td:first-child {
-  text-align: left;
-}
 
 
 
