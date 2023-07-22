@@ -3,8 +3,6 @@
 <head>
   <title>Player Search</title>
 <style>
-/* Add custom CSS to style the layout */
-
 body {
   font-family: Arial, sans-serif;
   margin: 0;
@@ -13,27 +11,30 @@ body {
 
 .container {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap; /* Enable wrapping of flex items */
 }
 
 .inputs {
   flex: 0 0 20%;
-  padding: 30px;
-  flex-direction: column;
-  font-size: 12px;
+  padding: 1vw; /* Use vw unit for padding */
+  flex-direction: column; /* Stack the inputs vertically */
+  font-size: 1vw; /* Use vw unit for font size */
 }
 
 .inputs input {
-  margin-bottom: 10px;
+  margin-bottom: 0.5vw;
+  padding: 1vw; /* Use pixels (px) for fixed padding */
+height: 0.05vw;
+Width: 16vw;
 }
 
 img {
-  width: 35px;
+  width: 2.5vw; /* Use vw unit for image width */
   position: absolute;
-  top: 30px;
+  top: 2vw; /* Use vw unit for top position */
   pointer-events: none;
   z-index: 40000;
-  left: 140px;
+  left: 9vw; /* Use vw unit for left position */
   opacity: 1;
 }
 
@@ -43,78 +44,52 @@ form {
 }
 
 label {
-  margin-bottom: 5px;
+  margin-bottom: 0.5vw; /* Use vw unit for margin */
 }
 
 button {
-  margin-top: 10px;
+  margin-top: 1vw; /* Use vw unit for margin */
+height: 2vw;
+width: 19vw;
+font-size: 1.3vw;
 }
-
-/* Mobile styles */
-@media (max-width: 600px) {
-
-
-  .inputs {
-    flex: 0 0 50%; /* Change input field width to 100% on mobile */
-    padding: 15px; /* Reduce padding on mobile */
-    font-size: 10px; /* Adjust font size for mobile */
-  }
-
-  table {
-    top: 150px; /* Adjust the position of the table on mobile */
-  }
-
-  th {
-    font-size: 8px; /* Adjust font size for header cells on mobile */
-  }
-
-  td {
-    font-size: 10px; /* Adjust font size for data cells on mobile */
-  }
-}
-
 
 table {
   border-collapse: collapse;
   width: 70%;
-position: absolute;
-  top: 300px;
-Right: 3%;
+  position: absolute;
+  top: 20vw; /* Adjust the position of the table on mobile */
+  right: 3vw; /* Use vw unit for right position */
 }
 
 /* Apply styles to header cells and data cells */
-th, td {
+th,
+td {
   border: 1px solid #ccc;
-  padding: 8px;
+  padding: 0.8vw; /* Use vw unit for padding */
   text-align: left;
   user-select: none; /* Prevent text selection in table cells */
 }
 
-
 td {
-  font-size: 13px;
+  font-size: 1.3vw; /* Use vw unit for font size */
 }
-
-
 
 /* Set the desired fixed width for the rest of the data cells */
 td:not(:first-child) {
-text-align: center;
-
+  text-align: center;
 }
 
 /* Set the desired fixed width for the header cells (including the first column) */
 th {
   background-color: #f2f2f2;
-  font-size: 10px; /* Set the desired font size for header cells */
-text-align: center;
-
+  font-size: 1vw; /* Use vw unit for font size */
+  text-align: center;
 }
 
 th:first-child {
-  width: 120px;
+  width: 12vw; /* Use vw unit for column width */
 }
-
 
 /* Apply fixed table layout */
 table {
@@ -122,7 +97,19 @@ table {
 }
 
 
+::placeholder {
+  font-size: 0.7vw; /* Use vw unit for placeholder font size */
+}
 
+select {
+  font-size: 1.3vw; /* Use vw unit for select element font size */
+height: 2vw;
+width: 19vw;
+}
+
+h3 {
+  font-size: 1.3vw; /* Use vw unit for select element font size */
+}
 
 
 </style>
