@@ -3,6 +3,14 @@
 <meta name="viewport" content="width=device-width, initial-scale=0.53, user-scalable=no">
 
 <head>
+<link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
+	<meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@DataMB_">
+    <meta name="twitter:title" content="DataMB | Player Search">
+    <meta name="twitter:description" content="Search players by attributes">
+    <meta name="twitter:image" content="https://i.imgur.com/p43wTxg.png">
+    <meta property="og:image" content="https://i.imgur.com/p43wTxg.png">
+	<title translate="no">DataMB | Player Search</title>
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
   <title>Player Search</title>
@@ -10,6 +18,7 @@
 
 button {
 Height: 30px;
+
 }
 /* Add custom CSS to style the layout */
 body {
@@ -173,12 +182,12 @@ body.dark-mode input {
 
  .dark-mode-toggle {
     position: relative;
-    left: 10.6%;
+    left: 10%;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 40px;
-    height: 40px;
+    width: 35px;
+    height: 35px;
     background-color: #e0e0de;
     border-radius: 50%;
     cursor: pointer;
@@ -189,7 +198,7 @@ body.dark-mode input {
 .dark-mode-toggle .toggle-icon::before {
   font-family: "Ionicons";
   content: "\f467"; /* Unicode value for the moon icon in Ionicons */
-  font-size: 35px; /* Adjust the value as needed */
+  font-size: 32px; /* Adjust the value as needed */
 }
 
 body.dark-mode .dark-mode-toggle {
@@ -201,19 +210,8 @@ body.dark-mode .dark-mode-toggle {
 body.dark-mode .dark-mode-toggle .toggle-icon::before {
   font-family: "Ionicons";
   content: "\f3b0"; /* Unicode value for the sun icon in Ionicons */
-  font-size: 24px; /* Adjust the value as needed */
+  font-size: 21px; /* Adjust the value as needed */
 }
-
-
-
-body.dark-mode .toggle-slider {
-  background-color: #2B2C2E; /* Darker background color for dark mode */
-}
-
-body.dark-mode input:checked + .toggle-slider:before {
-  background-color: #ccc; /* Darker background color for dark mode */
-}
-
 
 body.dark-mode button {
   color: #f2f2f2; /* Set the text color to a light color in dark mode */
@@ -591,7 +589,7 @@ function createTableHeader() {
   </script>
 <div class="dark-mode-toggle" onclick="toggleDarkMode()">
     <span class="toggle-icon"></span>
-  </div><br><br><br>
+  </div>
 
 
 <div id="taboola-below-article-thumbnails"></div>
