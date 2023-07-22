@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html>
 <meta name="viewport" content="width=device-width, initial-scale=0.53, user-scalable=no">
+
 <head>
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
   <title>Player Search</title>
 <style>
+
+button {
+Height: 30px;
+}
 /* Add custom CSS to style the layout */
 body {
   font-family: Arial, sans-serif;
@@ -54,7 +61,7 @@ table {
   border-collapse: collapse;
   width: 70%;
 position: absolute;
-  top: 300px;
+  top: 100px;
 Right: 3%;
 }
 
@@ -84,6 +91,7 @@ th {
   background-color: #f2f2f2;
   font-size: 10px; /* Set the desired font size for header cells */
 text-align: center;
+  position: relative; /* Add this for positioning the arrows */
 
 }
 
@@ -97,19 +105,131 @@ table {
   table-layout: fixed;
 }
 
+th:not(:first-child)::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 55%; /* Adjust this value to position the arrow vertically inside the cell */
+  left: 0%; /* Adjust this value to position the arrow horizontally inside the cell */
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-top: 6px solid black;
+  transform: translateX(-50%);
+}
+
+th:not(:first-child)::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: 55%; /* Adjust this value to position the arrow vertically inside the cell */
+  left: 0%; /* Adjust this value to position the arrow horizontally inside the cell */
+  width: 0;
+  height: 0;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 6px solid black;
+  transform: translateX(-50%);
+}
+
+
+  /* Dark Mode Styles */
+  body.dark-mode,
+  body.dark-mode * {
+    color: #f2f2f2;
+  }
+
+  body.dark-mode {
+    background-color: #0F0F0E;
+  }
+
+body.dark-mode .tooltip {
+  color: #000000; /* Set the font color to black in dark mode */
+  background-color: #f9f9f9;
+  border: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 12px;
+}
 
 
 
+
+body.dark-mode th {
+  color: #000000; /* Set the text color to a light color in dark mode */
+}
+
+body.dark-mode select {
+  color: #f2f2f2; /* Set the text color to a light color in dark mode */
+  background-color: #333333; /* Set the background color to a dark color in dark mode */
+}
+
+body.dark-mode input {
+  color: #f2f2f2; /* Set the text color to a light color in dark mode */
+  background-color: #333333; /* Set the background color to a dark color in dark mode */
+}
+
+ .dark-mode-toggle {
+    position: relative;
+    left: 10.6%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #e0e0de;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  }
+
+
+.dark-mode-toggle .toggle-icon::before {
+  font-family: "Ionicons";
+  content: "\f467"; /* Unicode value for the moon icon in Ionicons */
+  font-size: 35px; /* Adjust the value as needed */
+}
+
+body.dark-mode .dark-mode-toggle {
+  background-color: #333333;
+}
+
+
+
+body.dark-mode .dark-mode-toggle .toggle-icon::before {
+  font-family: "Ionicons";
+  content: "\f3b0"; /* Unicode value for the sun icon in Ionicons */
+  font-size: 24px; /* Adjust the value as needed */
+}
+
+
+
+body.dark-mode .toggle-slider {
+  background-color: #2B2C2E; /* Darker background color for dark mode */
+}
+
+body.dark-mode input:checked + .toggle-slider:before {
+  background-color: #ccc; /* Darker background color for dark mode */
+}
+
+
+body.dark-mode button {
+  color: #f2f2f2; /* Set the text color to a light color in dark mode */
+  background-color: #333333; /* Set the background color to a dark color in dark mode */
+}
 
 </style>
 </head>
 <body>
-	 <img src="https://i.imgur.com/UurMbGS.png" alt="Logo">
+
+  <img src="https://i.imgur.com/UurMbGS.png" alt="Logo">
 
 <div class="container">
   <div class="inputs">
   <form id="searchForm">
-    <h3>Player Search</h3>
+    <h3>Player Search<br><br></h3>
     <select id="datasetSelector">
       <option value="dataset1">GK</option>
       <option value="dataset2">CB</option>
@@ -177,8 +297,8 @@ table {
 
     // Metric names for GK
     const metricNames1 = [
-      'Defensive Actions',
-      'Aerials Contested',
+      'Def Actions',
+      'Aerials',
       'Exit Line',
       'Passes',
       'Long Pass %',
@@ -188,13 +308,13 @@ table {
 
     // Metric names for CB
     const metricNames2 = [
-      'Passes completed',
+      'Passes',
       'Forward pass%',
-      'Progressive pass',
-      'Defensive actions',
-      'Defensive duel%',
+      'Prog passes',
+      'Def actions',
+      'Def duel%',
       'Aerial duel%',
-      'Progressive carries'
+      'Prog carries'
     ];
 
     // Function to update metric labels based on the selected dataset
@@ -207,7 +327,7 @@ table {
     }
 
 
-  function reverseSearch(percentiles, dataArray) {
+    function reverseSearch(percentiles, dataArray) {
       return dataArray.filter(data => {
         for (let i = 3; i <= 9; i++) {
           const metricValue = parseFloat(data[i]) * 100;
@@ -241,28 +361,15 @@ table {
     });
 
 
- function clearSearchInputs() {
-    // Clear all input fields
-    const inputs = document.querySelectorAll('input[type="number"]');
-    inputs.forEach(input => (input.value = ''));
+    function clearSearchInputs() {
+      // Clear all input fields
+      const inputs = document.querySelectorAll('input[type="number"]');
+      inputs.forEach(input => (input.value = ''));
 
-    // Clear the results container
-    const resultsContainer = document.getElementById('resultsContainer');
-    resultsContainer.innerHTML = '';
-  }
-
-  document.getElementById('datasetSelector').addEventListener('change', function () {
-    const selectedDataset = document.getElementById('datasetSelector').value;
-    if (selectedDataset === 'dataset2') {
-      updateMetricLabels('dataset2');
-    } else {
-      updateMetricLabels('dataset1');
+      // Clear the results container
+      const resultsContainer = document.getElementById('resultsContainer');
+      resultsContainer.innerHTML = '';
     }
-
-    // Clear the search inputs and results when the data selector changes
-    clearSearchInputs();
-  });
-
 
     document.getElementById('searchForm').addEventListener('submit', function(event) {
       event.preventDefault();
@@ -297,66 +404,175 @@ table {
         ? reverseSearch(percentilesInput, dataArray2)
         : reverseSearch(percentilesInput, dataArray1);
 
-    const resultsContainer = document.getElementById('resultsContainer');
-  resultsContainer.innerHTML = '';
+      const resultsContainer = document.getElementById('resultsContainer');
+      resultsContainer.innerHTML = '';
 
-  if (restrictedPlayers.length === 0) {
-    const noResultsMessage = document.createElement('p');
-    noResultsMessage.textContent = 'No players found matching the specified percentiles.';
-    resultsContainer.appendChild(noResultsMessage);
-  } else {
-    const resultHeader = document.createElement('h3');
-    resultHeader.textContent = '';
-    resultsContainer.appendChild(resultHeader);
+      if (restrictedPlayers.length === 0) {
+        const noResultsMessage = document.createElement('p');
+        noResultsMessage.textContent = 'No players found matching the specified percentiles.';
+        resultsContainer.appendChild(noResultsMessage);
+      } else {
+        // Create the table element
+        const table = document.createElement('table');
 
-    // Create the table element
-    const table = document.createElement('table');
-    resultsContainer.appendChild(table);
+        // Create the table header
+        const tableHeader = createTableHeader();
+        table.appendChild(tableHeader);
 
-    // Create the table header row
-    const headerRow = document.createElement('tr');
-    table.appendChild(headerRow);
+        // Create the table body
+        const tableBody = document.createElement('tbody');
+        table.appendChild(tableBody);
 
-const selectedDataset = document.getElementById('datasetSelector').value;
-const metricLabels = selectedDataset === 'dataset2' ? metricNames2 : metricNames1;
+        // Add the player data rows to the table
+        restrictedPlayers.forEach(playerData => {
+          const playerRow = document.createElement('tr');
+          tableBody.appendChild(playerRow);
 
-// Create an extra empty header cell at the beginning
-const emptyHeaderCell = document.createElement('th');
-emptyHeaderCell.textContent = ''; // You can put any content here or leave it empty
-headerRow.appendChild(emptyHeaderCell);
+          // Add the player name and other info in the first column
+          const playerNameCell = document.createElement('td');
+          const playerName = playerData[1];
+          const playerData2 = playerData[2];
+          const playerData11 = playerData[11];
 
-for (const metricLabel of metricLabels) {
-  const headerCell = document.createElement('th');
-  headerCell.textContent = metricLabel;
-  headerRow.appendChild(headerCell);
-}
+          // Create a formatted HTML string
+          const formattedText = `<span>${playerName}</span><br><span style="font-style: italic">${playerData2}, ${playerData11}</span>`;
 
-    // Add the player data rows to the table
-    restrictedPlayers.forEach(playerData => {
-      const playerRow = document.createElement('tr');
-      table.appendChild(playerRow);
+          // Set the formatted HTML as the content of playerNameCell
+          playerNameCell.innerHTML = formattedText;
+          playerRow.appendChild(playerNameCell);
 
-      // Add the player name and other info in the first column
-      const playerNameCell = document.createElement('td');
-const playerName = playerData[1];
-const playerData2 = playerData[2];
-const playerData11 = playerData[11];
+          // Add the player metric values in the subsequent columns
+          for (let i = 3; i <= 9; i++) {
+            const metricValueCell = document.createElement('td');
+            metricValueCell.textContent = (parseFloat(playerData[i]) * 100).toFixed(2);
+            playerRow.appendChild(metricValueCell);
+          }
+        });
 
-// Create a formatted HTML string
-const formattedText = `<span>${playerName}</span><br><span style="font-style: italic">${playerData2}, ${playerData11}</span>`;
-
-// Set the formatted HTML as the content of playerNameCell
-playerNameCell.innerHTML = formattedText;      playerRow.appendChild(playerNameCell);
-
-      // Add the player metric values in the subsequent columns
-      for (let i = 3; i <= 9; i++) {
-        const metricValueCell = document.createElement('td');
-        metricValueCell.textContent = (parseFloat(playerData[i]) * 100).toFixed(2);
-        playerRow.appendChild(metricValueCell);
+        // Append the table to the results container
+        resultsContainer.appendChild(table);
       }
     });
+
+
+
+function createTableHeader() {
+  const tableHeader = document.createElement('thead');
+  const headerRow = document.createElement('tr');
+
+  const selectedDataset = document.getElementById('datasetSelector').value;
+  const metricLabels = selectedDataset === 'dataset2' ? metricNames2 : metricNames1;
+
+  // Create an empty header cell at the beginning
+  const emptyHeaderCell = document.createElement('th');
+  emptyHeaderCell.textContent = ''; // You can put any content here or leave it empty
+  headerRow.appendChild(emptyHeaderCell);
+
+  for (const metricLabel of metricLabels) {
+    const headerCell = document.createElement('th');
+    headerCell.textContent = metricLabel;
+  headerCell.style.cursor = 'pointer';
+
+    headerCell.addEventListener('click', () => {
+      const ascending = !headerCell.dataset.sorted || headerCell.dataset.sorted === 'asc' ? false : true;
+      sortPlayers(headerCell.cellIndex + 2, ascending); // +1 to account for the empty header cell
+      const headerCells = document.querySelectorAll('th');
+      headerCells.forEach(cell => cell.dataset.sorted = '');
+      headerCell.dataset.sorted = ascending ? 'asc' : 'desc';
+    });
+    headerRow.appendChild(headerCell);
   }
-});
+
+
+
+  tableHeader.appendChild(headerRow);
+  return tableHeader;
+}
+
+
+    function sortPlayers(columnIndex, ascending) {
+      const selectedDataset = document.getElementById('datasetSelector').value;
+      const dataArray = selectedDataset === 'dataset2' ? dataArray2 : dataArray1;
+
+      // Sort the data array based on the selected column
+      dataArray.sort((a, b) => {
+        const valueA = parseFloat(a[columnIndex]);
+        const valueB = parseFloat(b[columnIndex]);
+        return ascending ? valueA - valueB : valueB - valueA;
+      });
+
+      // Update the table with the sorted data
+      const tableBody = document.getElementById('resultsContainer').querySelector('tbody');
+      tableBody.innerHTML = '';
+
+      dataArray.forEach(playerData => {
+        const playerRow = document.createElement('tr');
+        tableBody.appendChild(playerRow);
+
+        // Add the player name and other info in the first column
+        const playerNameCell = document.createElement('td');
+        const playerName = playerData[1];
+        const playerData2 = playerData[2];
+        const playerData11 = playerData[11];
+
+        // Create a formatted HTML string
+        const formattedText = `<span>${playerName}</span><br><span style="font-style: italic">${playerData2}, ${playerData11}</span>`;
+
+        // Set the formatted HTML as the content of playerNameCell
+        playerNameCell.innerHTML = formattedText;
+        playerRow.appendChild(playerNameCell);
+
+        // Add the player metric values in the subsequent columns
+        for (let i = 3; i <= 9; i++) {
+          const metricValueCell = document.createElement('td');
+          metricValueCell.textContent = (parseFloat(playerData[i]) * 100).toFixed(2);
+          playerRow.appendChild(metricValueCell);
+        }
+      });
+    }
+
+
+
+    document.getElementById('datasetSelector').addEventListener('change', function () {
+      const selectedDataset = document.getElementById('datasetSelector').value;
+      if (selectedDataset === 'dataset2') {
+        updateMetricLabels('dataset2');
+      } else {
+        updateMetricLabels('dataset1');
+      }
+
+      // Clear the search inputs and results when the data selector changes
+      clearSearchInputs();
+    });
+
+    // Initialize the metric labels based on the default dataset
+    updateMetricLabels('dataset1');
   </script>
+
+
+<script>
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      const body = document.querySelector("body");
+      body.classList.toggle("dark-mode");
+
+      // Store the user's preference in local storage
+      const isDarkMode = body.classList.contains("dark-mode");
+      localStorage.setItem("darkMode", isDarkMode);
+    }
+
+    // Check if user has a stored preference for dark mode
+    const storedDarkMode = localStorage.getItem("darkMode");
+
+    if (storedDarkMode === "true") {
+      const body = document.querySelector("body");
+      body.classList.add("dark-mode");
+    }
+
+  </script>
+<div class="dark-mode-toggle" onclick="toggleDarkMode()">
+    <span class="toggle-icon"></span>
+  </div><br><br><br>
 </body>
 </html>
