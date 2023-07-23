@@ -32,6 +32,8 @@ body {
 .container {
   display: flex;
   flex-wrap: wrap; /* Enable wrapping of flex items */
+max-height: 900px;
+  overflow: auto;
 }
 
 .inputs {
@@ -235,11 +237,6 @@ body.dark-mode button {
 color: red;
 }
 
-.table-container {
-  max-height: 800px; /* Set the maximum height for the container */
-  overflow: auto; /* Add scrollbars if content overflows */
-
-}
 
 </style>
 
@@ -4859,14 +4856,8 @@ color: red;
     noResultsMessage.classList.add('no-results-message'); // Add a class to the element
         resultsContainer.appendChild(noResultsMessage);
       } else {
-        
- const tableContainer = document.createElement('div');
-  tableContainer.classList.add('table-container'); // Add a class to the container
-  resultsContainer.appendChild(tableContainer);
-
-  // Create the table element
-  const table = document.createElement('table');
-  tableContainer.appendChild(table);
+        // Create the table element
+        const table = document.createElement('table');
 
         // Create the table header
         const tableHeader = createTableHeader();
