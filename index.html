@@ -20,8 +20,81 @@
 
 button {
 Height: 30px;
-
 }
+
+.button-5 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 23px;
+  left: 410px;
+width: 150px; 
+ 
+  touch-action: manipulation;
+}
+
+.button-5:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+.button-6 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 23px;
+  left: 620px;
+width: 150px; 
+ 
+  touch-action: manipulation;
+}
+
+.button-6:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+
 /* Add custom CSS to style the layout */
 body {
   font-family: Arial, sans-serif;
@@ -48,9 +121,7 @@ font-size: 12px;
     img {
             width: 35px;
 position: absolute;
-top: 25px;
-pointer-events: none;
-z-index: 40000; 
+top: 24px;
 left: 136px;
 opacity: 1;
         }
@@ -70,7 +141,7 @@ button {
 
 
 #tableWrapper {
-  width: 70%;
+  width: 69%;
   position: absolute;
   top: 84px;
   right: 3%;
@@ -271,7 +342,16 @@ color: red;
 </head>
 <body>
 
+<a href="https://datamb.football" target="_blank">
   <img src="https://i.imgur.com/UurMbGS.png" alt="Logo">
+</a>
+
+<a href="https://datamb.football/radars/" target="_blank" rel="noopener noreferrer">
+  <button class="button-5" role="button">Radars</button></a>
+
+<a href="https://datamb.football/plots/" target="_blank" rel="noopener noreferrer">
+  <button class="button-6" role="button">Plots</button></a>
+
 
 <div class="container">
   <div class="inputs">
@@ -4898,11 +4978,20 @@ if (restrictedPlayers.length === 0) {
     playerRow.appendChild(playerNameCell);
 
     // Add the player metric values in the subsequent columns
-    for (let i = 3; i <= 9; i++) {
-      const metricValueCell = document.createElement('td');
-      metricValueCell.textContent = (parseFloat(playerData[i]) * 100).toFixed(2);
-      playerRow.appendChild(metricValueCell);
-    }
+ for (let i = 3; i <= 9; i++) {
+  const metricValueCell = document.createElement('td');
+  const numericValue = (parseFloat(playerData[i]) * 100).toFixed(2);
+
+  // Apply the color inline style based on the value range
+  metricValueCell.textContent = numericValue;
+  if (numericValue >= 75 && numericValue <= 100) {
+    metricValueCell.style.color = 'green';
+  } else if (numericValue >= 0 && numericValue <= 25) {
+    metricValueCell.style.color = 'red';
+  }
+  
+  playerRow.appendChild(metricValueCell);
+}
   });
 
   // Append the table body to the table
@@ -5035,7 +5124,6 @@ function sortColumn(columnIndex) {
 
   </script></div>
 
-
 <script>
 
     // Function to toggle dark mode
@@ -5060,7 +5148,6 @@ function sortColumn(columnIndex) {
 <div class="dark-mode-toggle" onclick="toggleDarkMode()">
     <span class="toggle-icon"></span>
   </div>
-
 
 <div id="taboola-below-article-thumbnails"></div>
 <script type="text/javascript">
