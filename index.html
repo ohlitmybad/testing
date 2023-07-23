@@ -235,6 +235,12 @@ body.dark-mode button {
 color: red;
 }
 
+.table-container {
+  max-height: 800px; /* Set the maximum height for the container */
+  overflow: auto; /* Add scrollbars if content overflows */
+
+}
+
 </style>
 
 <script type="text/javascript">
@@ -4706,7 +4712,7 @@ color: red;
 
     // Metric names for ST
     const metricNames6 = [
-      'Received passes',
+      'Pass received',
       'Aerial%',
       'NPG',
       'xG',
@@ -4853,8 +4859,14 @@ color: red;
     noResultsMessage.classList.add('no-results-message'); // Add a class to the element
         resultsContainer.appendChild(noResultsMessage);
       } else {
-        // Create the table element
-        const table = document.createElement('table');
+        
+ const tableContainer = document.createElement('div');
+  tableContainer.classList.add('table-container'); // Add a class to the container
+  resultsContainer.appendChild(tableContainer);
+
+  // Create the table element
+  const table = document.createElement('table');
+  tableContainer.appendChild(table);
 
         // Create the table header
         const tableHeader = createTableHeader();
@@ -4949,19 +4961,20 @@ function createTableHeader() {
   return tableHeader;
 }
 
-
-    function sortPlayers(columnIndex, ascending) {
-      const selectedDataset = document.getElementById('datasetSelector').value;
-   const dataArray = selectedDataset === 'dataset2'
+function sortPlayers(columnIndex, ascending) {
+  const selectedDataset = document.getElementById('datasetSelector').value;
+  const dataArray =
+    selectedDataset === 'dataset2'
       ? dataArray2
       : selectedDataset === 'dataset3'
-        ? dataArray3
-        : selectedDataset === 'dataset4'
-          ? dataArray4
-          : selectedDataset === 'dataset5'
-            ? dataArray5
-            : dataArray1;
-
+      ? dataArray3
+      : selectedDataset === 'dataset4'
+      ? dataArray4
+      : selectedDataset === 'dataset5'
+      ? dataArray5
+      : selectedDataset === 'dataset6'
+      ? dataArray6
+      : dataArray1;
       // Sort the data array based on the selected column
       dataArray.sort((a, b) => {
         const valueA = parseFloat(a[columnIndex]);
