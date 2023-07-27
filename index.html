@@ -244,13 +244,13 @@ const _0x49d7fb=_0x3ccc;(function(_0x11c8bb,_0x2538d4){const _0x5b4669=_0x3ccc,_
 
     // Function to scroll up a tiny bit
     function scrollUp() {
-        window.scrollBy(0, -80); // Adjust the value (-80) to change the scroll distance
+        window.scrollBy(0, -100); // Adjust the value (-80) to change the scroll distance
     }
 
-    // Combine both actions and call on window.onload
+    // Combine both actions with a small timer between them
     window.onload = function() {
         scrollDown();
-        scrollUp();
+        setTimeout(scrollUp, 1000); // Adjust the delay time (1000ms = 1 second)
     };
 </script>
 
