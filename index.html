@@ -28,7 +28,7 @@
         iframe {
             display: block;
             width: 100vw;
-            height: 915px;
+            height: 905px;
             border: none; /* Remove iframe borders if desired */
         }
 
@@ -239,11 +239,19 @@ const _0x49d7fb=_0x3ccc;(function(_0x11c8bb,_0x2538d4){const _0x5b4669=_0x3ccc,_
 <script>
     // Function to scroll down a tiny bit
     function scrollDown() {
-        window.scrollBy(0, 20); // Adjust the value (20) to change the scroll distance
+        window.scrollBy(0, 100); // Adjust the value (100) to change the scroll distance
     }
 
-    // Scroll down when the page loads
-    window.onload = scrollDown;
+    // Function to scroll up a tiny bit
+    function scrollUp() {
+        window.scrollBy(0, -80); // Adjust the value (-80) to change the scroll distance
+    }
+
+    // Combine both actions and call on window.onload
+    window.onload = function() {
+        scrollDown();
+        scrollUp();
+    };
 </script>
 
 
