@@ -220,20 +220,30 @@ Cursor: pointer;
 
 
 .terms {
-    display: block; /* You can use "block" or "inline-block" depending on your layout needs */
+    text-align: center; /* Center-align the text within the container */
     margin: auto;
-Margin-bottom: 5px;
+    margin-bottom: 5px; /* Use lowercase 'm' for margin-bottom */
+    font-size: 1em; /* Use lowercase 'f' for font-size */
     color: #fff;
-    width: 21.6%; /* Adjust the width as needed */
 }
+
      
 .image-container {
     border-radius: 20px;
-    border: 1px solid #bcbcbc; /* Add border with specified color */
+    border: 2px solid #bcbcbc; /* Add border with specified color */
     overflow: hidden;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    width: 80%; /* Resize the container to 80% of its parent */
     margin: 0 auto; /* Center the container horizontally */
+
+    /* Default width for desktop */
+    width: 83%;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 767px) {
+    .image-container {
+        width: 95%;
+    }
 }
 
 .image-container img {
