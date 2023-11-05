@@ -1,1 +1,705 @@
-&nbsp;
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
+  <title translate="no">DataMB | Compare Players</title>
+  <meta property="og:image" content="https://i.imgur.com/p43wTxg.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DataMB_">
+  <meta name="twitter:title" content="DataMB | Compare Players">
+  <meta name="twitter:description" content="Radar Comparison Tool">
+  <meta name="twitter:image" content="https://i.imgur.com/p43wTxg.png">
+  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+
+	  <title>DataMB | Compare Players</title>
+
+    <style>
+      body {
+        font-family: system-ui;
+        background-color: #FFFFFF;
+        margin: 0;
+        padding: 0;
+        font-size: 14px;
+      }
+
+      .header2 {
+  background-image: url('https://i.imgur.com/fRz4f6n.png');
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: auto;
+  background-position: 50% 100px; /* Change the background position using values */
+        color: black;
+        text-align: center;
+        padding: 25px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-flow: column;
+	max-width: 1900px;
+
+
+
+      }
+
+      .top {
+        font-size: 69px;
+        font-weight: bold;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+       
+        
+      }
+
+      .subtitle {
+        font-size: 18px;
+        color: #1f1c1c;
+        margin: 0px;
+        padding: 0px;
+        text-align: center;
+        
+        line-height: 2;
+        
+        
+       
+      }
+      
+      .subtitle2 {
+        font-size: 14px;
+        color: #FFFFFF;
+        margin: 20px;
+        padding: 20px;
+        text-align: center;
+        margin-top: 50px;
+        margin-left: auto;
+        margin-right: auto;
+       
+        line-height: 2;
+        background-color: pink;
+        border: 1px solid white;
+        border-radius: 10px;
+       text-height: 1px;
+        text-decoration: none;
+        width: 500px;
+        
+       
+      }
+      
+
+      .container {
+        max-width: 960px;
+        margin: 0 auto;
+        padding: -10px;
+        box-sizing: border-box;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+        line-height: 1.6;
+        font-size: 16px;
+        
+      }
+
+
+.container2 {
+  position: absolute;
+  right: 220px;
+}
+
+@media (max-width: 767px) {
+  .container2 {
+    top: 1581x; /* Mobile top value */
+  }
+}
+
+@media (min-width: 768px) {
+  .container2 {
+    display: none; /* Desktop top value */
+  }
+}
+
+
+      .button-wrapper {
+        flex-basis: calc((100% - 140px) / 2);
+        margin: 20px;
+        text-align: center;
+
+      }
+
+  .button-wrapper a {
+                    text-decoration: none;
+      }
+
+
+      .button {
+        display: block;
+        background-color: black;
+        color: white;
+        padding: 15px;
+        border: 1px solid white;
+        border-radius: 10px;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.1s ease;
+        
+      }
+     
+      .button:hover {
+        background-color: white;
+        color: black;
+      }
+
+
+
+      .button3 {
+        display: block;
+        background-color: pink;
+        color: black;
+        padding: 20px;
+        border: 1px solid white;
+        border-radius: 40px;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.1s ease;
+        
+      }
+
+     .button3:hover {
+        background-color: white;
+        color: pink;
+      }
+
+      .description {
+        font-size: 15px;
+        color: #000000;
+        margin-top: 10px;
+        margin-bottom: 50px;
+        border-radius: 10px;
+        
+      }
+
+
+  .button3 {
+        display: block;
+        background-color: pink;
+        color: black;
+        padding: 20px;
+        border: 1px solid white;
+        border-radius: 40px;
+        text-decoration: none;
+        font-size: 24px;
+        font-weight: bold;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        transition: background-color 0.1s ease;
+        
+      }
+
+     .button3:hover {
+        background-color: white;
+        color: pink;
+      }
+
+ 
+
+.footer {
+  font-family: system-ui;
+  background: #F2F2F2;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.footer .logo {
+  display: flex;
+  justify-content: center;
+}
+
+.footer .description {
+  font-size: 20px;
+  margin-bottom: 0px;
+color: black;
+}
+
+.footer .info {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.footer .divider {
+  border: none;
+  border-bottom: 1px solid #fff;
+  margin: 25px 0;
+  opacity: 0.2;
+}
+
+.footer .sub-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer .sub-footer .terms,
+.footer .sub-footer .privacy,
+.footer .sub-footer .glossary {
+font-size: 17px;
+  margin-left: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+}
+
+
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items at the top */
+  flex-wrap: wrap; /* Add flex-wrap property to wrap the content on smaller screens */
+}
+
+.google-play-container {
+  display: flex;
+  flex-direction: column; /* Arrange items in a column */
+  align-items: flex-end; /* Align items to the right */
+  margin-top: -20px; /* Adjust the margin-top to remove the space */
+}
+
+.google-play-container img {
+  width: 182px;
+  height: 70px;
+}
+
+.description,
+.info,
+.divider,
+.sub-footer {
+  flex-basis: 100%;
+color: black;
+}
+
+.footer p {
+  margin-bottom: 0; /* Remove bottom margin from the paragraph elements */
+}
+
+.header {
+  font-family: system-ui;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+}
+
+.header .logo img {
+  width: 46px;
+  height: 46px;
+opacity: 0.84;
+}
+
+.header .logo-text {
+  margin-left: 10px;
+  font-size: 28px;
+color: #444444;
+  font-weight: 600;
+}
+
+.header .navigation {
+  display: center;
+  align-items: center;
+      word-spacing: 3em; /* Adjust the spacing as needed */	
+}
+
+.header .button10 {
+  margin: 0 10px;
+  padding: 0px 20px;
+  color: #444444;
+  text-decoration: none;
+  border-radius: 0px;
+font-size: 24px;
+}
+
+header a {
+      color: black;
+      text-decoration: none;
+    }
+
+.header .twitter-link svg {
+  width: 25px;
+  height: 24px;
+  fill: #bcbcbc;
+}
+
+
+
+
+
+
+.search-input-modal {
+    display: none;
+    position: fixed; /* Change this to "fixed" to cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.7); /* Increase opacity for better obscuring */
+    z-index: 999; /* Ensure it's above other elements */
+}
+
+.search-input-container {
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    z-index: 1000; /* Make sure it's on top of the modal background */
+}
+
+#searchInput {
+            width: 340px;
+            padding: 12px;
+            border: 3px solid #ccc;
+            border-radius: 4px;
+            font-size: 19px;
+            outline: none;
+        }
+
+        #autocompleteBox {
+            width: 360px;
+            max-height: 150px;
+            overflow-y: auto;
+            background-color: #fff;
+        }
+
+
+        #autocompleteBox ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        #autocompleteBox li {
+            margin: 0;
+            padding: 5px;
+        }
+
+        #autocompleteBox {
+            line-height: 2; /* Adjust the value as needed to control line spacing */
+            text-align: center !important;
+
+        }
+
+        #autocompleteBox a {
+            text-decoration: none;
+            font-family: Arial, sans-serif;
+            text-align: center !important;
+            color: #333 !important;
+            cursor: pointer; /* Add pointer cursor style to the anchor element */
+        }
+
+        #autocompleteBox li:hover {
+            background-color: #f0f0f0;
+        }
+        #searchButton {
+    padding: 10px;
+    background-color: #0074d9;
+    color: #fff;
+    border: none;
+    width: 40px; /* Set the width and height to the same value for a round button */
+    height: 40px;
+    border-radius: 50%; /* Make the button round by setting border-radius to 50% of the size */
+    cursor: pointer;
+    font-size: 20px; /* Increase the text size */
+}
+
+    
+    </style>
+
+
+
+<header class="header">
+  <div class="logo">
+    <a href="http://datamb.football">
+        <img src="https://i.imgur.com/UurMbGS.png" alt="Radars | Football player statistics comparison" /></a>
+    <div class="logo-text"><a href="http://datamb.football">&nbsp;DataMB</a></div>
+  </div>&nbsp;
+  <nav class="navigation">
+    <a href="http://datamb.football/teams" class="button10">Teams</a>
+    <a href="http://datamb.football/join" class="button10">Pro</a>
+    <a href="http://datamb.football/glossary" class="button10">Guide</a>&nbsp;
+  </nav>
+  <div class="search-container">
+    <button id="searchButton"><iconify-icon icon="ion:search-outline"></iconify-icon></button>
+</div>
+  <a href="https://twitter.com/datamb_" target="_blank" class="twitter-link">
+    <svg width="25" height="24" fill="#bcbcbc" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  </a>
+</header>
+
+<div align="center">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7677714701428206"
+     crossorigin="anonymous"></script>
+<!-- radarplotsearch -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7677714701428206"
+     data-ad-slot="6673239737"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+  </head>
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSBMXX80EF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PSBMXX80EF');
+</script>
+
+
+
+<div class="search-input-modal" id="searchInputModal">
+  <div class="search-input-container">
+      <input type="text" id="searchInput" placeholder="Enter a team or player name...">
+      <div id="autocompleteBox"></div>
+  </div>
+</div>
+
+
+
+
+<script>
+const dataCSV = `M. Brouwer (Goalkeeper),https://talkdatamb.github.io/M_Brouwer_Goalkeeper_stats
+Wolverhampton Wanderers (Team),https://talkdatamb.github.io/Wolverhampton_Wanderers_Team_stats
+M. Brsuwer (Goalkeeper),https://talkdatamb.github.io/M_Brouwer_Goalkeeper_stats
+Wolvertampton Wanderers (Team),https://talkdatamb.github.io/Wolverhampton_Wanderers_Team_stats
+M. Breuwer (Goalkeeper),https://talkdatamb.github.io/M_Brouwer_Goalkeeper_stats
+Wolverhampton Wanderers (Team),https://talkdatamb.github.io/Wolverhampton_Wanderers_Team_stats
+`; // Replace ... with the rest of your CSV data
+
+const dataLines = dataCSV.split('\n');
+const searchButton = document.getElementById('searchButton');
+const searchInputModal = document.getElementById('searchInputModal');
+const searchInput = document.getElementById('searchInput');
+const autocompleteBox = document.getElementById('autocompleteBox');
+
+// Convert CSV data to an array of objects
+const data1 = dataLines.map(line => {
+    const [name, link] = line.split(',');
+    return { name, link };
+});
+
+function search2(query) {
+    autocompleteBox.innerHTML = '';
+
+    const filteredData = data1.filter(item => {
+        const sanitizedItem = item.name.replace(/[^\w\s]/g, '').toLowerCase();
+        const sanitizedQuery = query.replace(/[^\w\s]/g, '').toLowerCase();
+        return sanitizedItem.includes(sanitizedQuery);
+    });
+
+    if (filteredData.length === 0) {
+        autocompleteBox.style.display = 'none';
+        return;
+    }
+
+    filteredData.forEach(item => {
+        const listItem = document.createElement('div');
+        const link = document.createElement('a');
+        link.href = item.link;
+        link.textContent = item.name;
+        listItem.appendChild(link);
+        autocompleteBox.appendChild(listItem);
+    });
+
+    autocompleteBox.style.display = 'block';
+}
+
+searchButton.addEventListener('click', () => {
+    searchInputModal.style.display = 'block';
+});
+
+searchInput.addEventListener('input', () => {
+    const query = searchInput.value;
+    if (query.trim() === '') {
+        autocompleteBox.style.display = 'none';
+    } else {
+        search2(query);
+    }
+});
+
+document.addEventListener('click', (event) => {
+    if (event.target === searchInputModal) {
+        searchInputModal.style.display = 'none';
+    }
+});
+
+
+
+</script>
+
+  <body>
+
+<div class="container">
+   
+  </div>
+
+    <div class="header2">
+    <style>
+  .header2 {
+    position: relative; /* Set the header to a relative position */
+    /* Rest of the header styles */
+  }
+
+  .button-wrapper-bottom {
+    position: absolute; /* Set the button to an absolute position */
+    bottom: 0; /* Align the button to the bottom of the header */
+    right: 10; /* Align the button to the bottom of the header */
+    margin: 10px;
+    text-align: center;
+    margin-left: 200%;
+  }
+  
+ 
+ 
+
+header2 {
+  background-color: #333;
+  color: #fff;
+  padding: 0px;
+  
+}
+
+</style>
+
+	    
+<div class="header2"> 
+</header>
+</div>
+
+
+
+      <h1 class="top">PLAYER COMPARISON</h1>
+    
+      
+    </div>
+    <div class="container">
+      <div class="button-wrapper">
+        <a href="http://datamb.football/keepers/" class="button">GOALKEEPERS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• 2023/24 : Top 7 Leagues<br>• 2022/23 : 11 Leagues<br>• More leagues and seasons in <a href="http://datamb.football/join/">Pro</a></div>
+      </div>
+      <div class="button-wrapper">
+        <a href="http://datamb.football/centrebacks/" class="button">CENTRE BACKS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• 2023/24 : Top 7 Leagues<br>• 2022/23 : 11 Leagues<br>• More leagues and seasons in <a href="http://datamb.football/join/">Pro</a></div>
+      </div>
+      <div class="button-wrapper">
+        <a href="http://datamb.football/fullbacks/" class="button">FULL BACKS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• 2023/24 : Top 7 Leagues<br>• 2022/23 : 11 Leagues<br>• More leagues and seasons in <a href="http://datamb.football/join/">Pro</a></div>
+      </div>
+      <div class="button-wrapper">
+        <a href="http://datamb.football/midfielders/" class="button">MIDFIELDERS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• 2023/24 : Top 7 Leagues<br>• 2022/23 : 11 Leagues<br>• More leagues and seasons in <a href="http://datamb.football/join/">Pro</a></div>
+      </div>
+      <div class="button-wrapper">
+        <a href="http://datamb.football/wingers/" class="button">WINGERS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• 2023/24 : Top 7 Leagues<br>• 2022/23 : 11 Leagues<br>• More leagues and seasons in <a href="http://datamb.football/join/">Pro</a></div>
+      </div>
+<div class="button-wrapper">
+        <a href="http://datamb.football/strikers/" class="button">STRIKERS&nbsp;&nbsp;&nbsp;&#10095;</a>
+        <div class="description">• 2023/24 : Top 7 Leagues<br>• 2022/23 : 11 Leagues<br>• More leagues and seasons in <a href="http://datamb.football/join/">Pro</a></div></div>
+
+
+<div class="button-wrapper">
+        <a href="http://datamb.football/teamradars/" class="button3">TEAM TOOLS</a></div>
+	    <div class="button-wrapper">
+        <a href="http://datamb.football/join/" class="button3">DATAMB PRO</a></div></div>
+
+<br>
+<br>
+<div align="center">
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7677714701428206"
+     crossorigin="anonymous"></script>
+<!-- radarplotsearch -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-7677714701428206"
+     data-ad-slot="6673239737"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></div>
+
+<br>
+<br>
+
+
+
+
+</body>
+
+
+
+  <footer class="footer">
+   
+    <div class="google-play-container">
+
+    <a href='https://play.google.com/store/apps/details?id=com.datamb.datamb.webviewflutter&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'></a>
+<a href='https://apps.apple.com/app/datamb/id6456224067?l=en-GB'><img alt='Download on the App Store' src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'></a></div>
+ 
+ <div class="logo">
+      <img src="https://i.imgur.com/UurMbGS.png" alt="Compare player stats and find similar players. Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga. 2022/23, 2023/24. Diogo Costa, G. Donnarumma, Alisson, Ederson, T. Courtois, J. Oblak, M. ter Stegen, A. Ramsdale, G. Kobel, M. Maignan, Robert Sánchez, E. Martínez, David Raya, Unai Simón, Álex Remiro, J. Pickford, G. Mamardashvili, D. Henderson, I. Meslier, A. Lafont, A. Onana, G. Bazunu, José Sá, N. Pope, E. Mendy, A. Meret, O. Vlachodimos, G. Vicario, D. de Gea, Kepa Arrizabalaga, Rui Silva, Pau López, J. Musso, J. Bijlow, W. Szczęsny, M. Carnesecchi, W. Benítez, I. Provedel, Y. Bounou, G. Rulli, B. Leno, A. Nübel, B. Samba, L. Chevalier, P. Rajković, J. Ledesma, David Soria, A. Lopes, M. Vandevoordt, K. Trapp, M. Sels, A. Aréola, D. Ward, K. Casteels, Sergio Herrera, M. Neuer, J. Omlin, M. Flekken, A. Rossi, João Paulo, Bento, M. Di Gregorio, E. Audero, A. Murić, F. Woodman, P. Gulácsi, S. Ortega, Matheus, J. Butez, K. Navas, B. Verbruggen, Y. Sommer, M. Schwäbe, R. Zentner, Rui Patrício, M. Silvestri, A. Noppert, Y. Diouf, W. Falcone, Julen Agirrezabala, A. Lunin, S. Mignolet, P. Gollini, O. Baumann, B. Drągowski, Z. Steffen, O. Christensen, Cleiton, H. Lloris, Luiz Júnior, S. Johnstone, M. Ryan, L. Cháves, E. Unsain, M. Perin, L. Montipò, M. Bizot, P. Köhn, S. Dimitrievski, Bruno Varela, B. Lecomte, M. Dmitrović, Édgar Badía, F. Rønnow, A. Bodart, Y. Mvogo, I. Radu, V. Milinković-Savić, I. Grbić, A. Gunn, A. Marchesín, J. Cillessen, J. Drommel, J. Pavlenka, P. Bernardoni, F. Armani, Léo Jardim, Fernando Pacheco, Álvaro Fernández, Ł. Skorupski, Aitor Fernández, V. Barkas, Weverton, A. Patterson, G. Arias, D. Bachmann, L. Hrádecký, H. Van Crombrugge, Neto, P. Nardi, Santos, Y. Fofana, R. Majecki, K. Schmeichel, Éverson, L. Unnerstall, P. Gazzaniga, Gabriel Grando, T. Kaminski, M. Šarkić, K. Scherpen, Andrew, V. Johansson, D. Roef, M. Dupé, D. Iversen, F. Cambeses, Tadeu, A. Batalla, G. Gallon, Lucas Perri, P. Terracciano, Fernando Martínez, N. Olij, J. Bursik, M. Travers, J. Blaswich, D. Bentley, R. Rey, G. Herrera, M. Ledesma, J. Griffiths, S. Kritsyuk, H. Koffi, Antonio Adán, Dani Figueira, D. Schmidt, Vicente Guaita, I. Pandur, S. Dieng, S. Mandanda, F. Forster, F. Bredlow, I. Chicco, S. Meza, M. Diaw, B. Costil, Keiller, A. Consigli, Marcos Felipe, A. Okonkwo, Cláudio Ramos, M. Sportiello, Sergio Asenjo, A. Moris, F. Jörgensen, N. Hedl, F. Müller, S. Bolat, R. Gikiewicz, M. Riemann, S. Mele, T. Vaclík, G. Ochoa, Adriel, Iván Villar, Gabriel, M. Ingram, G. Coucke, J. Lumley, A. Schlager, T. Koubek, E. Horvath, T. Wellenreuther, A. Meyer, K. Darlow, F. Stanković, J. Steele, Ł. Fabiański, Cássio, C. Früchtl, L. Sepe, S. Handanovič, Jordi Masip, C. Bravo, G. Dietsch, V. Cojocaru, R. Allsop, L. Nicholls, B. Peacock-Farrell, A. Schwolow, S. van Gassel, R. Macagno, F. Buntić, M. O’Leary, M. Verrips, E. Vaessen, S. Sosa, T. Durso, Jhonatan, F. de Keijzer, I. De Arruabarrena, W. Foderingham, João Virginia, M. Andújar, G. Makaridze, Pepe Reina, H. Verhulst, J. de Lange, F. Lanzillota, G. Hubert, L. Moser, K. Nakamura, G. Long, D. Grimshaw, D. Phillips, L. Hoyos, C. Tătărușanu, T. Krul, Rafael Cabral, B. Leroy, M. van der Hart, T. Vandenberghe, Gabriel Batista, J. Bonham, A. Palmer, J. Olschowsky, A. Pears, A. Fisher, B. Wilson, W. Hennessey, T. Marchiori, X. Mous, F. Oswald, S. Benda, R. Fährmann, S. Romero, H. Isted, J. Siebenhandl, Rafael, L. Acosta, D. Schierl, H. Bonmann, L. Bostyn, R. Ruiter, João Ricardo, G. Marinelli, L. Burián, J. Ruddy, B. Amos, V. Mannone, D. Rodríguez, Diego Mariño, Juan Carlos, M. Turk, B. Białkowski, R. Pasveer, C. Maxwell, Walter, Marcelo Carné, D. Button, Fernando Miguel, Paulo Vítor, Matheus Cavichioli, Fábio, A. Medina, A. Desábato, J. Jones, J. Broun, Marafona, S. Bossut, Ricardo Batista, Rafael Bracali, Y. Schoonderwaldt, M. Kovář, Average, W. Benítez, A. Noppert, M. Ryan, V. Barkas, J. Cillessen, L. Unnerstall, N. Olij, I. Pandur, J. Gorter, T. Wellenreuther, S. van Gassel, E. Vaessen, J. de Lange, J. Schendelaar, E. Room, M. Brouwer, N. Bakker, M. Backhaus, R. Roefs, Diogo Costa, A. Trubin, Matheus, Bruno Varela, Luiz Júnior, Hugo Souza, Andrew, Samuel Soares, Adán, Daniel Figueira, F. Buntić, I. de Arruabarrena, Kewin, Ricardo Velho, Vinícius Silvestre, Marcelo Carné, Bruno Brígido, Ricardo Batista, Magrão, João Gonçalves, G. Donnarumma, Alisson Becker, Ederson, M. ter Stegen, J. Oblak, A. Ramsdale, M. Maignan, G. Kobel, Robert Sánchez, E. Martínez, Unai Simón, G. Mamardashvili, J. Pickford, David Raya, Álex Remiro, A. Lafont, A. Onana, N. Pope, A. Meret, José Sá, G. Vicario, Rui Silva, Kepa, J. Musso, Pau López, W. Szczęsny, M. Carnesecchi, I. Provedel, L. Chevalier, B. Leno, J. Ledesma, B. Samba, David Soria, P. Rajković, A. Nübel, Anthony Lopes, K. Trapp, Luís Maximiano, K. Casteels, Sergio Herrera, A. Aréola, M. Sels, M. Di Gregorio, M. Flekken, Rui Patrício, W. Falcone, Y. Diouf, M. Silvestri, M. Schwäbe, R. Zentner, B. Verbruggen, M. Turner, Y. Sommer, O. Baumann, M. Bizot, P. Köhn, S. Dimitrievski, B. Lecomte, M. Dmitrović, S. Johnstone, L. Montipò, Y. Mvogo, S. Turati, F. Rønnow, V. Milinković-Savić, Ł. Skorupski, J. Pavlenka, Aitor Fernández, P. Gazzaniga, Neto, J. Trafford, L. Hrádecký, T. Kaminski, P. Terracciano, J. Blaswich, N. Atubolu, M. Bułka, Josep Martínez, F. Jörgensen, S. Mandanda, M. Diaw, A. Desmas, A. Consigli, G. Ochoa, Sivera, Iván Villar, M. Riemann, F. Dahmen, C. Bravo, J. Steele, S. Ulreich, Álvaro Vallés, R. Descamps, André Ferreira, M. Schuhen, W. Foderingham, B. Radunović, A. Oukidja, K. Müller, E. Berisha, Ø. Nyland, R. Riou, M. Nicolas, Raúl Fernández, G. Restes, J. Timber, Danilo, N. Otamendi, J. Egan, D. Hancko, N. Gudelj, A. Trusty, T. Alderweireld, C. Burgess, P. Chatzidiakos, Éder Militão, V. van Dijk, Z. Debast, W. Orban, A. Disasi, Z. Vyner, Dante, Gabriel Magalhaes, G. Mancini, António Silva, M. Akanji, A. Rüdiger, W. Pacho, M. Ginter, E. Tapsoba, Ibañez, Min-Jae Kim, R. Knoche, D. Upamecano, Rúben Dias, C. Smalling, Gonçalo Inácio, Andrei Girotto, J. Castelletto, J. Cooper, B. Mechele, Marquinhos, J. Gvardiol, B. Cabango, D. O'Shea, F. Acerbi, J. Storey, I. Hien, S. Coates, F. Schär, M. Talbi, J. Todibo, J. Vertonghen, T. Lees, Bremer, T. Lockyer, G. Hanley, D. Lenihan, E. Dier, E. N'Dicka, D. Lovren, P. Hincapié, S. Van der Heyden, L. Dunk, F. Tomori, R. Porteous, Tuta, C. Kipré, S. Botman, A. Theate, D. Hyam, P. Ng, Matheus Reis, S. Beukema, K. Danso, J. Tarkowski, Lisandro Martínez, M. Kilman, A. Yiadom, J. Tah, I. Kandouss, C. Mbemba, N. Milenković, D. Batth, Pau Torres, Sergio Ramos, A. Ahmedhodzic, M. Guéhi, L. O'Nien, J. Dunne, Iván Marcano, S. Pavlović, A. Jones, W. Faes, João Basso, T. Ream, M. Martins, A. Romagnoli, T. Holmes, C. Romero, N. Wood, N. Süle, R. Rodríguez, R. Le Normand, J. Okumu, N. Elvedi, M. McKenzie, B. Wilmot, Y. Ndayishimiye, M. McGuinness, Y. Abdelhamid, M. de Ligt, Riccieli, David García, P. Kalulu, M. Fox, Thiago Silva, W. Harding, Unai Núñez, F. Baschirotto, Pepe, E. Konsa, J. Torunarigha, A. Frías, J. Aidoo, A. Bastoni, R. Koch, Jubal, Vitor Tormena, B. Mee, Danilo Pereira, A. Rouault, P. Lienhart, R. Nicolaisen, L. Lindsay, M. Bokadi, M. Helik, T. Mings, Alejandro Catena, L. Balerdi, J. Andersen, T. McIntyre, W. Hoedt, J. Giménez, K. McFadzean, Djené, Luis Hernández, C. Humphreys, G. Pezzella, C. Hountondji, G. Wüthrich, J. Stones, E. Ampadu, R. Raveloson, M. Darmian, A. Rrahmani, C. Lukeba, R. Varane, S. Luperto, Diogo Leite, R. Dickie, E. Mihaj, L. Brassier, M. Wieteska, H. Ito, J. Lucumí, T. Hübers, M. van de Ven, N. Schlotterbeck, B. Popović, D. Alaba, C. Montes, Rodrigo Ely, P. Bochniewicz, Igor Zubeldía, Filipe Relvas, D. Doekhi, Rafael Tolói, André Ramalho, J. Whatmough, S. Bueno, T. Watanabe, W. Saliba, K. Koulibaly, Steven Vitória, B. Davies, S. Babić, M. Wöber, E. Palmer-Brown, Igor Julio, Aderllan Santos, J. Gradit, J. Idzes, T. Mahrer, M. Yoshida, Rodrigo Guth, J. Bijol, D. Nikolaou, M. Araujo, J. Daland, R. Pröpper, A. Buongiorno, C. Cuesta, D. Affengruber, L. Martínez Quarta, L. Cabrera, D. Sanderson, Pedro Álvaro, Domingos Duarte, J. Gaari, N. Pérez, R. El Yaakoubi, K. Mavropanos, F. Luckeneder, S. Adewoye, C. Mepham, J. Gouweleeuw, E. Pieters, J. Beyer, N. Pallois, Iván Márquez, Dani Vivian, E. Pinnock, T. Plavotić, J. Kiwior, C. Bassey, P. McNair, Anderson, K. Laifis, N. Aguerd, Antonio Raíllo, Samir, T. Harwood-Bellis, F. Almada, J. Park, Pedrão, Vasco Fernandes, N. Dussenne, V. Lindelöf, D. Hadžikadunić, Volnei, A. Djiku, Rúben Fernandes, M. Valjent, S. Niakaté, N. Casale, I. Bamba, Mikel Villanueva, M. Kempf, F. Medina, F. Bacher, O. Solet, A. Sandro, M. Veljković, J. Hugonet, H. Carter, André Amaro, Nacho Fernández, H. Ekdal, A. Mandi, M. Meulensteen, A. Christensen, M. te Wierik, D. Mirani, R. Balker, R. Flamingo, Nélson Monte, O. Bevan, S. Kolašinac, Edimilson Fernandes, Nuno Lima, O. Kabak, M. Salisu, B. Vriends, G. Maripán, P. Wiśniewski, J. Branthwaite, Yeray Álvarez, C. Lenglet, M. Diakhaby, N. Isimat-Mirin, José Fonte, S. Savić, A. Omobamidele, K. Boateng, M. Senesi, N. Zolotić, F. Lejeune, I. Zabarnyi, R. Abascal, M. Friedl, C. Jullien, I. Ordets, D. Batubinsika, Mario Hermoso, Bernardo Vital, M. Rodin, P. Jagielka, P. Schuurs, M. Sollbauer, X. Mbuyamba, L. Peltier, A. Rogel, Paulo Oliveira, J. Worrall, R. Araújo, A. Seidu, O. Gonzalez, R. Cannon, O. Colley, Y. Salmier, G. Trauner, Zainadine Júnior, Y. Valery, I. Konaté, M. Jenz, S. Piesinger, Pablo Marí, B. Lambert, J. Amofa, M. Škriniar, J. Rodon, N. Collins, J. Robinson, Javi Sánchez, J. Thorniley, G. Osho, M. Hummels, K. Djidji, M. van der Hoorn, S. de Vrij, C. Cathcart, N. Araújo, F. Ricca, A. Hanche-Olsen, S. Diomandé, A. Hughes, K. Misao, G. Scalvini, Rodrigo Becão, D. Fry, S. Bell, R. Atkinson, C. Dawson, A. Tanghe, A. Obispo, L. Mühl, T. Adarabioyo, B. Chardonnet, A. Izzo, O. Diomandé, C. Cresswell, H. Maguire, D. Amartey, E. Mašović, J. Bednarek, José Copete, Sergi Gómez, R. Neustädter, Aridane Hernández, M. Bianchetti, Luiz Felipe, A. Flint, A. Ismajli, H. Darling, A. Al-Dakhil, I. Diop, K. Zouma, E. Agbadou, B. Badiashile, Édgar González, N. Edokpolor, Bruno Wilson, Fernando Varela, C. Tilt, F. Daniliuc, M. Hilgers, K. Itakura, C. Nelson, Fábio Cardoso, Joaquín Fernández, I. Doukouré, S. McLoughlin, L. Caldirola, G. Ferrari, B. Amione, J. Opoku, M. Erlić, K. Naismith, J. Panzo, C. Taylor, L. Badé, A. Ogbonna, M. Caufriez, E. Shabani, J. Vásquez, A. Webster, T. Chalobah, O. Alderete, M. Blažič, J. Kayembe, B. Kouyaté, A. Ferrari, S. Gigot, Thiago Mendes, M. Ekpiteta, K. Jakić, Tomás Araújo, T. Nianzou, D. Bates, B. van Duijl, A. Laporte, W. Janssens, E. Aiwu, O. Kossounou, Raúl Albiol, L. McNally, R. Pérez, C. Coady, M. Mbow, D. Vos, F. Gatti, L. Querfeld, D. Potts, Léo Andrade, A. Pieper, L. Lochoshvili, R. Paeshuyse, C. Basham, J. Gomez, B. Benamar, N. Sarr, M. Sagnan, T. Leistner, S. Hutchinson, N. Stark, R. Wood, O. Urhoghide, S. Umtiti, J. Veldmate, Pedro Bigas, S. Bornauw, R. Pantalon, V. Sasso, Titi, A. Soumaoro, Patrick William, R. Tagir, C. Avinel, Tiago Djaló, K. Akpoguma, N. Mehssatou, D. Baumgartner, G. Pereira, A. Auassar, S. McKenna, A. Bella-Kotchap, A. Sylla, M. Le Marchand, Adryelson, K. Mac Allister, Marcos Alonso, Lucas Alves, Lucas Galvão, H. Delcroix, H. Palacios, N. Viergever, Daniel Ayala, S. Baidoo, M. Bauer, Nino, H. Souttar, V. Cuesta, D. Ballard, Lyanco, L. Bergsma, C. Vidal, L. Pirola, B. Nuytinck, Fabricio Bruno, M. Tol, E. Cömert, M. Haïdara, B. Djimsiti, Carlos Ponck, S. Wharton, Bernardo, Eric García, A. Dari, F. Sánchez, K. Vogt, João Nunes, D. Lavalée, J. El Yamiq, G. Cunningham, J. Jeanvier, S. Mitrović, L. Villalba, N. Figal, Unai García, M. Dekker, Patric, José Marsà, M. Thiaw, J. Chabot, M. Hasebe, N. Gyömbér, F. Gattoni, Z. Romero, D. Siovas, C. Kabasele, B. Gibson, K. Pierie, S. Kjær, F. Tobio, K. Piątkowski, S. Andreou, R. Schifferl, A. Filin, Ivanildo Fernandes, K. Günter, M. Rose, E. Brítez, R. Bauer, D. Bronn, F. Russo, L. Perrin, M. Roberts, D. Van den Buijs, B. Meïté, Bruno Alves, Jon Pacheco, Robert Renan, G. Gómez, Tobias Figueiredo, P. Ceccaroni, L. Morales, A. Mbengue, A. Borković, W. Ditta, T. Derijck, M. Meisl, F. Smand, M. Taloverov, F. Garcés, A. Luciatti, S. Ajayi, G. Hernández, J. Porozo, T. Cardona, Bruno Melo, F. Ogier, J. Bruma, Alexsandro, L. Sigali, M. Lacroix, K. Long, W. Fofana, W. Troost-Ekong, Marlon, E. Roco, M. Lackner, F. Mallo, C. Özkacar, N. Galović, P. Hristov, M. Estève, Jemerson, A. Carboni, Maracás, P. Dawidowicz, Felipe, M. Mosquera, M. Sonnleitner, Gabriel Paulista, Fali, L. Bonucci, Íñigo Martínez, Diego Llorente, C. Masterson, Fernando Calero, J. Bager, Ruan, P. Perdichizzi, I. Touré, F. Uremović, M. Demiral, J. Brooks, L. Lollo, Thiago Heleno, F. Strauss, G. Nyamsi, P. Sandler, R. Meissen, David López, A. King, M. Pollock, J. St. Juste, F. Alarcón, Simo Keddari, S. Nieuwpoort, L. Colwill, Messias, D. Opare, F. Rasmussen, J. Hendry, A. Gravillon, A. Sylla, K. Wimmer, J. Laporte, Julio Pleguezuelo, P. Jaeckel, José Ángel Carmona, Jorge Cuenca, João Silva, J. Vanlerberghe, L. Kilian, A. Rami, T. Oermann, J. Matip, Morato, S. Nsoki, Chumi, K. Rekik, G. Medel, Rezende, D. Oroz, Gil, Lucas Halter, M. Tounkara, R. Burke, J. Handl, G. Magnani, F. Sierralta, B. Bianchi, W. Omari, K. Naughton, C. Quintana, F. Uduokhai, A. Callens, L. Cooper, Kike Salas, G. Hall, R. Kluivert, P. Goltz, M. Horvat, J. Turi, Borja López, M. Eerdhuijzen, S. van Ottele, Juanpe, D. Marcq, Ygor Nogueira, D. Ćaleta-Car, M. Tshibuabua, L. Willen, Vitão, P. Barrios, Iago Maidana, I. Hautekiet, J. Novillo, N. Soldo, A. Bamba, F. Calderón, F. Ceccherini, R. Holding, David Carmo, C. Corvalán, C. Lema, R. Norrington-Davies, J. Stephens, C. Báez, Matheus Costa, M. Tambedou, João Victor, M. Wasinski, A. Mumin, E. Cornelisse, L. González Pírez, J. Kramer, R. Sykes, Bernardo Espinosa, M. Caldara, N. Colombo, C. Wooh, E. Olivera, D. Zagadou, A. Rébola, M. Lemos, T. Blokzijl, J. Simpson, M. Friedrich, W. Kannemann, Zé Ivaldo, Josué Sá, A. Hack, J. Guilavogui, Marllon, S. van Beek, Lucas Oliveira, A. Maciel, E. Ferigra, T. Rotter, B. Wright, J. Evans, M. Zanka Jørgensen, M. Keane, L. Bessile, Lucas Cunha, Léo Pereira, S. Knežević, M. Nastasić, L. Klostermann, Luan, Lucas Beraldo, Ximo Navarro, Juan Jesus, M. Niakhaté, Kanu, E. Aguilera, D. Sánchez, S. Barreto, G. Mercado, M. Centurión, Mexer, G. Nauber, J. Sørensen, L. Balogun, N. Meriano, M. Torrén, J. Kerr, B. Valdez, S. Bradley, F. Roncaglia, E. Ebosse, J. Sosa, G. Sauro, Bruno Viana, B. Diaby, E. Insúa, M. Brizuela, H. Dean, Luciano Castán, G. González, Ítalo, S. Seymor, D. Wouters, R. Edmonds-Green, D. Coppola, Sidimar, C. Taylor, S. Caulker, N. Romero, J. Murillo, F. Fazio, John Nwankwo, Renê, M. García, E. Godoy, J. Pombo, Y. Nakayama, L. Ranieri, Natan, D. Ouedraogo, R. Williams, C. Verdonk, David Luiz, J. Canale, N. Capraro, M. Barać, Léo, G. Velázquez, K. Fila, M. Bola, H. Marcelin, A. Diallo, M. Sarr, B. Godeau, J. Clarke-Salter, B. Capon, A. Ouattara, G. Piovi, Ricardo Silva, F. Katelaris, D. Dessoleil, J. van Aken, J. Mccart, M. Bech Sørensen, M. Pellegrino, K. Bonifazi, S. Trémoulet, A. Dijksteel, M. Smets, D. D'Ambrosio, Diego González, M. Karamarko, Bruno Uvini, Nathan Silva, V. Chiricheș, S. Núñez, Jorge Meré, C. Hérelle, L. Østigård, S. Cook, P. Díaz, Gabriel Xavier, J. Flint, R. Arboleda, J. Belocian, K. De Winter, P. Retsos, David Duarte, Éder, Murillo dos Santos, Adriel, F. Mansilla, E. Bailly, W. Boly, T. Blackett, L. Greiml, O. Camara, L. Yoro, Víctor Chust, W. Boyle, C. Okoli, M. Dárdai, I. Vázquez, L. Magallán, P. Kimpembe, N. Murru, C. Söyüncü, N. Aké, J. Hato, Average, J. Gvardiol, Rúben Dias, R. Araújo, Marquinhos, D. Upamecano, C. Romero, F. de Jong, J. Koundé, M. Škriniar, W. Saliba, A. Bastoni, Lisandro Martínez, Gabriel Magalhaes, B. White, L. Hernández, D. Alaba, Kim Min-Jae, S. Botman, F. Tomori, Pau Torres, V. van Dijk, Bremer, A. Rüdiger, N. Schlotterbeck, R. Varane, Robin Le Normand, B. Pavard, N. Aké, N. Süle, I. Konaté, M. Guéhi, E. Ndicka, N. Aguerd, J. Andersen, A. Christensen, G. Scalvini, J. Todibo, M. Akanji, E. Tapsoba, J. Gomez, K. Zouma, M. Simakan, A. Disasi, M. Kilman, A. Rrahmani, E. Konsa, A. Webster, J. Tarkowski, N. Collins, B. Cristante, A. Theate, N. Elvedi, D. Zakaria, A. Ahmedhodžić, N. Milenković, David García, M. Ginter, P. Lienhart, C. Mbemba, P. Schuurs, R. Bensebaini, O. Kossounou, J. Tah, M. Lacroix, C. Lukeba, G. Mancini, I. Diop, M. van de Ven, L. Dunk, I. Zabarnyi, Hermoso, R. Koch, A. Romagnoli, M. Senesi, N. Casale, J. Beyer, K. Danso, F. Medina, L. Colwill, J. Matip, K. Ajer, Luiz Felipe, M. Thiaw, Zubeldía, K. Walker, L. Kelly, V. Lindelöf, Tuta, Dani Vivian, D. Ćaleta-Car, W. Singo, G. Maripán, B. Djimsiti, Diego Llorente, K. Itakura, M. Wöber, Danilo, T. Weah, Eric García, K. Sildillia, Danilo Pereira, E. Pinnock, Diogo Leite, D. Doekhi, S. McKenna, Édgar González, W. Orbán, F. Uduokhai, C. Okoli, S. Gigot, J. Bijol, O. Kabak, L. Martínez Quarta, L. Balerdi, S. de Vrij, L. Badé, F. Schär, J. Lucumí, W. Pacho, A. Buongiorno, B. Diakité, W. Omari, F. Baschirotto, N. Pérez, M. Diakhaby, Domingos Duarte, J. Aidoo, Catena, A. Tamèze, César Azpilicueta, J. Worrall, S. Savić, T. Hübers, H. Ito, M. Gabbia, S. Diomandé, J. Branthwaite, J. Lascelles, L. Østigård, M. Lovato, G. Nyamsi, M. Hummels, M. Friedl, I. Hien, J. Egan, Nacho, M. Pongračić, E. Agbadou, A. Pieper, D. Blind, Sergio Ramos, C. Starfelt, Unai Núñez, A. Al Dakhil, N. Stark, C. Zesiger, M. Jenz, Natan, M. Erlić, S. Kjær, Jorge Cuenca, Kaiky, S. Touré, M. Talbi, M. Friedrich, A. Seidu, Clinton Mata, B. Chardonnet, R. Nicolaisen, R. Drăgușin, Pablo Marí, F. Gatti, S. Kolašinac, E. Mašović, G. Álvarez, G. Pezzella, M. Veljković, A. Witsel, D. O'Shea, R. Knoche, S. van den Berg, R. Pierre-Gabriel, J. Gradit, M. Valjent, W. Anton, Ruan Tressoldi, A. Pelmard, Juan Jesus, A. Mandi, L. Brassier, J. Okumu, F. Lejeune, A. Carboni, J. Castelletto, J. Duverne, E. Cömert, A. Sanganté, M. Darmian, F. Acerbi, J. van Hecke, N. Gudelj, O. Alderete, W. Boly, D. Kohr, J. Vásquez, J. Gouweleeuw, M. Bauer, P. Hatzidiakos, B. Kouyaté, A. Ismajli, R. Calafiori, J. Chabot, I. Ordets, L. Perrin, R. Rodríguez, K. Vogt, P. Dawidowicz, D. Zagadou, A. Izzo, P. Pfeiffer, M. Wieteska, Raúl Albiol, J. Laporte, B. Omeragić, S. Luperto, S. Walukiewicz, Gabriel Paulista, L. Pirola, S. Beukema, Copete, I. Doukouré, T. Lockyer, J. Evans, J. Brooks, D. Coppola, G. Magnani, E. Fernandes, Alexsandro Ribeiro, C. Hérelle, Fali, Bernardo, Thiago Silva, Toti Gomes, C. Dawson, S. Bell, L. Ranieri, M. Andersen, A. Bell, G. Zappa, Chumi, D. D'Ambrosio, Fali Candé, David López, Carlos Neva, Y. Salmier, G. González, S. Mitrović, C. Klarer, M. Caufriez, C. Özkacar, P. Mainka, R. Burke, M. Gulde, M. Nastasić, A. Jung, A. Obert, M. Bani, Raúl Torrente, Ignasi Miquel, A. Abqar, Mika Mármol, C. Kabasele, Cristhian Mosquera, Aridane, L. Caldirola, N. Gyömbér, T. Ream, Luis Hernández, N. Pallois, T. Siersleben, Miguel Rubio, G. Lloris, F. Terracciano, Saúl Coco, M. Diarra, Y. Abdelhamid, S. Romagnoli, M. Maglica, Dante, J. Robinson, Álex Suárez, S. Magassa, Rafa Marín, A. Sedlar, C. Riad, C. Groß, K. Gjasula, Aitor Paredes, Logan Costa, I. Traoré, C. Basham, I. Monterisi, A. Dossena, L. Yoro, T. Kristensen, A. Sylla, Murillo dos Santos, D. Hancko, J. Šutalo, L. Geertruida, J. Schouten, O. Boscagli, G. Trauner, M. Hilgers, André Ramalho, R. Bazoer, M. Sagnan, Alexandre Penetra, L. Mbe Soh, P. Bochniewicz, P. Sandler, J. Medić, R. Pröpper, R. Flamingo, B. Nuytinck, Rodrigo Guth, M. van der Hoorn, M. Ross, J. Hoogma, S. van Beek, C. Widell, S. Adewoye, S. Floranus, C. Verdonk, R. Vita, R. Hendriks, R. El Yaakoubi, T. Lam, J. Kramer, S. Kersten, B. Benamar, D. Oroz, J. Amofa, D. Mirani, D. Van den Buijs, T. Velthuis, G. Nauber, D. Siovas, J. Gaari, B. Vriends, B. Plat, M. van der Maarel, T. Barbet, N. Isimat-Mirin, S. Nieuwpoort, D. van Bruggen, S. van Ottele, S. Seymor, J. Flint, S. Sonnenberg, B. van Polen, J. Hato, S. Bultman, Gonçalo Inácio, David Carmo, Matheus Reis, S. Coates, Wendell, Fábio Cardoso, Paulo Oliveira, C. Awaziem, S. Niakaté, N. Otamendi, Bruno Rodrigues, Javi Montero, Riccieli, Martín Aguirregabiria, Filipe Relvas, Mikel Villanueva, Jorge Fernandes, Pedrão, S. Saatçı, Tomás Ribeiro, E. Cabaco, Ygor Nogueira, Bruno Wilson, Pedro Álvaro, Artur Jorge, Anderson, R. Abascal, Bernardo Vital, Bruno Langa, N. Galović, Tiago Esgaio, José Fonte, Josué Sá, Maracás, Manu, G. Frimpong, Iván Marcano, N. Zolotić, Mansur, Gabriel Pereira, Volnei Feltes, R. Pantalon, Z. Muscat, Sandro Cruz, Fernando Varela, Aderllan Santos, Filipe Ferreira, Gonçalo Silva, Sávio, Marcelo, S. Vitória, Vasco Fernandes, Otávio, Rúben Fernandes, Miguel Lopes, Kialonda Gaspar, J. Omurwa, O. Diomandé, Rafael Fernandes, Alemão, António Silva, Theo Hernández, Alejandro Grimaldo, C. Roberts, A. Bell, G. Di Lorenzo, J. McClean, M. Kerkez, L. Shaw, N. Molina, Pepê, K. Trippier, M. Colin, F. Kostić, M. Murillo, R. Giles, D. Dumfries, J. Koundé, M. Aarons, T. Castagne, H. Pickering, C. Townsend, L. Lapoussin, I. Perišić, J. Bidwell, B. Nieuwkoop, C. Biraghi, R. Manning, E. Camavinga, P. Groß, C. Günter, J. Juranović, A. Lyons, A. Robinson, J. Frimpong, T. Alexander-Arnold, J. Gazibegović, D. McNamara, A. Sampsted, Y. Sugawara, D. Burn, Caio Henrique, L. Geertruida, Diogo Dalot, J. Greaves, A. Marušić, R. Ranftl, C. Connolly, G. Smal, João Cancelo, B. White, M. Acuña, N. Aké, A. Dedić, M. van Ewijk, N. Tagliafico, B. Pavard, K. Paal, N. Zalewski, Fran García, Daniel Carvajal, Dodô, G. Arteaga, I. Maatsen, B. Meijer, A. Robertson, Iván Balliu, D. Furlong, M. De Cuyper, A. Hakimi, P. Frankowski, G. Baldock, W. Anton, Raphaël Guerreiro, Javi Galán, Alejandro Balde, P. Estupiñán, J. Ryerson, R. Henry, Mateus Quaresma, V. Coufal, Nuno Santos, M. Wallace, G. Suazo, D. Muñoz, Óscar de Marcos, K. Walker, V. Le Goff, Jesús Navas, B. van Rooij, M. Samoise, J. Cuadrado, Mica Pinto, B. Potts, Pedro Porro, J. Clauss, T. Augello, José Gayá, J. Hector, J. Teze, I. Määttä, A. Davies, V. Gendrey, Carlos Augusto, A. Espino, Alexandre Penetra, T. Smith, K. Sema, M. Bard, Adrián Marín, S. El Karouani, F. Dimarco, A. Smith, Wendell, A. Dønnum, M. Köhlert, T. Kehrer, J. Brenet, Nuno Sequeira, Y. Carrasco, R. De Laet, K. Walker-Peters, Y. Soma, J. Auer, T. Somers, K. Veendorp, A. Castro-Montes, C. O'Dowda, V. Mykolenko, E. Valeri, Pablo Maffeo, Pedro Malheiro, S. Horemans, A. Bah, Rogério, C. Pring, Nuno Tavares, Yuri Berchiche, T. Mitchell, M. Deijl, Jon Moncayola, D. Murkin, J. Bree, Nélson Semedo, R. Renner, B. Onyemaechi, H. Traoré, E. Hysaj, M. Pedersen, B. Sosa, F. Parisi, A. Witry, Francisco Moura, Tiago Esgaio, J. Maehle, D. Odoi, A. Fadera, Víctor Gómez, S. Posch, R. Pereyra, Costinha, P. Max, I. Sylla, J. Bataille, B. Henrichs, Antunes, Neto Borges, N. Nkounkou, P. van Aanholt, Arnau Martínez, B. Diakité, J. Delgado, C. Bramall, O. Deman, A. Cresswell, K. Tete, D. Raum, Álvaro Fernández, R. Baku, T. Buchanan, Vitor Costa, M. Senaya, J. Hoilett, Jay Dasilva, P. Ciurria, Á. Lopera, F. Stojković, L. Blanco, Pipa, V. Kristiansen, T. Darikwa, Angeliño, N. Williams, L. Patris, J. Latibeaudiere, Bruno Langa, D. Rensch, A. Candreva, L. Spinazzola, Óscar Gil, J. Headley, B. Schmitz, N. Miroshi, T. Hume, F. Moufi, P. Pomer, Carlos Clerc, M. Sykes, P. Mwene, J. Lotomba, T. Malacia, K. Sildillia, D. Hashioka, D. Udogie, M. Romeo, Vanderson, Reinildo Mandava, Brian Oliván, M. Weiser, M. Wittek, Cláudio Winck, C. Trimmel, Joãozinho, F. Sacko, M. Léris, R. Kristensen, R. Bensebaini, L. Sernicola, M. Youssouf, C. Arcus, J. Toljan, Jaume Costa, J. Duverne, Tiago Santos, J. Lelieveld, H. Kamara, J. Davidson, L. Coyle, S. Klaiber, Y. Sabaly, J. Eccles, S. Sambo, T. Sakamoto, J. Rankin-Costello, A. Gallo, Diego Moreno, A. Bangura, A. Jung, J. Ruffels, Juan Cruz, M. van der Maarel, R. Nyambe, O. Zinchenko, A. Doughty, M. Bakker, Lucas Soares, Miguel Gutiérrez, A. Wan-Bissaka, M. Olivera, L. Gooch, E. Laird, Abner, Leonardo Lelo, Miguel Maga, M. Desler, Renan Lodi, G. Montiel, Vitinho, M. Plattenhardt, A. Truffert, H. Clarke, G. Mensah, P. Joly, B. Reynolds, Kiki, Diego Rico, T. Lutonda, Manu Sánchez, Q. Hartman, Anderson, W. Singo, M. Lazzari, M. Seck, J. Ward, Emerson Palmieri, K. Amian, Juan Iglesias, Emerson Royal, J. Scally, Ivo Pinto, J. Veltman, S. Widmer, M. Lowe, J. Husband, G. Kalulu, D. Lazović, L. Kübler, P. Struijk, H. Guenouche, Aitor Ruibal, F. Centonze, Nuno Mendes, D. van Wageningen, R. Perraud, Carraça, J. Kenny, W. Kamanzi, C. Brunner, Y. Van Genechten, Z. Çelik, G. Tanner, K. D'Haene, F. Depaoli, Juan Miranda, Sergio Akieme, J. Allevinah, M. Simakan, S. Walsh, M. Cash, L. Ayling, J. Foyth, A. Skov Olsen, Afonso Freitas, A. Cambiaso, D. Blind, D. Machado, M. Bouchouari, Jordi Alba, A. Young, B. Plat, Iza Carcelén, S. El Shaarawy, R. Brady, A. Hickey, N. Tjoe-A-On, S. Aurier, D. Calabria, D. Bradarić, T. Weah, R. Charles-Cook, J. Sánchez, Alex Telles, G. Cox, A. Danté, R. James, M. Poaty, Hugo Mallo, C. Wernitznig, M. N'Diaye, A. Caci, M. Braida, D. Sterling, A. Reca, João Mário, Aritz Elustondo, Marc Cucurella, Paulo Otávio, A. Ciranni, D. Schnegg, Mário Rui, Thierry Correia, I. Diallo, Andoni Gorosabel, A. Jašić, R. Gumny, F. Mendy, Q. Bernard, César Azpilicueta, M. Fossey, C. Elder, Danilo Veiga, Clinton Mata, Q. Merlin, Fábio Ronaldo, T. Baldé, L. Kelly, N. Foor, M. Moreira, C. Christie, N. Veratschnig, T. Foket, Z. Sanusi, B. Chilwell, A. Ulmer, Aarón Martín, D. Thompson, L. Abanda, K. Nkuba, M. Halstenberg, Juan Bernat, Aihen Muñoz, P. Stojanović, A. van Hoorenbeeck, J. Mansoni, H. Matriciani, B. Bereszyński, Ricardo Esgaio, C. Drameh, A. Zedadka, B. Meling, H. Mendyl, C. Styles, D. Foulquier, T. Schick, M. Vojvoda, Fran Delgado, João Correia, T. De Smet, P. Sagna, Mario Gaspar, J. Vagnoman, G. Benítez, L. Advíncula, P. Mazzocchi, Alejandro Pozo, J. Tymon, B. Johnson, S. Kumbedi, D. Suárez, G. Soto, R. Loftus-Cheek, S. Coleman, B. Kuipers, T. Ebuehi, Danilo Soares, Ayrton Lucas, N. Clyne, M. Pedersen, A. Soto, J. Hato, J. Firpo, R. Gosens, Sergi Roberto, N. Mazraoui, M. Polster, S. Doumbia, D. Cirkin, E. Longelo, Igor Julião, Iván Fresneda, J. Mendes, M. Wolf, Y. Larouci, Ismaily, M. Anzolin, P. Kadeřábek, F. Dabo, M. Richter, D. Schmidt, Alfonso Pedraza, M. Melluso, K. Tierney, A. Sant'Anna, C. Lenz, I. Jakobs, Derick Poloni, L. Godoy, Iago, M. Casco, M. Sorinola, N. Guinness-Walker, J. Mojica, K. Sardella, D. Giannoulis, G. Benavídez, A. Knauff, Aurélio Buta, A. Maitland-Niles, M. Alphonse, M. López, O.  Wijndal, L. Rao-Lisoa, Gilberto, Núrio Fortuna, K. Ehizibue, L. Di Plácido, M. Moormann, I. Abdulrazak, G. Ávila, A. Baba, N. Patterson, K. Hoever, K. Mbabu, A. Alese, Tinga, J. Zemura, H. Siquet, S. van Wermeskerken, Sander, E. Jordanov, L. Digne, I. Rodríguez, A. Rodríguez, G. Álvarez, J. Van Hecke, J. Dirksen, N. Sadiki, N. Gießelmann, E. Díaz, M. Koscelník, R. Jurišić, A. Zanoli, K. Schindler, A. Terzić, S. Ferguson, S. Vines, F. Gmeiner, B. Locko, Dinis Pinto, D. Liénard, A. Bruus, G. Rojas, T. Meunier, J. Bogle, T. Cassandro, Jonny Otto, S. Birindelli, M. Orihuela, Arthur Gomes, Kiko Femenía, S. Iling-Junior, R. Aït Nouri, Malo Gusto, D. Payne, M. Novak, Vitor Jacaré, G. Kastanos, K. Tsimikas, K. Çalhanoğlu, C. Gamboa, S. Malone, J. Hadjam, G. Kyriakopoulos, Rodrigo Conceição, D. Martínez, Hugo Bueno, N. Kasanwirjo, Alberto Moreno, N. Fernández Mercau, D. Faraoni, O. Sych, K. Lala, Raúl Parra, Sergio Escudero, L. Arce, T. Gardner-Hickman, R. Skov, L. Thomas, B. Blasi, Lucas Vázquez, Samuel Xavier, F. Ortega, J. Cabrera, C. Brittain, E. Sobol, R. Lewis, A. Preciado, H. Hateboer, L. Olaza, J. Tchatchoua, Nanú, A. Spörle, A. Costa, J. Dina Ebimbe, T. Tomiyasu, N. Cozza, E. Holm, Rúben Lima, B. Pittón, D. Zappacosta, Íñigo Lekue, Rubén Peña, João Moutinho, Alexsander, Juninho Capixaba, F. Guilbert, L. Venuti, Paulo Henrique, Hélder Sá, D. Abels, L. Burnet, F. Máter, I. Kaboré, S. Montiel, A. Lutovac, Óscar Mingueza, O. Kakay, J. Le Cardinal, J. Graham, J. Lawrence-Gabriel, S. Corchia, F. Mura, M. Pearson, C. Terho, V. Lazaro, José Fontán, D. Kreiker, M. Roerslev, B. Osborn, E. Bocat, J. Mosquera, C. Lykogiannis, J. Roussillon, M. De Sciglio, R. Aguilar, A. Koita, G. Bettini, Bruno Pacheco, Nacho Vidal, L. Souto, M. Fofana, D. da Costa, Rubens, J. Doig, S. Janko, M. Phillips, M. Diarra, E. Meza, S. Prieto, Tomás Silva, Khellven, N. Mukiele, Matheus Pereira, R. Delgado, N. Morgantini, Maguinho, J. Wießmeier, O. El Hilali, Y. Atal, Lucas Rosa, F. Fabra, Marlon, N. Fadiga, B. Milovanov, R. Vita, J. Justin, Tiago Araújo, Luis Pérez, J. Stanišić, G. Enrique, M. Bruno, Paulo Vitor, Carlos Isaac, S. Thioub, Abdu Conté, A. Bernabéi, Toti, Renê, CJ Egan-Riley, M. Busi, J. Piquerez, O. Drambaev, J. Cáceres, William, T. Guidara, F. Melegoni, C. Borja, B. Bolingoli, S. Marcich, Javi Hernández, Sávio, F. Oppegård, T. Ndicka, O. Turton, H. ter Avest, S. McCallum, Álex Centelles, Josan, L. Blondel, R. Sessegnon, Fágner, Patrick, Marçal, E. Insúa, E. Tchato, V. Barco, E. Coronel, Toni Lato, F. Vera, Flávio Nazinho, M. Barcia, R. Tsouka, R. D'Haese, L. Hjelde, B. Aguirre, D. Kasius, H. Toffolo, Mariano, M. Peinipil, W. Zaire-Emery, Wilson Manafá, J. Díaz, L. van Gelderen, J. Rodríguez, T. Lamptey, Lucas Piton, Caio Paulista, L. Esquivel, Marlon, Wesley, M. Doherty, Reinaldo, Pedrinho, S. Byram, M. Pašalić, Xavi Quintillà, N. Dyhr, Gabriel Inocêncio, N. Breitenbruch, Natanael, S. Dest, S. Bakari, M. Djénépo, G. Compagnucci, J. Uronen, J. Barrett Laursen, Hugo Novoa, L. Hall, E. Más, Matheus Alexandre, Zé Carlos, T. Ouwejan, T. Delaine, Y. Baas, D. Leidner, Diogo Calila, B. Barros Schelotto, K. Stafylidis, G. Luján, Guga, D. Yongwa, Paulinho, Héctor Bellerín, Nathan, Rubén Sánchez, L. Pellegrini, J. Barinaga, Mayke, G. Quagliata, S. Ingolitsch, R. Ogawa, O. Aina, B. Godfrey, L. Torres, R. Karsdorp, P. Ghiglione, D. Gosling, M. Aydin, R. Carstensen, D. Dankerlui, T. Mohr, Lucas Pires, R. Saravia, R. Pierre-Gabriel, Sergio Gómez, G. Gudmundsson, M. De Wit, J. Hurtado, A. Meli, T. Rothe, Jamerson, J. Scherzer, C. Dagba, Fábio Santos, G. Pezzella, Rafinha, Mateusinho, M. Akanji, Average, João Mário, F. Aursnes, Nuno Santos, Matheus Reis, A. Bah, Wendell, Víctor Gómez, Ricardo Esgaio, Francisco Moura, Fabiano, Martín Aguirregabiria, C. Borja, Leonardo Lelo, Costinha, Adrián Marín, Afonso de Freitas, Nélson Luz, S. Onyemaechi, A. Trezza, Weverson, Fábio Ronaldo, Zé Carlos, João Correia, Bruno Langa, Gaizka Larrazabal, G. Frimpong, Bruno Gaspar, B. Milovanov, Tomás Silva, Volnei Feltes, Sandro Cruz, Matheus Pereira, Pedro Amador, Tiago Araújo, Pastor, Hevertton Santos, João Reis, Igor Formiga, Talocha, Gonçalo Costa, Pedro Malheiro, Guga, Leonardo Buta, L. Geertruida, S. Dest, D. Rensch, J. Teze, Y. Sugawara, P. van Aanholt, M. Dijks, C. Arcus, H. ter Avest, Y. Regeer, A. Sampsted, S. El Karouani, M. Köhlert, D. Warmerdam, D. Möller Wolfe, B. van Rooij, D. van der Kust, S. Floranus, M. Pinto, A. Zagré, J. Willems, C. Verdonk, R. Vita, B. Kuipers, Y. Baas, J. Lelieveld, E. Cornelisse, S. Horemans, M. Deijl, Ivo Pinto, S. Bakari, B. Plat, A. MacNulty, E. Reijnders, H. Akujobi, D. Hall, N. Bakboord, J. Flint, Hussein Ali, A. Meijers, Manel Royo, B. van Polen, D. Payne, Q. Hartman, J. Gvardiol, A. Hakimi, A. Davies, T. Alexander-Arnold, João Cancelo, T. Hernández, B. White, L. Hernández, A. Robertson, O. Zinchenko, Marc Cucurella, B. Chilwell, José Gayá, Pedro Porro, J. Frimpong, Diogo Dalot, F. Mendy, J. Gomez, N. Mazraoui, T. Castagne, T. Mitchell, K. Laimer, D. Dumfries, J. Foyth, Malo Gusto, Alex Grimaldo, G. Di Lorenzo, F. Dimarco, F. Kostić, N. Molina, A. Wan-Bissaka, R. Henry, D. Udogie, M. Cash, V. Mykolenko, R. Aït-Nouri, W. McKennie, Caio Henrique, P. Estupiñán, D. Calabria, D. Raum, R. Bensebaini, Renan Lodi, A. Hickey, Vanderson, A. Truffert, R. Gosens, M. Olivera, Dodô, L. Digne, L. Colwill, Samuel Lino, K. Ajer, M. Aarons, Alfonso Pedraza, Arnau Martínez, L. Spinazzola, R. Kristensen, Nélson Semedo, K. Walker, B. Henrichs, M. Lazzari, Dani Carvajal, J. Clauss, N. Patterson, J. Maehle, K. Trippier, R. Baku, Thierry Correia, K. Tete, J. Scally, V. Kristiansen, T. Weah, A. Robinson, Emerson, D. Burn, K. Sildillia, M. Acuña, S. Posch, R. Aguilar, Y. Atal, Gorosabel, F. Parisi, J. Veltman, Manu Sánchez, M. Kerkez, L. Thomas, H. Traoré, R. Sallai, J. Ryerson, Fran García, J. Doig, J. Juranović, Sergio Akieme, Miguel Gutiérrez, N. Tagliafico, F. Honorat, V. Coufal, R. Skov, R. Giles, M. Wolf, A. Caci, Pablo Maffeo, B. Diakité, H. Kamara, C. Roberts, Abner, Héctor Bellerín, Mário Rui, Carlos Augusto, M. Bard, J. Dina Ebimbe, H. Ito, A. Marušić, Q. Merlin, P. Frankowski, D. Zappacosta, I. Bebou, L. Netz, A. Cambiaso, C. Biraghi, M. Pedersen, V. Lazaro, P. Max, Aurélio Buta, S. Aurier, Aihen Muñoz, M. Viña, J. Lotomba, Rogério, M. Weiser, Y. Sabaly, K. Mbabu, G. Kalulu, F. Guilbert, J. Mojica, G. Kyriakopoulos, P. Mazzocchi, D. Bradarić, I. Kaboré, Juan Miranda, Adrià Pedrosa, M. Vojvoda, R. Bellanova, T. Foket, R. Pierre-Gabriel, J. Toljan, J. Araujo, Yan Couto, K. De Winter, V. Gendrey, L. Assignon, F. Sacko, I. Balliu, A. Espino, J. Duverne, P. Kadeřábek, E. Hysaj, J. Bogle, J. Vásquez, A. Engels, F. Ebosele, M. Ristić, P. Ciurria, O. Aina, C. Taylor, Juan Iglesias, M. Faraoni, B. Schmitz, G. Pezzella, Ismaily, B. Locko, Lekue, Óscar Mingueza, L. Kübler, Diego Rico, Jesús Navas, M. Pedersen, M. Desler, A. Florenzi, L. Cacace, T. De Smet, T. Augello, Javi Hernández, Rubén Duarte, Juan Cruz, Rubén Peña, M. Bülter, Toni Lato, D. Lazović, S. Birindelli, A. Doughty, M. Roerslev, I. Sylla, G. Suazo, Yuri, A. Gallo, Neto Borges, T. Ebuehi, G. Zappa, R. Carstensen, Y. Salmier, Carlos Neva, M. Udol, M. Ruggeri, J. Milner, J. Ward, G. González, M. Wittek, D. da Costa, R. Marchizza, De Marcos, O. Deman, K. Lala, M. Bader, C. Lykogiannis, L. Paqarada, M. Coco, C. Operi, Ricard Sánchez, Iza Carcelén, K. Kouao, T. Delaine, P. Stenzel, F. Passlack, A. Jung, V. Le Goff, S. Sabelli, José Callejón, F. Nürnberger, Jaume Costa, Paulo Azzi, J. Föhrenbach, A. Young, D. Suárez, F. Terracciano, Marc Pubill, Sergi Cardona, Jesús Areso, M. Senaya, C. Trimmel, Javi López, L. De Silvestri, Juanlu Sánchez, E. Karic, M. Zeffane, A. Oyono, O. Traorè, M. Kayode, Alejandro Balde, Tiago Santos, D. Machado, S. Kumbedi, P. Dorgu, Bruno Fernandes, Enzo Fernández, Rodri, A. Rabiot, D. Rice, T. Reijnders, B. Cristante, F. Valverde, J. Clasie, J. Cullen, P. Hojbjerg, G. Xhaka, T. Teuma, H. Vanaken, J. Kimmich, S. Kums, Y. Fofana, Casemiro, S. Lobotka, S. Lynen, J. Bellingham, D. Sow, J. Hendrick, S. Field, Pedro Gonçalves, M. Power, Hyun-Seok Hong, M. Uribe, A. Zambo Anguissa, Bernardo Silva, O. Kökçü, K. De Bruyne, S. Milinković-Savić, L. Modrić, N. Seiwald, M. Grimes, S. Tonali, İ. Gündoğan, N. Barella, R. Wintle, R. Khedira, S. Amrabat, J. Ward-Prowse, T. Souček, D. Neill, O. Norwood, E. Skhiri, E. Álvarez, M. Caicedo, Gavi, P. Hrošovský, L. Travis, I. Sangaré, J. Brownhill, Rúben Neves, L. Pellegrini, Xavi Simons, J. Veerman, A. Mac Allister, Dani Parejo, M. Odegaard, A. Scott, N. Höfler, J. Gorenc-Stankovič, R. Onyedika, F. de Jong, J. Rudoni, R. Slater, W. Endo, J. Howson, M. Götze, Sergio Busquets, Martín Zubimendi, Florentino Luís, G. Hamer, S. Berge, A. Tchouaméni, D. Kamada, T. Kroos, J. Veretout, V. Rongier, João Palhinha, A. Ramsey, L. Amani, M. Fischer, A. Prass, I. Rakitić, Fabinho, J. Kitolano, K. Thuram, Z. Flemming, M. Locatelli, S. Abdul Samed, P. Zieliński, Rafa Silva, Ali Al Musrati, G. Rodríguez, M. Ugarte, J. Clark, M. de Roon, K. Taylor, S. Moutoussamy, G. Saville, H. Çalhanoğlu, Sergi Darder, B. Heynen, S. Spierings, M. Kovačić, R. Zerrouki, S. Berghuis, I. Chair, C. Eriksen, Willian Arão, B. Touré, W. McKennie, Danilo, R. Andrich, A. Campbell, Vitinha, A. Weimann, William Carvalho, Joelinton, T. Ince, S. Colombatto, K. McLean, S. Mijnans, M. Gibbs-White, C. Nielsen, W. Smallbone, Bruno Guimarães, K. Bielik, Vitor Carvalho, A. Laïdouni, J. Molumby, N. Vlašić, Y. Verschaeren, J. Musiala, T. Partey, Lucas Paquetà, Mikel Merino, W. Keane, J. Lerma, M. Brozović, K. Fujimoto, T. Koopmeiners, S. Fofana, Oriol Romeu, H. Mkhitaryan, Andreas Pereira, B. Whiteman, T. Morton, M. James, André Almeida, Douglas Luiz, Koke, R. Freuler, N. Matić, J. Swift, Brais Méndez, R. Mandragora, S. Longstaff, Mikel Vesga, A. Ruiz, B. van den Boomen, B. Sheaf, Walace, Pedri, M. Eggestein, G. Bonaventura, B. André, David Simão, J. Hove, H. Morita, M. Jensen, C. Ünder, C. Eiting, I. Gueye, Sergio Canales, D. Klaassen, M. Hjulmand, H. Choudhury, Amad Diallo, J. Bacuna, A. Tamèze, Guga, Jorginho, M. Diemers, Luis Alberto, J. Allen, M. Braunöder, H. Reed, Fran Beltrán, H. Hackney, Gabriel Sara, M. Pessina, C. De Norre, L. Coulibaly, S. Szymański, T. Haye, C. Baumgartner, G. Makouta, E. Le Fée, M. Verratti, André Horta, Matheus Nunes, O. Yokuşlu, Óliver Torres, B. Mitchell, B. Mendy, L. Baker, D. Barlaser, T. Horvat, Y. Tielemans, L. Tousart, R. de Paul, C. Tiéhi, T. Chong, P. Billing, Gerard Gumbau, A. Browne, Stephen Eustáquio, Álex Baena, O. Rathbone, M. Caqueret, J. Haberer, D. Proper, A. Onana, A. Losilla, M. Guendouzi, J. Henderson, L. Schöne, M. Bero, Lucas Torró, J. Willock, João Gomes, R. Marin, A. Tahiri, M. Virtue, J. Fulton, C. Pickel, Samu, D. Frattesi, K. Goudmijn, M. Arnold, Z. Youssouf, João Teixeira, J. Toornstra, I. Bennacer, P. Lees-Melou, A. Vermeeren, G. Cimirot, A. Barák, C. Doucouré, V. Anita, J. Laurent, M. Camara, S. Surdanović, Ivo Rodrigues, M. Martin, J. Ekkelenkamp, Oihan Sancet, L. Jäger, Moi Gómez, Angel Gomes, Y. Musah, J. Seri, João Pedro, M. Sissoko, M. Munetsi, N. Bentaleb, L. Robertone, M. Bourabia, K. Stöger, H. Belkebla, Fernando, A. Pejić, M. Lemina, A. Verschueren, Gustavo Scarpa, P. Grabher, B. Aaronson, João Carvalho, J. Cork, T. Rincón, S. van de Streek, A. Diawara, S. Meïté, Adriano, E. Can, C. Patino, Óscar Valentín, S. Pérez, J. Ferri, A. Zorgane, Tiago Silva, M. Núñez, N. Madsen, S. Esposito, J. Schouten, R. Cabella, K. Dougall, G. Til, T. Adams, M. Ashimeru, A. Král, E. Eze, S. Peeters, J. De Sart, M. Vlap, R. Krunić, Vinicius Souza, E. Rexhbecaj, J. Maddison, M. Koné, L. Barreiro, L. Goretzka, S. Banse, Iñigo Ruiz, S. Lovrič, R. Kerschbaum, Raphael Guzzo, D. Fitz, J. Ralls, R. Kouamé, Brahim Diaz, Marc Roca, P. Rommens, S. Carey, S. Szmodics, Omar Mascarell, A. Rinomhota, T. Müller, J. Gastien, A. Pritchard, J. Baas, Rúben Oliveira, T. Krauß, Joan Jordán, M. Ilaimaharitra, P. Mpanzu, J. Schlupp, Pedro Chirivella, Santi Comesaña, B. El Khannous, Á. Di María, Rui Pires, H. Boudaoui, L. Majer, S. Hierländer, J. Chotard, O. Tufan, J. Lindstrom, A. Matusiwa, S. Lukić, T. Savanier, Fred, M. Wieffer, Kike Pérez, K. Dewsbury-Hall, M. Vecino, É. Gutiérrez, R. Lavia, S. Özcan, O. Cooper, T. Cantwell, Aimar Oroz, K. Fitz-Jim, M. Mount, S. Okazaki, Y. Magnin, D. Cataldi, A. Blin, V. Marchetti, R. Schoofs, P. Michorl, Aaron Ramsey, T. Iroegbunam, I. Koné, A. Karazor, D. Kohr, Aleix García, N. Rommens, R. Ledson, A. Thomasson, Gabri Veiga, A. Sissako, E. Martel, N. Raskin, S. Horvath, C. Brüls, N. Domínguez, G. Caprari, Chiquinho, X. Schlager, A. Engels, L. Abergel, Carlos Álvarez, D. Johnson, João Mendes, R. Sawyers, J. Bellegarde, X. Chavalerin, W. Willumsson, F. Selemani, J. Hogg, S. Ricci, Afonso Taira, C. Alcaraz, D. van Kaam, R. Carrera, Leonardo Lopes, O. Tannane, V. Janelt, H. Mejbri, L. Ferguson, Marcos Llorente, P. Clement, S. Hezze, M. Grujić, Carles Aleñà, I. Ilić, J. Thompson, A. McCann, M. Kjærgaard, L. Refaelov, B. Mukendi, M. López, R. Bentancur, S. Alzate, M. Svanberg, E. Palacios, F. Boya, N. Capaldo, K. Arnstad, S. Sissoko, J. Segre, G. Shinnie, T. Ciğerci, E. Capoue, M. Sabitzer, D. de Wit, K. Laimer, D. Kasumu, R. Cherki, C. Kramer, M. Hoedemakers, H. Elliott, David Silva, U. Tohumcu, Éderson, R. Malinovskyi, Fabián Ruiz, F. Bandinelli, A. Stach, G. Aburjania, V. Odjidja-Ofoe, C. Tolisso, M. Loum, Ó. Trejo, T. Vilhena, F. Fattori, T. Doyle, Mahdi Camara, Al. Miranchuk, Z. Buurmeester, R. Yates, K. Agudelo, Joan Gonzàlez, O. Ntcham, J. Jeggo, M. Pašalić, P. Rosario, Monchu, N. Fagioli, N. Maksimović, J. Williams, Q. Timber, L. Van Eenoo, O. Gloukh, Jae-Sung Lee, F. Tait, G. Magnée, K. Linetty, J. Lindsay, T. Naylor, A. Haidara, D. Hotič, Luis Milla, A. Yusuf, C. Gallagher, D. Huisman, O. Duda, Ricardo Guima, E. Omić, B. Verstraete, Pedro Santos, P. Greil, B. Wiles, Dani Silva, G. Florentín, A. Jukić, P. Koopmeiners, J. Lepenant, B. Jovičić, K. Demirbay, K. Kerschbaumer, L. Gourna-Douath, J. Vlak, T. Fornah, João Moutinho, Samú Costa, Dani Ceballos, Rubén Alcaraz, M. Leitgeb, F. Kessié, B. Dejaegere, V. Jensen, J. Weigl, M. Hongla, G. Docherty, M. Cham, R. Žulj, B. Santamaria, C. Bozdogan, F. Flick, V. Sierro, S. Rode, S. Serdar, J. Rodríguez, Álvaro Aguado, S. McTominay, M. Paulissen, Iker Muniain, L. Cook, Óscar Rodríguez, I. Gruev, A. Dozzell, H. Nicolussi Caviglia, J. Makengo, Kevin Lenini, C. Norgaard, M. Maertens, M. Taferner, Caio Alexandre, S. Tronstad, Y. Gerhardt, M. Konaté, N. Bajrami, Matheus Henrique, D. Geiger, P. Gueye, L. Ugochukwu, S. Khaoui, B. Kamara, A. Francis, André Trindade, R. Shein, C. Twigt, M. Crooks, N. Moro, R. Wagner, Gonzalo Melero, C. Lepoint, Thiago Alcântara, J. Geusens, J. Holsgrove, Francisco Geraldes, L. Bernadou, W. Ndidi, A. da Cruz, J. Elías, L. Samardžić, F. Mollet, Carlos Soler, Renato Veiga, Pablo Barrios, M. Coutadeur, L. Brouwers, Victor Bobsin, C. Groß, Y. Oukili, O. Skipp, L. Paredes, J. Stage, K. Palmer, A. Hjulsager, H. Mbock, N. Rovella, L. Gibbs, Hugo Guillamón, C. Evans, F. Nmecha, O. Mangala, N. Bätzner, Juninho, F. Colidio, A. Ekdal, C. Vanhoutte, M. Ndiaye, José Gragera, B. Soumaré, Fede San Emeterio, A. Ounahi, I. Baba, Suso, E. Kayembe, L. Sučić, A. Doucouré, S. Ascacíbar, F. Miretti, J. Ponceau, V. Verre, L. Duarte, Iván Martín, J. Buckley, A. Guardado, E. Toku, A. Roa, G. Escalante, U. Račić, P. Gerkens, H. Sakhi, K. Kampl, L. Stindl, L. Cundle, Fidel, J. Sforza, F. Wirtz, Zé Ricardo, M. Reus, H. Massengo, H. Magnetti, Roque Mesa, I. Tapia, T. Baldanzi, L. Fadinger, A. Varela, S. Prcić, I. Soro, Bruno Costa, M. Tavernier, J. Nardoni, Pizzi, M. Nakamba, Y. Asprilla, D. Mihailovic, M. Castagnetti, S. Johansen, J. Shackleton, Ângelo Neto, I. Gómez, B. Rollheiser, D. Barbona, André Gomes, L. Vega, S. Longo, J. Cajuste, T. Cipot, D. Erdoğan, Claudemir, L. Bittencourt, H. Winks, I. Fernández, César de la Hoz, B. Dack, M. Damar, O. Kiteishvili, R. Schmid, G. Ward, G. Prömel, K. Gutiérrez, Tchê Tchê, João Afonso, K. Bistrović, M. Cachbach, Ganso, G. Haraguchi, S. Sensi, P. Ciss, C. Coventry, A. El Messaoudi, Pedro Silva, R. Villagra, M. Damsgaard, J. Pereyra, C. McGeehan, A. Méndez, Pol Fernández, R. Apter, D. Heymans, Dani García, C. De Ketelaere, B. Pearson, Álex Fernández, Zé Rafael, Alan Patrick, M. Zaracho, Cauly, Val, Paulo Estrela, J. Dasilva, Alê, A. Cannon, J. Palacios, B. Toma, S. Tanaka, D. Duarte, O. Özyakup, F. Moyano, R. Faivre, C. Staring, M. Diaby, R. Woods, G. Abrego, Manu Morlanes, A. Ferati, Thiago Maia, E. Pérez, T. Belmonte, N. Ahamada, Samu Sáiz, Antonio Blanco, J. Holland, J. Jacobs, T. Lemar, P. Kunde, F. González Metilli, Y. Ayari, D. Lopy, T. Pochettino, Lucas Ventura, F. Downes, Dodi, André André, K. Ortíz, Gabriel Menino, R. Tapia, Asier Illarramendi, M. Ellertsson, A. Sabiri, Lucas Lima, A. Samaris, Saúl Ñíguez, E. Matazo, Edu Expósito, S. Lahssaini, C. Ngonge, A. Castro, D. Brašanac, Rober González, Nico González, M. Oswald, D. Pelkas, E. Méndez, C. Türkmen, F. Neuhaus, Eduardo, Y. M'Changama, A. Gómez, M. Keita, Matchoi Djaló, M. Pittón, P. Capelle, Oriol Busquets, I. Louza, S. Amallah, P. Förster, K. Doumbia, Matheus Martinelli Lima, S. Steijn, D. Drexler, A. Moreno, M. Sadílek, R. Sallai, C. Casadei, H. Odoffin, E. Linthorst, Fábio Vieira, M. Sanson, E. Camara, A. Mowatt, Gerson, A. Forson, J. Allen, N. Acevedo, J. López, F. Peña Biafore, T. Ballo, J. de Guzmán, G. Kondogbia, A. Cabrera, L. Rosier, C. de Pena, T. Cairney, M. Wels, Diogo Mendes, M. Gonalons, D. Črnigoj, R. Aliendro, I. Nazih, Paulo Bernardo, Unai López, V. Taborda, T. Mangani, Pablo Ibáñez, J. Pelupessy, D. Doué, N. Castro, B. Alemán, A. Sambi Lokonga, J. Aholou, N. Mendy, N. Amiri, F. Vera, E. Bove, Ilaix Moriba, S. Lončar, J. Milner, C. Sánchez, J. Berthomier, I. Miramón, E. Michut, F. Martínez, B. Perlaza, I. Sissoko, Erick, R. Stirk, R. Zalazar, Hélder Morim, M. Tanlongo, Taison, R. Oudin, A. Tibidi, Ángel Algobia, L. Menossi, A. Schäfer, K. Malinov, A. Wharton, M. Cuisance, J. Akpa Akpro, I. Christie-Davies, T. Arslan, J. James, L. Vigen Christensen, A. Duncan, I. Bel Hassani, Pablo Maia, Y. Bissouma, P. van Amersfoort, F. Coquelin, O. Fraulo, V. Besuijen, Gustavo Assunção, A. Ba, G. Hall, T. Ndombèlé, S. Dewaele, N. Linares, A. Bernede, Manu Trigueros, André Castro, S. Ogrinec, A. Amade, D. Kameri, B. Zimmermann, M. Barreto, C. Buonaiuto, Marlon Freitas, M. Thorsby, Kenny Rocha Santos, Matheus Fernandes, Hércules, I. Diallo, K. Thorstvedt, Raúl Guti, G. Wijnaldum, Fernandinho, G. Acosta, N. Haas, Dário Essugo, Y. Eteki, Gonzalo Villar, Maurício, I. Camará, L. Dendoncker, J. Dom, J. Fleck, H. Van der Bruggen, F. Zuqui, Q. Laçi, M. Sangaré, Isco Suarez, C. Pavón, A. Cardozo, Y. Maleh, D. Huseinbašić, S. Bastoni, E. Llansana, A. Kadri, Miguel Baeza, A. Grassi, B. Innocent, E. Bullaude, Luiz Carlos, I. Marcone, C. Puertas, A. Ait El Hadj, Romário Baró, José Machin, L. Leroy, K. Dowell, H. Keita, R. Reitz, M. Villasanti, S. Toloza, F. Cristaldo, M. Benassi, E. Millot, R. Fernández, Luciano, T. Pobega, N. Fekir, R. Wilson, M. Lanzini, J. Gómez, M. Kjolo, Morelli, C. Jones, S. High, N. Đorić, R. Battaglia, N. Schmidt, A. Colpani, C. Ferreira, A. Bolívar, C. Arce, Miguel Veloso, R. Oratmangoen, Pedro Ortiz, E. Remedi, M. Perrone, F. Redondo, I. Ljubić, João Neves, Raphael Veiga, O. El Azzouzi, E. Embleton, Y. Keitel, G. Castrovilli, Oier Zarraga, S. Mvoué, W. Hughes, T. Castro, J. Rothwell, Woo-Yeong Jeong, João Gamboa, Mady Camara, V. Demaku, F. Onyeka, J. van Mullem, Bruno Gomes, Willian Oliveira, S. Verdi, M. van Ginkel, A. Hosseinzadeh, I. Šunjić, J. Lingard, A. Lescano, J. Russell, Iñigo Eguaras, F. Sanchez, Mateus Sarará, Otávio, L. Maciel, R. Leonard, J. Soñora, J. Florentín, R. Gagliardini, Jair, C. Zabala, Vitó, Rodrigo Nestor, S. Beltrame, H. Traoré, Y. Gordillo, A. Colorado, P. Osterhage, Hyoran, S. Schrijvers, L. Henderson, L. Agoumé, S. Bajcetic, L. Fiorini, Pol Lozano, T. Trybull, J. Boëtius, K. Mrabti, N. Castro, Lucas Fernandes, F. Tardieu, C. Kouyaté, M. Soulé, K. Asllani, Johnny, J. Onana, T. Delaney, M. Adeline, F. Baldassarra, L. Doucet, L. Freeman, L. Valente, B. Leyes, F. Becker, N. Oroz, R. Morioka, D. Kyereh, Y. Yazıcı, R. Barkley, B. Kociubinski, P. Galdames, Maycon, M. Benítez, R. Al Hajj, R. Gravenberch, J. Paradela, M. Arambarri, L. Aued, Ó. Romero, D. Zakaria, L. Boggio, Mateus Vital, J. Boga, D. Payet, J. Livermore, L. Berry, T. Banega, D. Salifou, Y. Herrera, R. Vormer, H. López, T. Bašić, L. Castro, S. Ortíz, C. Grenier, W. Montoya, A. Franco, P. Ekwah, F. Klomp, D. Suárez, D. Latza, M. Listkowski, Pedro Alemañ, R. Loaiza, Ronaldo Vieira, Philippe Coutinho, W. Zaire-Emery, M. Kudus, Kang-In Lee, E. Camavinga, D. Szoboszlai, H. Abdelli, J. Ramsey, B. Bourigeaud, J.  McGinn, R. Hatate, N. Kanté, T. Almada, Arda Güler, Average, J. Bellingham, J. Musiala, F. Valverde, A. Tchouaméni, Enzo Fernández, F. Wirtz, Bernardo Silva, Rodri, M. Odegaard, D. Rice, J. Kimmich, Bruno Fernandes, N. Barella, M. Mount, L. Goretzka, F. de Jong, K. Havertz, Bruno Guimarães, E. Camavinga, J. Maddison, M. Caicedo, Casemiro, J. Álvarez, S. Tonali, Mikel Merino, A. Onana, A. Mac Allister, Vitinha, F. Anguissa, M. Kovačić, R. De Paul, D. Szoboszlai, Martín Zubimendi, P. Zieliński, J. Ward-Prowse, Joelinton, Fabián Ruiz, S. Lobotka, L. Pellegrini, João Palhinha, T. Souček, E. Álvarez, Douglas Luiz, I. Sangaré, Marcos Llorente, H. Çalhanoğlu, K. Thuram, C. Gallagher, Oihan Sancet, P. Dybala, A. Rabiot, M. Locatelli, E. Eze, T. Koopmeiners, C. Doucouré, M. Gibbs-White, Brais Méndez, D. Kamada, M. Camara, G. Rodríguez, G. Xhaka, R. Loftus-Cheek, M. Caqueret, Y. Bissouma, A. Golovin, Y. Fofana, İ. Gündoğan, B. Kamara, M. Ugarte, C. Eriksen, S. Amrabat, S. McTominay, M. Guendouzi, Y. Musah, X. Schlager, S. Longstaff, D. Sow, N. Fagioli, Éderson, S. Berge, L. Majer, M. Sabitzer, N. Vlašić, R. Malinovskyi, B. Bourigeaud, J. Brownhill, P. Billing, Luis Alberto, T. Kroos, V. Rongier, C. Jones, M. Arnold, Darder, Andreas Pereira, Koke, V. Janelt, B. Santamaria, E. Le Fée, J. Weigl, F. Neuhaus, P. Sarr, F. Miretti, H. Reed, Arthur, A. Stach, J. Lerma, N. Domínguez, Fran Beltrán, João Gomes, M. Svanberg, E. Palacios, Marc Roca, S. Ricci, I. Ilić, C. Tolisso, M. Pessina, C. Nørgaard, M. Jensen, E. Can, J. Veretout, M. Götze, A. Gomes, S. Abdul Samed, S. Lukić, E. Skhiri, J. Cullen, M. Arambarri, T. Savanier, L. Paredes, Moncayola, M. de Roon, O. Mangala, A. Doucouré, J. McAtee, N. Rovella, Y. Ndayishimiye, Y. Yazıcı, L. Tousart, J. Bellegarde, B. André, Muniain, Aleix García, T. Baldanzi, R. Freuler, D. Ljubičić, D. Kuzyaev, Moi Gómez, M. Lemina, Saúl, L. Cook, L. Modrić, L. Barreiro, R. Krunić, A. Kramarić, Y. Herrera, J. Chotard, L. Ferguson, R. Mandragora, B. Gilmour, R. Christie, M. Reus, Óliver Torres, Matheus Henrique, N. Dorsch, T. Reijnders, N. Bajrami, R. Marin, T. Minamino, P. Groß, F. Grillitsch, R. Yates, I. Gueye, I. Sissoko, G. Hamer, M. Eggestein, N. Maksimović, F. Nmecha, A. Tamèze, L. Samardžić, G. Maggiore, G. Prömel, S. Lovrič, L. Robertone, Dani Parejo, M. Thorsby, Walace, Lucas Torró, Y. Gerhardt, Vinicius Souza, J. Haberer, D. Cataldi, H. Boudaoui, E. Martel, R. Gagliardini, A. Matusiwa, D. Dakonam, Pedro Chirivella, Aimar Oroz, A. Stiller, H. Mkhitaryan, M. Sanson, A. Král, Mikel Vesga, R. Cabella, J. Ferri, M. Cham, T. Teuma, M. Munetsi, D. Huseinbašić, Oriol Romeu, I. Hagi, Guevara, A. Duncan, W. Hughes, K. Kampl, Samú Costa, Isco Suarez, Y. Maleh, S. Moutoussamy, Douglas Augusto, Gonzalo Villar, A. Karazor, R. Schmid, S. Spierings, P. Lees-Melou, Melero, N. Matić, Unai López, Óscar Valentín, P. Ciss, F. Kainz, L. Coulibaly, E. Bohinen, M. Nakamba, H. Diarra, Manu Morlanes, A. Laïdouni, I. Rakitić, D. Kohr, O. Duda, N. Radonjić, M. Frendrup, Antonio Blanco, E. Rexhbecaj, C. Cásseres, Sergio Arribas, M. Aebischer, J. Rothwell, S. Lynen, J. Stage, M. Hongla, K. Linetty, T. Chong, L. Waldschmidt, Mahdi Camara, E. Capoue, D. Lopy, Ander Herrera, I. Baba, R. Ndiaye, L. Abergel, Ó. Trejo, Pepelu, E. Bove, Y. Kechta, Gumbau, L. de la Torre, I. Doukouré, Fernando, D. Seck, N. Schmidt, L. Mazzitelli, J. Ponceau, M. Bero, M. Kaba, A. Colpani, G. Bonaventura, E. Millot, N. Höfler, K. Stöger, M. Folorunsho, A. Makoumbou, Iñigo Ruiz de Galarreta, G. Escalante, J. Allevinah, Y. Magnin, A. Grassi, Rubén Alcaraz, A. Martegani, J. Deminguet, O. Norwood, Beñat Turrientes, H. Magnetti, A. Touré, Ramón Terrats, K. N'Doram, M. Łęgowski, A. Candreva, Jon Guridi, A. Guardado, A. Diouf, D. Boloca, K. Strootman, G. Kastanos, V. Sierro, L. Maloney, M. Mehlem, E. Loiodice, Javi Muñoz, Iván Martín, M. Gonalons, J. Fazzini, Sergio Ruiz, Pablo Ibáñez, P. Mpanzu, E. Barrenechea, M. Badelj, Kirian Rodríguez, J. Gastien, D. Jean-Jacques, G. Oristanio, M. Brescianini, Y. Ramadani, R. Reitz, D. Thomalla, F. Holland, H. Rafia, C. Benavidez, T. Kempe, A. Losilla, C. Groß, N. Theuerkauf, Iker Muñoz, Javi Guerra, D. Doué, W. Zaire-Emery, I. Sulemana, Gavi, L. Camara, J. N'Duquidi, F. Chaïbi, H. Larsson, E. Anderson, Pablo Barrios, K. Taylor, J. Veerman, C. Stengs, B. van den Boomen, Q. Timber, J. Schouten, M. Wieffer, G. Til, M. Sadílek, C. Bozdogan, D. de Wit, S. Mijnans, J. Kitolano, J. Clasie, I. Saibari, A. Verschueren, O. Fraulo, T. Haye, D. Proper, M. Meulensteen, L. Brouwers, M. van Ginkel, M. Kjølø, C. Sandra, B. Tahirović, J. Toornstra, V. Jensen, O. Özyakup, L. Rosier, S. Steijn, W. Willumsson, A. Tahiri, P. Rommens, Deroy Duarte, R. El Yaakoubi, M. Mattsson, J. Baas, E. Linthorst, P. Koopmeiners, Z. Buurmeester, L. Thy, M. Tielemans, L. Duijvestijn, B. De Keersmaecker, A. Ouahim, D. van den Berg, C. Twigt, Y. Oukili, S. Resink, K. Felida, J. de Guzmán, L. Schöne, A. Halilović, G. Roemeratoe, D. Min, J. Ritmeester van de Kamp, M. de Haan, Pote, O. Kökçü, M. Edwards, Rafa, Florentino, Al Musrati, M. Hjulmand, H. Morita, A. Varela, Nico González, S.Eustáquio, R. Zalazar, Gustavo Assunção, Z. Youssouf, Pizzi, Tomás Händel, Guga, G. Makouta, K. Fujimoto, Tiago Silva, T. Lacoux, M. Topić, S. Pérez, Vitor Carvalho, Martim Neto, Dani Silva, Samu, Carlinhos, Dener, K. Nwakali, Gonçalo Franco, M. Gbane, M. Sylla, Pedro Sá, A. Busnić, Beni, Paulo Estrela, J. Holsgrove, Guima, R. Bustamante, O. Liimatta, I. Vukotić, João Graça, M. Dominguez, Cláudio Falcão, Aloísio Souza, Léo Cordeiro, A. Oudrhiri, Alex Soares, Pedro Tiba, João Marques, L. Ofori, David Simão, Neto, Mattheus Oliveira, Pablo Roberto, Miguel Reisinho, Fabrício Isidoro, Diogo Nascimento, João Neves, Mateus Fernandes, Vinícius Júnior, M. Rashford, Jota, B. Saka, Mohamed Salah, João Mário, Hyun-Seok Hong, J. Clarke, J. Bowen, K. De Bruyne, Heung-Min Son, J. Wallace, B. Brereton Díaz, A. Dreyer, J. Brownhill, L. Pellegrini, Xavi Simons, L. Blas, Ricardo Horta, D. Szoboszlai, A. Scott, Otávio, M. Diaby, M. Götze, Bruno Fernandes, S. Bergwijn, A. Iwobi, Rafael Leão, Gabriel Martinelli, F. Aursnes, V. Tsygankov, Z. Flemming, B. Bourigeaud, Rafa Silva, F. Amuzu, I. Sarr, J. Grealish, M. Edwards, R. McGree, Galeno, M. Zaccagni, Antony, I. Chair, M. Trésor, R. Doan, A. Weimann, S. Chukwueze, K. Kvaratskhelia, S. Mijnans, M. Gibbs-White, Francisco Trincão, J.  McGinn, Nico Williams, J. Ito, W. Smallbone, N. Vlašić, J. Odgaard, B. Garré, J. Musiala, Lucas Paquetà, W. Keane, K. Fujimoto, Andreas Pereira, S. March, V. Grifo, H. Barnes, J. Swift, M. Grüll, J. Ayew, Raphinha, A. Ruiz, Kang-In Lee, S. Olsson, Samuel Lino, V. van Crooij, R. Mahrez, F. Sotoca, P. Roberts, J. Hove, A. Golovin, C. Ünder, K. Mitoma, J. Paintsil, Sergio Canales, Amad Diallo, Y. Carrasco, M. Diemers, Yéremi Pino, J. Allen, P. Foden, Pablo Maffeo, S. Szymański, M. Sylla, J. Ikoné, Matheus Nunes, Musa Al Tamari, Isi Palazón, Antony, J. Brandt, Óliver Torres, A. Mehmeti, M. Simon, S. Thomas, T. Horvat, L. Sané, Álvaro García, J. Diamond, M. Olise, P. Billing, Kiko Bondoso, M. Caqueret, J. Harrison, S. Benrahma, M. Guendouzi, M. Bero, J. Hofmann, Z. Aboukhlal, N. Lang, Isco Suarez, K. Diatta, D. Ouattara, A. Zaroury, E. Lamela, Samu, O. Sahraoui, K. Goudmijn, M. Almirón, Nonato, S. Gnabry, A. Barák, David Neres, F. Kainz, R. Rotondi, Curro Sánchez, R. Hedges, S. Surdanović, Ivo Rodrigues, J. Ekkelenkamp, J. Bamba, V. Černý, A. Martínez, Oihan Sancet, J. Hoilett, M. Kudus, P. Dybala, D. Núñez, C. Gakpo, L. Trossard, R. Sterling, K. Mbappé, Rodrygo, S. Adingra, K. Havertz, Fábio Vieira, C. Nkunku, L. Messi, T. Kubo, Bernardo Silva, Arda Güler, Gabri Veiga, M. Balikwisha, K. Nakamura, D. McNeil, João Pedro, M. Munetsi, K. Stöger, Gustavo Scarpa, B. Aaronson, N. Tella, J. Ramsey, G. Hairemans, V. Misidjan, B. De Cordova-Reid, S. van de Streek, F. Chaibi, S. Godwin, D. Kulusevski, D. Hashioka, O. Romeny, T. Fosu, M. Elyounoussi, R. Cabella, C. Lang, G. Til, W. Gnonto, C. Stengs, G. Plata, E. Eze, Álex Berenguer, E. Salvio, Willian, W. Balikwisha, Jaume Costa, M. Vlap, A. Urzi, J. Maddison, J. Lelieveld, Iuri Medeiros, G. Kerk, M. Rashica, M. Bülter, O. Dembélé, E. Tavsan, D. Fitz, K. Toko Ekambi, Brahim Diaz, Iván Jaime, F. Buonanotte, S. Szmodics, F. Honorat, N. González, T. Müller, M. van Brederode, A. Pritchard, Bruno Xadas, Javi Puado, Neymar, D. Lukébakio, B. El Khannous, Á. Di María, L. Maina, D. Sanches Fernandes, O. Tufan, I. Jones, J. Lindstrom, O. Boussaid, T. Savanier, P. Zinckernagel, K. Dewsbury-Hall, J. Guðmunds­son, M. Whittaker, O. Cooper, Adu Ares, Rubén Sobrino, Aimar Oroz, M. Mount, Strefezza, J. Dilrosun, T. Lutonda, O. Edvardsen, J. Bakayoko, N. Broadhead, M. Mudryk, A. Thomasson, J. Kamiński, Luiz Henrique, G. Caprari, E. Forsberg, Juan Iglesias, R. Christie, Carlos Álvarez, Murilo, João Mendes, J. Philogene-Bidace, Pedro, J. Karlsson, A. Nordin, J. Thorsteinsson, W. Willumsson, Carles Pérez, H. Lozano, J. Sancho, J. Koroma, W. Zaha, F. Đuričić, A. Laurienté, A. Voglsammer, Gabriel Silva, K. Coman, Marco Asensio, O. Tannane, A. Muja, C. Driouech, L. Ferguson, S. Mané, Tiago Gouveia, J. Allevinah, Matheus Martins, C. Führich, Rodrigo Riquelme, M. Manhoef, E. Elmas, Pablo Fornals, M. Regáli, Rony Lopes, D. de Wit, Tete Morente, R. Cherki, H. Abdelli, David Silva, Roberto Arroyo, R. Malinovskyi, Iñigo Córdoba, Ferrán Torres, Dani Rodríguez, T. Suslov, E. Rashani, Ó. Trejo, G. Honeyman, Al. Miranchuk, Rodri Sánchez, R. Orsolini, O. Ntcham, M. Oršić, N. Thomas, M. Pašalić, Bruno Lourenço, C. Hamilton, Jeffinho, D. Malen, Ricardo Mangas, D. Ljubičić, A. Jahanbakhsh, O. Gloukh, Ayoze Pérez, B. Teixeira, J. Dompé, Nuno Moreira, Óscar Plano, D. Hotič, A. Jašić, D. Huisman, C. Gallagher, B. Adekanye, C. Bayala, Igor Paixão, O. Duda, O. Idrissi, T. Van Den Keybus, P. Greil, S. Ojo, Jota Silva, Ricardinho, K. Kozłowski, F. Cervi, T. Baldé, J. Le Douaron, J. Bowler, C. Antwi-Adjei, Portu, João Moutinho, B. Barcola, G. Diangana, B. Dejaegere, Léo Baptistão, M. Cham, R. Žulj, Marlon, T. Booth, E. Boateng, Y. Lawal, F. Di Francesco, O. Hernández, Dani Olmo, L. Zanimacchia, A. Flips, E. Guessand, T. Bongonda, Tetê Martins, A. Maier, Iker Muniain, M. Maertens, J. Antonisse, G. Hein, D. Berardi, M. Benson, N. Bajrami, Ansu Fati, T. Asano, Ez Abde, S. Khaoui, Daniel Podence, D. Suárez, S. Villa, A. Pléa, A. Ramsey, A. da Cruz, F. Mollet, Y. González, Salvador Agra, N. Gaitán, F. Maouassa, Rafael Ratão, J. Arias, Adama Traoré, D. van Mieghem, Junior Messias, K. Saito, L. Ocampos, K. Palmer, P. Wimmer, A. Hjulsager, A. Gordon, N. Bätzner, F. Colidio, C. Canak, Rodrigo Martins, M. Azarkan, Y. Larouci, Suso, M. Anzolin, L. Sučić, M. Mattsson, A. Saelemaekers, J. Ponceau, L. Banda, N. Kühn, L. Stindl, L. Cundle, T. Aasgaard, F. Wirtz, K. Adeyemi, S. Armstrong, M. Reus, D. Sinani, T. Baldanzi, K. Sulemana, R. Nouri, B. Celina, W. Khazri, A. Vombergar, N. Guinness-Walker, M. Politano, O. Solbakken, H. Wilson, V. Birmančević, R. Saponara, Pizzi, W. Odobert, Y. Asprilla, Kike Barja, D. Mihailovic, R. Vargas, B. Rollheiser, D. Barbona, C. Summerville, Bitello, R. Nainggolan, D. Holmes, C. Willock, I. Fernández, B. Dack, M. Damar, O. Kiteishvili, J. Kluivert, M. Aebischer, L. de la Torre, Bryan Gil, Kiki, Ganso, S. Diop, M. Terrier, B. Woodburn, N. Chadli, D. Lainez, Zé Uilton, J. Doku, J. Anthony, L. Sinayoko, Calebe, H. Ziyech, H. Diarra, Y. Cathline, R. Apter, D. Heymans, C. De Ketelaere, T. Noslin, M. Johnston, Rúben Lameiras, A. Bruus, Rubén García, M. Breij, L. Lamprou, Alan Patrick, K. Gorré, M. Zaracho, Cauly, C. Pulišić, T. Kunimoto, J. Palacios, B. Toma, J. Boselli, O. Özyakup, B. Ocampo, A. Fulgini, Nico Melamed, R. Faivre, I. Malcorra, David Costa, Y. Namli, Y. Belaïli, Bebé, J. Murphy, A. Bajić, N. Fernández Mercau, Caio Vidal, Pablo Sarabia, Y. Ayari, T. Pochettino, Adri Embarba, A. El Ghazi, B. Guzmán, A. Schjelderup, Carlos Eduardo, Dudu, Davo, Lucas Lima, Diogo Jota, M. Lahdo, G. Vidović, S. Zoller, N. Barrios, Edu Expósito, E. Agyei, C. Ngonge, O. Antman, Rober González, Rui Mendes, R. Soriano, D. Pelkas, G. Perrin, T. Le Bris, J. Gauto, F. Neuhaus, Bruma, Eduardo, A. Gómez, Artur, A. Adomah, Léo Pereira, Nélson Luz, S. Amallah, P. Förster, I. Saibari, K. Doumbia, S. Steijn, D. Drexler, D. James, R. Sallai, Bruno Rodrigues, Úmaro Embaló, Vinícius Santos, A. Issah, Y. Borges Sanches, R. Garro, F. Guilbert, A. Forson, Samu Castillejo, J. Graham, T. Cairney, A. Saint-Maximin, Iván Alejo, Biel, R. Rosario, T. Dierckx, Wanderson, Unai López, V. Taborda, J. Bisanz, N. Fernández, I. Machuca, B. Traoré, R. Del Castillo, Munir El Haddadi, R. Sordo, Diego López, A. Garnacho, M. Roerslev, Z. Ouattara, E. Bocat, A. Ndiaye, J. Berthomier, J. Roussillon, R. Zalazar, L. Daneels, A. Zeneli, A. Tibidi, Benny Sousa, S. Bell, J. Campaz, L. Díaz, M. Autret, E. Barco, Luquinha, A. Sayyadmanesh, P. van Amersfoort, V. Besuijen, Rui Gomes, A. Ba, M. Tahiri, Yago Pikachu, Francisco Conceicão, Lago Júnior, D. Kameri, B. Zimmermann, C. Buonaiuto, Everaldo, B. Brahimi, Serginho, E. Zhegrova, P. De la Vega, T. Allende, S. Mavididi, Arsénio, S. Thioub, F. Soldano, P. Brouwer, A. Dobre, Yan Couto, T. Hazard, D. Atanga, Iván Sánchez, T. Walcott, O. Kragl, Juanmi, B. Jackson, M. Pereira Lage, D. Huseinbašić, S. van der Water, G. Reyna, M. Albrighton, R. Balk, João Graça, Rildo, Éverton, Antonio Sánchez, Allano, E. Bullaude, I. Leguizamón, I.  Poveda, Aleix Vidal, S. Solari, J. Acevedo, F. Thauvin, M. Rits, Euller, G. Graciani, S. Toloza, R. Sottil, S. Diarra, M. Sylla, F. Cristaldo, A. Colassin, Luciano, N. Fekir, Felipe Azevedo, M. Lacava, A. Camblan, G. Hauche, D. Machís, Vina, A. Ounas, A. Colpani, O. Burke, Valery Fernández, S. Edozie, Raphael Veiga, Woo-Yeong Jeong, Y. Gboho, C. Madueke, J. Thielmann, Kevin Medina, D. Terans, G. Holtmann, B. Yusuf, Pedro Henrique, S. Verdi, R. Guitane, Victor Sá, J. Lingard, F. Jozefzoon, Toni Villa, K. Zohi, Luis Henrique, J. Vallejo, J. Soñora, Éverton Ribeiro, M. Jakoliš, G. Togni, C. Hudson-Odoi, M. Solomon, K. Spadanuda, O. Strunz, N. Castro, M. Soulé, Zé Carlos, L. Janson, Junior Santos, M. Adeline, A. Canobbio, M. Coco, D. Rots, A. Fatah, Diego, D. Valoyes, J. Léa Siliki, B. Aguirre, L. Valente, T. Burey, I. Cissoko, L. Besozzi, Alisson, D. Praet, André Franco, D. Kyereh, M. van Bergen, L. Sinisterra, Wellington Rato, J. Assehnoun, P. Galdames, M. Benítez, Pedro Neto, F. Pizzini, R. Al Hajj, M. Araújo, J. Paradela, P. Solari, B. Bouanani, Alesson, Mateus Vital, J. Boga, D. Payet, J. Paterson, Gabriel Pec, P. Aaronson, G. Gudiño, H. López, L. Castro, T. Rambert, C. Bukta, T. Adoryan, Ander Barrenetxea, M. Listkowski, J. Hungbo, C. Ejuke, Philippe Coutinho, B. Aouacheria, K. Zenón, T. Conechny, Average, Pote, M. Edwards, Rafa, Pepê Aquino, David Neres, Ricardo Horta, Galeno, João Mário, Á. Di María, Paulinho, Bruma, Pizzi, Rodrigo Gomes, Jason, G. Makouta, K. Fujimoto, S. Godwin, J. Rodríguez, Álvaro Djaló, R. Guitane, Y. Soma, Félix Correia, Léo Jabá, K. Kodisang, Murilo, Heriberto Tavares, Nuno Moreira, Bruno Lourenço, B. Milovanov, João Mendes, Salvador Agra, Tiago Morais, Joca, João Camacho, Leandro Sanca, O. Liimatta, Óscar Aranda, M. Dominguez, Marlon, M. Belloumi, M. Lacava, Ronald, S. Jasper, Marco Matias, Zé Manuel, Benny, Diogo Nascimento, Hélio Varela, Guga, H. Lozano, S. Bergwijn, N. Lang, C. Stengs, J. Bakayoko, K. Kozłowski, G. Til, Igor Paixão, D. de Wit, O. Sahraoui, Iñigo Córdoba, A. Verschueren, M. Vlap, Rober, M. van Brederode, M. Manhoef, M. Azarkan, O. Boussaid, M. van Ginkel, K. Saito, E. Hansson, M. Lahdo, Y. Namli, S. Steijn, W. Willumsson, O. Edvardsen, B. Adekanye, O. Romeny, S. Hansen, A. Boutrah, P. Clement, D. Rots, L. Lamprou, B. Limbombe, L. Olden Larsen, C. Nunnely, M. Mattsson, O. Velanas, L. Thy, L. Duijvestijn, C. Driouech, J. Breum, A. Ouahim, T. Noslin, D. Cleonise, Z. Bakkali, B. Ould-Chikh, A. Halilović, D. Sanches Fernandes, D. Min, Carlos Forbs, J. Ritmeester van de Kamp, G. Kuol, Y. Minteh, J. Bellingham, J. Musiala, B. Saka, P. Foden, K. Kvaratskhelia, F. Wirtz, Rafael Leão, Bernardo Silva, M. Rashford, L. Díaz, Bruno Fernandes, Mohamed Salah, L. Sané, Gabriel Martinelli, Antony, K. Coman, R. Sterling, M. Mudryk, O. Dembélé, J. Maddison, D. Kulusevski, João Félix, J. Álvarez, Lucas Paquetà, Matheus Nunes, Dani Olmo, A. Gordon, J. Brandt, Yéremy Pino, J. Bowen, L. Pellegrini, A. Gouiri, M. Almirón, G. Raspadori, C. Pulišić, Pedro Neto, B. Johnson, P. Dybala, Oihan Sancet, E. Eze, T. Koopmeiners, X. Simons, M. Gibbs-White, N. González, B. Mbeumo, R. Cherki, J.  McGinn, N. Zaniolo, A. Danjuma, M. Caqueret, Nico Williams, I. Williams, A. Golovin, Danilo, A. Iwobi, İ. Gündoğan, L. Bailey, A. Elanga, M. Zaccagni, V. Tsygankov, S. Benrahma, K. Mitoma, Álex Baena, M. Politano, J. Bamba, L. Majer, I. Sarr, N. Vlašić, S. Diop, L. Blas, D. McNeil, J. Doku, S. March, D. Berardi, A. Laurienté, J. Karlsson, Andreas Pereira, Samuel Lino, D. Malen, Álex Berenguer, C. Palmer, M. Tavernier, T. Kubo, R. Doan, J. Boga, Felipe Anderson, G. Laborde, M. Götze, H. Wilson, J. Hofmann, Ângelo, E. Demirović, T. Savanier, A. Doucouré, L. Ocampos, D. Lukébakio, Hee-Chan Hwang, J. Kluivert, V. Grifo, Y. Yazıcı, Muniain, R. Orsolini, J. Ito, Isi Palazón, T. Baldanzi, E. Ávila, Carles Aleñà, E. Lamela, Manu Sánchez, Silas, L. Ramazani, L. Ferguson, A. Fulgini, Óliver Torres, E. Forsberg, R. Christie, M. Reus, R. Giles, N. Bajrami, R. Faivre, T. Minamino, J. Schlupp, Rodri, A. Ezzalzouli, E. Zhegrova, Z. Aboukhlal, B. De Cordova-Reid, Suso, Tiago Tomás, Y. Gerhardt, B. Barcola, J. Brekalo, R. Vargas, Sávio, Álvaro García, Rubén García, Ayoze Pérez, J. Ayew, Barrenetxea, S. Adingra, J. Brown, K. Mbabu, R. Cabella, N. Nández, G. Kalulu, Keito Nakamura, A. Nordin, F. Guilbert, M. Cham, M. Cancellieri, I. Hagi, Isco Suarez, L. Maina, Portu, Antonio Puertas, José Luis Morales, Munir El Haddadi, Melero, M. Soulé, D. Machís, V. Černý, F. Kainz, A. Thomasson, F. Sotoca, Lee Jae-Sung, José Ángel Carmona, C. Führich, T. Asano, N. Radonjić, Sergio Arribas, D. Ndoye, M. Ristić, A. Tosin, L. Waldschmidt, L. Banda, Adri Embarba, J. Le Douaron, R. Del Castillo, M. Camara, Willian, Ó. Trejo, W. Khazri, N. Cambiaghi, José Arnáiz, Luis Rioja, Álex Sola, D. Bakwa, D. Seck, A. Colpani, G. Bonaventura, Toni Lato, E. Millot, Ivan Cavaleiro, Sandro Ramírez, H. Haraldsson, P. Almqvist, T. Le Bris, Rubén Sobrino, J. Asoro, J. Beste, F. Mollet, J. Allevinah, Óscar Melendo, A. Ndiaye, C. Ogbene, Musa Tamari, Antonio Sánchez, C. Antwi-Adjei, Xeber Alkain, Pejiño, A. Candreva, Jon Guridi, J. Casimir, L. Nego, Jaime Mata, J. Báez, G. Kastanos, D. Genreau, Iván Alejo, M. Mehlem, Jaume Costa, Dani Rodríguez, Iván Martín, Bryan Zaragoza, C. Trimmel, G. Oristanio, E. Dinkçi, C. Sabaly, E. Karic, B. Gruda, F. Gelli, Fran Pérez, Diego López, E. Nuamah, D. Doué, Lamine Yamal, L. Camara, N. Ngoumou, Assane Diao, L. Koleosho, F. Chaïbi, Vinícius Júnior, H. Kane, R. Lewandowski, D. Tadić, V. Gyökeres, A. Griezmann, K. Mbappé, M. Rashford, C. Gakpo, I. Ndiaye, H. Cuypers, L. Messi, Lautaro Martínez, V. Boniface, E. Haaland, M. Taremi, Rodrygo, J. Piroe, R. Kolo Muani, Felipe Anderson, O. Giroud, C. Morris, E. Adebayo, J. David, Fran Navarro, S. Becker, V. Janssen, G. Burgstaller, K. Benzema, B. Johnson, T. Lauritsen, K. Havertz, Gonçalo Ramos, G. Laborde, Iñaki Williams, C. Ogbene, Y. En-Nesyri, J. Yates, A. Ueda, Cristiano Ronaldo, E. Ünal, W. Weghorst, T. Pukki, C. Akpom, G. Orban, A. Sorloth, V. Muriqi, A. Gouiri, Fábio Silva, O. Watkins, Joselu, J. Álvarez, N. Wells, J. Sargent, A. Sánchez, D. Vlahović, L. Dykes, B. Mbeumo, S. Giménez, T. Abraham, A. Kramarić, A. Lacazette, Abel Ruiz, I. Toney, V. Osimhen, T. Baribo, J. Brown, J. Pohjanpalo, M. Kudus, Iago Aspas, V. Pavlidis, F. Balogun, Mostafa Mohamed, B. Šeško, T. Bradshaw, D. Solanke, S. Hogan, R. van Wolfswinkel, V. Castellanos, H. Diallo, M. Gregoritsch, T. Moffi, S. van Hooijdonk, E. Džeko, B. Dia, T. Kubo, André Vidigal, S. Adingra, I. Lidberg, F. Caputo, L. de Jong, M. Ducksch, M. Nzola, R. Sterling, T. Werner, T. Campbell, Borja Mayoral, A. Douvikas, P. Hofmann, M. Thuram, D. Gray, E. Gyasi, Mama Baldé, Álvaro Morata, E. Demirović, W. Ben Yedder, A. Mitrović, M. Braithwaite, R. Pepi, R. Hojlund, S. Kaba, N. Füllkrug, L. Openda, K. Onisiwo, C. Nkunku, T. Dallinga, B. Embolo, B. Thomas-Asante, C. Immobile, Borja Iglesias, Chris Ramos, M. Antonio, R. Živković, K. Denkey, L. Trossard, Ferrán Jutglà, João Félix, J. Coburn, C. Adams, D. Núñez, A. Sanabria, O. Estupiñán, L. Boyé, S. Gallagher, Sergio Camello, Gabriel Jesus, André Silva, C. Kouamé, E. Buendía, T. Ambrose, M. Seuntjens, D. Okereke, Arthur Cabral, T. Dolan, P. Dybala, D. Ward, Paulinho, Y. Matsuo, G. Del Prete, M. Sarkaria, E. Wahi, R. Vermant, M. El Idrissy, M. Gabbiadini, L. Jović, C. Lang, O. McBurnie, Zé Manuel, A. Milik, D. Gayle, K. Davis, Iván Romero, J. Strand Larsen, M. Malone, A. Sarr, A. Barnes, S. Prevljak, I. Ganago, Jon Magunazelaia, T. Cannon, C. Wilson, D. Beljo, S. Banza, Y. Njie, M. Barrow, B. Yılmaz, A. Hunou, A. Budimir, André Silva, L. Bailey, L. Jutkiewicz, Silas, Vitinha, K. Piątek, G. Kyei, M. Osmajić, J. Vardy, T. Parrott, L. Dimata, L. Foster, S. Elisor, A. Hložek, E. Emegha, M. Forss, Beto, J. Cádiz, I. Slimani, B. Brobbey, D. Welbeck, D. Fofana, M. Godden, N. Jackson, Evanilson, K. Gameiro, A. Kalimuendo, Lucas João, H. Tabaković, A. Lotti, C. Larin, N. Pépé, A. Pinamonti, R. Lukaku, Nuno Da Costa, A. Ndour, A. Belotti, K. N’Dri, T. Deeney, L. Delap, Rodrigo, T. Conway, Welinton Júnior, Danilo, C. Washington, A. Ceesay, N. Štulić, I. Niane, Toni Martínez, F. Avenatti, L. Mikić, A. Carroll, L. Ajorque, S. Lammers, S. Guirassy, Hulk, N. Okafor, E. Ávila, E. Nketiah, E. Choupo-Moting, M. Kramer, A. Sima, José Luis Morales, Cassiano, T. Arokodare, K. Behrens, A. Isak, Á. Correa, Dany Mota, Pere Milla, D. Ings, A. Armstrong, K. Grant, Rafa Mújica, V. Bayo, L. Höler, N. Dorgeles, J. Gelhardt, J. Siebatcheu, K. Sowah, K. Moore, O. Édouard, C. Dessers, R. Longman, S. Tigges, G. Oristanio, Y. Wissa, C. Robinson, Juninho, E. Manu, I. Success, A. Delort, S. Terodde, Gabriel Barbosa, C. Wickham, A. Semenyo, A. Lookman, L. Suárez, Wesley, A. Samatta, J. Rodriguez, G. Cano, B. Sharp, N. Fernández, M. Retegui, M. Harris, J. Adamu, Richarlison, P. Onuachu, N. Binder, A. Adli, M. Stroeykens, S. Weissman, E. Cavani, M. Frey, F. Niederlechner, C. Martin, N. Prelec, S. Hendriks, Omar Marmoush, Y. Barasi, R. Mühren, A. Gruber, M. Satriano, Rafa Mir, M. Arnautović, S. Mounié, R. Borré, Mario González, G. Madine, Matheus Babi, Anderson Silva, G. Kakuta, E. Riis, I. Koné, H. Seferović, Roberto Firmino, Róger Guedes, R. Krollis, P. Schick, Gerard Moreno, H. Cornick, Z. Gano, B. Romero, S. Hamulić, Sergi Guardiola, Rafael Martins, A. Tapsoba, M. Berisha, S. Pierotti, N. Radonjić, C. Tengstedt, Hugo Duro, J. Hugill, A. Petagna, Tiquinho Soares, J. Ngoy, P. Bamford, N. Zaniolo, K. Lasagna, M. Obafemi, I. Bebou, Gorka Guruzeta, B. Messaoudi, P. Daka, E. Ferguson, Matheus Cunha, C. Archer, Adrián Butzke, Paulinho, M. Fuseini, Y. Moukoko, K. Konaté, G. Hirst, L. Depoitre, A. Ayew, B. Białek, Tiago Tomás, F. Hornby, J. Lowe, B. Sepúlveda, J. Rhodes, W. Kanga, Héctor Hernández, Yuri Alberto, D. Watmore, L. Colombo, A. Martínez, N. Ohio, D. Karlsbakk, J. Leko, G. Rutter, Hee-Chan Hwang, J. Magennis, J. Aribo, S. Long, T. Awoniyi, Choco Lozano, S. Lavery, M. Cauteruccio, Kike García, L. Suárez, L. Ramazani, F. Chiesa, K. Iheanacho, I. Durdov, S. Esposito, G. Nilsson, R. Uldriķis, N. Cordero, Mikel Oyarzabal, G. Ávalos, S. Haller, G. Raspadori, Rui Costa, M. Niang, P. Gladon, Willian José, R. Khadra, M. Cóccaro, Bruno Almeida, D. Zapata, K. Andrić, Gonçalo Guedes, C. Evans, João Marcos, A. Bareiro, Vitor Roque, J. Recalde, M. Kean, M. Santos, Sergio León, B. Michel, B. Dost, Carlos Vinícius, J. Wind, Clayton Silva, J. Correa, G. Scamacca, Jon Karrikaburu, Roger Martí, Yago Cariello, H. Veerman, R. Yaremchuk, A. Salama, S. Perica, S. Koita, S. Azmoun, T. Röcher, A. Martial, N. Maupay, M. Đurić, K. Vaesen, Y. Meïté, G. Lo Celso, G. Verón, D. Dike, M. Ingvartsen, F. Tsadjout, Julen Lobete, Raúl García, R. Boženík, E. Simms, H. Ekitike, C. Tarragona, L. Cullen, N. Cambiaghi, E. Touré, R. Kharchouch, M. Boselli, L. Lucca, C. Stuani, E. Ponce, F. Krüger, K. Etete, J. Lucero, M. Giménez, K. Tagawa, Everaldo, L. Díaz, B. Riascos, M. Faal, Lázaro, R. Providence, Diego Costa, Álvaro Djaló, J. Toledo, I. Salah, Thiago Galhardo, A. Fletcher, Alisson Safira, S. Kozuki, B. Raman, S. Rodríguez, R. Ripart, Gerard Deulofeu, R. Jiménez, A. Idah, Pablo Rodríguez, M. Rogers, P. Guèye, Pedro, F. Stokkers, M. Romero, P. Musa, F. Druijf, A. Modeste, D. Verde, Patrick Fernandes, A. Rebić, M. Abline, B. Dieng, D. Ciofani, J. Durán, T. Kastanaras, M. Giménez, D. Origi, Oday Dabbagh, S. Rodríguez, Rony, A. Elis, M. Wilks, D. Selke, S. Humphrys, E. Dennis, R. Kriwak, N. Servetto, T. Roberts, L. Gamba, Pablo Durán, S. Adamyan, G. Defrel, Y. Malede, Gilberto, Pablo, Y. Badji, A. Onaiwu, L. Beltrán, L. Pratto, L. Ruiz, Asier Villalibre, D. Calvert-Lewin, M. Ugalde, D. Drăguş, Henrique Araújo, F. Bonazzoli, N. Powell, L. Muriel, E. Ben Seghir, S. Jovetić, B. Armoa, T. Boere, N. Nsingi, J. Enciso, F. Mwepu, D. Loader, M. Dabbur, W. Boving, A. Grbić, Gabriel Veron, T. Minamino, A. Muskwe, A. Ajeti, C. Woodrow, R. Stewart, Aloísio, A. Véliz, M. Luna Diale, Y. Vertessen, A. Chávez, F. Afena-Gyan, C. Wood, K. Schade, M. Dembélé, Pedro Marques, L. López, T. Henry, André Pereira, Manu Vallejo, R. Hamouma, A. Danjuma, L. Leal, L. Nmecha, M. Depay, Pedro Raul, I. Nuhu, M. van Duinen, M. Estigarribia, M. Waghorn, A. Gaich, G. Kelly, D. Benedetto, A. Nusa, Y. Chermiti, J. Ramírez, A. Schmid, E. Botheim, B. Róchez, S. Mara, P. Aubameyang, F. Jensen, Y. Sor, J. Antiste, M. Merentiel, Matheus Peixoto, J. Mateta, I. Ugbo, M. Broschinski, E. Shomurodov, Luiz Adriano, D. Undav, J. Calleri, R. Nteka, Jesé Rodríguez, Pablo Moreno, K. Volland, T. Hara, M. Bayo, R. Vučić, Eduardo Sasha, L. Zeefuik, B. Afobe, J. Vale, S. Sow, J. Forst, K. Dolberg, A. Osorio, R. Šimić, G. Mikautadze, Average, V. Muriqi, D. Solanke, E. Haaland, O. Watkins, C. Morris, Y. Wissa, Iago Aspas, Hugo Duro, Borja Mayoral, A. Griezmann, M. Simon, A. Sørloth, J. Strand Larsen, Rodrygo, P. Aubameyang, M. Uzuni, A. Guðmundsson, M. Diaby, J. David, Lautaro Martínez, Matheus Cunha, L. Suárez, Chris Ramos, O. Édouard, R. Lewandowski, J. Wind, H. Kane, J. Zirkzee, V. Boniface, T. Kleindienst, A. Pinamonti, M. Antonio, K. Behrens, C. Ngonge, S. Guirassy, Jonathan Viera, M. Thuram, Heung-Min Son, Mikel Oyarzabal, T. Moffi, A. Budimir, W. Ben Yedder, V. Osimhen, K. Mbappé, L. Foster, N. Jackson, E. Nketiah, L. Boyé, M. Ducksch, L. Höler, Álvaro Morata, Juanmi Latasa, Y. En-Nesyri, Kike García, D. Zapata, N. Alioui, L. Openda, Gorka Guruzeta, Jovane Cabral, L. Lucca, M'Bala Nzola, F. Chiesa, M. Retegui, Joselu, A. Adams, N. Füllkrug, F. Thauvin, Roger Martí, C. Archer, Zito Luvumbo, I. Ndiaye, W. Cheddira, T. Dallinga, C. Immobile, Mostafa Mohamed, Z. Amdouni, C. De Ketelaere, D. Selke, Gabriel Strefezza, L. Pfeiffer, N. Krstović, Omar Marmoush, R. Jiménez, A. Isak, L. Colombo, Y. Poulsen, João Pedro, Ferrán Torres, André Almeida, T. Awoniyi, M. Beier, W. Weghorst, Gerard Moreno, R. Lukaku, O. McBurnie, Gonçalo Ramos, E. Ferguson, Dany Mota, A. Dovbyk, A. Pléa, A. Lookman, O. Giroud, S. Kaba, Richarlison, R. Hojlund, Vinícius Júnior, E. Emegha, A. Belotti, L. Ajorque, M. Pieringer, B. Dia, P. Hofmann, D. Vlahović, Samu, T. Skarke, A. Lacazette, M. Satriano, L. Mothiba, F. Magri, C. Stuani, D. Welbeck, A. Kalimuendo, K. Onisiwo, J. Mateta, Vitinha, O. Diakité, Diogo Jota, D. Fofana, M. Daramy, Gabriel Jesus, F. Caputo, Willian José, S. Becker, D. Núñez, E. Adebayo, C. Wilson, A. Harit, Raúl de Tomás, Carlos Fernández, T. Čvančara, P. Tietz, C. Larin, J. Siebatcheu, Sergio Camello, B. Traoré, S. Mounié, E. Kroupi, M. Greenwood, F. Bonazzoli, C. Gakpo, M. Gómez, S. Haller, D. Calvert-Lewin, E. Wahi, V. Castellanos, D. Beljo, G. Kyei, M. Djurić, S. El Shaarawy, E. Botheim, I. Koné, G. Scamacca, Beto, C. Wood, Abdón Prats, Raul García, E. Shomurodov, M. Honsak, A. Milik, Borja Iglesias, M. Berisha, M. Bayo, Fábio Silva, L. Beltrán, N. Maupay, M. Guilavogui, S. Elisor, U. Sadiq, S. Olsson, T. Robinet, V. Pavlidis, S. Giménez, M. Kramer, L. de Jong, R. van La Parra, M. Seuntjens, V. Edvardsen, T. Lauritsen, F. Druijf, S. Hamulić, N. Agrafiotis, B. Brobbey, M. Engels, M. Ugalde, R. Mühren, M. Sankoh, Koki Ogawa, I. Nicolăescu, R. van Wolfswinkel, B. Dost, G. de Regt, P. van Amersfoort, L. Zeefuik, T. Bruns, K. Sierhuis, I. Lidberg, S. Sow, C. Brym, Héctor Hernández, S. Essende, André Luis, Cristo González, André Silva, Jota Silva, M. Taremi, V. Gyökeres, R. Boženík, Alan, Rafa Mújica, S. Banza, R. Carrillo, Paulo Victor, Clayton, J. Cádiz, Cassiano, Ronaldo Tavares, L. Ruiz, Rui Costa, Abel Ruiz, Bruno Duarte, Depú, P. Musa, Rildo, Henrique Araújo, Alejandro Marqués, Toni Martínez, R. Baturina" />
+    </div>
+
+    <p class="description">DataMB</p>
+    <p class="info">© All Rights Reserved</p>
+    <hr class="divider" />
+    <div class="sub-footer">
+      <nav>
+        <a class="terms" target="_blank" href="https://datamb.football/privacy">Privacy</a>
+        <a class="privacy" target="_blank" href="mailto:datamb.football@gmail.com">Contact</a>
+        <a class="glossary" target="_blank" href="https://datamb.football/glossary">Glossary</a>
+      </nav>
+      <nav>
+        <a target="_blank" href="https://twitter.com/datamb_">
+          <svg width="23" height="22" fill="#000000" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </footer>
+
+
+</html>
