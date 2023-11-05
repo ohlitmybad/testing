@@ -38,6 +38,22 @@ body {
   align-items: center;
 }
 
+        @media (max-width: 768px) {
+  .button-container {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(3, 1fr);
+    gap: 10px; /* Adjust the gap as desired */
+  }
+
+  .image-2 {
+    grid-row: 3; /* Move the third button to the second row */
+  }
+
+  .image-3 {
+    grid-row: 2; /* Move the second button to the third row */
+  }
+}
+
 .bouton {
   display: inline-block;
   width: 245px;
@@ -59,32 +75,18 @@ body {
 
 .image-2 {
   order: 3; /* Change the order to 3 for the second button */
-  background-image: url('https://pbs.twimg.com/media/F-KXBVKXUAArkZO?format=png&name=small');
+  background-image: url('https://pbs.twimg.com/media/F-KWs2bXEAA8Xb2?format=png&name=small');
   background-size: cover;
   color: #fff;
 }
 
 .image-3 {
   order: 3; /* Change the order to 2 for the third button */
-  background-image: url('https://pbs.twimg.com/media/F-KWs2bXEAA8Xb2?format=png&name=small');
+  background-image: url('https://pbs.twimg.com/media/F-KXBVKXUAArkZO?format=png&name=small');
   background-size: cover;
   color: #fff;
 }
 
-/* Add a media query to control the order on smaller screens (e.g., mobile) */
-@media screen and (max-width: 768px) {
-  .image-1 {
-    order: 1;
-  }
-
-  .image-2 {
-    order: 3;
-  }
-
-  .image-3 {
-    order: 2;
-  }
-}
 
 
 .footer {
