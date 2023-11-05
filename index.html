@@ -19,7 +19,7 @@
   <meta itemprop="name" content="DataMB | Football Data Visuals | Compare Players and Team Statistics | Radar Comparison Tool">
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css"/>
-  <title translate="no">DataMB | Compare Players</title>
+  <title translate="no">DataMB | Football Statistics and Visuals</title>
   <style>
 
 
@@ -31,40 +31,61 @@ body {
       padding: 0;
       font-size: 14px;
     }
+.button-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
 
-    .button-container {
-      text-align: center;
-    }
+.bouton {
+  display: inline-block;
+  width: 245px;
+  height: 245px;
+  padding: 20px 40px;
+  background-color: transparent;
+  border: none;
+  border-radius: 5px;
+  margin: 20px;
+  cursor: pointer;
+}
 
-    .bouton {
-      display: inline-block;
-      width: 245px; /* Change the width as desired */
-      height: 245px; 
-      padding: 20px 40px;
-      background-color: transparent;
-      border: none;
-      border-radius: 5px;
-      margin: 20px;
-      cursor: pointer;
-    }
+.image-1 {
+  order: 1;
+  background-image: url('https://pbs.twimg.com/media/F-KSSJ1WIAA3Vba?format=png&name=small');
+  background-size: cover;
+  color: #fff;
+}
 
-    .image-1 {
-      background-image: url('https://pbs.twimg.com/media/F-KSSJ1WIAA3Vba?format=png&name=small');
-      background-size: cover;
-      color: #fff;
-    }
+.image-2 {
+  order: 3; /* Change the order to 3 for the second button */
+  background-image: url('https://pbs.twimg.com/media/F-KXBVKXUAArkZO?format=png&name=small');
+  background-size: cover;
+  color: #fff;
+}
 
-    .image-2 {
-      background-image: url('https://pbs.twimg.com/media/F-KXBVKXUAArkZO?format=png&name=small');
-      background-size: cover;
-      color: #fff;
-    }
+.image-3 {
+  order: 3; /* Change the order to 2 for the third button */
+  background-image: url('https://pbs.twimg.com/media/F-KWs2bXEAA8Xb2?format=png&name=small');
+  background-size: cover;
+  color: #fff;
+}
 
-    .image-3 {
-      background-image: url('https://pbs.twimg.com/media/F-KWs2bXEAA8Xb2?format=png&name=small');
-      background-size: cover;
-      color: #fff;
-    }
+/* Add a media query to control the order on smaller screens (e.g., mobile) */
+@media screen and (max-width: 768px) {
+  .image-1 {
+    order: 1;
+  }
+
+  .image-2 {
+    order: 3;
+  }
+
+  .image-3 {
+    order: 2;
+  }
+}
+
 
 .footer {
   font-family: system-ui;
