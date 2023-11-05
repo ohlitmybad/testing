@@ -4,173 +4,105 @@
 
 
 
-
-
 <!DOCTYPE html>
 <html>
 <head>
-  <link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
+
+<meta name="viewport" content="width=device-width, initial-scale=0.52, user-scalable=no">
+<link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
+  <title translate="no">DataMB | Compare Strikers</title>
+  <meta property="og:image" content="https://i.imgur.com/p43wTxg.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@DataMB_">
-  <meta name="twitter:title" content="DataMB | Football Statistics and Visuals">
-  <meta name="twitter:description" content="">
+  <meta name="twitter:title" content="DataMB | Compare Strikers">
+  <meta name="twitter:description" content="Radar Comparison Tool">
   <meta name="twitter:image" content="https://i.imgur.com/p43wTxg.png">
-  <meta property="og:image" content="https://i.imgur.com/p43wTxg.png">
-  <meta itemprop="name" content="DataMB | Football Data Visuals | Compare Players and Team Statistics | Radar Comparison Tool">
   <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.11.0/css/flag-icons.min.css"/>
-  <title translate="no">DataMB | Football Statistics and Visuals</title>
-  <style>
+
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	
+	
+	<style>
+       body, html {
+            margin: 0;
+            padding: 0;
+        }
+        iframe {
+            display: block;
+            width: 100%;
+            height: 890px;
+            border: none; /* Remove iframe borders if desired */
+        }
 
 
 
-body {
-      font-family: system-ui;
-      background-color: #FFFFFF;
-      margin: 0;
-      padding: 0;
-      font-size: 14px;
-    }
-.button-container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
+
+
+
+.header .logo img {
+  width: 46px;
+  height: 46px;
+opacity: 0.84;
 }
 
-
-.bouton {
-  display: inline-block;
-  width: 245px;
-  height: 245px;
-  padding: 20px 40px;
-  background-color: transparent;
-  border: none;
-  border-radius: 5px;
-  margin: 20px;
-  cursor: pointer;
-}
-
-.image-1 {
-  order: 1;
-  background-image: url('https://pbs.twimg.com/media/F-KSSJ1WIAA3Vba?format=png&name=small');
-  background-size: cover;
-  color: #fff;
-}
-
-.image-2 {
-  order: 3; /* Change the order to 3 for the second button */
-  background-image: url('https://pbs.twimg.com/media/F-KWs2bXEAA8Xb2?format=png&name=small');
-  background-size: cover;
-  color: #fff;
-}
-
-.image-3 {
-  order: 3; /* Change the order to 2 for the third button */
-  background-image: url('https://pbs.twimg.com/media/F-KXBVKXUAArkZO?format=png&name=small');
-  background-size: cover;
-  color: #fff;
-}
-
-
-
-.footer {
-  font-family: system-ui;
-  background: #F2F2F2;
-  padding: 20px;
-  text-align: center;
-  color: #fff;
-}
-
-.footer .logo {
-  display: flex;
-  justify-content: center;
-}
-
-.footer .description {
-  font-size: 20px;
-  margin-bottom: 0px;
-color: black;
-}
-
-.footer .info {
-  font-size: 16px;
-  opacity: 0.8;
-}
-
-.footer .divider {
-  border: none;
-  border-bottom: 1px solid #fff;
-  margin: 25px 0;
-  opacity: 0.2;
-}
-
-.footer .sub-footer {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.footer .sub-footer .terms,
-.footer .sub-footer .privacy,
-.footer .sub-footer .glossary {
-font-size: 17px;
+.header .logo-text {
   margin-left: 10px;
-  text-decoration: none;
-  color: black;
+  font-size: 28px;
+color: #444444;
+  font-weight: 600;
 }
 
-.logo img {
-  width: 50px;
-  height: 50px;
+.header .navigation {
+  display: center;
+  align-items: center;
+  word-spacing: 3em; /* Adjust the spacing as needed */
 }
 
 
 
-.footer-content {
+
+.header {
+  font-family: system-ui;
+  background: white;
+  padding: 20px;
+  color: #fff;
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  align-items: flex-start; /* Align items at the top */
-  flex-wrap: wrap; /* Add flex-wrap property to wrap the content on smaller screens */
+  background: #ececec;
 }
 
-.google-play-container {
+
+.header .logo {
   display: flex;
-  flex-direction: column; /* Arrange items in a column */
-  align-items: flex-end; /* Align items to the right */
-  margin-top: -20px; /* Adjust the margin-top to remove the space */
+  align-items: center;
 }
 
-.google-play-container img {
-  width: 182px;
-  height: 70px;
+
+
+.header .button {
+  margin: 0 10px;
+  padding: 0px 20px;
+  color: #444444;
+  text-decoration: none;
+  border-radius: 0px;
+font-size: 18px;
 }
 
-.description,
-.info,
-.divider,
-.sub-footer {
-  flex-basis: 100%;
-color: black;
-}
+header a {
+      color: #444444;
+      text-decoration: none;
 
-.footer p {
-  margin-bottom: 0; 
-}
-
-.search-input2 {
-      width: 300px; /* Set the width as desired */
-      padding: 10px;
-      border: 2px solid #ccc;
-      border-radius: 5px;
-      font-size: 18px;
-      outline: none;
-      margin: 10px;
-      /* Center the input horizontally */
-      display: block;
-      margin-left: auto;
-      margin-right: auto;
     }
+
+.header .twitter-link svg {
+  width: 25px;
+  height: 24px;
+  fill: #444444;
+}
+
+
+
 
 
 
@@ -241,59 +173,6 @@ color: black;
         #autocompleteBox li:hover {
             background-color: #f0f0f0;
         }
-        #autocompleteBox2 {
-    width: 600px;
-    max-height: 200px;
-    overflow-y: auto;
-    background-color: #fff;
-    position: relative;
-    left: 50%;
-    top: 0%;
-    transform: translate(-50%, -0%);
-}
-
-#autocompleteBox2 ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-#autocompleteBox2 li {
-    margin: 0;
-    padding: 5px;
-}
-
-#autocompleteBox2 {
-    line-height: 2; /* Adjust the value as needed to control line spacing */
-    text-align: center !important;
-}
-
-#autocompleteBox2 a {
-    text-decoration: none;
-    font-family: Arial, sans-serif;
-    text-align: center !important;
-    color: #0c2e70f7 !important;
-    cursor: pointer; /* Add pointer cursor style to the anchor element */
-}
-
-#autocompleteBox2 li:hover {
-    background-color: #f0f0f0;
-}
-
-
-  
-.search-container {
-            position: relative;
-            display: inline-block;
-        }
-
-      
-        .search-container2 {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-        
         #searchButton {
     padding: 10px;
     background-color: #0074d9;
@@ -306,311 +185,8 @@ color: black;
     font-size: 20px; /* Increase the text size */
 }
 
-.container2 {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
+    </style>
 
-.box2 {
-  width: calc(19% - 20px); /* Adjust the width for your desired layout */
-  border: 3px solid #007BFF;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #F0F0F0;
-  
-}
-
-.box2:nth-child(3n + 1) {
-  margin-left: 140px; /* Adjust the margin for proper spacing */
-  border: 3px solid #cffb0b;
-}
-
-.box2:nth-child(3n + 2) {
-  margin-left: 0px; /* Adjust the margin for proper spacing */
-  margin-right: 0px; /* Adjust the margin for proper spacing */
-  border: 3px solid #002F63;
-}
-
-.box2:nth-child(3n + 3) {
-  margin-right: 140px; /* Adjust the margin for proper spacing */
-  border: 3px solid #e3000d;
-}
-
-.box2 h2 {
-  color: #007BFF;
-  text-align: center;
-
-}
-.box2:nth-child(3n + 1) h2 {
-  color: #081d3d;
-}
-
-.box2:nth-child(3n + 2) h2 {
-  color: #002F63;
-}
-.box2:nth-child(3n + 3) h2 {
-  color: #001e5a;
-}
-
-
-
-.container {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-}
-
-.box {
-  width: calc(19% - 20px); /* Adjust the width for your desired layout */
-  border: 3px solid #007BFF;
-  border-radius: 10px;
-  padding: 10px;
-  margin: 10px 0;
-  background-color: #F0F0F0;
-}
-
-/* Adjust the margins for your desired layout */
-.box:nth-child(4n + 1) {
-  margin-left: 40px;
-  border: 3px solid #3D195B;
-}
-
-.box:nth-child(4n + 2) {
-  margin-left: 0px;
-  margin-right: 0px;
-  border: 3px solid #ff4b43;
-}
-
-.box:nth-child(4n + 3) {
-  margin-left: 0px;
-  margin-right: 0px;
-  border: 3px solid #D3010C;
-
-}
-
-.box:nth-child(4n + 4) {
-  margin-right: 40px;
-  border: 3px solid #002d71;
-}
-
-
-.box h2 {
-  color: #007BFF;
-  text-align: center;
-}
-
-.box:nth-child(4n + 1)  h2 {
-  color: #3D195B;
-  text-align: center;
-}
-.box:nth-child(4n + 2)  h2 {
-  color: #ff4b43;
-  text-align: center;
-}
-
-.box:nth-child(4n + 3)  h2 {
-  color: #D3010C;
-  text-align: center;
-}
-
-
-.box:nth-child(4n + 4)  h2 {
-  color: #002d71;
-  text-align: center;
-}
-
-.team-list {
-  list-style-type: none;
-  padding: 0;
-  line-height: 20px;
-}
-
-.team-list li {
-  margin: 6px 0;
-  text-align: center;
-}
-
-.team-list a {
-  text-decoration: none;
-  color: #007BFF;
-  font-size: 16px;
-}
-.team-list2 {
-  list-style-type: none;
-  padding: 0;
-  line-height: 20px;
-}
-
-.team-list2 li {
-  margin: 6px 0;
-  text-align: center;
-}
-
-.team-list2 a {
-  text-decoration: none;
-  color: #3D195B;
-  font-size: 16px;
-}
-.team-list3 {
-  list-style-type: none;
-  padding: 0;
-  line-height: 20px;
-}
-
-.team-list3 li {
-  margin: 6px 0;
-  text-align: center;
-}
-
-.team-list3 a {
-  text-decoration: none;
-  color: #ff4b43;
-  font-size: 16px;
-}
-
-.team-list4 {
-  list-style-type: none;
-  padding: 0;
-  line-height: 20px;
-}
-
-.team-list4 li {
-  margin: 6px 0;
-  text-align: center;
-}
-
-.team-list4 a {
-  text-decoration: none;
-  color: #D3010C;
-  font-size: 16px;
-}
-.team-list5 {
-  list-style-type: none;
-  padding: 0;
-  line-height: 20px;
-}
-
-.team-list5 li {
-  margin: 6px 0;
-  text-align: center;
-}
-
-.team-list5 a {
-  text-decoration: none;
-  color: #002d71;
-  font-size: 16px;
-}
-
-.team-list6 {
-  list-style-type: none;
-  padding: 0;
-  line-height: 20px;
-}
-
-.team-list6 li {
-  margin: 6px 0;
-  text-align: center;
-}
-
-.team-list6 a {
-  text-decoration: none;
-  color: #081d3d;
-  font-size: 16px;
-}
-
-.team-list7 {
-  list-style-type: none;
-  padding: 0;
-  line-height: 20px;
-}
-
-.team-list7 li {
-  margin: 6px 0;
-  text-align: center;
-}
-
-.team-list7 a {
-  text-decoration: none;
-  color: #002F63;
-  font-size: 16px;
-}
-
-
-.team-list8 {
-  list-style-type: none;
-  padding: 0;
-  line-height: 20px;
-}
-
-.team-list8 li {
-  margin: 6px 0;
-  text-align: center;
-}
-
-.team-list8 a {
-  text-decoration: none;
-  color: #001e5a;
-  font-size: 16px;
-}
-
-/* HEADER STARTS HERE */
-
-
-
-
-.header {
-  font-family: system-ui;
-  background: white;
-  padding: 20px;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-
-.header .logo img {
-  width: 46px;
-  height: 46px;
-opacity: 0.84;
-}
-
-.header .logo-text {
-  margin-left: 10px;
-  font-size: 28px;
-color: #444444;
-  font-weight: 600;
-}
-
-.header .navigation {
-  display: center;
-  align-items: center;
-  word-spacing: 3em; /* Adjust the spacing as needed */
-}
-
-.header .button {
-  margin: 0 10px;
-  padding: 0px 20px;
-  color: #444444;
-  text-decoration: none;
-  border-radius: 0px;
-font-size: 24px;
-}
-
-header a {
-      color: black;
-      text-decoration: none;
-    }
-
-.header .twitter-link svg {
-  width: 25px;
-  height: 24px;
-  fill: #bcbcbc;
-}
-
-  </style>
 
 
 <header class="header">
@@ -620,9 +196,9 @@ header a {
     <div class="logo-text"><a href="http://datamb.football"></a></div>
   </div>&nbsp;
   <nav class="navigation">
-   <a href="http://datamb.football/radars" class="button">Players</a>
+   <a href="http://datamb.football/" class="button">Home</a>
     <a href="http://datamb.football/join" class="button">Pro</a>
- <a href="http://datamb.football/teams" class="button">Teams</a>  
+ <a href="http://datamb.football/glossary" class="button">Guide</a>  
   </nav>
   <div class="search-container">
     <button id="searchButton"><iconify-icon icon="ion:search-outline"></iconify-icon></button>
@@ -634,11 +210,40 @@ header a {
   </a>
 </header>
 
-  
-  
+	
+<script>
+    // Function to scroll down a tiny bit
+    function scrollDown() {
+        window.scrollBy(0, 250); // Adjust the value (100) to change the scroll distance
+    }
+
+    // Function to scroll up a tiny bit
+    function scrollUp() {
+        window.scrollBy(0, -240); // Adjust the value (-80) to change the scroll distance
+    }
+
+    // Combine both actions with a small timer between them
+    function initializeScroll() {
+        // Check if the screen width is below the threshold for mobile devices (e.g., 768 pixels)
+        if (window.innerWidth < 768) {
+            scrollDown();
+            setTimeout(scrollUp, 10); // Adjust the delay time (1000ms = 1 second)
+        }
+    }
+
+    // Add an event listener to execute the scrolling functions when the page loads
+    window.addEventListener('load', initializeScroll);
+</script>
+
+
+
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/dom-to-image/2.6.0/dom-to-image.min.js"></script>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7677714701428206"
      crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSBMXX80EF"></script>
+	
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSBMXX80EF"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -646,8 +251,6 @@ header a {
 
   gtag('config', 'G-PSBMXX80EF');
 </script>
-
-</head>
 
 
 <div class="search-input-modal" id="searchInputModal">
@@ -731,205 +334,9 @@ document.addEventListener('click', (event) => {
 </script>
 
 
-  
 
-<body><br><br>
-  <div class="button-container">
-    <a href="http://datamb.football/radars/" class="bouton image-1"></a>
-    <a href="http://datamb.football/teams/" class="bouton image-2"></a>
-    <a href="http://datamb.football/join/" class="bouton image-3"></a>
-  </div><br>
-
-<div class="search-container2">
-    <input type="text" id="searchInput2" class="search-input2" placeholder="Search for player or team..."> </div>
-    <div id="autocompleteBox2"></div> <!-- New autocomplete box for the second input -->
- 
-
-<br>
-<br>
-<div class="container">
-    <div class="box">
-      <h2><span class="fi fi-gb-eng"></span><br><br>Premier League </h2>
-      <ul class="team-list2">
-        <li><a href="https://datamb.football/Arsenal_Team_stats">Arsenal</a></li>
-      <li><a href="https://datamb.football/Aston_Villa_Team_stats">Aston Villa</a></li>
-      <li><a href="https://datamb.football/Bournemouth_Team_stats">Bournemouth</a></li>
-      <li><a href="https://datamb.football/Brentford_Team_stats">Brentford</a></li>
-      <li><a href="https://datamb.football/Brighton_Team_stats">Brighton</a></li>
-      <li><a href="https://datamb.football/Burnley_Team_stats">Burnley</a></li>
-      <li><a href="https://datamb.football/Chelsea_Team_stats">Chelsea</a></li>
-      <li><a href="https://datamb.football/Crystal_Palace_Team_stats">Crystal Palace</a></li>
-      <li><a href="https://datamb.football/Everton_Team_stats">Everton</a></li>
-      <li><a href="https://datamb.football/Fulham_Team_stats">Fulham</a></li>
-      <li><a href="https://datamb.football/Liverpool_Team_stats">Liverpool</a></li>
-      <li><a href="https://datamb.football/Luton_Town_Team_stats">Luton Town</a></li>
-      <li><a href="https://datamb.football/Manchester_City_Team_stats">Manchester City</a></li>
-      <li><a href="https://datamb.football/Manchester_United_Team_stats">Manchester United</a></li>
-      <li><a href="https://datamb.football/Newcastle_United_Team_stats">Newcastle United</a></li>
-      <li><a href="https://datamb.football/Nottingham_Forest_Team_stats">Nottingham Forest</a></li>
-      <li><a href="https://datamb.football/Sheffield_United_Team_stats">Sheffield United</a></li>
-      <li><a href="https://datamb.football/Tottenham_Hotspur_Team_stats">Tottenham Hotspur</a></li>
-      <li><a href="https://datamb.football/West_Ham_United_Team_stats">West Ham United</a></li>
-      <li><a href="https://datamb.football/Wolverhampton_Wanderers_Team_stats">Wolverhampton Wanderers</a></li> 
-      </ul>
-    </div>
-
-    <div class="box">
-      <h2><span class="fi fi-es"></span><br><br>La Liga</h2>
-      <ul class="team-list3">
-        <li><a href="https://datamb.football/Real_Madrid_Team_stats">Real Madrid</a></li>
-<li><a href="https://datamb.football/Barcelona_Team_stats">Barcelona</a></li>
-<li><a href="https://datamb.football/Villarreal_Team_stats">Villarreal</a></li>
-<li><a href="https://datamb.football/Real_Sociedad_Team_stats">Real Sociedad</a></li>
-<li><a href="https://datamb.football/Sevilla_Team_stats">Sevilla</a></li>
-<li><a href="https://datamb.football/Real_Betis_Team_stats">Real Betis</a></li>
-<li><a href="https://datamb.football/Granada_Team_stats">Granada</a></li>
-<li><a href="https://datamb.football/Girona_Team_stats">Girona</a></li>
-<li><a href="https://datamb.football/Valencia_Team_stats">Valencia</a></li>
-<li><a href="https://datamb.football/Atletico_Madrid_Team_stats">Atlético Madrid</a></li>
-<li><a href="https://datamb.football/Athletic_Bilbao_Team_stats">Athletic Bilbao</a></li>
-<li><a href="https://datamb.football/Celta_de_Vigo_Team_stats">Celta de Vigo</a></li>
-<li><a href="https://datamb.football/Deportivo_Alaves_Team_stats">Deportivo Alavés</a></li>
-<li><a href="https://datamb.football/Osasuna_Team_stats">Osasuna</a></li>
-<li><a href="https://datamb.football/Almeria_Team_stats">Almería</a></li>
-<li><a href="https://datamb.football/Rayo_Vallecano_Team_stats">Rayo Vallecano</a></li>
-<li><a href="https://datamb.football/Mallorca_Team_stats">Mallorca</a></li>
-<li><a href="https://datamb.football/Las_Palmas_Team_stats">Las Palmas</a></li>
-<li><a href="https://datamb.football/Getafe_Team_stats">Getafe</a></li>
-<li><a href="https://datamb.football/Cadiz_Team_stats">Cádiz</a></li>
-
-      </ul>
-    </div>
-  <div class="box">
-    <h2><span class="fi fi-de"></span><br><br>Bundesliga</h2>
-    <ul class="team-list4">
-      <li><a href="https://datamb.football/Bayern_Munchen_Team_stats">Bayern München</a></li>
-<li><a href="https://datamb.football/Borussia_Dortmund_Team_stats">Borussia Dortmund</a></li>
-<li><a href="https://datamb.football/Eintracht_Frankfurt_Team_stats">Eintracht Frankfurt</a></li>
-<li><a href="https://datamb.football/Union_Berlin_Team_stats">Union Berlin</a></li>
-<li><a href="https://datamb.football/Koln_Team_stats">Köln</a></li>
-<li><a href="https://datamb.football/Freiburg_Team_stats">Freiburg</a></li>
-<li><a href="https://datamb.football/Stuttgart_Team_stats">Stuttgart</a></li>
-<li><a href="https://datamb.football/Bayer_Leverkusen_Team_stats">Bayer Leverkusen</a></li>
-<li><a href="https://datamb.football/Hoffenheim_Team_stats">Hoffenheim</a></li>
-<li><a href="https://datamb.football/Darmstadt_98_Team_stats">Darmstadt 98</a></li>
-<li><a href="https://datamb.football/Bochum_Team_stats">Bochum</a></li>
-<li><a href="https://datamb.football/Wolfsburg_Team_stats">Wolfsburg</a></li>
-<li><a href="https://datamb.football/Heidenheim_Team_stats">Heidenheim</a></li>
-<li><a href="https://datamb.football/Augsburg_Team_stats">Augsburg</a></li>
-<li><a href="https://datamb.football/Borussia_M_gladbach_Team_stats">Borussia M'gladbach</a></li>
-<li><a href="https://datamb.football/Mainz_05_Team_stats">Mainz 05</a></li>
-<li><a href="https://datamb.football/RB_Leipzig_Team_stats">RB Leipzig</a></li>
-<li><a href="https://datamb.football/Werder_Bremen_Team_stats">Werder Bremen</a></li>  
-    </ul>
-  </div>
-
-  <div class="box">
-    <h2><span class="fi fi-it"></span><br><br>Serie A</h2>
-    <ul class="team-list5">
-      <li><a href="https://datamb.football/Juventus_Team_stats">Juventus</a></li>
-      <li><a href="https://datamb.football/Roma_Team_stats">Roma</a></li>
-      <li><a href="https://datamb.football/Napoli_Team_stats">Napoli</a></li>
-      <li><a href="https://datamb.football/Lazio_Team_stats">Lazio</a></li>
-      <li><a href="https://datamb.football/Milan_Team_stats">Milan</a></li>
-      <li><a href="https://datamb.football/Internazionale_Team_stats">Internazionale</a></li>
-      <li><a href="https://datamb.football/Fiorentina_Team_stats">Fiorentina</a></li>
-      <li><a href="https://datamb.football/Atalanta_Team_stats">Atalanta</a></li>
-      <li><a href="https://datamb.football/Torino_Team_stats">Torino</a></li>
-      <li><a href="https://datamb.football/Udinese_Team_stats">Udinese</a></li>
-      <li><a href="https://datamb.football/Lecce_Team_stats">Lecce</a></li>
-      <li><a href="https://datamb.football/Hellas_Verona_Team_stats">Hellas Verona</a></li>
-      <li><a href="https://datamb.football/Monza_Team_stats">Monza</a></li>
-      <li><a href="https://datamb.football/Salernitana_Team_stats">Salernitana</a></li>
-      <li><a href="https://datamb.football/Empoli_Team_stats">Empoli</a></li>
-      <li><a href="https://datamb.football/Genoa_Team_stats">Genoa</a></li>
-      <li><a href="https://datamb.football/Sassuolo_Team_stats">Sassuolo</a></li>
-      <li><a href="https://datamb.football/Frosinone_Team_stats">Frosinone</a></li>
-      <li><a href="https://datamb.football/Cagliari_Team_stats">Cagliari</a></li>
-      <li><a href="https://datamb.football/Bologna_Team_stats">Bologna</a></li>
-      
-    </ul>
-  </div></div><br><br>
-
-  <div class="container">
-  <div class="box2">
-    <h2><span class="fi fi-fr"></span><br><br>Ligue 1</h2>
-    <ul class="team-list6">
-      <li><a href="https://datamb.football/PSG_Team_stats">PSG</a></li>
-      <li><a href="https://datamb.football/Nice_Team_stats">Nice</a></li>
-      <li><a href="https://datamb.football/Lens_Team_stats">Lens</a></li>
-      <li><a href="https://datamb.football/Monaco_Team_stats">Monaco</a></li>
-      <li><a href="https://datamb.football/Olympique_Marseille_Team_stats">Olympique Marseille</a></li>
-      <li><a href="https://datamb.football/Nantes_Team_stats">Nantes</a></li>
-      <li><a href="https://datamb.football/Toulouse_Team_stats">Toulouse</a></li>
-      <li><a href="https://datamb.football/Lille_Team_stats">Lille</a></li>
-      <li><a href="https://datamb.football/Lorient_Team_stats">Lorient</a></li>
-      <li><a href="https://datamb.football/Olympique_Lyonnais_Team_stats">Olympique Lyonnais</a></li>
-      <li><a href="https://datamb.football/Brest_Team_stats">Brest</a></li>
-      <li><a href="https://datamb.football/Reims_Team_stats">Reims</a></li>
-      <li><a href="https://datamb.football/Montpellier_Team_stats">Montpellier</a></li>
-      <li><a href="https://datamb.football/Le_Havre_Team_stats">Le Havre</a></li>
-      <li><a href="https://datamb.football/Clermont_Team_stats">Clermont</a></li>
-      <li><a href="https://datamb.football/Rennes_Team_stats">Rennes</a></li>
-      <li><a href="https://datamb.football/Metz_Team_stats">Metz</a></li>
-      <li><a href="https://datamb.football/Strasbourg_Team_stats">Strasbourg</a></li>
-      
-    </ul>
-  </div>
-
-  <div class="box2">
-    <h2><span class="fi fi-nl"></span><br><br>Eredivisie</h2>
-    <ul class="team-list7">
-      <li><a href="https://datamb.football/AZ_Team_stats">AZ</a></li>
-<li><a href="https://datamb.football/Feyenoord_Team_stats">Feyenoord</a></li>
-<li><a href="https://datamb.football/Ajax_Team_stats">Ajax</a></li>
-<li><a href="https://datamb.football/PSV_Team_stats">PSV</a></li>
-<li><a href="https://datamb.football/Sparta_Rotterdam_Team_stats">Sparta Rotterdam</a></li>
-<li><a href="https://datamb.football/Twente_Team_stats">Twente</a></li>
-<li><a href="https://datamb.football/Heracles_Team_stats">Heracles</a></li>
-<li><a href="https://datamb.football/Volendam_Team_stats">Volendam</a></li>
-<li><a href="https://datamb.football/PEC_Zwolle_Team_stats">PEC Zwolle</a></li>
-<li><a href="https://datamb.football/Heerenveen_Team_stats">Heerenveen</a></li>
-<li><a href="https://datamb.football/NEC_Team_stats">NEC</a></li>
-<li><a href="https://datamb.football/Vitesse_Team_stats">Vitesse</a></li>
-<li><a href="https://datamb.football/Excelsior_Team_stats">Excelsior</a></li>
-<li><a href="https://datamb.football/Utrecht_Team_stats">Utrecht</a></li>
-<li><a href="https://datamb.football/RKC_Waalwijk_Team_stats">RKC Waalwijk</a></li>
-<li><a href="https://datamb.football/Go_Ahead_Eagles_Team_stats">Go Ahead Eagles</a></li>
-<li><a href="https://datamb.football/Almere_City_Team_stats">Almere City</a></li>
-<li><a href="https://datamb.football/Fortuna_Sittard_Team_stats">Fortuna Sittard</a></li>
-
-    </ul>
-  </div>
-
-  <div class="box2">
-    <h2><span class="fi fi-pt"></span><br><br>Primeira Liga</h2>
-    <ul class="team-list8">
-      <li><a href="https://datamb.football/Porto_Team_stats">Porto</a></li>
-      <li><a href="https://datamb.football/Benfica_Team_stats">Benfica</a></li>
-      <li><a href="https://datamb.football/Famalic_o_Team_stats">Famalicão</a></li>
-      <li><a href="https://datamb.football/Sporting_CP_Team_stats">Sporting CP</a></li>
-      <li><a href="https://datamb.football/Sporting_Braga_Team_stats">Sporting Braga</a></li>
-      <li><a href="https://datamb.football/Gil_Vicente_Team_stats">Gil Vicente</a></li>
-      <li><a href="https://datamb.football/Arouca_Team_stats">Arouca</a></li>
-      <li><a href="https://datamb.football/Boavista_Team_stats">Boavista</a></li>
-      <li><a href="https://datamb.football/Vizela_Team_stats">Vizela</a></li>
-      <li><a href="https://datamb.football/Chaves_Team_stats">Chaves</a></li>
-      <li><a href="https://datamb.football/Estoril_Team_stats">Estoril</a></li>
-      <li><a href="https://datamb.football/Estrela_Amadora_Team_stats">Estrela Amadora</a></li>
-      <li><a href="https://datamb.football/Vitoria_Guimar_es_Team_stats">Vitória Guimarães</a></li>
-      <li><a href="https://datamb.football/Farense_Team_stats">Farense</a></li>
-      <li><a href="https://datamb.football/Casa_Pia_AC_Team_stats">Casa Pia AC</a></li>
-      <li><a href="https://datamb.football/Moreirense_Team_stats">Moreirense</a></li>
-      <li><a href="https://datamb.football/Portimonense_Team_stats">Portimonense</a></li>
-      <li><a href="https://datamb.football/Rio_Ave_Team_stats">Rio Ave</a></li>
-      
-    </ul>
-  </div>
-</div>
-
-<br>
-  <div align="center">
+<body>
+  <center>
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7677714701428206"
      crossorigin="anonymous"></script>
 <!-- radarplotsearch -->
@@ -941,100 +348,44 @@ document.addEventListener('click', (event) => {
      data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-</script></div>
-<br>
-<!-- Add this script to your HTML, below the first script -->
+</script></center>
+
+
+
+   <script>
+
+function generateSrc(_0x453324){var _0x4b826e=atob(_0x453324);return _0x4b826e;}
+</script>
+
+    <iframe id="goalkeeperIframe"></iframe>
+
+
+
+
 <script>
-  const dataCSV2 = `M. Brouwer (Goalkeeper),https://talkdatamb.github.io/M_Brouwer_Goalkeeper_stats
-Wolverhampton Wanderers (Team),https://talkdatamb.github.io/Wolverhampton_Wanderers_Team_stats
-M. Brsuwer (Goalkeeper),https://talkdatamb.github.io/M_Brouwer_Goalkeeper_stats
-Wolvertampton Wanderers (Team),https://talkdatamb.github.io/Wolverhampton_Wanderers_Team_stats
-M. Breuwer (Goalkeeper),https://talkdatamb.github.io/M_Brouwer_Goalkeeper_stats
-Wolverhampton Wanderers (Team),https://talkdatamb.github.io/Wolverhampton_Wanderers_Team_stats
-M. Brouwer (Goalkeeper),https://talkdatamb.github.io/M_Brouwer_Goalkeeper_stats
-Wolverhampton Wanderers (Team),https://talkdatamb.github.io/Wolverhampton_Wanderers_Team_stats
-M. Brsuwer (Goalkeeper),https://talkdatamb.github.io/M_Brouwer_Goalkeeper_stats
-Wolvertampton Wanderers (Team),https://talkdatamb.github.io/Wolverhampton_Wanderers_Team_stats
-M. Breuwer (Goalkeeper),https://talkdatamb.github.io/M_Brouwer_Goalkeeper_stats
-Wolverhampton Wanderers (Team),https://talkdatamb.github.io/Wolverhampton_Wanderers_Team_stats
 
-  `; // Add more data as needed
-  
-  const dataLines2 = dataCSV2.split('\n');
-  const searchInput2 = document.getElementById('searchInput2');
-  const autocompleteBox2 = document.getElementById('autocompleteBox2');
-  
-  // Convert CSV data to an array of objects
-  const data11 = dataLines2.map(line => {
-      const [name, link] = line.split(',');
-      return { name, link };
-  });
-  
-  function search3(query) {
-      autocompleteBox2.innerHTML = '';
-  
-      const filteredData2 = data11.filter(item => {
-          const sanitizedItem = item.name.replace(/[^\w\s]/g, '').toLowerCase();
-          const sanitizedQuery = query.replace(/[^\w\s]/g, '').toLowerCase();
-          return sanitizedItem.includes(sanitizedQuery);
-      });
-  
-      if (filteredData2.length === 0) {
-          autocompleteBox2.style.display = 'none';
-          return;
-      }
-  
-      filteredData2.forEach(item => {
-          const listItem = document.createElement('div');
-          const link = document.createElement('a');
-          link.href = item.link;
-          link.textContent = item.name;
-          listItem.appendChild(link);
-          autocompleteBox2.appendChild(listItem);
-      });
-  
-      autocompleteBox2.style.display = 'block';
-  }
-  
-  searchInput2.addEventListener('input', () => {
-      const query = searchInput2.value;
-      if (query.trim() === '') {
-          autocompleteBox2.style.display = 'none';
-      } else {
-          search3(query);
-      }
-  });
-  </script>
-<br>
+function _0x4d27(_0xbdc96f,_0x41fcfa){var _0x189872=_0x1898();return _0x4d27=function(_0x4d27b4,_0x1198d9){_0x4d27b4=_0x4d27b4-0xe7;var _0x22a77a=_0x189872[_0x4d27b4];return _0x22a77a;},_0x4d27(_0xbdc96f,_0x41fcfa);}function _0x1898(){var _0x5605d3=['158766xcJefv','aHR0cHM6Ly9kYXRhbWIuZm9vdGJhbGwvc2Rqc2RqamRzMTgvaW5kZXguaHRtbA\x20==','getElementById','4740195pciQbg','6XqbJJu','784392koHcky','975407PozVEC','5526752pdTlkE','3413886egheAa','42827877rCawZq','goalkeeperIframe','16tVfREz','src'];_0x1898=function(){return _0x5605d3;};return _0x1898();}var _0x3c0090=_0x4d27;(function(_0x3dc5a5,_0x193483){var _0x5f137e=_0x4d27,_0x5b1f6d=_0x3dc5a5();while(!![]){try{var _0x1f59d1=-parseInt(_0x5f137e(0xe9))/0x1+-parseInt(_0x5f137e(0xf0))/0x2+parseInt(_0x5f137e(0xe8))/0x3*(-parseInt(_0x5f137e(0xee))/0x4)+-parseInt(_0x5f137e(0xf3))/0x5+-parseInt(_0x5f137e(0xe7))/0x6*(parseInt(_0x5f137e(0xeb))/0x7)+-parseInt(_0x5f137e(0xea))/0x8+parseInt(_0x5f137e(0xec))/0x9;if(_0x1f59d1===_0x193483)break;else _0x5b1f6d['push'](_0x5b1f6d['shift']());}catch(_0x118740){_0x5b1f6d['push'](_0x5b1f6d['shift']());}}}(_0x1898,0x81be2),document[_0x3c0090(0xf2)](_0x3c0090(0xed))[_0x3c0090(0xef)]=generateSrc(_0x3c0090(0xf1)));
+
+</script>
 
 
-  <footer class="footer">
-   
-    <div class="google-play-container">
 
-    <a href='https://play.google.com/store/apps/details?id=com.datamb.datamb.webviewflutter&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'></a>
- <a href='https://apps.apple.com/app/datamb/id6456224067?l=en-GB'><img alt='Download on the App Store' src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'></a></div>
- <div class="logo">
-      <img src="https://i.imgur.com/UurMbGS.png" alt="Compare football stats" />
-    </div>
+<script>
 
-    <p class="description">DataMB</p>
-    <p class="info">© All Rights Reserved</p>
-    <hr class="divider" />
-    <div class="sub-footer">
-      <nav>
-        <a class="terms" target="_blank" href="https://datamb.football/privacy">Privacy</a>
-        <a class="privacy" target="_blank" href="mailto:datamb.football@gmail.com">Contact</a>
-        <a class="glossary" target="_blank" href="https://datamb.football/glossary">Glossary</a>
-      </nav>
-      <nav>
-        <a target="_blank" href="https://twitter.com/datamb_">
-          <svg width="23" height="22" fill="#000000" xmlns="http://www.w3.org/2000/svg">
-            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-          </svg>
-        </a>
-      </nav>
-    </div>
-  </footer>
+const _0x49d7fb=_0x3ccc;(function(_0x11c8bb,_0x2538d4){const _0x5b4669=_0x3ccc,_0x51fde0=_0x11c8bb();while(!![]){try{const _0x4cbc9a=parseInt(_0x5b4669(0x94))/0x1*(-parseInt(_0x5b4669(0x85))/0x2)+parseInt(_0x5b4669(0x8c))/0x3*(parseInt(_0x5b4669(0x91))/0x4)+parseInt(_0x5b4669(0x9c))/0x5*(parseInt(_0x5b4669(0x99))/0x6)+-parseInt(_0x5b4669(0x97))/0x7+-parseInt(_0x5b4669(0x9d))/0x8+parseInt(_0x5b4669(0x9e))/0x9+-parseInt(_0x5b4669(0x86))/0xa*(-parseInt(_0x5b4669(0x8f))/0xb);if(_0x4cbc9a===_0x2538d4)break;else _0x51fde0['push'](_0x51fde0['shift']());}catch(_0x37740a){_0x51fde0['push'](_0x51fde0['shift']());}}}(_0x1ea6,0xf337b));function _0x3ccc(_0x9469f5,_0x626211){const _0x1ea631=_0x1ea6();return _0x3ccc=function(_0x3ccc2c,_0x185b01){_0x3ccc2c=_0x3ccc2c-0x85;let _0x5ec680=_0x1ea631[_0x3ccc2c];return _0x5ec680;},_0x3ccc(_0x9469f5,_0x626211);}function _0x1ea6(){const _0xe677e9=['positionSelect','102076MHzpez','9070340wSXlFb','dark-mode-iframe','querySelector','getElementsByTagName','querySelectorAll','iframe','45132ZJYPYG','value','body','11KeFVNU','data','28rVeEcb','block','getElementById','15CoFaes','style','addEventListener','4215820rnPcNB','toggle','6OvfONj','toggleDarkMode','display','7988490tshEkV','12254576hvptXP','11572479TEGhZR','classList'];_0x1ea6=function(){return _0xe677e9;};return _0x1ea6();}const positionSelect=document[_0x49d7fb(0x93)](_0x49d7fb(0xa0)),iframes=document[_0x49d7fb(0x89)](_0x49d7fb(0x8b));positionSelect[_0x49d7fb(0x96)]('change',function(){const _0x20c6f6=_0x49d7fb,_0x45cc91=this[_0x20c6f6(0x8d)];for(const _0x2e6d7f of iframes){_0x2e6d7f[_0x20c6f6(0x95)][_0x20c6f6(0x9b)]='none';}if(_0x45cc91){const _0x3593c8=document[_0x20c6f6(0x8a)]('#'+_0x45cc91+'Iframe');for(const _0x2b8f9e of _0x3593c8){_0x2b8f9e['style'][_0x20c6f6(0x9b)]=_0x20c6f6(0x92);}}}),window[_0x49d7fb(0x96)]('message',function(_0x38701a){const _0x4533de=_0x49d7fb;if(_0x38701a[_0x4533de(0x90)]===_0x4533de(0x9a)){const _0x348dd8=document[_0x4533de(0x88)](_0x4533de(0x8e));_0x348dd8[_0x4533de(0x9f)][_0x4533de(0x98)](_0x4533de(0x87));}});
+</script>
+
+
+<center><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7677714701428206"
+     crossorigin="anonymous"></script>
+<!-- radar page -->
+<ins class="adsbygoogle"
+     style="display:inline-block;width:728px;height:90px"
+     data-ad-client="ca-pub-7677714701428206"
+     data-ad-slot="5336962902"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script></center>
+
 </body>
 </html>
