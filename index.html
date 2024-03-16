@@ -27,20 +27,7 @@
 
 }
 
-    .welcome-text {
-  font-size: 20px;
-  color: #F1F1F1;
-  text-align: center;
-  font-family:Verdana, Geneva, Tahoma, sans-serif;
 
-  /* Add more styling as needed */
-}
-
-.welcome-text a {
-  color: #F2F2F2;
-
-  /* Add more styling as needed */
-}
 
 .centered-image {
   max-width: 75%; /* Resize the image to 60% of its original size */
@@ -140,7 +127,7 @@ width: 25%;
   <div class="logo">
     <a href="http://datamb.football">
         <img src="https://i.imgur.com/8MH80Jo.png" alt="DataMB Pro" /></a>
-    <div class="logo-text"><a href="http://datamb.football">DataMB Pro</a></div>
+    <div class="logo-text"><a href="http://datamb.football/pro">DataMB Pro</a></div>
   </div>
   <nav class="navigation">
   </nav>
@@ -153,6 +140,8 @@ width: 25%;
         <option value="centreback">Plots</option>
         <option value="fullback">Search</option>
        <option value="teams">Teams</option>
+       <option value="fullback3">Indexes</option>
+       <option value="fullback4">AI Chat</option>
 	            <option value="fullback2">Guide</option>
         <option value="fullback1">Manage Account</option>
 
@@ -174,6 +163,10 @@ width: 25%;
     <iframe id="fullbackIframe" src="https://datamb.football/prosearchnew/index.html"></iframe>
 	
     <iframe id="teamsIframe" src="https://datamb.football/proteamradar/index.html"></iframe>
+
+    <iframe id="fullback3Iframe" src="https://datamb.football/proindex/index.html"></iframe>
+
+    <iframe id="fullback4Iframe" src="https://datamb.football/chat/index.html"></iframe>
   
         <iframe id="fullback2Iframe" src="https://datamb.football/proguide/index.html"></iframe>
 
@@ -192,7 +185,9 @@ width: 25%;
     fullback: false,
     teams: false,
     fullback1: false,
-    fullback2: false
+    fullback2: false,
+    fullback3: false,
+    fullback4: false
   };
 
   positionSelect.addEventListener('change', function () {
@@ -219,13 +214,7 @@ width: 25%;
     }
   });
 
-</script><div class="welcome-text">
-  <p class="big">Welcome to DataMB Pro</p><br>
-  ▶ Use the drop-down menu to select a tool ◀<br><br>
-  Early access to <a href="https://datamb.football/chat">DataMB Chat</a> Beta has been granted to all Pro subscribers<br><br><br>
- <img src="https://pbs.twimg.com/media/F-WQ1NyW8AAPhPw?format=jpg&name=large" alt="" class="centered-image">
-
-</div>
+</script>
 
 
 
