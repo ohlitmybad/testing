@@ -421,11 +421,13 @@ circle.highlighted {
 #scatter-plot {
   position: relative;
   top: 641px; /* Adjust the top position */
+  left: 0px; /* Adjust the left position */
 }
 
 #mySvg {
   position: relative;
   top: -805px;
+  left: 0px;
   width: 520px;
   height: 520px;
 }
@@ -433,10 +435,11 @@ circle.highlighted {
 #myOtherSvg {
   position: relative;
   top: -805px;
+  left: -299px;
 }
 
 /* Styles for mobile devices */
-@media (min-width: 768px) {
+@media (max-width: 768px) {
   #scatter-plot {
     left: 715px; /* Adjust the left position for mobile */
   }
@@ -451,7 +454,7 @@ circle.highlighted {
 }
 
 /* Styles for desktop devices */
-@media (max-width: 769px) {
+@media (min-width: 769px) {
   #scatter-plot {
     left: 0px; /* Reset left position for desktop */
   }
