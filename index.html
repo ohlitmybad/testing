@@ -20,27 +20,21 @@
 
 <defs>
 <style>
-
+/* General adjustments for mobile responsiveness */
 @media only screen and (max-width: 768px) {
   /* Adjustments for header */
   .header {
-    flex-direction: column;
-    padding: 10px;
-  }
-  
-  .header .logo {
-    margin-bottom: 10px;
-    text-align: center;
+    padding: 20px 10px; /* Increase padding for better spacing */
+    text-align: center; /* Center-align content */
   }
 
   .header .logo img {
-    width: 30px; /* Adjust logo size */
-    height: 30px;
+    width: 50px; /* Increase logo size */
+    height: auto; /* Maintain aspect ratio */
   }
 
   .header .logo-text {
-    margin-left: 0;
-    font-size: 18px;
+    font-size: 24px; /* Increase font size */
   }
 
   .header .navigation {
@@ -49,56 +43,59 @@
   }
 
   .header .button {
-    margin: 5px;
-    padding: 8px 15px; /* Adjust button padding */
+    margin: 0 10px; /* Add some margin between buttons */
+    padding: 10px 20px; /* Increase button padding */
     font-size: 16px; /* Adjust button font size */
   }
 
   .header .twitter-link svg {
-    width: 20px; /* Adjust social media icon size */
-    height: 20px;
+    width: 30px; /* Increase social media icon size */
+    height: auto; /* Maintain aspect ratio */
   }
 
   /* Adjustments for footer */
   .footer {
-    padding: 15px;
+    padding: 20px 10px; /* Increase padding for better spacing */
+    text-align: center; /* Center-align content */
   }
 
-  .footer .logo {
-    margin-bottom: 10px;
+  .footer .logo img {
+    width: 60px; /* Increase logo size */
+    height: auto; /* Maintain aspect ratio */
   }
 
   .footer .description {
-    font-size: 16px;
+    font-size: 18px; /* Increase font size */
   }
 
   .footer .info {
-    font-size: 14px;
+    font-size: 14px; /* Adjust info font size */
   }
 
   .footer .sub-footer .terms,
   .footer .sub-footer .privacy,
   .footer .sub-footer .glossary {
-    font-size: 14px;
+    font-size: 14px; /* Adjust sub-footer font size */
   }
 
-  .logo img {
-    width: 40px; /* Adjust logo size */
-    height: 40px;
+  /* Adjustments for content */
+  main {
+    padding: 20px; /* Add padding to content area */
   }
 
-  /* Adjustments for search input */
-  .search-container {
-    margin-top: 10px;
+  h1 {
+    font-size: 30px; /* Increase heading font size */
+    margin-top: 10px; /* Adjust heading margin */
   }
 
-  #searchInput {
-    width: 100%; /* Fill the available width */
-    max-width: 300px; /* Limit maximum width */
+  p {
+    font-size: 18px; /* Increase paragraph font size */
+    line-height: 1.5; /* Increase line height for better readability */
   }
 
   /* Additional adjustments as needed */
 }
+
 
 h1 {
             font-size: 24px;
