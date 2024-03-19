@@ -433,7 +433,7 @@ circle.highlighted {
 #myOtherSvg {
   position: relative;
   top: -801px;
-  left: 236px;
+  left: 0px;
 }
 
 @media screen and (max-width: 768px) {
@@ -461,13 +461,12 @@ circle.highlighted {
     left: 108px;
   }
 
-  #myOtherSvg {
-    position: relative;
-    top: -880px;
-    left: 108px;
-    width: 100%; /* Adjust width to fit screen */
-    height: auto; /* Maintain aspect ratio */
-  }
+#myOtherSvg {
+  width: 100%; /* Adjust width to fit screen */
+  max-width: 500px; /* Limit maximum width */
+  height: auto; /* Maintain aspect ratio */
+  margin: 0 auto; /* Center the SVG horizontally */
+}
 }
 
 
@@ -663,7 +662,8 @@ circle.highlighted {
       </g>
       
     </svg>						
-  
+    <svg id="myOtherSvg" width="500" height="500" class="radar"><g transform="translate(231.77,225.77)"><g class="axisWrapper">
+ 
   
   
   
