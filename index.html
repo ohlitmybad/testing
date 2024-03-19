@@ -435,40 +435,40 @@ circle.highlighted {
   top: -801px;
   left: 236px;
 }
+
 @media screen and (max-width: 768px) {
-  body {
-    display: flex; /* Use flexbox layout for body */
-    flex-direction: column; /* Elements will be stacked vertically */
-    align-items: center; /* Center elements horizontally */
+  #scatter-plot {
+    position: relative;
+    top: 1000px;
+    left: 40px;
   }
-
-  #scatter-plot,
-  #output,
-  .metrics-table,
-  #mySvg,
-  #myOtherSvg {
-    width: 90%; /* Adjust width to fit screen */
-    max-width: 520px; /* Limit maximum width */
-    margin-bottom: 200px; /* Spacing between elements */
-  }
-
-  #scatter-plot,
-  #output,
-  .metrics-table {
-    margin-left: auto; /* Center these elements horizontally */
-    margin-right: auto; /* Center these elements horizontally */
-  }
-  
-  #mySvg,
-  #myOtherSvg {
-    width: 100%; /* Adjust width to fit screen */
-    max-width: 520px; /* Limit maximum width */
-    height: auto; /* Maintain aspect ratio */
-    margin-left: auto; /* Center these elements horizontally */
-    margin-right: auto; /* Center these elements horizontally */
-  }
+	#output {
+  position: relative;
+  top: -400px;
+  left: 150px;
 }
 
+	.metrics-table {
+  position: relative;
+  top: -400px;
+  left:77px;
+  width: 520px;
+}
+	
+  #mySvg {
+    position: relative;
+    top: -400px;
+    left: 108px;
+  }
+
+  #myOtherSvg {
+    position: relative;
+    top: -880px;
+    left: 108px;
+    width: 100%; /* Adjust width to fit screen */
+    height: auto; /* Maintain aspect ratio */
+  }
+}
 
 
 #percentile-text span {
@@ -665,7 +665,7 @@ circle.highlighted {
     </svg>						
   
   
-  <svg id="myOtherSvg" width="500" height="500" class="radar"><g transform="translate(231.77,225.77)"><g class="axisWrapper">
+  <svg id="myOtherSvg" width="500" height="500" class="radar"><g transform="translate(0,0)"><g class="axisWrapper">
   
   
   <circle class="blackCircle" r="190" style="fill:none; stroke:#D3D3D3; stroke-width:1;"></circle>
