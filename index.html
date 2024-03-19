@@ -150,8 +150,15 @@ color: #444444;
 .header .navigation {
   display: center;
   align-items: center;
-  word-spacing: 1.3em; /* Adjust the spacing as needed */   
+  word-spacing: 1.3em; /* Adjust the spacing as needed */
 }
+
+@media only screen and (min-width: 768px) {
+  .header .navigation a:first-child {
+    margin-right: 32px; /* Adjust the margin as needed */
+  }
+}
+
 
 
 .header .button {
@@ -573,7 +580,6 @@ circle.highlighted {
     <div class="logo-text"><a href="http://datamb.football">DataMB</a></div>
   </div>
   <nav class="navigation">
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
     <a href="http://datamb.football/teamradars/" class="button">Compare</a>
     <a href="http://datamb.football/plotteam/" class="button">Plot</a>
     <a href="http://datamb.football/join/" class="button">Pro</a>
