@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html>
 <head>	
 	
-    <meta name="viewport" content="width=device-width, initial-scale=0.377">
+    <meta name="viewport" content="width=device-width, initial-scale=0.17">
   <title>Manchester United Football Statistics and Visuals | DataMB</title>
   <link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
   <meta property="og:image" content="https://i.imgur.com/p43wTxg.png">
@@ -418,15 +417,16 @@ circle.highlighted {
 }
 
 
-/* Default styles */
 #scatter-plot {
   position: relative;
   top: 641px; /* Adjust the top position */
+  left: 715px; /* Adjust the left position */
 }
 
 #mySvg {
   position: relative;
   top: -805px;
+  left: 760px;
   width: 520px;
   height: 520px;
 }
@@ -434,40 +434,25 @@ circle.highlighted {
 #myOtherSvg {
   position: relative;
   top: -805px;
+  left: 259px;
+
 }
 
-/* Styles for mobile devices */
-@media (min-width: 768px) {
+
+/* Media query for mobile devices */
+@media screen and (max-width: 768px) {
   #scatter-plot {
-    left: 715px; /* Adjust the left position for mobile */
+    left: 0;
   }
-
+  
   #mySvg {
-    left: 760px; /* Adjust the left position for mobile */
+    left: 0;
   }
-
+  
   #myOtherSvg {
-    left: 259px; /* Adjust the left position for mobile */
+    left: 0;
   }
 }
-
-/* Styles for desktop devices */
-@media (max-width: 769px) {
-  #scatter-plot {
-    left: 0px; /* Reset left position for desktop */
-top: 1000px;	  
-  }
-
-  #mySvg {
-    left: 0px; /* Reset left position for desktop */
-  }
-
-  #myOtherSvg {
-    left: -299px; /* Reset left position for desktop */
-  }
-}
-
-
 
 
 
