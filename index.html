@@ -417,6 +417,7 @@ circle.highlighted {
 }
 
 
+/* Default styles */
 #scatter-plot {
   position: relative;
   top: 641px; /* Adjust the top position */
@@ -435,8 +436,38 @@ circle.highlighted {
   position: relative;
   top: -805px;
   left: -299px;
-
 }
+
+/* Styles for mobile devices */
+@media (max-width: 768px) {
+  #scatter-plot {
+    left: 715px; /* Adjust the left position for mobile */
+  }
+
+  #mySvg {
+    left: 760px; /* Adjust the left position for mobile */
+  }
+
+  #myOtherSvg {
+    left: 259px; /* Adjust the left position for mobile */
+  }
+}
+
+/* Styles for desktop devices */
+@media (min-width: 769px) {
+  #scatter-plot {
+    left: 0px; /* Reset left position for desktop */
+  }
+
+  #mySvg {
+    left: 0px; /* Reset left position for desktop */
+  }
+
+  #myOtherSvg {
+    left: -299px; /* Reset left position for desktop */
+  }
+}
+
 
 
 
