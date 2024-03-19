@@ -19,13 +19,18 @@
 
 
 <defs>
-<style>
-/* General adjustments for mobile responsiveness */
+<style>/* General adjustments for mobile responsiveness */
 @media only screen and (max-width: 768px) {
   /* Adjustments for header */
   .header {
-    padding: 20px 10px; /* Increase padding for better spacing */
+    width: 100%;
+    padding: 20px 0; /* Increase padding for better spacing */
     text-align: center; /* Center-align content */
+  }
+
+  .header .logo {
+    display: inline-block; /* Ensure the logo and text are inline */
+    margin-bottom: 10px;
   }
 
   .header .logo img {
@@ -55,8 +60,13 @@
 
   /* Adjustments for footer */
   .footer {
-    padding: 20px 10px; /* Increase padding for better spacing */
+    width: 100%;
+    padding: 20px 0; /* Increase padding for better spacing */
     text-align: center; /* Center-align content */
+  }
+
+  .footer .logo {
+    margin-bottom: 10px;
   }
 
   .footer .logo img {
@@ -80,21 +90,24 @@
 
   /* Adjustments for content */
   main {
-    padding: 20px; /* Add padding to content area */
+    width: 100%;
+    padding: 20px 10px; /* Add padding to content area */
+    text-align: left; /* Align content to the left */
   }
 
   h1 {
-    font-size: 30px; /* Increase heading font size */
+    font-size: 24px; /* Reduce heading font size */
     margin-top: 10px; /* Adjust heading margin */
   }
 
   p {
-    font-size: 18px; /* Increase paragraph font size */
+    font-size: 16px; /* Reduce paragraph font size */
     line-height: 1.5; /* Increase line height for better readability */
   }
 
   /* Additional adjustments as needed */
 }
+
 
 
 h1 {
