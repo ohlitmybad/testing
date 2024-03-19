@@ -150,18 +150,14 @@ color: #444444;
 .header .navigation {
   display: center;
   align-items: center;
-      word-spacing: 1.3em; /* Adjust the spacing as needed */	
-
+  word-spacing: 1.3em; /* Adjust the spacing as needed */   
 }
 
-	.header .navigation.mobile {
-  display: center;
-  align-items: center;
-      word-spacing: 1.3em; /* Adjust the spacing as needed */	
-
+.header .navigation.mobile {
+  display: none;
 }
-	
-	@media (min-width: 768px) {
+    
+@media (min-width: 768px) {
   .header .navigation.mobile {
     display: none; /* Hide the mobile navigation on desktop */
   }
@@ -172,6 +168,13 @@ color: #444444;
   .header .navigation {
     display: none; /* Hide the desktop navigation on mobile */
   }
+  .header .navigation.mobile {
+    display: center; /* Hide the mobile navigation on desktop */
+    align-items: center;
+    word-spacing: 1.3em; /* Adjust the spacing as needed */ 
+  }
+}
+
 
 .header .button {
   margin: 0 10px;
@@ -597,7 +600,7 @@ circle.highlighted {
     <a href="http://datamb.football/plotteam/" class="button">Plot</a>
     <a href="http://datamb.football/join/" class="button">Pro&nbsp;&nbsp;&nbsp;</a>
   </nav>
-	  <nav class="navigation.mobile">
+	  <nav class="navigation mobile">
     <a href="http://datamb.football/teamradars/" class="button">Compare</a>
     <a href="http://datamb.football/plotteam/" class="button">Plot</a>
     <a href="http://datamb.football/join/" class="button">Pro</a>
