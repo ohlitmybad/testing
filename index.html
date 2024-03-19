@@ -22,7 +22,84 @@
 <defs>
 <style>
 
+@media only screen and (max-width: 768px) {
+  /* Adjustments for header */
+  .header {
+    flex-direction: column;
+    padding: 10px;
+  }
+  
+  .header .logo {
+    margin-bottom: 10px;
+    text-align: center;
+  }
 
+  .header .logo img {
+    width: 30px; /* Adjust logo size */
+    height: 30px;
+  }
+
+  .header .logo-text {
+    margin-left: 0;
+    font-size: 18px;
+  }
+
+  .header .navigation {
+    margin-top: 10px;
+    justify-content: center;
+  }
+
+  .header .button {
+    margin: 5px;
+    padding: 8px 15px; /* Adjust button padding */
+    font-size: 16px; /* Adjust button font size */
+  }
+
+  .header .twitter-link svg {
+    width: 20px; /* Adjust social media icon size */
+    height: 20px;
+  }
+
+  /* Adjustments for footer */
+  .footer {
+    padding: 15px;
+  }
+
+  .footer .logo {
+    margin-bottom: 10px;
+  }
+
+  .footer .description {
+    font-size: 16px;
+  }
+
+  .footer .info {
+    font-size: 14px;
+  }
+
+  .footer .sub-footer .terms,
+  .footer .sub-footer .privacy,
+  .footer .sub-footer .glossary {
+    font-size: 14px;
+  }
+
+  .logo img {
+    width: 40px; /* Adjust logo size */
+    height: 40px;
+  }
+
+  /* Adjustments for search input */
+  .search-container {
+    margin-top: 10px;
+  }
+
+  #searchInput {
+    width: 100%; /* Fill the available width */
+    max-width: 300px; /* Limit maximum width */
+  }
+
+  /* Additional adjustments as needed */
+}
 
 h1 {
             font-size: 24px;
