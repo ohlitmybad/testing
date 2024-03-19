@@ -2,7 +2,7 @@
 <html>
 <head>	
 	
-    <meta name="viewport" content="width=device-width, initial-scale=0.387">
+    <meta name="viewport" content="width=device-width, initial-scale=0.377">
   <title>Manchester United Football Statistics and Visuals | DataMB</title>
   <link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
   <meta property="og:image" content="https://i.imgur.com/p43wTxg.png">
@@ -308,7 +308,11 @@ color: black;
 /* STYLE ELEMENTS BELOW */
 
 
-  #output {
+#output {
+  position: relative;
+  top: -751px;
+  left: 200px;
+
   background-color: #F2F2F2; /* Background color */
   padding: 15px; /* Add some padding */
   border: 3px solid #333; /* Add a border */
@@ -369,7 +373,13 @@ text {
 
 
 
-  .metrics-table {
+         
+
+
+.metrics-table {
+  position: relative;
+  top : -352px;
+  left: 109px;
   width: 520px;
   font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
   border-collapse: collapse;
@@ -406,54 +416,41 @@ circle.highlighted {
   stroke-width: 3px;
 }
 
-	#output {
-  position: relative;
-  top: -751px;
-  left: 202px;
-}         
 
-.metrics-table {
-  position: relative;
-  top : -352px;
-  left: 113px;
-}
-	
-
+/* Default styles */
 #scatter-plot {
   position: relative;
-  top: 661px; /* Adjust the top position */
+  top: 641px; /* Adjust the top position */
 }
 
 #mySvg {
   position: relative;
-  top: -801px;
+  top: -805px;
   width: 520px;
   height: 520px;
 }
 
 #myOtherSvg {
   position: relative;
-  top: -803px;
-}
-
-
-
-/* Styles for desktop devices */
-@media (min-width: 768px) {
-  #scatter-plot {
-    left: 675.5px; /* Adjust the left position for mobile */
-  }
-
-  #mySvg {
-    left: 752px; /* Adjust the left position for mobile */
-  }
-
-  #myOtherSvg {
-    left: 247px;
-  }
+  top: -805px;
 }
 
 /* Styles for mobile devices */
+@media (min-width: 768px) {
+  #scatter-plot {
+    left: 715px; /* Adjust the left position for mobile */
+  }
+
+  #mySvg {
+    left: 760px; /* Adjust the left position for mobile */
+  }
+
+  #myOtherSvg {
+    left: 259px; /* Adjust the left position for mobile */
+  }
+}
+
+/* Styles for desktop devices */
 @media (max-width: 769px) {
   #scatter-plot {
     left: 0px; /* Reset left position for desktop */
@@ -467,6 +464,10 @@ circle.highlighted {
     left: -299px; /* Reset left position for desktop */
   }
 }
+
+
+
+
 
 
 #percentile-text span {
