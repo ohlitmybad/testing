@@ -2,7 +2,7 @@
 <html>
 <head>	
   
-  <meta name="viewport" content="width=device-width, initial-scale=0.327">
+  <meta name="viewport" content="width=device-width, initial-scale=0.277">
   <title>Manchester United Football Statistics and Visuals | DataMB</title>
   <link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
   <meta property="og:image" content="https://i.imgur.com/p43wTxg.png">
@@ -374,20 +374,6 @@ text {
 
 
          
-#mySvg {
-  position: relative;
-  top: -805px;
-  left: 760px;
-  width: 520px;
-  height: 520px;
-}
-
-#myOtherSvg {
-  position: relative;
-  top: -805px;
-  left: 259px;
-
-}
 
 
 .metrics-table {
@@ -434,9 +420,37 @@ circle.highlighted {
 #scatter-plot {
   position: relative;
   top: 641px; /* Adjust the top position */
-  left: 15px; /* Adjust the left position */
+  left: 0; /* Adjust the left position for mobile */
 }
 
+#mySvg {
+  position: relative;
+  top: -805px;
+  left: 0; /* Adjust the left position for mobile */
+  width: 520px;
+  height: 520px;
+}
+
+#myOtherSvg {
+  position: relative;
+  top: -805px;
+  left: 500px; /* Adjust the left position for mobile */
+}
+
+/* Media query for mobile devices */
+@media only screen and (max-width: 768px) {
+  #scatter-plot {
+    left: 0;
+  }
+  
+  #mySvg {
+    left: 0;
+  }
+  
+  #myOtherSvg {
+    left: 500px;
+  }
+}
 
 
 
