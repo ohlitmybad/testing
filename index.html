@@ -118,6 +118,11 @@ body {
 }
 
 
+body, html {
+
+background-color: #FDFBFC !important;
+}
+
 .header {
   font-family: system-ui;
   padding: 20px;
@@ -153,7 +158,7 @@ color: #444444;
   word-spacing: 1.3em; /* Adjust the spacing as needed */
 }
 
-@media only screen and (min-width: 768px) {
+@media only screen and (min-width: 1090px) {
   .header .navigation a:first-child {
     margin-left: 100px; /* Adjust the margin as needed */
   }
@@ -316,20 +321,6 @@ color: black;
 
 
 
-#output table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-#output td {
-  border: 1px solid #333; /* Add borders to table cells */
-  padding: 5px; /* Add cell padding */
-}
-
-
-body {
-    background-color: white;
-  }
 
 	
 svg text.label {
@@ -361,6 +352,39 @@ text {
 
 
 
+.radar-button {
+  align-items: center;
+  background-color: #FDFBFC;
+  border: 4px solid #135eb6; /* Add a border */
+  border-radius: 35px;
+  color: #0b57d0;
+  width: 145px;
+  height: 58px;
+  position: absolute;
+  top: 650px;
+  left: 932px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: 'Open Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', sans-serif;
+
+}
+
+.plot-button {
+  align-items: center;
+  background-color: #FDFBFC;
+  border: 4px solid #135eb6; /* Add a border */
+  border-radius: 35px;
+  color: #0b57d0;
+  width: 145px;
+  height: 58px;
+  position: absolute;
+  top: 1105px;
+  left: 932px;
+  font-size: 14px;
+  cursor: pointer;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+
+}
 
 
          
@@ -402,20 +426,27 @@ text {
 
 	#output {
   position: relative;
-  top: -748px;
+  top: -780px;
   left: 205px;
 
-  background-color: #F2F2F2; /* Background color */
+  background-color: #FDFBFC; /* Background color */
   padding: 15px; /* Add some padding */
-  border: 3px solid #333; /* Add a border */
-  border-radius: 5px; /* Add rounded corners */
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+  border: 4px solid #c4eed1; /* Add a border */
+  border-radius: 12px; /* Add rounded corners */
   font-size: 17px; /* Set the font size */
   width: 300px;
   color: #333; /* Text color */
   font-family: Arial, sans-serif; /* Choose a font-family */
   text-align: center; /* Center-align text */
   line-height: 1.5; /* Set line height */
+}
+#output a {
+  text-decoration: none; /* Remove underlining */
+  color: #3062FB; /* Set link color to purple */
+}
+#metrics-table a {
+  text-decoration: none; /* Remove underlining */
+  color: purple; /* Set link color to purple */
 }
 
 circle.highlighted {
@@ -425,22 +456,24 @@ circle.highlighted {
 	
 #scatter-plot {
   position: relative;
-  top: 670px; /* Adjust the top position */
-  left: 672px; /* Adjust the left position */
+  top: 650px; /* Adjust the top position */
+  left: 668px; /* Adjust the left position */
 }
 
 #mySvg {
   position: relative;
   top: -799px;
-  left: 741px;
+  left: 737px;
   width: 520px;
   height: 520px;
 }
-
-.container {
+.parent-container1 {
     position: relative;
-    top: -801px;
-  left: 236px;
+}
+.container {
+    position: absolute;
+    top: -277.3px;
+  left: 230.8px;
 }
 
 #myOtherSvg {
@@ -449,16 +482,16 @@ circle.highlighted {
   left: 524px;
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 1090px) {
   #scatter-plot {
     position: relative;
     top: 1000px;
-    left: 38px;
+    left: 39px;
   }
 	#output {
   position: relative;
-  top: 0px;
-  left: 180px;
+  top: 100px;
+  left: 175px;
 }
 
 	.metrics-table {
@@ -485,8 +518,20 @@ circle.highlighted {
   max-width: 500px; /* Limit maximum width */
   height: auto; /* Maintain aspect ratio */
   margin: 0 auto; /* Center the SVG horizontally */
-	  top: -901px;
-	  left: 105px;
+	  top: -904px;
+	  left: 107px;
+}
+
+.radar-button {
+    position:absolute;
+  top: 1029px;
+  left: 277px;
+}
+
+.plot-button {
+    position:absolute;
+  top: 1459px;
+  left: 277px;
 }
 }
 
@@ -517,69 +562,16 @@ circle.highlighted {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
 }
 
-.radar-button {
-  align-items: center;
-  background-color: #F9F9F9;
-  border-radius: 6px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: #121212;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 1 1 auto;
-  font-family: Inter, sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1;
-  margin: 0;
-  outline: none;
-  padding: 1rem 1.2rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow 0.1s, -webkit-box-shadow 0.1s;
-  white-space: nowrap;
-  border: 0;
-  user-select: none;
-  position: absolute;
-  top: 695px;
-  left: 930px;
-  height: 20px;
-  width: 200px;
-  touch-action: manipulation;
+
+.header-row {
+  color: #3a3a3a; /* Text color */
+  font-size: 20px; /* Adjust the font size */
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  margin-bottom: 20px; /* Add some margin to separate it from the player rows */
+  /* Add any other styles you want for the header row */
+  border-bottom: 2px solid #3a3a3a; /* Add border with desired thickness and color */
 }
 
-.plot-button {
-  align-items: center;
-  background-color: #F9F9F9;
-  border-radius: 6px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: #121212;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 1 1 auto;
-  font-family: Inter, sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1;
-  margin: 0;
-  outline: none;
-  padding: 1rem 1.2rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow 0.1s, -webkit-box-shadow 0.1s;
-  white-space: nowrap;
-  border: 0;
-  user-select: none;
-  position: absolute;
-  top: 1185px;
-  left: 930px;
-  height: 20px;
-  width: 200px;
-  touch-action: manipulation;
-}
 
 </style>
 
@@ -621,6 +613,10 @@ circle.highlighted {
 <body>
   
 
+    <a href="https://datamb.football/keepers/" target="_top" rel="noopener noreferrer">
+        <button class="radar-button" role="button">Compare teams</button></a>
+        <a href="https://datamb.football/join/" target="_top" rel="noopener noreferrer">
+          <button class="plot-button" role="button">Plot more metrics</button></a>
 
 <div class="search-input-modal" id="searchInputModal">
     <div class="search-input-container">
@@ -656,7 +652,7 @@ circle.highlighted {
   
   
  
-
+    <div class="parent-container1">
 
   <svg id="mySvg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
   <g class="radar_label">
@@ -681,7 +677,7 @@ circle.highlighted {
         <text class="label" data-type="Pressing" data-idx="1" transform="translate(285.2 62.68) rotate(47.09)">Pressing</text>
       </g>
       
-    </svg>	  <div class="container">				
+    </svg>	  <div class="container"> 			
     <svg id="myOtherSvg" width="500" height="500" class="radar"><g transform="translate(231.77,225.77)"><g class="axisWrapper">
  
   
@@ -710,7 +706,7 @@ circle.highlighted {
   
  
 
- <div id="output"></div>
+ <div id="output"></div></div>	
 <script>
 
  // Your special characters dictionary and translation table
@@ -2922,62 +2918,71 @@ J. Burkardt,Striker,Mainz 05,758
  
 
      Papa.parse(csv, {
-         header: false,
-         skipEmptyLines: true,
-         dynamicTyping: true,
-         complete: function (results) {
-             const data = results.data.slice(1); // Skip the header row
-
-             const teamPlayers = data.filter(player => player[2] === selectedTeam);
-
-             const uniquePlayersMap = new Map();
-             teamPlayers.forEach(player => {
-                 if (!uniquePlayersMap.has(player[0])) {
-                     uniquePlayersMap.set(player[0], player);
-                 } else {
-                     // If a duplicate is found, we'll choose one player at random
-                     const existingPlayer = uniquePlayersMap.get(player[0]);
-                     if (Math.random() < 0.5) {
-                         uniquePlayersMap.set(player[0], player);
-                     }
-                 }
-             });
-
-             const uniquePlayers = Array.from(uniquePlayersMap.values());
-
-             uniquePlayers.sort((a, b) => b[3] - a[3]);
-
-             const outputDiv = document.getElementById('output');
-             outputDiv.innerHTML = '';
-             uniquePlayers.forEach(player => {
-                 const playerDiv = document.createElement('div');
-                 const nameLink = document.createElement('a');
-                 nameLink.href = generatePlayerLink(player); // Generate the player link
-                 nameLink.textContent = player[0];
-                 const positionLink = document.createElement('a');
-                 positionLink.textContent = player[1];
-                 // Set the correct link based on the player's position
-                 if (player[1] === 'Goalkeeper') {
-                     positionLink.href = 'https://datamb.football/keepers';
-                 } else if (player[1] === 'Centre-back') {
-                     positionLink.href = 'https://datamb.football/centrebacks';
-                 } else if (player[1] === 'Full-back') {
-                     positionLink.href = 'https://datamb.football/fullbacks';
-                 } else if (player[1] === 'Midfielder') {
-                     positionLink.href = 'https://datamb.football/midfielders';
-                 } else if (player[1] === 'Winger') {
-                     positionLink.href = 'https://datamb.football/wingers';
-                 } else if (player[1] === 'Striker') {
-                     positionLink.href = 'https://datamb.football/strikers';
-                 }
-                 playerDiv.appendChild(nameLink);
-                 playerDiv.appendChild(document.createTextNode(', '));
-                 playerDiv.appendChild(positionLink);
-                 playerDiv.appendChild(document.createTextNode(`, ${player[3]}`));
-                 outputDiv.appendChild(playerDiv);
-             });
-         }
-     });
+        header: false,
+        skipEmptyLines: true,
+        dynamicTyping: true,
+        complete: function (results) {
+            const data = results.data.slice(1); // Skip the header row
+    
+            const teamPlayers = data.filter(player => player[2] === selectedTeam);
+    
+            const uniquePlayersMap = new Map();
+            teamPlayers.forEach(player => {
+                if (!uniquePlayersMap.has(player[0])) {
+                    uniquePlayersMap.set(player[0], player);
+                } else {
+                    // If a duplicate is found, we'll choose one player at random
+                    const existingPlayer = uniquePlayersMap.get(player[0]);
+                    if (Math.random() < 0.5) {
+                        uniquePlayersMap.set(player[0], player);
+                    }
+                }
+            });
+    
+            const uniquePlayers = Array.from(uniquePlayersMap.values());
+    
+            uniquePlayers.sort((a, b) => b[3] - a[3]);
+    
+            const outputDiv = document.getElementById('output');
+            outputDiv.innerHTML = '';
+    
+            // Create the header row
+            const headerDiv = document.createElement('div');
+            headerDiv.textContent = 'MOST LEAGUE MINUTES';
+            headerDiv.classList.add('header-row'); // Add the CSS class
+            outputDiv.appendChild(headerDiv);
+            
+    
+            uniquePlayers.forEach(player => {
+                const playerDiv = document.createElement('div');
+                const nameLink = document.createElement('a');
+                nameLink.href = generatePlayerLink(player); // Generate the player link
+                nameLink.textContent = player[0];
+                const positionLink = document.createElement('a');
+                positionLink.textContent = player[1];
+                // Set the correct link based on the player's position
+                if (player[1] === 'Goalkeeper') {
+                    positionLink.href = 'https://datamb.football/keepers';
+                } else if (player[1] === 'Centre-back') {
+                    positionLink.href = 'https://datamb.football/centrebacks';
+                } else if (player[1] === 'Full-back') {
+                    positionLink.href = 'https://datamb.football/fullbacks';
+                } else if (player[1] === 'Midfielder') {
+                    positionLink.href = 'https://datamb.football/midfielders';
+                } else if (player[1] === 'Winger') {
+                    positionLink.href = 'https://datamb.football/wingers';
+                } else if (player[1] === 'Striker') {
+                    positionLink.href = 'https://datamb.football/strikers';
+                }
+                playerDiv.appendChild(nameLink);
+                playerDiv.appendChild(document.createTextNode(', '));
+                playerDiv.appendChild(positionLink);
+                playerDiv.appendChild(document.createTextNode(`, ${player[3]}`));
+                outputDiv.appendChild(playerDiv);
+            });
+        }
+    });
+    
  }
 
  // Automatically call filterPlayers when the page loads
@@ -2996,7 +3001,7 @@ J. Burkardt,Striker,Mainz 05,758
     </script>
       
     
-    <br><br> <br><br> <br><br>
+    <br><br> <br><br> <br><br> <br><br> 
 
 <footer class="footer">
    
