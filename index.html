@@ -6748,10 +6748,10 @@ metricsData.sort((a, b) => {
         return str.normalize('NFD').replace(/[\u0300-\u036f ]/g, '');
 }
 
+searchInput.addEventListener('input', handleSearch);
+searchInput.addEventListener('keyup', handleSearch);
 
-// Bind event listener to the search input
-searchInput.addEventListener('input', function () {
-  // Show spinner
+function handleSearch() {
 
   // Get the search text and remove special characters
   const searchText = removeSpecialChars(this.value.trim());
@@ -6778,7 +6778,7 @@ searchInput.addEventListener('input', function () {
     // Hide spinner
     hideSpinner();
   }, 1); // Adjust the timeout value as needed
-});
+};
 
       // Bind event listener to the select element for selection
       playerSelect.addEventListener('change', function () {
