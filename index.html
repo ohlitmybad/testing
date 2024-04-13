@@ -6752,7 +6752,10 @@ metricsData.sort((a, b) => {
 }
 
 // Bind event listener to the search input
-searchInput.addEventListener('input', function () {
+searchInput.addEventListener('input', updatePlayerSelect);
+searchInput.addEventListener('keyup', updatePlayerSelect);
+
+function updatePlayerSelect() {
   // Show spinner
 
   // Get the search text and remove special characters
@@ -6774,10 +6777,14 @@ searchInput.addEventListener('input', function () {
       customDropdown.classList.add('open');
     }
 
+    // Manually trigger change event on playerSelect to update its value
+    const event = new Event('change');
+    playerSelect.dispatchEvent(event);
+
     // Hide spinner
     hideSpinner();
   }, 1); // Adjust the timeout value as needed
-});
+}
 
 // Bind event listener to the playerSelect dropdown for selection
 playerSelect.addEventListener('change', function () {
