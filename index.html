@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.535, user-scalable=no"">
 <title>Rankings</title>
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 <style>
 
 
@@ -318,7 +317,6 @@ h1 {
 <div id="results"></div>
 
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 <script>
 
     
@@ -333,8 +331,7 @@ h1 {
       }
 
       document.addEventListener("DOMContentLoaded", function() {
-  // Initialize Select2 on the playerSelect element
-  $('#playerSelect').select2();
+
           var selectElement = document.getElementById("sectionSelect");
     var options = {
         "samePositionAndLeague": "vs League and Position, per 90",
