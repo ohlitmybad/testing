@@ -6756,18 +6756,15 @@ searchInput.addEventListener('input', function () {
   // Show spinner
 
   // Get the search text and remove special characters
-  const searchText = removeSpecialChars(this.value.trim());
+  const searchText = removeSpecialChars(this.value.trim().toLowerCase());
 
   // Simulate long computation with setTimeout
   setTimeout(() => {
     // Loop through options and display only those that match the search text
     for (let i = 0; i < playerSelect.options.length; i++) {
-      const optionText = playerSelect.options[i].textContent;
-      if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || i === 0) {
-        playerSelect.options[i].style.display = '';
-      } else {
-        playerSelect.options[i].style.display = 'none';
-      }
+      const optionText = playerSelect.options[i].textContent.toLowerCase();
+      const match = removeSpecialChars(optionText).includes(searchText);
+      playerSelect.options[i].style.display = match ? '' : 'none';
     }
 
     // Show or hide the custom dropdown based on input value
@@ -6777,14 +6774,34 @@ searchInput.addEventListener('input', function () {
       customDropdown.classList.add('open');
     }
 
-    // Force update the playerSelect dropdown
-    const event = new Event('change');
-    playerSelect.dispatchEvent(event);
-
     // Hide spinner
     hideSpinner();
   }, 1); // Adjust the timeout value as needed
 });
+
+// Bind event listener to the playerSelect dropdown for selection
+playerSelect.addEventListener('change', function () {
+  // Show spinner
+  showSpinner();
+
+  const selectedIndex = this.selectedIndex;
+  searchInput.value = '';
+  const selectedPlayerName = this.options[selectedIndex].value;
+  const selectedPlayerPosition = this.options[selectedIndex].textContent.split(', ')[1];
+  const selectedPlayer = {
+    player: selectedPlayerName,
+    position: selectedPlayerPosition
+  };
+
+  // Simulate long computation with setTimeout
+  setTimeout(() => {
+    displaySelectedPlayer(selectedPlayer);
+
+    // Hide spinner
+    hideSpinner();
+  }, 1000); // Adjust the timeout value as needed
+});
+
 
 
       // Bind event listener to the select element for selection
