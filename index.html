@@ -6756,11 +6756,11 @@ function isiOS() {
 }
 
 // Function to update search results
-function updateSearchResults() {
+function updateSearchResults(searchText) {
   // Show spinner
 
   // Get the search text and remove special characters
-  const searchText = removeSpecialChars(searchInput.value.trim());
+  searchText = removeSpecialChars(searchText.trim());
 
   // Loop through options and display only those that match the search text
   for (let i = 0; i < playerSelect.options.length; i++) {
@@ -6783,17 +6783,34 @@ function updateSearchResults() {
   hideSpinner();
 }
 
-// Bind event listener to the search input
-searchInput.addEventListener('input', function () {
-  updateSearchResults();
-});
+// For non-iOS devices, use the existing search input
+if (!isiOS()) {
+  // Bind event listener to the search input
+  searchInput.addEventListener('input', function () {
+    updateSearchResults(this.value);
+  });
+} else {
+  // For iOS devices, create a separate search input element
+  const iosSearchInput = document.createElement('input');
+  iosSearchInput.setAttribute('type', 'search');
+  iosSearchInput.setAttribute('placeholder', 'Search');
+
+  // Bind event listener to the iOS search input
+  iosSearchInput.addEventListener('input', function () {
+    updateSearchResults(this.value);
+  });
+
+  // Append the iOS search input to the document
+  document.body.appendChild(iosSearchInput);
+}
 
 // Bind event listener to handle the change event on select (for iOS)
 if (isiOS()) {
   playerSelect.addEventListener('change', function() {
-    updateSearchResults();
+    updateSearchResults(searchInput.value);
   });
 }
+
 
 
 
