@@ -6750,48 +6750,51 @@ metricsData.sort((a, b) => {
       function removeSpecialChars(str) {
         return str.normalize('NFD').replace(/[\u0300-\u036f ]/g, '');
 }
-
 // Function to detect if the device is iOS
 function isiOS() {
   return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 }
 
-// Bind event listener to the search input
-searchInput.addEventListener('input', function () {
+// Function to update search results
+function updateSearchResults() {
   // Show spinner
 
   // Get the search text and remove special characters
-  const searchText = removeSpecialChars(this.value.trim());
+  const searchText = removeSpecialChars(searchInput.value.trim());
 
-  // Simulate long computation with setTimeout
-  setTimeout(() => {
-    // Loop through options and display only those that match the search text
-    for (let i = 0; i < playerSelect.options.length; i++) {
-      const optionText = playerSelect.options[i].textContent;
-      if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || i === 0) {
-        playerSelect.options[i].style.display = '';
-      } else {
-        playerSelect.options[i].style.display = 'none';
-      }
-    }
-
-    // Show or hide the custom dropdown based on input value
-    if (searchText === '') {
-      customDropdown.classList.remove('open');
+  // Loop through options and display only those that match the search text
+  for (let i = 0; i < playerSelect.options.length; i++) {
+    const optionText = playerSelect.options[i].textContent;
+    if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || i === 0) {
+      playerSelect.options[i].style.display = '';
     } else {
-      customDropdown.classList.add('open');
+      playerSelect.options[i].style.display = 'none';
     }
+  }
 
-    // Hide spinner
-    hideSpinner();
+  // Show or hide the custom dropdown based on input value
+  if (searchText === '') {
+    customDropdown.classList.remove('open');
+  } else {
+    customDropdown.classList.add('open');
+  }
 
-    // For iOS, trigger change event on select to ensure proper behavior
-    if (isiOS()) {
-      const event = new Event('change', { bubbles: true });
-      playerSelect.dispatchEvent(event);
-    }
-  }, 1); // Adjust the timeout value as needed
+  // Hide spinner
+  hideSpinner();
+}
+
+// Bind event listener to the search input
+searchInput.addEventListener('input', function () {
+  updateSearchResults();
 });
+
+// Bind event listener to handle the change event on select (for iOS)
+if (isiOS()) {
+  playerSelect.addEventListener('change', function() {
+    updateSearchResults();
+  });
+}
+
 
 
 
