@@ -6754,35 +6754,57 @@ metricsData.sort((a, b) => {
 // Store the current input value
 let currentSearchText = '';
 
+// Function to detect if the device is iOS
+function isiOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
+}
+
+// Determine which event to use based on the platform
+const inputEvent = isiOS() ? 'input' : 'keyup';
+
 // Bind event listener to the search input
-searchInput.addEventListener('input', function() {
-  // Update the current input value
-  currentSearchText = this.value.trim().toLowerCase();
-
-  // Show spinner
-
-  // Simulate long computation with setTimeout
-  setTimeout(updatePlayerSelect, 1); // Adjust the timeout value as needed
+searchInput.addEventListener(inputEvent, function () {
+  updateSearchResults();
 });
 
-function updatePlayerSelect() {
-  // Loop through options and display only those that match the search text
-  for (let i = 0; i < playerSelect.options.length; i++) {
-    const optionText = playerSelect.options[i].textContent.toLowerCase();
-    const match = optionText.includes(currentSearchText);
-    playerSelect.options[i].style.display = match ? '' : 'none';
-  }
-
-  // Show or hide the custom dropdown based on input value
-  customDropdown.classList.toggle('open', currentSearchText !== '');
-
-  // Manually trigger change event on playerSelect to update its value
-  const event = new Event('change');
-  playerSelect.dispatchEvent(event);
-
-  // Hide spinner
-  hideSpinner();
+// Bind event listener to handle the change event on select (for iOS)
+if (isiOS()) {
+  playerSelect.addEventListener('change', function() {
+    updateSearchResults();
+  });
 }
+
+// Function to update search results
+function updateSearchResults() {
+  // Show spinner
+
+  // Get the search text and remove special characters
+  const searchText = removeSpecialChars(searchInput.value.trim());
+
+  // Simulate long computation with setTimeout
+  setTimeout(() => {
+    // Loop through options and display only those that match the search text
+    for (let i = 0; i < playerSelect.options.length; i++) {
+      const optionText = playerSelect.options[i].textContent;
+      if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || i === 0) {
+        playerSelect.options[i].style.display = '';
+      } else {
+        playerSelect.options[i].style.display = 'none';
+      }
+    }
+
+    // Show or hide the custom dropdown based on input value
+    if (searchText === '') {
+      customDropdown.classList.remove('open');
+    } else {
+      customDropdown.classList.add('open');
+    }
+
+    // Hide spinner
+    hideSpinner();
+  }, 1); // Adjust the timeout value as needed
+}
+
 
 
 
