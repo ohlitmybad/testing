@@ -4,6 +4,7 @@
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=0.535, user-scalable=no"">
 <title>Rankings</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/css/select2.min.css" rel="stylesheet" />
 <style>
 
 
@@ -315,9 +316,13 @@ h1 {
     </div>
     
 <div id="results"></div>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
 
 <script>
-
+document.addEventListener("DOMContentLoaded", function() {
+  // Initialize Select2 on the playerSelect element
+  $('#playerSelect').select2();
+    
       // Function to handle spinner display
       function showSpinner() {
         spinner.style.display = 'block';
@@ -6869,7 +6874,7 @@ document.getElementById('toggleSortingButton').addEventListener('change', functi
     }, 1000); // Adjust the timeout value as needed
 });
 
-
+});
   </script>
 
 
