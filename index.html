@@ -6751,24 +6751,30 @@ metricsData.sort((a, b) => {
         return str.normalize('NFD').replace(/[\u0300-\u036f ]/g, '');
 }
 
-// Bind event listener to the search input
-searchInput.addEventListener('input', updatePlayerSelect);
+// Store the current input value
+let currentSearchText = '';
 
-function updatePlayerSelect() {
+// Bind event listener to the search input
+searchInput.addEventListener('input', function() {
+  // Update the current input value
+  currentSearchText = this.value.trim().toLowerCase();
+
   // Show spinner
 
-  // Get the search text and remove special characters
-  const searchText = this.value.trim().toLowerCase();
+  // Simulate long computation with setTimeout
+  setTimeout(updatePlayerSelect, 1); // Adjust the timeout value as needed
+});
 
+function updatePlayerSelect() {
   // Loop through options and display only those that match the search text
   for (let i = 0; i < playerSelect.options.length; i++) {
     const optionText = playerSelect.options[i].textContent.toLowerCase();
-    const match = optionText.includes(searchText);
+    const match = optionText.includes(currentSearchText);
     playerSelect.options[i].style.display = match ? '' : 'none';
   }
 
   // Show or hide the custom dropdown based on input value
-  customDropdown.classList.toggle('open', searchText !== '');
+  customDropdown.classList.toggle('open', currentSearchText !== '');
 
   // Manually trigger change event on playerSelect to update its value
   const event = new Event('change');
@@ -6777,6 +6783,7 @@ function updatePlayerSelect() {
   // Hide spinner
   hideSpinner();
 }
+
 
 
 // Bind event listener to the playerSelect dropdown for selection
