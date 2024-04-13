@@ -6782,34 +6782,45 @@ function updateSearchResults(searchText) {
   // Hide spinner
   hideSpinner();
 }
-
-// For non-iOS devices, use the existing search input
-if (!isiOS()) {
-  // Bind event listener to the search input
-  searchInput.addEventListener('input', function () {
-    updateSearchResults(this.value);
-  });
-} else {
-  // For iOS devices, create a separate search input element
-  const iosSearchInput = document.createElement('input');
-  iosSearchInput.setAttribute('type', 'search');
-  iosSearchInput.setAttribute('placeholder', 'Search');
-
-  // Bind event listener to the iOS search input
-  iosSearchInput.addEventListener('input', function () {
-    updateSearchResults(this.value);
-  });
-
-  // Append the iOS search input to the document
-  document.body.appendChild(iosSearchInput);
+// Function to detect if the device is iOS
+function isiOS() {
+  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 }
 
-// Bind event listener to handle the change event on select (for iOS)
+// Function to update the list of players based on search input
+function updatePlayerList(searchText) {
+  const playerList = document.getElementById('playerList');
+  const players = playerList.getElementsByTagName('li');
+
+  // Convert searchText to lowercase for case-insensitive comparison
+  searchText = searchText.toLowerCase();
+
+  for (let i = 0; i < players.length; i++) {
+    const player = players[i];
+    const playerName = player.textContent.toLowerCase();
+
+    if (playerName.includes(searchText) || i === 0) {
+      player.style.display = 'block';
+    } else {
+      player.style.display = 'none';
+    }
+  }
+}
+
+// Bind event listener to the search input
+const searchInput = document.getElementById('searchInput');
+searchInput.addEventListener('input', function () {
+  updatePlayerList(this.value);
+});
+
+// For iOS, handle the focus event to ensure proper keyboard behavior
 if (isiOS()) {
-  playerSelect.addEventListener('change', function() {
-    updateSearchResults(searchInput.value);
+  searchInput.addEventListener('focus', function () {
+    // Scroll to the top to ensure the input field is visible
+    window.scrollTo(0, 0);
   });
 }
+
 
 
 
