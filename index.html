@@ -6750,78 +6750,37 @@ metricsData.sort((a, b) => {
       function removeSpecialChars(str) {
         return str.normalize('NFD').replace(/[\u0300-\u036f ]/g, '');
 }
-// Function to detect if the device is iOS
-function isiOS() {
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-}
 
-// Function to update search results
-function updateSearchResults(searchText) {
+// Bind event listener to the search input
+searchInput.addEventListener('input', function () {
   // Show spinner
 
   // Get the search text and remove special characters
-  searchText = removeSpecialChars(searchText.trim());
+  const searchText = removeSpecialChars(this.value.trim());
 
-  // Loop through options and display only those that match the search text
-  for (let i = 0; i < playerSelect.options.length; i++) {
-    const optionText = playerSelect.options[i].textContent;
-    if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || i === 0) {
-      playerSelect.options[i].style.display = '';
-    } else {
-      playerSelect.options[i].style.display = 'none';
+  // Simulate long computation with setTimeout
+  setTimeout(() => {
+    // Loop through options and display only those that match the search text
+    for (let i = 0; i < playerSelect.options.length; i++) {
+      const optionText = playerSelect.options[i].textContent;
+      if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || i === 0) {
+        playerSelect.options[i].style.display = '';
+      } else {
+        playerSelect.options[i].style.display = 'none';
+      }
     }
-  }
 
-  // Show or hide the custom dropdown based on input value
-  if (searchText === '') {
-    customDropdown.classList.remove('open');
-  } else {
-    customDropdown.classList.add('open');
-  }
-
-  // Hide spinner
-  hideSpinner();
-}
-// Function to detect if the device is iOS
-function isiOS() {
-  return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-}
-
-// Function to update the list of players based on search input
-function updatePlayerList(searchText) {
-  const playerList = document.getElementById('playerList');
-  const players = playerList.getElementsByTagName('li');
-
-  // Convert searchText to lowercase for case-insensitive comparison
-  searchText = searchText.toLowerCase();
-
-  for (let i = 0; i < players.length; i++) {
-    const player = players[i];
-    const playerName = player.textContent.toLowerCase();
-
-    if (playerName.includes(searchText) || i === 0) {
-      player.style.display = 'block';
+    // Show or hide the custom dropdown based on input value
+    if (searchText === '') {
+      customDropdown.classList.remove('open');
     } else {
-      player.style.display = 'none';
+      customDropdown.classList.add('open');
     }
-  }
-}
 
-// Bind event listener to the search input
-const searchInput = document.getElementById('searchInput');
-searchInput.addEventListener('input', function () {
-  updatePlayerList(this.value);
+    // Hide spinner
+    hideSpinner();
+  }, 1); // Adjust the timeout value as needed
 });
-
-// For iOS, handle the focus event to ensure proper keyboard behavior
-if (isiOS()) {
-  searchInput.addEventListener('focus', function () {
-    // Scroll to the top to ensure the input field is visible
-    window.scrollTo(0, 0);
-  });
-}
-
-
 
 
 
