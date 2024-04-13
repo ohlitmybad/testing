@@ -6751,33 +6751,17 @@ metricsData.sort((a, b) => {
         return str.normalize('NFD').replace(/[\u0300-\u036f ]/g, '');
 }
 
-
 // Function to detect if the device is iOS
 function isiOS() {
   return /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
 }
 
-// Determine which event to use based on the platform
-const inputEvent = isiOS() ? 'input' : 'keyup';
-
 // Bind event listener to the search input
-searchInput.addEventListener(inputEvent, function () {
-  updateSearchResults();
-});
-
-// Bind event listener to handle the change event on select (for iOS)
-if (isiOS()) {
-  playerSelect.addEventListener('change', function() {
-    updateSearchResults();
-  });
-}
-
-// Function to update search results
-function updateSearchResults() {
+searchInput.addEventListener('input', function () {
   // Show spinner
 
   // Get the search text and remove special characters
-  const searchText = removeSpecialChars(searchInput.value.trim());
+  const searchText = removeSpecialChars(this.value.trim());
 
   // Simulate long computation with setTimeout
   setTimeout(() => {
@@ -6800,8 +6784,14 @@ function updateSearchResults() {
 
     // Hide spinner
     hideSpinner();
+
+    // For iOS, trigger change event on select to ensure proper behavior
+    if (isiOS()) {
+      const event = new Event('change', { bubbles: true });
+      playerSelect.dispatchEvent(event);
+    }
   }, 1); // Adjust the timeout value as needed
-}
+});
 
 
 
