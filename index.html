@@ -6750,37 +6750,24 @@ metricsData.sort((a, b) => {
       function removeSpecialChars(str) {
         return str.normalize('NFD').replace(/[\u0300-\u036f ]/g, '');
 }
-
-// Bind event listener to the search input
-searchInput.addEventListener('input', function () {
-  // Show spinner
-
+searchInput.addEventListener('keyup', function () {
   // Get the search text and remove special characters
-  const searchText = removeSpecialChars(this.value.trim());
+  const searchText = removeSpecialChars(this.value.trim().toLowerCase());
 
-  // Simulate long computation with setTimeout
-  setTimeout(() => {
-    // Loop through options and display only those that match the search text
-    for (let i = 0; i < playerSelect.options.length; i++) {
-      const optionText = playerSelect.options[i].textContent;
-      if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || i === 0) {
-        playerSelect.options[i].style.display = '';
-      } else {
-        playerSelect.options[i].style.display = 'none';
-      }
-    }
+  // Loop through options and display only those that match the search text
+  for (let i = 0; i < playerSelect.options.length; i++) {
+    const optionText = removeSpecialChars(playerSelect.options[i].textContent.toLowerCase());
+    const isMatch = optionText.includes(searchText);
+    playerSelect.options[i].style.display = isMatch ? '' : 'none';
+  }
 
-    // Show or hide the custom dropdown based on input value
-    if (searchText === '') {
-      customDropdown.classList.remove('open');
-    } else {
-      customDropdown.classList.add('open');
-    }
+  // Show or hide the custom dropdown based on input value
+  customDropdown.classList.toggle('open', searchText !== '');
 
-    // Hide spinner
-    hideSpinner();
-  }, 1); // Adjust the timeout value as needed
+  // Hide spinner
+  hideSpinner();
 });
+
 
 
 
