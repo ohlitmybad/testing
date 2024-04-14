@@ -259,31 +259,6 @@ h1 {
   white-space: nowrap; /* Prevent line breaks */
 }
 
-/* Style the dropdown */
-select {
-  -webkit-appearance: none; /* Remove default appearance for iOS */
-  -moz-appearance: none; /* Remove default appearance for Firefox */
-  appearance: none; /* Remove default appearance for other browsers */
-  padding: 10px; /* Adjust padding as needed */
-  border: 1px solid #ccc; /* Add border for consistency */
-  border-radius: 5px; /* Add border radius for rounded corners */
-  background-color: #fff; /* Set background color */
-  width: 200px; /* Set width as needed */
-}
-
-/* Style the dropdown arrow */
-select::-ms-expand {
-  display: none; /* Hide default arrow for IE */
-}
-select::after {
-  content: '\25BC'; /* Unicode character for dropdown arrow */
-  position: absolute;
-  top: 50%;
-  right: 10px; /* Adjust as needed */
-  transform: translateY(-50%);
-  pointer-events: none; /* Ensure the arrow doesn't interfere with clicking */
-}
-
   </style>
 </head>
 
