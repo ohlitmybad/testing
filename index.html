@@ -6782,6 +6782,36 @@ searchInput.addEventListener('input', function () {
     }
 });
 
+        / Bind event listener to the select element for selection
+playerSelect.addEventListener('click', function () {
+    // Show spinner
+    showSpinner();
+
+    // Get the search text and remove special characters
+    const searchText = removeSpecialChars(searchInput.value.trim());
+
+    // Loop through options and display only those that match the search text
+    $('#playerSelect option').each(function() {
+        const optionText = $(this).text();
+        if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || $(this).index() === 0) {
+            $(this).show();
+        } else {
+            $(this).hide();
+        }
+    });
+
+    // Show or hide the custom dropdown based on input value
+    if (searchText === '') {
+        customDropdown.classList.remove('open');
+    } else {
+        customDropdown.classList.add('open');
+    }
+
+    // Hide spinner
+    hideSpinner();
+});
+
+
 // Bind event listener to the playerSelect dropdown for selection
 playerSelect.addEventListener('change', function () {
   // Show spinner
