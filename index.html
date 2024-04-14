@@ -663,6 +663,7 @@ const metricsHTML = metricsData.map(metric => {
 }
 
 
+// Bind event listener to the search input
 searchInput.addEventListener('input', function () {
   // Show spinner
 
@@ -692,7 +693,6 @@ searchInput.addEventListener('input', function () {
     hideSpinner();
   }, 1); // Adjust the timeout value as needed
 });
-
 
       // Bind event listener to the select element for selection
       playerSelect.addEventListener('change', function () {
@@ -782,32 +782,6 @@ document.getElementById('toggleSortingButton').addEventListener('change', functi
         hideSpinner();
     }, 1000); // Adjust the timeout value as needed
 });
-// Add touch event handling for the search input
-searchInput.addEventListener('touchend', function (event) {
-  // Prevent the default touch behavior to avoid interference
-  event.preventDefault();
-
-  // Trigger the same behavior as the input event
-  handleSearchInputChange();
-});
-
-// Function to handle search input change
-function handleSearchInputChange() {
-  // Show the custom dropdown
-  customDropdown.classList.add('open');
-
-  // Simulate the same search input behavior as the input event
-  const searchText = searchInput.value.trim().toLowerCase();
-  const options = Array.from(playerSelect.options);
-  options.forEach(option => {
-    const optionText = option.textContent.toLowerCase();
-    const displayStyle = optionText.includes(searchText) || option.index === 0 ? '' : 'none';
-    option.style.display = displayStyle;
-  });
-
-  // Hide spinner if needed
-  hideSpinner();
-}
 
 
   </script>
