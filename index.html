@@ -663,31 +663,34 @@ const metricsHTML = metricsData.map(metric => {
 }
 
 
-// Bind event listener to the search input
-// Bind event listener to the search input
 searchInput.addEventListener('input', function () {
   // Show spinner
-  showSpinner();
 
   // Get the search text and remove special characters
   const searchText = removeSpecialChars(this.value.trim());
 
   // Simulate long computation with setTimeout
   setTimeout(() => {
-    // Filter options based on the search text
-    const options = Array.from(playerSelect.options);
-    options.forEach(option => {
-      const optionText = removeSpecialChars(option.textContent.toLowerCase());
-      const displayStyle = optionText.includes(searchText.toLowerCase()) || option.index === 0 ? '' : 'none';
-      option.style.display = displayStyle;
-    });
+    // Loop through options and display only those that match the search text
+    for (let i = 0; i < playerSelect.options.length; i++) {
+      const optionText = playerSelect.options[i].textContent;
+      if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || i === 0) {
+        playerSelect.options[i].style.display = '';
+      } else {
+        playerSelect.options[i].style.display = 'none';
+      }
+    }
 
     // Show or hide the custom dropdown based on input value
-    customDropdown.classList.toggle('open', searchText !== '');
+    if (searchText === '') {
+      customDropdown.classList.remove('open');
+    } else {
+      customDropdown.classList.add('open');
+    }
 
     // Hide spinner
     hideSpinner();
-  }, 1000); // Adjust the timeout value as needed
+  }, 1); // Adjust the timeout value as needed
 });
 
 
@@ -779,6 +782,32 @@ document.getElementById('toggleSortingButton').addEventListener('change', functi
         hideSpinner();
     }, 1000); // Adjust the timeout value as needed
 });
+// Add touch event handling for the search input
+searchInput.addEventListener('touchend', function (event) {
+  // Prevent the default touch behavior to avoid interference
+  event.preventDefault();
+
+  // Trigger the same behavior as the input event
+  handleSearchInputChange();
+});
+
+// Function to handle search input change
+function handleSearchInputChange() {
+  // Show the custom dropdown
+  customDropdown.classList.add('open');
+
+  // Simulate the same search input behavior as the input event
+  const searchText = searchInput.value.trim().toLowerCase();
+  const options = Array.from(playerSelect.options);
+  options.forEach(option => {
+    const optionText = option.textContent.toLowerCase();
+    const displayStyle = optionText.includes(searchText) || option.index === 0 ? '' : 'none';
+    option.style.display = displayStyle;
+  });
+
+  // Hide spinner if needed
+  hideSpinner();
+}
 
 
   </script>
