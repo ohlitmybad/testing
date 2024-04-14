@@ -6758,28 +6758,43 @@ metricsData.sort((a, b) => {
  $(document).ready(function() {
     $('#playerSelect').select2();
   });
+
+        
+
+ $(document).ready(function() {
+    $('#playerSelect').select2();
+  });
+
+
 // Bind event listener to the search input
 searchInput.addEventListener('input', function () {
-    // Get the search text and remove special characters
-    const searchText = removeSpecialChars(this.value.trim());
+  // Show spinner
 
+  // Get the search text and remove special characters
+  const searchText = removeSpecialChars(this.value.trim());
+
+  // Simulate long computation with setTimeout
+  setTimeout(() => {
     // Loop through options and display only those that match the search text
-    const options = Array.from(playerSelect.options);
-    options.forEach(option => {
-        const optionText = option.textContent;
-        if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || option.value === '') {
-            option.style.display = '';
-        } else {
-            option.style.display = 'none';
-        }
-    });
+    for (let i = 0; i < playerSelect.options.length; i++) {
+      const optionText = playerSelect.options[i].textContent;
+      if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || i === 0) {
+        playerSelect.options[i].style.display = '';
+      } else {
+        playerSelect.options[i].style.display = 'none';
+      }
+    }
 
     // Show or hide the custom dropdown based on input value
     if (searchText === '') {
-        customDropdown.classList.remove('open');
+      customDropdown.classList.remove('open');
     } else {
-        customDropdown.classList.add('open');
+      customDropdown.classList.add('open');
     }
+
+    // Hide spinner
+    hideSpinner();
+  }, 1); // Adjust the timeout value as needed
 });
 
         / Bind event listener to the select element for selection
