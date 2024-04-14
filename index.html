@@ -6,7 +6,11 @@
 <title>Rankings</title>
 <style>
 
-
+.metrics-container {
+            max-height: 500px; /* Adjust the height based on your content */
+            overflow-y: auto; /* Enable vertical scrolling for metrics */
+            margin-bottom: 10px; /* Optional: Add margin for spacing */
+        }
 
 
 .spinner {
@@ -109,13 +113,23 @@ cursor: pointer;
 }
 
 
+.custom-dropdown {
+  position: absolute;
+  top: 19.8%;
+  left: 92%;
+  width: 6.1%;
+  border-top: none;
+}
+
+/* Media query for screens smaller than 768px (typical mobile devices) */
+@media screen and (max-width: 767px) {
   .custom-dropdown {
     position: absolute;
   top: 19.8%;
   left: 86.6%;
   width: 10.2%;
   border-top: none;
-  }
+} }
 
 
 
@@ -3643,7 +3657,9 @@ const metricsHTML = metricsData.map(metric => {
     playerResults = `<img class="logo-image" src="https://datamb.football/logopro.png" alt="">
       <h3><b>${selectedPlayer.player} (${selectedPlayer.league}, ${selectedPlayer.age})</b></h3>
       <h1><i>vs ${selectedPlayer.league} ${titleSuffix} ${selectedPlayer.position}s, per 90</i></h1><br>
-            ${metricsHTML}
+    <div class="metrics-container">
+        ${metricsHTML}
+    </div>
          `;
 }
 else if (selectedSection === 'samePositionAndLeagueWithMinutes') {
@@ -4079,7 +4095,9 @@ const metricsHTML = metricsData.map(metric => {
     playerResults = `<img class="logo-image" src="https://datamb.football/logopro.png" alt="">
       <h3><b>${selectedPlayer.player} (${selectedPlayer.league}, ${selectedPlayer.age})</b></h3>
       <h1><i>vs ${selectedPlayer.league} ${titleSuffix} ${selectedPlayer.position}s</i></h1><br>
-            ${metricsHTML}
+    <div class="metrics-container">
+        ${metricsHTML}
+    </div>
           `;
 } else if (selectedSection === 'position') {
     // Define the metrics and their corresponding data
@@ -4515,7 +4533,9 @@ metricsData.sort((a, b) => {
     playerResults = `<img class="logo-image" src="https://datamb.football/logopro.png" alt="">
       <h3><b>${selectedPlayer.player} (${selectedPlayer.league}, ${selectedPlayer.age})</b></h3>
       <h1><i>vs Top 5 League ${titleSuffix} ${selectedPlayer.position}s, per 90</i></h1><br>
-            ${metricsHTML}
+    <div class="metrics-container">
+        ${metricsHTML}
+    </div>
           `;
 } else if (selectedSection === 'positionWithMinutes') {
     // Define the metrics and their corresponding data
@@ -4952,7 +4972,9 @@ metricsData.sort((a, b) => {
     playerResults = `<img class="logo-image" src="https://datamb.football/logopro.png" alt="">
       <h3><b>${selectedPlayer.player} (${selectedPlayer.league}, ${selectedPlayer.age})</b></h3>
       <h1><i>vs Top 5 League ${titleSuffix} ${selectedPlayer.position}s</i></h1><br>
-            ${metricsHTML}
+    <div class="metrics-container">
+        ${metricsHTML}
+    </div>
           `;
 } else if (selectedSection === 'league') {
     // Define the metrics and their corresponding data
@@ -5387,7 +5409,9 @@ metricsData.sort((a, b) => {
     playerResults = `<img class="logo-image" src="https://datamb.football/logopro.png" alt="">
       <h3><b>${selectedPlayer.player} (${selectedPlayer.league}, ${selectedPlayer.age})</b></h3>
       <h1><i>vs ${selectedPlayer.league} ${titleSuffix} players, per 90</i></h1><br>      
-            ${metricsHTML}
+    <div class="metrics-container">
+        ${metricsHTML}
+    </div>
           `;
 } else if (selectedSection === 'leagueWithMinutes') {
     // Define the metrics and their corresponding data
@@ -5824,7 +5848,9 @@ metricsData.sort((a, b) => {
     playerResults = `<img class="logo-image" src="https://datamb.football/logopro.png" alt="">
       <h3><b>${selectedPlayer.player} (${selectedPlayer.league}, ${selectedPlayer.age})</b></h3>
     <h1><i>vs ${selectedPlayer.league} ${titleSuffix} players</i></h1><br>
-            ${metricsHTML}
+    <div class="metrics-container">
+        ${metricsHTML}
+    </div>
           `;
 } else if (selectedSection === 'allCsv') {
     // Define the metrics and their corresponding data
@@ -6260,7 +6286,9 @@ const metricsHTML = metricsData.map(metric => {
     playerResults = `<img class="logo-image" src="https://datamb.football/logopro.png" alt="">
       <h3><b>${selectedPlayer.player} (${selectedPlayer.league}, ${selectedPlayer.age})</b></h3>
       <h1><i>vs Top 5 League ${titleSuffix} players, per 90</i></h1><br>     
-            ${metricsHTML}
+    <div class="metrics-container">
+        ${metricsHTML}
+    </div>
           `;
 } else if (selectedSection === 'allCsvWithMinutes') {
     // Define the metrics and their corresponding data
@@ -6694,7 +6722,9 @@ metricsData.sort((a, b) => {
     playerResults = `<img class="logo-image" src="https://datamb.football/logopro.png" alt="">
       <h3><b>${selectedPlayer.player} (${selectedPlayer.league}, ${selectedPlayer.age})</b></h3>
       <h1><i>vs Top 5 League ${titleSuffix} players</i></h1><br>
-            ${metricsHTML}
+    <div class="metrics-container">
+        ${metricsHTML}
+    </div>
           `;
 }
 
@@ -6905,4 +6935,3 @@ document.getElementById('toggleSortingButton').addEventListener('change', functi
 
 </body>
 </html>
-
