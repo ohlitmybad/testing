@@ -6750,36 +6750,26 @@ metricsData.sort((a, b) => {
       function removeSpecialChars(str) {
         return str.normalize('NFD').replace(/[\u0300-\u036f ]/g, '');
 }
-// Bind event listener to the search input
-searchInput.addEventListener('input', function () {
-  // Get the search text and remove special characters
-  const searchText = removeSpecialChars(this.value.trim());
 
-  // Simulate long computation with setTimeout
-  setTimeout(() => {
-    // Loop through options and display only those that match the search text
-    const options = playerSelect.querySelectorAll('option');
-    for (let i = 0; i < options.length; i++) {
-      const optionText = options[i].textContent;
-      if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || i === 0) {
-        options[i].style.display = '';
-      } else {
-        options[i].style.display = 'none';
-      }
-    }
+        const options = document.querySelectorAll('.option');
 
-    // Show or hide the custom dropdown based on input value
-    if (searchText === '') {
-      customDropdown.classList.remove('open');
+searchInput.addEventListener('input', function() {
+  const searchText = this.value.toLowerCase();
+  options.forEach(option => {
+    if (option.textContent.toLowerCase().includes(searchText)) {
+      option.style.display = '';
     } else {
-      customDropdown.classList.add('open');
+      option.style.display = 'none';
     }
-
-    // Hide spinner
-    hideSpinner();
-  }, 1); // Adjust the timeout value as needed
+  });
+  // Show or hide the dropdown based on input value
+  const dropdownContent = document.querySelector('.dropdown-content');
+  if (searchText === '') {
+    dropdownContent.style.display = 'none';
+  } else {
+    dropdownContent.style.display = 'block';
+  }
 });
-
 
 
 
