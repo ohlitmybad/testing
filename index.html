@@ -316,6 +316,9 @@ h1 {
     
 <div id="results"></div>
 
+<div id="results"></div>
+<script src="path/to/select2.js"></script>
+<link href="path/to/select2.css" rel="stylesheet" />
 
 <script>
 
@@ -6751,24 +6754,41 @@ metricsData.sort((a, b) => {
         return str.normalize('NFD').replace(/[\u0300-\u036f ]/g, '');
 }
 
-        const options = document.querySelectorAll('.option');
 
-searchInput.addEventListener('input', function() {
-  const searchText = this.value.toLowerCase();
-  options.forEach(option => {
-    if (option.textContent.toLowerCase().includes(searchText)) {
-      option.style.display = '';
-    } else {
-      option.style.display = 'none';
-    }
+ $(document).ready(function() {
+    $('#playerSelect').select2();
   });
-  // Show or hide the dropdown based on input value
-  const dropdownContent = document.querySelector('.dropdown-content');
-  if (searchText === '') {
-    dropdownContent.style.display = 'none';
-  } else {
-    dropdownContent.style.display = 'block';
-  }
+
+
+// Bind event listener to the search input
+searchInput.addEventListener('input', function () {
+  // Show spinner
+
+  // Get the search text and remove special characters
+  const searchText = removeSpecialChars(this.value.trim());
+
+  // Simulate long computation with setTimeout
+  setTimeout(() => {
+    // Loop through options and display only those that match the search text
+    for (let i = 0; i < playerSelect.options.length; i++) {
+      const optionText = playerSelect.options[i].textContent;
+      if (removeSpecialChars(optionText.toLowerCase()).includes(searchText.toLowerCase()) || i === 0) {
+        playerSelect.options[i].style.display = '';
+      } else {
+        playerSelect.options[i].style.display = 'none';
+      }
+    }
+
+    // Show or hide the custom dropdown based on input value
+    if (searchText === '') {
+      customDropdown.classList.remove('open');
+    } else {
+      customDropdown.classList.add('open');
+    }
+
+    // Hide spinner
+    hideSpinner();
+  }, 1); // Adjust the timeout value as needed
 });
 
 
