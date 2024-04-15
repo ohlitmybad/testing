@@ -7,9 +7,9 @@
 <style>
 
 .metrics-container {
-            max-height: 500px; /* Adjust the height based on your content */
+            max-height: 61.2vh; /* Adjust the height based on your content */
             overflow-y: auto; /* Enable vertical scrolling for metrics */
-            margin-bottom: 10px; /* Optional: Add margin for spacing */
+            margin-bottom: 20px; /* Optional: Add margin for spacing */
         }
 
 
@@ -168,11 +168,20 @@ cursor: pointer;
       border-radius: 20px;
     }
 
+    html {
+    overflow: scroll;
+}
+::-webkit-scrollbar {
+    width: 0;  /* Remove scrollbar space */
+    background: transparent;  /* Optional: just make scrollbar invisible */
+}
+
     body {
           zoom: 119.2%; /* Adjust the percentage as needed */
     font-family: Arial, Helvetica, sans-serif; /* Use Font1 as the primary font */
     font-size: 14.7px;
     color: #000000c4;
+    scrollbar-width: none; /* Firefox */
     margin-left: 17.5px;
     margin-top:15.5px;
         background: #fff;
