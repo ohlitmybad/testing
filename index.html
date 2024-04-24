@@ -24,7 +24,7 @@
 .card {
     flex-basis: calc(30% - 10px); /* Adjust the flex-basis and margin */
     background-color: #f0f0f0;
-    margin-bottom: 50px; /* Add margin between all cards */
+    margin-bottom: 20px; /* Add margin between all cards */
     padding: 10px 5px 30px 7px; /* Adjust padding */
     text-align: center;
     font-family: 'Inter', sans-serif;
@@ -40,6 +40,13 @@
     cursor: pointer;
 }
 
+    @media (max-width: 768px) {
+  .card {
+    height: 150px;
+    max-width: 150px;/* Adjusted height for mobile devices */
+  }
+}
+    
 .card h2 {
     margin-top: 10px; /* Add margin below headline */
     padding: 0px;
