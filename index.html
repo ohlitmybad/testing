@@ -1,1 +1,334 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homepage Layout</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+n9z6b8sVp5LeqL5u8LfwO8z9n6KVoWszZvOQcz" crossorigin="anonymous">
+</head>
+<style>body {
+    font-family: Inter, sans-serif;
+    margin: 0;
+    padding: 20px; /* Adjust the padding to add more space */
+    background-color: #1A1A1A;
+    font-family: 'Inter', sans-serif;
+}
 
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #1A1A1A;
+    color: white;
+    font-size: 12px;
+
+}
+
+nav .logo {
+    font-weight: bold;
+}
+
+.nav-logo img {
+    width: 70px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 0px; /* Add some space between the logo and image logo */
+}
+
+    margin-right: 10px; /* Add margin to the right of the select element */
+
+nav .link01 {
+    color: #fff; /* Text color */
+    text-decoration: none; /* Remove underline */
+    padding: 10px; /* Adjust padding */
+    font-family: 'Inter', sans-serif;
+}
+
+#positionSelect {
+    height:38px;
+    font-size: 18px;
+    color: grey;
+    width: 40%;
+    border-radius: 40px;
+    text-align: center;
+    margin:  auto; 
+    cursor: pointer;
+    margin-right: 10px; /* Add margin to the right of the select element */
+
+}
+
+.manage-account {
+    padding: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 40px;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    height: auto; /* Maintain aspect ratio */
+    display: flex;
+    margin:  auto; 
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-right: 10px; /* Add margin to the right of the select element */
+
+ 
+}
+
+.content {
+    margin-top: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    padding: 110px;
+    justify-content: space-around;
+}
+
+.card {
+    flex-basis: calc(30% - 10px); /* Adjust the flex-basis and margin */
+    background-color: #f0f0f0;
+    margin-bottom: 50px; /* Add margin between all cards */
+    padding: 10px 5px 30px 7px; /* Adjust padding */
+    text-align: center;
+    font-family: 'Inter', sans-serif;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    transition: transform 0.2s ease, background-color 0.2s ease; 
+    display: flex; /* Flexbox layout */
+    flex-direction: column; /* Stack children vertically */
+    justify-content: space-between; /* Space between items */
+    height: 300px; /* Fixed height for demonstration */
+    align-items: center; /* Center items horizontally */
+    max-width: 300px; /* Ensure the image fits within the card */
+    cursor: pointer;
+}
+
+.card h2 {
+    margin-top: 10px; /* Add margin below headline */
+    padding: 0px;
+    font-size: 18px;
+}
+
+.card img {
+    max-width: 50%; /* Ensure the image fits within the card */
+    border-top-left-radius: 15px; /* Maintain border-radius for image corners */
+    border-top-right-radius: 15px;
+    display: block;
+    margin-bottom: 30px;
+    max-height: 50%;
+}
+
+.card p {
+    margin-top: -4px; /* Adjust margin-top to maintain position */
+    line-height: 1.7; /* Set line-height for better readability */
+    font-size: 12px;
+    font-family: Inter, sans-serif;
+    color: #00000;
+    display: flex;
+    flex-direction: column; /* Display items in a column */
+    justify-content: center;
+    align-items: center;
+    font-weight: thin;
+}
+
+
+
+@media (max-width: 768px) {
+    .card {
+        flex-basis: calc(100% - 0px); /* Adjust the flex-basis for smaller screens */
+    }
+}
+
+@media (max-width: 576px) {
+    .card {
+        flex-basis: calc(100% - 0px); /* Adjust the flex-basis for even smaller screens */
+    }
+}
+
+/* Add hover effect */
+.card:hover {
+    transform: scale(1.05); /* Scale the card slightly on hover */
+    box-shadow: 0 0 20px rgba(0,0,0,0.1); /* Increase shadow on hover */
+    background-color: #3D3D3D; /* Change background color on hover */
+}
+
+/* Add active effect */
+.card:active {
+    background-color: #c0c0c0; /* Change background color when card is clicked */
+}
+
+/* Change text color on hover */
+.card:hover p {
+    color: #333; /* Change text color on hover */
+}
+
+/* Change text color when card is clicked */
+.card:active p {
+    color: #fff; /* Change text color when card is clicked */
+}
+
+footer {
+    color: white;
+    text-align: center;
+    padding: 15px;
+    /* Remove fixed positioning */
+    /* position: fixed;
+    width: 1000%;
+    bottom: 0; */
+    font-family: Inter, sans-serif;
+    font-size: 10px;
+}
+
+footer a {
+    color: white;
+    padding:  40px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    text-align: center;
+    width: 10%;
+}
+
+.footer-logo {
+    display: flex;
+    flex-direction: column; /* Display items in a column */
+    justify-content: center;
+    align-items: center;
+}
+
+.footer-logo img {
+    width: 60px; /* Adjust width as needed */
+    height: auto; /* Maintain aspect ratio */
+    margin-bottom: 10px; /* Add some space between the logo and image logo */
+    align-items: center;
+
+}
+
+.social-links {
+    margin-bottom: 20px; 
+}
+
+.links {
+    margin-bottom: 30px; 
+    margin-top: 50px;
+    align-items: center;
+ 
+}
+</style>
+<body>
+    <div class="container">
+        <nav>
+            <div class="nav-logo">
+            
+                <img src="https://i.imgur.com/9HbZf2T.png" alt="logo" class="img-fluid"> </div><h2>DATAMB Pro</h2>
+
+             <label for="positionSelect"></label>
+    <select id="positionSelect">
+        <option value="" selected disabled>Tools</option>
+        <option value="goalkeeper">Radars</option>
+        <option value="centreback">Plots</option>
+	<option value="fullback5">Rank (Top 5)</option>
+	<option value="fullback6">Rank (Top 7)</option>
+        <option value="fullback">Search</option>
+       <option value="fullback3">Indexes</option>
+	           <option value="teams">Teams</option>
+	           <option value="fullback4">AI (Beta)</option>
+	            <option value="fullback2">Guide</option>
+        <option value="fullback1">Manage Account</option>
+    </select>
+           
+            <button class="btn btn-primary manage-account">Manage Account</button> 
+        </nav>
+
+        <div class="content">
+            
+            <div class="card">
+    <h2>RADARS</h2>
+<p></p>
+            <img src="https://i.imgur.com/qc0Jei5.png" alt="Card Image">
+    <p></p>
+</div> 
+
+            <div class="card">
+    <h2>PLOTS</h2>
+<p></p>
+            <img src="https://i.imgur.com/UBqCHVf.png" alt="Card Image">
+
+    <p></p>
+
+
+</div>
+
+            <div class="card">
+    <h2>TEAMS</h2>
+<p></p>
+            <img src="https://i.imgur.com/BfDueAE.png" alt="Card Image">
+    <p></p>
+</div>
+
+
+            <div class="card">
+    <h2>INDEX</h2>
+<p></p>
+            <img src="https://i.imgur.com/8Waofg0.png" alt="Card Image">
+    <p></p>
+</div>
+
+
+
+             <div class="card">
+    <h2>RANK</h2>
+<p></p>
+            <img src="https://i.imgur.com/pqkVzP5.png" alt="Card Image">
+    <p><span style="color: black;">OPTION 1  <span style="color: #A7A7A7;"> TOP 7</span></p>
+    <p><span style="color: black;">OPTION 2  <span style="color: #A7A7A7;"> OTHER
+</span></p>
+</div>
+
+
+          <div class="card">
+    <h2>SEARCH</h2>
+<p></p>
+            <img src="https://i.imgur.com/O0gZ47w.png" alt="Card Image">
+    <p></p>
+</div>
+
+            <div class="card">
+    <h2>AI CHAT</h2>
+<p></p>
+            <img src="https://i.imgur.com/nYFMtWu.png" alt="Card Image">
+    <p></p>
+</div>
+
+
+            <div class="card">
+    <h2>GUIDE</h2>
+<p></p>
+            <img src="https://i.imgur.com/BQWWSmp.png" alt="Card Image">
+    <p></p>
+</div>
+        </div>
+
+    </div>
+
+  <footer class="bg-dark text-white text-center py-5">
+        <div class="container">
+            <div class="footer-logo">
+                <h2>DATAMB Pro</h2>
+                <img src="https://i.imgur.com/9HbZf2T.png" alt="logo" class="img-fluid">
+            </div>
+            <p>All rights reserved</p>
+            <div class="links">
+                <a href="#" class="text-white">Privacy</a>
+                <a href="#" class="text-white">Contact</a>
+                <a href="#" class="text-white">Glossary</a>
+            </div>
+            <div class="social-links">
+                <a href="#" class="text-white">Facebook</a>
+                <a href="#" class="text-white">Twitter</a>
+                <a href="#" class="text-white">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5+n9z6b8sVp5LeqL5u8LfwO8z9n6KVoWszZvOQcz" crossorigin="anonymous"></script>
+</body>
+</html>
