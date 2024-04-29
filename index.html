@@ -1,1 +1,497 @@
 
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+        <meta name="viewport" content="width=device-width, initial-scale=0.75, user-scalable=no"">
+        <meta name="description" content="Access 30+ leagues, more seasons, tools and metrics. Explore and visualize football data with DataMB Pro : Radar, Plot, Search, Rank, Index and Chat tools for Premier League, Championship, La Liga, Liga Segunda, Bundesliga, Bundesliga 2, Ligue 1, Ligue 2, Serie A, Serie B, Primeira Liga, Eredivisie, Scottish Premiership, Turkish Süper Lig, Saudi Pro League, Belgian Jupiler League, Austrian Bundesliga, Swiss Superleague, Swedish Allsvenskan, Danish Superliga, Norway Eliteserien, Czech First League, Croatian HNL, Serbian SuperLiga, Japanese J-League 1, Korean K-League 1, MLS, Liga MX, Brazilian Serie A, Argentina Primera Division, Uruguay Primera Division">
+<meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DataMB_">
+  <meta name="twitter:title" content="DataMB | Pro Subscription">
+  <meta name="twitter:description" content="30+ leagues, 20,000+ players, £6.8/8€/$8.6 a month">
+  <meta name="twitter:image" content="https://datamb.football/vignettepro.png">
+  <meta property="og:image" content="https://datamb.football/vignettepro.png">
+  <title translate="no">DataMB | Pro Subscription</title>
+  
+    <style>
+
+
+
+        body {
+            font-family: Arial, sans-serif;
+        }
+      
+        iframe {
+            width: 100%;
+            height: 750px;
+            border: none;
+        }
+
+
+
+.header {
+  font-family: system-ui;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+background: #1a1a1a;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+}
+
+.header .logo img {
+  width: 40px;
+  height: 40px;
+opacity: 0.84;
+}
+
+.header .logo-text {
+  margin-left: 10px;
+  font-size: 20px;
+color: #444444;
+  font-weight: 600;
+}
+
+.header .navigation {
+  display: right;
+
+}
+
+.header .button {
+  margin: 0 10px;
+  padding: 0px 20px;
+  color: #DADADA;
+  text-decoration: none;
+  border-radius: 0px;
+font-size: 18px;
+}
+
+header a {
+      color: #DADADA;
+      text-decoration: none;
+
+    }
+
+.header .twitter-link svg {
+  width: 25px;
+  height: 24px;
+  fill: #444444;
+}
+
+.footer {
+  font-family: system-ui;
+  background: #F2F2F2;
+  padding: 20px;
+  text-align: center;
+  color: #fff;
+}
+
+.footer .logo {
+  display: flex;
+  justify-content: center;
+}
+
+.footer .description {
+  font-size: 20px;
+  margin-bottom: 0px;
+color: black;
+}
+
+.footer .info {
+  font-size: 16px;
+  opacity: 0.8;
+}
+
+.footer .divider {
+  border: none;
+  border-bottom: 1px solid #fff;
+  margin: 25px 0;
+  opacity: 0.2;
+}
+
+.footer .sub-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer .sub-footer .terms,
+.footer .sub-footer .privacy,
+.footer .sub-footer .glossary {
+font-size: 17px;
+  margin-left: 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.logo img {
+  width: 50px;
+  height: 50px;
+}
+
+
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start; /* Align items at the top */
+  flex-wrap: wrap; /* Add flex-wrap property to wrap the content on smaller screens */
+}
+
+.google-play-container {
+  display: flex;
+  flex-direction: column; /* Arrange items in a column */
+  align-items: flex-end; /* Align items to the right */
+  margin-top: -20px; /* Adjust the margin-top to remove the space */
+}
+
+.google-play-container img {
+  width: 182px;
+  height: 70px;
+}
+
+.description,
+.info,
+.divider,
+.sub-footer {
+  flex-basis: 100%;
+color: black;
+}
+
+.footer p {
+  margin-bottom: 0; /* Remove bottom margin from the paragraph elements */
+}
+
+body {
+background: #1a1a1a;
+}
+
+h1 {
+color: #DADADA;
+margin-left: 8px;
+font-family:Arial, Helvetica, sans-serif;
+font-size: 29px        
+}
+
+h2 {
+font-size: 21px        
+}
+
+            .desktop-text {
+  display: inline;
+}
+
+/* Styles for mobile */
+.mobile-text {
+  display: none;
+}
+
+/* Media query for screen sizes less than or equal to 768px (you can adjust this value as needed) */
+@media (max-width: 768px) {
+  /* Hide desktop text on mobile */
+  .desktop-text {
+    display: none;
+  }
+
+  /* Show mobile text on mobile */
+  .mobile-text {
+    display: inline;
+  }
+}
+
+#proceedBtn {
+  display: block; /* You can use "block" or "inline-block" depending on your layout needs */
+margin: 0 auto;
+background-color: pink;
+Font-size: 22px;
+width: 318px;
+Height: 49px;
+border-radius: 20px;
+            border: 1px solid pink;
+Cursor: pointer;
+
+}
+
+
+.terms {
+    text-align: center; /* Center-align the text within the container */
+    margin: auto;
+    margin-bottom: 5px; /* Use lowercase 'm' for margin-bottom */
+    font-size: 1em; /* Use lowercase 'f' for font-size */
+    color: #fff;
+}
+
+     
+.image-container {
+    border-radius: 20px;
+    
+    overflow: hidden;
+    
+    margin: 0 auto; /* Center the container horizontally */
+
+    /* Default width for desktop */
+    width: 81%;
+}
+
+/* Media query for mobile devices */
+@media (max-width: 767px) {
+    .image-container {
+        width: 99%;
+            height: 102%;
+    }
+}
+
+.image-container img {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.terms a {
+    color: #fff; /* Set the anchor color to white */
+    text-decoration: underline; /* Add underline to the link */
+}
+
+
+/* Center the "What's Included" button */
+#whatsIncludedBtn {
+  display: block;
+  margin: 0 auto;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 15px;
+  color: white; /* Set link color */
+  text-decoration: underline;
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out; /* Add a smooth transition effect */
+
+}
+
+
+
+/* Add these styles to center the image */
+#imageContainer {
+  display: none;
+  text-align: center;
+}
+
+#imageContainer img {
+  max-width: 100%;
+  border-radius: 20px;
+}
+
+.image-container2 {
+    display: block;
+    max-width: 100%;
+}
+
+.prev, .next {
+    cursor: pointer;
+    position: absolute;
+    top: 50%;
+    width: auto;
+    padding: 16px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    transition: 0.6s ease;
+    border-radius: 0 3px 3px 0;
+}
+
+.prev {
+    left: 0;
+}
+
+.next {
+    right: 0;
+}
+
+
+    </style>
+<header class="header">
+  <div class="logo">
+    <a href="http://datamb.football">
+        <img src="https://datamb.football/logopro.png" alt="DataMB Pro" /></a>
+<div class="logo-text">
+  <a href="http://datamb.football">
+    <span class="desktop-text">DataMB Pro</span>
+    <span class="mobile-text">Pro</span>
+  </a>
+</div>
+  </div>
+  <nav class="navigation"> 
+    <a href="http://datamb.football/signup/" class="button">Subscribe for 8€/month</a>
+    <a href="http://datamb.football/pro/" class="button">Already a member?</a>
+  </nav><a href="https://twitter.com/datamb_" target="_blank" class="twitter-link">
+    <svg width="25" height="24" fill="#bcbcbc" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+    </svg>
+  </a>
+  </nav>
+ 
+
+</header>
+</head>
+<body><br>
+<br><div class="image-container">
+    <div class="image-container2">
+      <img class="slides" src="https://datamb.football/imgpro.jpeg" alt="">
+    </div>
+    <div class="image-container2">
+      <img class="slides" src="https://datamb.football/logopro.png" alt="">
+    </div>
+    <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
+    <a class="next" onclick="plusSlides(1)">&#10095;</a>
+  </div>
+  <br>
+  <script>
+    var slideIndex = 0;
+    showSlides();
+  
+    function plusSlides(n) {
+      showSlides(slideIndex += n);
+    }
+  
+    function currentSlide(n) {
+      showSlides(slideIndex = n);
+    }
+  
+    function showSlides() {
+      var i;
+      var slides = document.getElementsByClassName("slides");
+      if (slideIndex >= slides.length) {slideIndex = 0}
+      if (slideIndex < 0) {slideIndex = slides.length - 1}
+      for (i = 0; i < slides.length; i++) {
+        slides[i].style.display = "none";  
+      }
+      slides[slideIndex].style.display = "block";  
+    }
+  </script>
+
+<script>
+    // Function to get user's country using IP geolocation
+    function getUserCountry(callback) {
+      fetch('https://ipapi.co/json/')
+        .then(response => response.json())
+        .then(data => {
+          callback(data.country_code);
+        })
+        .catch(error => {
+          console.error('Error fetching country:', error);
+        });
+    }
+  
+    // Function to display image and update subscription text based on user's country
+    function displayCountryImage(countryCode) {
+      var subscribeButton = document.querySelector('.navigation .button[href="http://datamb.football/signup/"]');
+  
+      if (countryCode === 'US') {
+        subscribeButton.textContent = 'Subscribe for 8.6$/month'; // Update subscription text for US users
+      } else if (countryCode === 'GB') {
+        subscribeButton.textContent = 'Subscribe for 6.8£/month'; // Update subscription text for UK users
+      } else {
+      }
+    }
+  
+    // Call functions when the page loads
+    window.onload = function() {
+      getUserCountry(displayCountryImage);
+    };
+  </script>
+  
+  
+
+    <div class="terms">
+
+   
+        <label class="terms-checkbox">
+            <input type="checkbox" id="agreeCheckbox">
+               I agree to the <a href="https://datamb.football/tos" target="_blank">Terms and Conditions</a>
+
+        </label>
+    </div><br>
+
+    <button id="proceedBtn" disabled>SUBSCRIBE</button><br><br>
+
+    <iframe id="subscriptionFrame" src="" frameborder="0"></iframe>
+
+    <script>
+        const agreeCheckbox = document.getElementById('agreeCheckbox');
+        const proceedBtn = document.getElementById('proceedBtn');
+        const subscriptionFrame = document.getElementById('subscriptionFrame');
+        const expandBtn = document.getElementById('expandBtn');
+        const expandableTerms = document.getElementById('expandableTerms');
+
+        agreeCheckbox.addEventListener('change', () => {
+            proceedBtn.disabled = !agreeCheckbox.checked;
+        });
+
+        proceedBtn.addEventListener('click', () => {
+        subscriptionFrame.src = 'https://datamb.football/signup';
+
+        // Check if the user is on a desktop device
+        if (window.innerWidth >= 1024) {
+            // Check if the page is scrolled to the top
+            if (window.scrollY === 0) {
+                // Scroll down by 200px
+                window.scrollBy(0, 650);
+            }
+        }
+    });
+
+
+        function expandTerms() {
+            expandableTerms.style.display = 'block';
+            expandBtn.style.display = 'none';
+            // Scroll to the expanded content for better user experience
+            document.getElementById('termsModal').scrollIntoView();
+        }
+    </script>
+
+
+
+<footer class="footer">
+   
+    <div class="google-play-container">
+
+    <a href='https://play.google.com/store/apps/details?id=com.datamb.datamb.webviewflutter&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'></a>
+ <a href='https://apps.apple.com/app/datamb/id6456224067?l=en-GB'><img alt='Download on the App Store' src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'></a></div>
+ <div class="logo">
+      <img src="https://datamb.football/logo.png" alt="Footer Logo" />
+    </div>
+
+    <p class="description">DataMB</p>
+    <p class="info">© All Rights Reserved</p>
+    <hr class="divider" />
+    <div class="sub-footer">
+      <nav>
+        <a class="privacy" target="_blank" href="https://datamb.football/privacy">Privacy</a>
+        <a class="privacy" target="_blank" href="mailto:datamb.football@gmail.com">Contact</a>
+        <a class="glossary" target="_blank" href="https://datamb.football/glossary">Glossary</a>
+      </nav>
+      <nav>
+        <a target="_blank" href="https://twitter.com/datamb_">
+          <svg width="23" height="22" fill="#000000" xmlns="http://www.w3.org/2000/svg">
+            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+          </svg>
+        </a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>
