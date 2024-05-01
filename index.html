@@ -304,7 +304,7 @@ Cursor: pointer;
     width: auto;
     padding: 16px;
     margin-top: -22px;
-    color: #000000;
+    color: #ffffff;
     font-weight: bold;
     font-size: 4vh;
     transition: 0.6s ease;
@@ -327,14 +327,14 @@ Cursor: pointer;
         <img src="https://datamb.football/logopro.png" alt="DataMB Pro" /></a>
 <div class="logo-text">
   <a href="http://datamb.football">
-    <span class="desktop-text">DataMB Pro</span>
+    <span class="desktop-text">Pro</span>
     <span class="mobile-text">Pro</span>
   </a>
 </div>
   </div>
   <nav class="navigation"> 
-    <a href="http://datamb.football/signup/" class="button">Subscribe for 8€/month</a>
-    <a href="http://datamb.football/pro/" class="button">Already a member?</a>
+    <a href="http://datamb.football/signup/" class="button">Sign up</a>
+    <a href="http://datamb.football/pro/" class="button">Log in</a>
   </nav><a href="https://twitter.com/datamb_" target="_blank" class="twitter-link">
     <svg width="25" height="24" fill="#bcbcbc" xmlns="http://www.w3.org/2000/svg">
       <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
@@ -348,10 +348,10 @@ Cursor: pointer;
 <body><br>
 <br><div class="image-container">
     <div class="image-container2">
-      <img class="slides" src="https://i.imgur.com/u1BvtjJ.png" alt="">
+      <img class="slides" src="https://imgur.com/gH4zv7Q.png" alt="">
     </div>
     <div class="image-container2">
-      <img class="slides" src="https://i.imgur.com/3sjJkJ7.png" alt="">
+      <img class="slides" src="https://imgur.com/mV0oC0I.png" alt="">
     </div>
     <a class="next" onclick="plusSlides(1)">&#10095;</a>
   </div>
@@ -380,36 +380,6 @@ Cursor: pointer;
     }
   </script>
 
-<script>
-    // Function to get user's country using IP geolocation
-    function getUserCountry(callback) {
-      fetch('https://ipapi.co/json/')
-        .then(response => response.json())
-        .then(data => {
-          callback(data.country_code);
-        })
-        .catch(error => {
-          console.error('Error fetching country:', error);
-        });
-    }
-  
-    // Function to display image and update subscription text based on user's country
-    function displayCountryImage(countryCode) {
-      var subscribeButton = document.querySelector('.navigation .button[href="http://datamb.football/signup/"]');
-  
-      if (countryCode === 'US') {
-        subscribeButton.textContent = 'Subscribe for 8.6$/month'; // Update subscription text for US users
-      } else if (countryCode === 'GB') {
-        subscribeButton.textContent = 'Subscribe for 6.8£/month'; // Update subscription text for UK users
-      } else {
-      }
-    }
-  
-    // Call functions when the page loads
-    window.onload = function() {
-      getUserCountry(displayCountryImage);
-    };
-  </script>
   
   
 
