@@ -126,6 +126,26 @@ th {
     width: 50px;
 }
 
+body {
+          zoom: 129.2%; /* Adjust the percentage as needed */
+          overflow: hidden;
+    scrollbar-width: none; /* Firefox */
+        background: #fff;
+}
+
+.result-container {
+            max-height: 60.2vh; /* Adjust the height based on your content */
+            overflow-y: auto; /* Enable vertical scrolling for metrics */
+            margin-bottom: 11px; /* Optional: Add margin for spacing */
+        }
+        @media only screen and (max-width: 767px) {
+    /* Apply styles for screens smaller than 768px (typical mobile devices) */
+    .result-container {
+        max-height: 77.5vh; /* Adjusted height for mobile */
+	margin-bottom: 18px; /* Optional: Add margin for spacing */
+
+    }
+}
 
    </style>
 </head>
@@ -134,13 +154,13 @@ th {
     <select id="metric" class="metric-selector">
     </select>
     <select id="position">
-        <!-- Add options for different positions -->
         <option value="Goalkeeper">Goalkeeper</option>
         <option value="Centre-back">Centre-back</option>
         <option value="Full-back">Full-back</option>
         <option value="Midfielder">Midfielder</option>
         <option value="Winger">Winger</option>
         <option value="Striker">Striker</option>
+        <option value="All">All positions</option>
     </select>
     <select id="league">
         <option value="Premier League">Premier League</option>
@@ -200,16 +220,18 @@ th {
           <label for="toggleMetrics"></label>
       </div>
     
-    <br>    <br>
+    <br>    <br>    <div class="result-container">
+
     <table id="playerTable" style="display: none;">
         <tr>
        
             <th id="metricHeader"></th>
         </tr>
-    </table>
+    </table>    </div>
+
 
     <script>
-       const data = `Player,Team,League,Position,Age,Index,Minutes played,Successful defensive actions per 90,Defensive duels per 90,Aerial duels per 90,Sliding tackles per 90,PAdj Sliding tackles,Shots blocked per 90,Interceptions per 90,PAdj Interceptions,Successful attacking actions per 90,Goals per 90,Non-penalty goals per 90,xG per 90,Head goals per 90,Shots per 90,Assists per 90,Crosses per 90,Crosses to goalie box per 90,Dribbles per 90,Offensive duels per 90,Touches in box per 90,Progressive runs per 90,Accelerations per 90,Fouls suffered per 90,Passes per 90,Forward passes per 90,Short / medium passes per 90,Long passes per 90,Average pass length m,xA per 90,Shot assists per 90,Key passes per 90,Passes to final third per 90,Passes to penalty area per 90,Through passes per 90,Deep completions per 90,Progressive passes per 90,Shots against per 90,Clean sheets,xG against per 90,Prevented goals per 90,Exits per 90,Defensive duels won %,Aerial duels won %,Shots on target %,Goal conversion %,Accurate crosses %,Successful dribbles %,Offensive duels won %,Accurate passes %,Accurate forward passes %,Accurate short / medium passes %,Accurate long passes %,Accurate passes to final third %,Accurate passes to penalty area %,Accurate through passes %,Accurate progressive passes %,Save rate %
+       const data = `Player,Team,League,Position,Age,Performance Index,Minutes played,Successful defensive actions per 90,Defensive duels per 90,Aerial duels per 90,Sliding tackles per 90,PAdj Sliding tackles,Shots blocked per 90,Interceptions per 90,PAdj Interceptions,Successful attacking actions per 90,Goals per 90,Non-penalty goals per 90,xG per 90,Head goals per 90,Shots per 90,Assists per 90,Crosses per 90,Crosses to goalie box per 90,Dribbles per 90,Offensive duels per 90,Touches in box per 90,Progressive runs per 90,Accelerations per 90,Fouls suffered per 90,Passes per 90,Forward passes per 90,Short / medium passes per 90,Long passes per 90,Average pass length m,xA per 90,Shot assists per 90,Key passes per 90,Passes to final third per 90,Passes to penalty area per 90,Through passes per 90,Deep completions per 90,Progressive passes per 90,Shots against per 90,Clean sheets,xG against per 90,Prevented goals per 90,Exits per 90,Defensive duels won %,Aerial duels won %,Shots on target %,Goal conversion %,Accurate crosses %,Successful dribbles %,Offensive duels won %,Accurate passes %,Accurate forward passes %,Accurate short / medium passes %,Accurate long passes %,Accurate passes to final third %,Accurate passes to penalty area %,Accurate through passes %,Accurate progressive passes %,Save rate %
 P. Neumann,Hannover 96,Bundesliga 2,Centre-back,26,,3021,10.28,6.2,3.81,0.03,0.04,0.69,5.81,8.38,1.25,0.06,0.06,0.04,0.03,0.33,0.06,0.92,0.09,1.37,3.13,0.63,1.82,0.66,0.66,49.78,20.38,40.46,8.4,22.11,0.02,0.24,0.15,7,1.4,0.77,0.3,9.56,0,0,0,0,0,71.63,62.5,27.27,18.182,32.26,63.04,49.52,83,71.64,91.16,49.29,60.43,34.04,19.23,72.27,0
 M. Halstenberg,Hannover 96,Bundesliga 2,Centre-back,32,82,2862,8.68,4.28,3.58,0.25,0.36,0.53,5.44,7.86,0.82,0.13,0.06,0.12,0.06,0.94,0.13,0.38,0.13,0.5,1.67,0.66,0.79,0.09,0.57,54.91,22.92,45.85,8.71,22.44,0.06,0.35,0.22,8.93,1.42,1.16,0.44,10.44,0,0,0,0,0,69.85,66.67,23.33,13.333,66.67,62.5,47.17,86.6,74.49,92.94,54.15,63.03,46.67,37.84,82.53,0
 H. Wahl,St. Pauli,Bundesliga 2,Centre-back,30,80,2856,6.55,4.57,2.52,0.13,0.18,0.32,3.15,4.38,0.44,0,0,0.04,0,0.16,0,0.06,0,0.57,2.08,0.38,1.17,0.13,0.44,60.95,20.96,57.61,3.28,17.73,0.02,0.13,0.03,5.26,0.47,0.32,0.19,6.24,0,0,0,0,0,71.72,57.5,20,0,50,66.67,42.42,93.23,86.32,95.62,51.92,80.24,46.67,40,76.77,0
@@ -9726,7 +9748,12 @@ for (let i = originalDataArray[0].length - 1; i >= 5; i--) {
 }
 
 // Set column 61 as the default selection
-metricSelect.value = "6";
+metricSelect.value = "5";
+
+leagueSelect.querySelector('option[value="Top 5 Leagues"]').disabled = true;
+leagueSelect.querySelector('option[value="Top 7 Leagues"]').disabled = true;
+positionSelect.querySelector('option[value="All"]').disabled = true;
+metricSelect.dispatchEvent(new Event('change'));
 
 
 toggleButton.addEventListener('change', toggleData);
@@ -9756,7 +9783,7 @@ function toggleData() {
                 });
             } else {
                 // Modify data rows
-                const minutesPlayed = parseFloat(row[5]);
+                const minutesPlayed = parseFloat(row[6]);
                 return row.map((cell, cellIndex) => {
     if (cellIndex > 4 && ![5, 6, 11, 14, 34, 44, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63].includes(cellIndex)) {
         // Multiply values by minutes played for cells after column 5 (index 6)
@@ -9812,6 +9839,8 @@ function filterTable() {
     const league = leagueSelect.value;
     const age = ageInput.value;
 
+
+
     if (metricIndex === '') {
         // Hide metric column
         metricHeader.style.display = 'none';
@@ -9824,7 +9853,19 @@ function filterTable() {
 
     filteredData = filteredData.filter(row => row[metricIndex] !== '');
 
-    if (position !== '') {
+    if (position === 'All') {
+        // Filter out duplicates and select all players
+        const uniquePlayers = {};
+        filteredData = filteredData.filter(row => {
+            const key = row[0]; // Assuming the first column contains player names
+            if (!uniquePlayers[key]) {
+                uniquePlayers[key] = true;
+                return true;
+            }
+            return false;
+        });
+    } else if (position !== '') {
+        // Filter by selected position
         filteredData = filteredData.filter(row => row[3] === position);
     }
 
@@ -9940,6 +9981,36 @@ leagueSelect.addEventListener('change', function() {
     }
 });
 
+metricSelect.addEventListener('change', function() {
+    const selectedMetricIndex = parseInt(metricSelect.value);
+    if (selectedMetricIndex === 5) {
+        // If the selected metric is column 10, disable "Top 5 Leagues" and "Top 7 Leagues"
+        positionSelect.querySelector('option[value="All"]').disabled = true;
+    } else {
+        // Otherwise, enable them
+        positionSelect.querySelector('option[value="All"]').disabled = false;
+    }
+});
+
+leagueSelect.addEventListener('change', function() {
+    const selectedPosition = positionSelect.value;
+    const metricOptions = metricSelect.querySelectorAll('option');
+
+    if (selectedPosition === 'All') {
+        // Disable column 10 in the metric selector
+        metricOptions[0].disabled = true;
+        // If column 10 was selected, switch to the first available metric
+        if (metricSelect.value === "0") {
+            metricSelect.value = "1"; // Select the first available metric
+            filterTable(); // Update the table based on the new metric
+        }
+    } else {
+        // Enable all options in the metric selector
+        metricOptions.forEach(option => {
+            option.disabled = false;
+        });
+    }
+});
 
 
 // Initial display
