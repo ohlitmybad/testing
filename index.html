@@ -9947,70 +9947,44 @@ function displayTable(data) {
         playerTable.appendChild(tr);
     });
 }
-
-metricSelect.addEventListener('change', function() {
+// Event listener for all selectors
+function handleSelectorsChange() {
     const selectedMetricIndex = parseInt(metricSelect.value);
-    if (selectedMetricIndex === 5) {
-        // If the selected metric is column 10, disable "Top 5 Leagues" and "Top 7 Leagues"
-        leagueSelect.querySelector('option[value="Top 5 Leagues"]').disabled = true;
-        leagueSelect.querySelector('option[value="Top 7 Leagues"]').disabled = true;
-    } else {
-        // Otherwise, enable them
-        leagueSelect.querySelector('option[value="Top 5 Leagues"]').disabled = false;
-        leagueSelect.querySelector('option[value="Top 7 Leagues"]').disabled = false;
-    }
-});
-
-leagueSelect.addEventListener('change', function() {
+    const selectedPosition = positionSelect.value;
     const selectedLeague = leagueSelect.value;
     const metricOptions = metricSelect.querySelectorAll('option');
 
-    if (selectedLeague === 'Top 5 Leagues' || selectedLeague === 'Top 7 Leagues') {
-        // Disable column 10 in the metric selector
-        metricOptions[0].disabled = true;
-        // If column 10 was selected, switch to the first available metric
-        if (metricSelect.value === "0") {
-            metricSelect.value = "1"; // Select the first available metric
-            filterTable(); // Update the table based on the new metric
-        }
-    } else {
-        // Enable all options in the metric selector
-        metricOptions.forEach(option => {
-            option.disabled = false;
-        });
-    }
-});
+// Logic for metric selector
+if (selectedMetricIndex === 5) {
+    leagueSelect.querySelector('option[value="Top 5 Leagues"]').disabled = true;
+    leagueSelect.querySelector('option[value="Top 7 Leagues"]').disabled = true;
+    positionSelect.querySelector('option[value="All"]').disabled = true;
+} else {
+    leagueSelect.querySelector('option[value="Top 5 Leagues"]').disabled = false;
+    leagueSelect.querySelector('option[value="Top 7 Leagues"]').disabled = false;
+    positionSelect.querySelector('option[value="All"]').disabled = false;
+}
 
-metricSelect.addEventListener('change', function() {
-    const selectedMetricIndex = parseInt(metricSelect.value);
-    if (selectedMetricIndex === 5) {
-        // If the selected metric is column 10, disable "Top 5 Leagues" and "Top 7 Leagues"
-        positionSelect.querySelector('option[value="All"]').disabled = true;
-    } else {
-        // Otherwise, enable them
-        positionSelect.querySelector('option[value="All"]').disabled = false;
-    }
-});
 
-leagueSelect.addEventListener('change', function() {
-    const selectedPosition = positionSelect.value;
-    const metricOptions = metricSelect.querySelectorAll('option');
 
-    if (selectedPosition === 'All') {
-        // Disable column 10 in the metric selector
-        metricOptions[0].disabled = true;
-        // If column 10 was selected, switch to the first available metric
-        if (metricSelect.value === "0") {
-            metricSelect.value = "1"; // Select the first available metric
-            filterTable(); // Update the table based on the new metric
-        }
-    } else {
-        // Enable all options in the metric selector
-        metricOptions.forEach(option => {
-            option.disabled = false;
-        });
+// Logic for position selector
+if (selectedPosition === 'All' || (selectedLeague === 'Top 5 Leagues' || selectedLeague === 'Top 7 Leagues')) {
+    metricOptions[0].disabled = true;
+    if (selectedMetricIndex === 0) {
+        metricSelect.value = "1";
+        filterTable();
     }
-});
+} else {
+    metricOptions[0].disabled = false; // Enable column 10
+}
+
+
+}
+
+// Add event listener for all selectors
+metricSelect.addEventListener('change', handleSelectorsChange);
+positionSelect.addEventListener('change', handleSelectorsChange);
+leagueSelect.addEventListener('change', handleSelectorsChange);
 
 
 // Initial display
