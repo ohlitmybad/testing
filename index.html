@@ -150,7 +150,7 @@ body {
     }
 }
 
-@media only screen and (max-width: 767px) {
+@media only screen and (max-width: 870px) {
   body {
     zoom: 100%; /* Reset zoom level for mobile devices */
   }
@@ -170,6 +170,10 @@ td {
     margin-bottom: 0.5em; /* Adjust as needed */
   }
 
+  /* Existing CSS for toggleSortingButton */
+.toggle-button:hover::after {
+  display: none;
+}
 }
 .smaller-text {
     font-size: 79%; /* or adjust with specific size like 80% or 0.8em */
@@ -192,7 +196,7 @@ td {
         <option value="All">All positions</option>
     </select>
     <select id="league">
-        <option value="Premier League">Premier League</option>
+        <option value="Premier League">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
         <option value="La Liga">La Liga</option>
         <option value="Bundesliga">Bundesliga</option>
         <option value="Serie A">Serie A</option> 
