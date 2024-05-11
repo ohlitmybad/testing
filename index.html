@@ -5,15 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=0.535, user-scalable=no"">
     <title>Player Stats</title>
     <style>
-        .rank-bar {
-            background-color: rgb(213, 213, 213);
-            border: 1px solid #fff;
-            border-radius: 20px;
-            height: 17.1px;
-            width: 365px;
-            margin-bottom: 5px;
-            position: relative;
-        }
+
 
 
   
@@ -51,8 +43,8 @@ select {
 
 .toggle-button {
   position: absolute;
-  left: 700.8px;
-  top: 24.7px;
+  left: 700px;
+  top: 23.8px;
   width: 20px; /* Set width */
 }
 
@@ -120,9 +112,18 @@ select {
 
 /* Style for the table rows */
 td {
-    width: 320px;
+    width: 300px;
 }
 
+.rank-bar {
+            background-color: rgb(213, 213, 213);
+            border: 1px solid #fff;
+            border-radius: 20px;
+            height: 17.1px;
+            width: 385px;
+            margin-bottom: 5px;
+            position: relative;
+        }
 
 th {
     width: 50px;
@@ -165,8 +166,15 @@ body {
 td {
     width: 365px;
 }
+.half-spacing {
+    margin-bottom: 0.5em; /* Adjust as needed */
+  }
 
 }
+.smaller-text {
+    font-size: 79%; /* or adjust with specific size like 80% or 0.8em */
+}
+
 
    </style>
 </head>
@@ -241,7 +249,7 @@ td {
           <label for="toggleMetrics"></label>
       </div>
     
-    <br>    <br>    <div class="result-container">
+    <br>    <br>    <div class="half-spacing"></div><div class="result-container">
 
     <table id="playerTable" style="display: none;">
         <tr>
@@ -9974,7 +9982,7 @@ let minValue = Math.min(...data.map(row => parseFloat(row[metricSelect.value])))
 
         const tr = document.createElement('tr');
         tr.innerHTML = `
-            <td>${previousIndex + 1}. ${row[0]} (${row[1]}, ${row[4]})</td>
+            <td>${previousIndex + 1}. ${row[0]}&nbsp;<span class="smaller-text">(${row[1]}, ${row[4]})</span></td>
             <th>${row[metricSelect.value]}</th>
             <th>
                 <div class="rank-bar">
