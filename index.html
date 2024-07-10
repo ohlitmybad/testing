@@ -1,16 +1,4 @@
 
-
-
-
-
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html>
 <head>	
@@ -19,6 +7,8 @@
 	<meta name="robots" content="noindex">
 
 
+    <link rel="stylesheet" href="path/to/autocomplete.css">
+    <script src="path/to/autocomplete.js"></script>
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 
 
@@ -26,451 +16,22 @@
 <style>
 
 
-
-	
-	
-  /* Dark Mode Styles */
-  body.dark-mode,
-  body.dark-mode * {
-    color: #f2f2f2;
-  }
-
-  body.dark-mode {
-    background-color: #0F0F0E;
-  }
-
-  /* Override specific element styles for dark mode */
-  body.dark-mode table {
-    /* Override table background color */
-    background-color: #333333;
-  }
-
-  body.dark-mode th
-  body.dark-mode td {
-    /* Override table cell text color */
-    color: #f2f2f2;
-  }
-
- body.dark-mode .metrics-table th {
-  color: #bcbcbc;
-  padding: 9px;
-}
-
 svg text.label {
     /* Override SVG text color */
     fill: #bcbcbc;
   }
-
-
-
-  body.dark-mode svg text.label {
-    /* Override SVG text color */
-    fill: #bcbcbc;
-  }
-
-
-
-  body.dark-mode svg text.label {
-    /* Override SVG text color */
-    fill: #bcbcbc;
-  }
-
-body.dark-mode button {
-  /* Override button background color */
-  background-color: #333333;
-}
-
-body.dark-mode button,
-body.dark-mode button:focus {
-  /* Override button text color */
-  color: #f2f2f2;
-}
-
-body.dark-mode button:hover {
-  /* Preserve button hover property */
-  color: initial;
-}
-
-body.dark-mode .button-8 {
-  /* Override button background color */
-  background-color: #13293d; /* Dark blue color */
-  color: #f2f2f2; /* Off-white color */
-}
-
-body.dark-mode .button-8:hover,
-body.dark-mode .button-8:focus {
-  /* Override button hover and focus state */
-  background-color: #3a6ea5; /* Darker blue color */
-  color: #f2f2f2; /* Off-white color */
-}
-
-body.dark-mode .button-8:hover,
-body.dark-mode .button-8:focus {
-  /* Override button hover and focus state */
-  background-color: #3a6ea5; /* Darker blue color */
-  color: #f2f2f2; /* Off-white color */
-}
-
-
-.dark-mode-toggle {
-    position: absolute;
-    top: 11.4px;
-    left: 93%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 37px;
-    height: 37px;
-    background-color: #e0e0de;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  }
-
-
-.dark-mode-toggle .toggle-icon::before {
-  font-family: "Ionicons";
-  content: "\f467"; /* Unicode value for the moon icon in Ionicons */
-  font-size: 35px; /* Adjust the value as needed */
-}
-
-body.dark-mode .dark-mode-toggle {
-  background-color: #333333;
-}
-
-
-
-body.dark-mode .dark-mode-toggle .toggle-icon::before {
-  font-family: "Ionicons";
-  content: "\f3b0"; /* Unicode value for the sun icon in Ionicons */
-  font-size: 24px; /* Adjust the value as needed */
-}
-
-
-
-body.dark-mode .toggle-slider {
-  background-color: #2B2C2E; /* Darker background color for dark mode */
-}
-
-body.dark-mode input:checked + .toggle-slider:before {
-  background-color: #ccc; /* Darker background color for dark mode */
-}
-
-
-body.dark-mode .button-10 {
-  border: 0.1px solid #000000; /* Darker background color for dark mode */
-}
-
-
 	
- .button-10 {
-    position: absolute;
-    top: 834px;
-    left: 647px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 40.1px;
-    height: 40.1px;
-    border-radius: 50%;
-  background-color: #e0e0de;
-  color: #333;
-  border: 0.1px solid #ccc;
-  cursor: pointer;
-    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  }
-
 .icon2::before {
   content: "\f118";
   font-family: "Ionicons"; /* Replace with the appropriate font */
 font-size: 22px;
 }
 
-
 .icon3::before {
   content: "\f448";
   font-family: "Ionicons"; /* Replace with the appropriate font */
 font-size: 22px;
 }
-
-
-body.dark-mode #searchInput1 {
-    color: #000; /* Specify the desired text color for dark mode */
-background-color : #999;
-  }
-	
- body.dark-mode	  #searchInput1::placeholder {
-    color: #fff; /* Specify the desired color for the placeholder text */
-  }
-
- body.dark-mode	  #searchButton1 {
-    color: #fff !important; /* Specify the desired color for the placeholder text */
-background-color : #333333;
-  }
-
-.button-1 {
-  align-items: center;
-height: 20px;
-  background-color: #F9F9F9;
-  border-radius: 6px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: #121212;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 1 1 auto;
-  font-family: Inter,sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1;
-  margin: 0;
-  outline: none;
-  padding: 1rem 1.2rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow .1s,-webkit-box-shadow .1s;
-  white-space: nowrap;
-  border: 0;
-  user-select: none;
-  position: absolute;
-  top: 838px;
-  left: 45px;
-width: 85px; 
- 
-  touch-action: manipulation;
-}
-
-.button-1:hover {
-   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
-}
-
-.button-2 {
-  align-items: center;
-  background-color: #F9F9F9;
-  border-radius: 6px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: #121212;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 1 1 auto;
-  font-family: Inter,sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1;
-  margin: 0;
-  outline: none;
-  padding: 1rem 1.2rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow .1s,-webkit-box-shadow .1s;
-  white-space: nowrap;
-  border: 0;
-  user-select: none;
-  position: absolute;
-  top: 838px;
-  left: 145px;
-height: 20px;
-width: 85px; 
- 
-  touch-action: manipulation;
-}
-
-.button-2:hover {
-   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
-}
-
-.button-3 {
-  align-items: center;
-height: 20px;
-  background-color: #F9F9F9;
-  border-radius: 6px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: #121212;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 1 1 auto;
-  font-family: Inter,sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1;
-  margin: 0;
-  outline: none;
-  padding: 1rem 1.2rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow .1s,-webkit-box-shadow .1s;
-  white-space: nowrap;
-  border: 0;
-  user-select: none;
-  position: absolute;
-  top: 838px;
-  left: 245px;
-width: 85px; 
- 
-  touch-action: manipulation;
-}
-
-.button-3:hover {
-   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
-}
-
-.button-4 {
-  align-items: center;
-  background-color: #F9F9F9;
-  border-radius: 6px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: #121212;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 1 1 auto;
-  font-family: Inter,sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1;
-  margin: 0;
-  outline: none;
-  padding: 1rem 1.2rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow .1s,-webkit-box-shadow .1s;
-  white-space: nowrap;
-  border: 0;
-  user-select: none;
-  position: absolute;
-  top: 838px;
-  left: 345px;
-height: 20px;
-width: 85px; 
- 
-  touch-action: manipulation;
-}
-
-.button-4:hover {
-   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
-}
-
-
-
-.button-5 {
-  align-items: center;
-height: 20px;
-  background-color: #F9F9F9;
-  border-radius: 6px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: #121212;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 1 1 auto;
-  font-family: Inter,sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1;
-  margin: 0;
-  outline: none;
-  padding: 1rem 1.2rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow .1s,-webkit-box-shadow .1s;
-  white-space: nowrap;
-  border: 0;
-  user-select: none;
-  position: absolute;
-  top: 838px;
-  left: 445px;
-width: 85px; 
- 
-  touch-action: manipulation;
-}
-
-.button-5:hover {
-   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
-}
-
-.button-6 {
-  align-items: center;
-  background-color: #F9F9F9;
-  border-radius: 6px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: #121212;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 1 1 auto;
-  font-family: Inter,sans-serif;
-  font-size: 0.82rem;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1;
-  margin: 0;
-  outline: none;
-  padding: 1rem 1.2rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow .1s,-webkit-box-shadow .1s;
-  white-space: nowrap;
-  border: 0;
-  user-select: none;
-  position: absolute;
-  top: 838px;
-  left: 545px;
-height: 20px;
-width: 85px; 
- 
-  touch-action: manipulation;
-}
-
-.button-6:hover {
-   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
-}
-
-
-.button-9 {
-  align-items: center;
-  background-color: #e0e0de;
-  border-radius: 25px;
-  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
-  box-sizing: border-box;
-  color: #121212;
-  cursor: pointer;
-  display: inline-flex;
-  flex: 1 1 auto;
-  font-family: Inter,sans-serif;
-  font-size: 1.82rem;
-  font-weight: 700;
-  justify-content: center;
-  line-height: 1;
-  margin: 0;
-  outline: none;
-  padding: 0.1rem;
-  text-align: center;
-  text-decoration: none;
-  transition: box-shadow .1s,-webkit-box-shadow .1s;
-  white-space: nowrap;
-  border: 0;
-  user-select: none;
-  position: absolute;
-  top: 10px;
-  left: 878px;
-  width: 50px; 
- 
-  touch-action: manipulation;
-}
-
-.button-9:hover {
-  box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
-}
-
-
-
 
 text {
   font-family: Arial;
@@ -903,78 +464,21 @@ fill-opacity: 0.02;
 }
 
 
-           
-svg:nth-of-type(1) {
-  position: absolute;
-  top: 239px;
-  left: 113px;
-  width: 520px;
-  height: 520px;
-}
-
-svg:nth-of-type(2) {
-  position: absolute;
-  top: 256px;
-  left: 133px;
-
-}
-
-
-table {
-   border-collapse: collapse;
-  width: 200px;
-  font-family: Arial;
-  border-radius: 10px;
- ;
- 
-}
-
-
-
-
-
-
-#searchInput1 {
-  width: 406px;
-height: 30px;
-}
-
-#searchInput1::placeholder {
-    font-size : 18px; /* Specify the desired color for the placeholder text */
+  #searchInput1::placeholder {
+    font-size : 18px; 
   }
 
 
-#searchButton1 {
-  width: 32px;
-color: black !important;
-height: 32px;
-cursor: pointer;
-}
-
-
-	.name {
-  font-family: Arial, sans-serif !important;
+.name {
+font-family: Arial, sans-serif !important;
 font-size: 13px;
 position: relative;
 top: 10px;
-  color: black !important;
+color: black !important;
 cursor: pointer;
 }
 
-.dark-mode .matching-names-container {
-  background-color: grey;
-}
 
-
-     img {
-            width: 40px;
-position: absolute;
-top: 663px;
-pointer-events: none;
-z-index: 40000; 
-left: 38px;
-opacity: .8;
-        }
 
 td {
     font-weight: bold;
@@ -984,16 +488,540 @@ td {
   }
 
 
+.icon::before {
+  content: "\f21c";
+  font-family: "Ionicons"; /* Replace with the appropriate font */
+font-size: 22px;
+}		
+
+
+.similar-table {
+  position: absolute;
+  top: -526px;
+  width: auto;
+  left: 381px;
+  transform: translateX(-50%);
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  table-layout: fixed; /* Ensures fixed table layout */
+  border-collapse: collapse; /* Removes extra space between cells */
+}
+
+.similar-table th,
+.similar-table td {
+  text-align: center;
+
+}
+
+/* Header Cells */
+.similar-table th {
+  color: #000000;
+  padding: 6px 9px;
+  font-size: 11px;
+  overflow: hidden; 
+}
+
+/* Data Cells */
+.similar-table td {
+  padding: 4px 11px;
+}
+
+
+.metrics-table {
+  background-color: #f2f2f2;
+  font-family: Arial, sans-serif;
+  font-size: 12px;
+  width: 765px;
+  table-layout: fixed; /* Ensures fixed table layout */
+  border-collapse: collapse; /* Removes extra space between cells */
+}
+
+/* Header Cells */
+.metrics-table th {
+  color: #000000;
+  padding: 6px 9px;
+  font-size: 11px;
+  text-align: center;
+  overflow: hidden; 
+}
+
+/* Data Cells */
+.metrics-table td {
+  padding: 4px 11px;
+  text-align: center;
+  word-wrap: break-word; /* Break long words */
+  overflow: hidden; /* Hide overflow content */
+}
+
+/* First Column */
+.metrics-table th:nth-child(1),
+.metrics-table td:nth-child(1) {
+  width: 90px; /* Fixed width for the first column */
+}
+
+/* Second Column */
+.metrics-table th:nth-child(2),
+.metrics-table td:nth-child(2) {
+  width: 95px; /* Fixed width for the second column */
+}
+
+/* Second Column */
+.metrics-table th:nth-child(3),
+.metrics-table td:nth-child(3) {
+  width: 20px; /* Fixed width for the second column */
+}
+
+
+/* First Cell in Header Row */
+tr:first-child th:first-child {
+  color: #5b5b5b;
+  font-weight: bold;
+  font-size: 12px;
+  word-wrap: break-word; /* Break long words */
+  overflow: hidden; /* Hide overflow content */
+}
+
+.button-10 {
+    position: absolute;
+    top: 724px;
+    left: 667px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40.1px;
+    height: 40.1px;
+    border-radius: 50%;
+  background-color: #e0e0de;
+  color: #333;
+  border: 0.1px solid #ccc;
+  cursor: pointer;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  }
+
+	
+
+/* IMPORTANT */
+
+           
+svg:nth-of-type(1) {
+  width: 1000px;
+  height: 1000px;
+}
+
+
+table {
+   border-collapse: collapse;
+  width: 200px;
+  font-family: Arial;
+  border-radius: 10px;
+}
+
+#searchInput1 {
+width: 406px;
+height: 30px;
+}
+
+#searchButton1 {
+width: 32px;
+color: black !important;
+height: 32px;
+cursor: pointer;
+}
+
+
+  /* Dark Mode Styles */
+  body.dark-mode,
+  body.dark-mode * {
+    color: #f2f2f2;
+  }
+
+  body.dark-mode {
+    background-color: #0F0F0E;
+  }
+
+  /* Override specific element styles for dark mode */
+  body.dark-mode table {
+    /* Override table background color */
+    background-color: #333333;
+  }
+
+  body.dark-mode th
+  body.dark-mode td {
+    /* Override table cell text color */
+    color: #f2f2f2;
+  }
+
+ body.dark-mode .metrics-table th {
+  color: #bcbcbc;
+  padding: 9px;
+}
+
+body.dark-mode #searchInput1 {
+    color: #000; /* Specify the desired text color for dark mode */
+background-color : #999;
+  }
+	
+ body.dark-mode	  #searchInput1::placeholder {
+    color: #fff; /* Specify the desired color for the placeholder text */
+  }
+
+ body.dark-mode	  #searchButton1 {
+    color: #fff !important; /* Specify the desired color for the placeholder text */
+background-color : #333333;
+  }
 
 
 
- .toggle-container {
+.dark-mode .matching-names-container {
+  background-color: grey;
+}
+
+
+
+
+  body.dark-mode svg text.label {
+    /* Override SVG text color */
+    fill: #bcbcbc;
+  }
+
+
+
+  body.dark-mode svg text.label {
+    /* Override SVG text color */
+    fill: #bcbcbc;
+  }
+
+body.dark-mode button {
+  /* Override button background color */
+  background-color: #333333;
+}
+
+body.dark-mode button,
+body.dark-mode button:focus {
+  /* Override button text color */
+  color: #f2f2f2;
+}
+
+body.dark-mode button:hover {
+  /* Preserve button hover property */
+  color: initial;
+}
+
+body.dark-mode .button-8 {
+  /* Override button background color */
+  background-color: #13293d; /* Dark blue color */
+  color: #f2f2f2; /* Off-white color */
+}
+
+body.dark-mode .button-8:hover,
+body.dark-mode .button-8:focus {
+  /* Override button hover and focus state */
+  background-color: #3a6ea5; /* Darker blue color */
+  color: #f2f2f2; /* Off-white color */
+}
+
+body.dark-mode .button-8:hover,
+body.dark-mode .button-8:focus {
+  /* Override button hover and focus state */
+  background-color: #3a6ea5; /* Darker blue color */
+  color: #f2f2f2; /* Off-white color */
+}
+
+
+.dark-mode-toggle {
+    position: absolute;
+    top: 15.3px;
+    left: 93%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 37px;
+    height: 37px;
+    background-color: #e0e0de;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  }
+
+
+.dark-mode-toggle .toggle-icon::before {
+  font-family: "Ionicons";
+  content: "\f467"; /* Unicode value for the moon icon in Ionicons */
+  font-size: 35px; /* Adjust the value as needed */
+}
+
+body.dark-mode .dark-mode-toggle {
+  background-color: #333333;
+}
+
+
+
+body.dark-mode .dark-mode-toggle .toggle-icon::before {
+  font-family: "Ionicons";
+  content: "\f3b0"; /* Unicode value for the sun icon in Ionicons */
+  font-size: 24px; /* Adjust the value as needed */
+}
+
+
+
+body.dark-mode .toggle-slider {
+  background-color: #2B2C2E; /* Darker background color for dark mode */
+}
+
+body.dark-mode input:checked + .toggle-slider:before {
+  background-color: #ccc; /* Darker background color for dark mode */
+}
+
+
+body.dark-mode .button-10 {
+  border: 0.1px solid #000000; /* Darker background color for dark mode */
+}
+
+
+
+.button-1 {
+  align-items: center;
+height: 20px;
+  background-color: #F9F9F9;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 728px;
+  left: 65px;
+width: 85px; 
+ 
+  touch-action: manipulation;
+}
+
+.button-1:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+.button-2 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 728px;
+  left: 165px;
+height: 20px;
+width: 85px; 
+ 
+  touch-action: manipulation;
+}
+
+.button-2:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+.button-3 {
+  align-items: center;
+height: 20px;
+  background-color: #F9F9F9;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 728px;
+  left: 265px;
+width: 85px; 
+ 
+  touch-action: manipulation;
+}
+
+.button-3:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+.button-4 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 728px;
+  left: 365px;
+height: 20px;
+width: 85px; 
+ 
+  touch-action: manipulation;
+}
+
+.button-4:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+
+
+.button-5 {
+  align-items: center;
+height: 20px;
+  background-color: #F9F9F9;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 728px;
+  left: 465px;
+width: 85px; 
+ 
+  touch-action: manipulation;
+}
+
+.button-5:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+.button-6 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 6px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 728px;
+  left: 565px;
+height: 20px;
+width: 85px; 
+ 
+  touch-action: manipulation;
+}
+
+.button-6:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+
+.toggle-container2 {
       display: flex;
       align-items: center;
       justify-content: center;
 position: absolute;
-  top: 676px;
-  left: 600px;
+  top: 578px;
+  left: 14px;
+ width: 120px; 
+    }
+
+.toggle-container {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+position: absolute;
+  top: 582px;
+  left: 620px;
  width: 120px; 
     }
 
@@ -1044,183 +1072,91 @@ position: absolute;
       transform: translateX(20px);
     }
 
-	
-.icon::before {
-  content: "\f21c";
-  font-family: "Ionicons"; /* Replace with the appropriate font */
-font-size: 22px;
-}		
-
-
-.metrics-table {
-  background-color: #f2f2f2;
-  font-family: Arial, sans-serif;
-  font-size: 12px;
-}
-
-.metrics-table th {
-  color: #000000;
-  padding: 6px 9px;
-font-size: 11px;
-  text-align: center;
-}
-
-.metrics-table td {
-  padding: 4px 11px;
-text-align: center;
-}
-
-
-tr:first-child th:first-child {
-  color: #5b5b5b;
-font-weight: bold;
-font-size: 12px;
- 
-}
-
-.header {
-  font-family: system-ui;
-  padding: 20px;
-  text-align: center;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header .logo {
-  display: flex;
-  align-items: center;
-}
-
-.header .logo {
-    position: relative; /* Add this to make the logo a positioning context */
-}
-
-.header .logo img {
-    /* Styles for the logo image inside the header */
-    width: 40px;
-    height: 40px;
-    opacity: 0.84;
-    position: absolute;
-    top: -10px; /* Adjust top and left values as needed to position the logo image */
-    left: -7px;
-}
-
-
-.header .logo-text {
-  margin-left: 40px;
-  font-size: 20px;
-color: #444444;
-  font-weight: 600;
-}
-
-.header .navigation {
-  display: center;
-  align-items: center;
-      word-spacing: 1.3em; /* Adjust the spacing as needed */	
-
-}
-
-.header .button {
-  margin: 0 10px;
-  padding: 0px 20px;
-  color: #444444;
-  text-decoration: none;
-  border-radius: 0px;
-font-size: 18px;
-}
-
-header a {
-      color: #444444;
-      text-decoration: none;
-
-    }
-
-.header .header-svg {
-    /* Styles for the new SVG inside the header */
-    position: absolute;
-    top: 27px; /* Adjust top and left values as needed to position the new SVG */
-    left: 95%;
-    width: 30px;
-    height: 28px;
-color: #444444;
-}
-
-
-body.dark-mode .header .twitter-link svg {
-  fill: #bcbcbc; /* Change the Twitter icon color to green in dark mode */
-}
-
-
-body.dark-mode header a {
-  color: #bcbcbc; /* Change the Twitter icon color to green in dark mode */
-}
-
-body.dark-mode .header .button  {
-  color: #bcbcbc; /* Change the Twitter icon color to green in dark mode */
-}
-
+    img {
+            width: 40px;
+top: -400px;
+pointer-events: none;
+z-index: 40000; 
+left: -953px;
+opacity: .8;
+        }
 
 </style>
 </defs>
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 </head>
-
-
-<div id="parent-container">
   <body>
+  
     <input type="text" id="searchInput1" class="search-bar" placeholder="Enter name of midfielder..." />
     <input type="button" id="searchButton1" value="+&nbsp;" />
-    <br />
     <div id="resultsTable"></div>
-  <div id="similarPlayersTable"></div>
+  <div id="similarPlayersTable"></div><br><br>
   <div id="matchingNames"></div>
-   <div class="dark-mode-toggle" onclick="toggleDarkMode()">
-      <div class="toggle-icon"></div>
-    </div>
+  <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+    <div class="toggle-icon"></div>
+  </div>
+  <div class="toggle-container">
+    <label class="toggle-label"></label>
+    <label class="toggle-checkbox">
+      <input type="checkbox" id="toggleButton" onclick="toggleFilling()" unchecked>
+      <span class="toggle-slider"></span>
+    </label>
+  </div>
+  <div class="toggle-container2">
+    <img src="https://datamb.football/logo.png" alt="Logo">
+  </div>
+
+  <button onclick="takeScreenshot()" class="button-10"><div class="icon2"></div></button>
+  <a href="https://datamb.football/keepers/" target="_top" rel="noopener noreferrer">
+    <button class="button-1" role="button">GK</button></a>
   
+  <a href="https://datamb.football/centrebacks/" target="_top" rel="noopener noreferrer">
+    <button class="button-2" role="button">CB</button></a>
   
+  <a href="https://datamb.football/fullbacks/" target="_top" rel="noopener noreferrer">
+    <button class="button-3" role="button">FB</button></a>
   
+  <a href="https://datamb.football/wingers/" target="_top" rel="noopener noreferrer">
+    <button class="button-4" role="button">FW</button></a>
   
-  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
-   <g class="radar_label">
-    <text class="label" data-type="Aerial%" data-idx="0" transform="translate(145.99 36.45) rotate(-2)">Key Passes</text>
+  <a href="https://datamb.football/strikers/" target="_top" rel="noopener noreferrer">
+    <button class="button-5" role="button">ST</button></a>
+  
+  <a href="https://datamb.football/teamradars/" target="_top" rel="noopener noreferrer">
+    <button class="button-6" role="button">Team</button></a>
+
+
+
+  <svg class="radar"><g transform="translate(379.77,225.77)"><g class="axisWrapper">
+  
+    <g class="radar_label">
+      <text class="label" data-type="Aerial%" data-idx="0" transform="translate(-60 -196.04) scale(1.3) rotate(-1.7)">Key Passes</text>
   </g>
   
   <g class="radar_label">
-    <text class="label" data-type="Long%" data-idx="6" transform="matrix(0.5, -0.86, 0.86, 0.5, 47.89, 122.88) rotate(7.5)">Fwd Pass%</text>
+      <text class="label" data-type="Long%" data-idx="6" transform="matrix(0.65, -1.118, 1.118, 0.65, -188.21, -80.03) rotate(7.5)">Fwd Pass%</text>
   </g>
   
   <g class="radar_label">
-    <text class="label" data-type="Passes" data-idx="5" transform="matrix(-0.38, -0.93, 0.93, -0.38, 58.38, 273.78) rotate (3.87)">Fwd Passes</text>
+      <text class="label" data-type="Passes" data-idx="5" transform="matrix(-0.494, -1.209, 1.209, -0.494, -173, 107.54) rotate(3.87)">Fwd Passes</text>
   </g>
   
   <g class="radar_label">
-    <text class="label" data-type="Exits" data-idx="4" transform="translate(97.19 329.04) rotate(18.87)">Carrying</text>
+      <text class="label" data-type="Exits" data-idx="4" transform="translate(-120.12 183.16) scale(1.3) rotate(20)">Carrying</text>
   </g>
   
   <g class="radar_label">
-    <text class="label" data-type="Aerial" data-idx="3" transform="translate(245.36 344) rotate(-28.32)">Def Actions</text>
+      <text class="label" data-type="Aerial" data-idx="3" transform="translate(71.82 206.54) scale(1.3) rotate(-31)">Def Actions</text>
   </g>
   
   <g class="radar_label">
-    <text class="label" data-type="Def Actions" data-idx="2" transform="translate(351.56 193.26) rotate(100.11)">Duels%</text>
+      <text class="label" data-type="Def Actions" data-idx="2" transform="translate(200.22 6.30) scale(1.3) rotate(99.11)">Duels%</text>
   </g>
   
   <g class="radar_label">
-    <text class="label" data-type="Shotstopping" data-idx="1" transform="translate(288.42 58.68) rotate(51.09)">Prog Passes</text>
+      <text class="label" data-type="Shotstopping" data-idx="1" transform="translate(125.64 -163.65) scale(1.3) rotate(52.49)">Prog Passes</text>
   </g>
-      
-    </svg>					
-  
-  
-  <svg width="500" height="500" class="radar"><g transform="translate(231.77,225.77)"><g class="axisWrapper">
   
   
   <circle class="blackCircle" r="190" style="fill:none; stroke:#D3D3D3; stroke-width:1;"></circle>
@@ -1228,10 +1164,8 @@ body.dark-mode .header .button  {
   <circle class="gridCircle" r="160" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
   <circle class="gridCircle" r="120" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
   <circle class="gridCircle" r="80" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
-  <circle class="gridCircle" r="40" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle></g>
-  
-  
-    
+  <circle class="gridCircle" r="40" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
+
    
   <line x1="0" y1="0" x2="9.33" y2="189.4543362" stroke="#D3D3D3" stroke-width="1" transform="translate(-9.33, -189.4543362)"></line>
   <line x1="0" y1="0" x2="-142.0538533333333" y2="126.24" stroke="#D3D3D3" stroke-width="1" transform="translate(141.74184, -126.24)"></line>
@@ -1243,17 +1177,12 @@ body.dark-mode .header .button  {
   
   
   <g class="radarWrapper"></g>
-  <g class="radarWrapper2"></g>
-  </g>
-  
-  
-  
-  
+  </g></g>    
     
-      
-      
-      
-        <script>
+
+
+
+<script>
       
     const allData1 = [];
     const allData2 = [];
@@ -1546,7 +1475,6 @@ const urls2 = [
             const csvData = allDataAsString;
             let dataArray = csvData.trim().split('\n').map(line => line.split(','));
             
-   
 
 
 function calculateEuclideanDifference(data1, data2) {
@@ -1559,7 +1487,6 @@ function calculateEuclideanDifference(data1, data2) {
   return Math.sqrt(difference);
 }
 
-      
       const colorClasses = ['result-color-blue', 'result-color-pink', 'result-color-orange', 'result-color-green', 'result-color-bleu', 'result-color-rose', 'result-color-1', 'result-color-2', 'result-color-3', 'result-color-4', 'result-color-5', 'result-color-6', 'result-color-7', 'result-color-8', 'result-color-9', 'result-color-10', 'result-color-11', 'result-color-12', 'result-color-13', 'result-color-14', 'result-color-15', 'result-color-16', 'result-color-17', 'result-color-18', 'result-color-19', 'result-color-20', 'result-color-21', 'result-color-22', 'result-color-23', 'result-color-24', 'result-color-25', 'result-color-26', 'result-color-27', 'result-color-28', 'result-color-29', 'result-color-30', 'result-color-31', 'result-color-32', 'result-color-33', 'result-color-34', 'result-color-35', 'result-color-36', 'result-color-37', 'result-color-38', 'result-color-39', 'result-color-40', 'result-color-41', 'result-color-42', 'result-color-43', 'result-color-44', 'result-color-45', 'result-color-46', 'result-color-47', 'result-color-48'];
       
       let searchResults = []; // Declare the search results variable
@@ -1616,14 +1543,13 @@ function calculateEuclideanDifference(data1, data2) {
         '',
         'Age',
         'Duel%',
-        'Defensive actions',
-        'Progressive carries',
+        'Def. actions',
+        'Prog. carries',
         'Forward passes',
         'Forward pass%',
         'Key passes',
-        'Progressive passes',
+        'Prog. passes',
         'Minutes played',
-    ''
       ];
     
       
@@ -1679,6 +1605,15 @@ function calculateEuclideanDifference(data1, data2) {
         radarPolygons.forEach((polygon) => polygon.remove()); // Remove radar polygons with the specified color
         radarLines.forEach((line) => line.remove()); // Remove radar lines with the specified color
         radarCircles.forEach((circle) => circle.remove()); // Remove radar circles with the specified color
+        const elements = document.querySelectorAll('.button-1, .button-2, .button-3, .button-4, .button-5, .button-6, .button-10, .toggle-container, .toggle-container2');
+
+        elements.forEach(element => {
+          // Get the current top position of the element
+          let currentTop = parseFloat(getComputedStyle(element).top);
+          
+          // Move the element down by 30px
+          element.style.top = (currentTop - 46) + 'px';
+        });
       });
       
       xCell.appendChild(xButton);
@@ -1717,7 +1652,7 @@ function calculateEuclideanDifference(data1, data2) {
         const radarWrapper = svg.appendChild(
           document.createElementNS('http://www.w3.org/2000/svg', 'g')
         );
-        radarWrapper.setAttribute('transform', 'translate(231.77,225.77)');
+        radarWrapper.setAttribute('transform', 'translate(379.77,225.77)');
         radarWrapper.innerHTML = '';
       
         const data = [];
@@ -1766,11 +1701,7 @@ function calculateEuclideanDifference(data1, data2) {
           radarWrapper.appendChild(circle);
         });
       }
-      
-      
- 
-      
-      
+
         const teamNames = new Set();
       
       
@@ -1815,8 +1746,6 @@ function calculateEuclideanDifference(data1, data2) {
       const similarPlayersContainer = document.createElement("div");
       similarPlayersContainer.id = "similarPlayersContainer";
       similarPlayersContainer.style.position = "absolute";
-      similarPlayersContainer.style.top = "733px";
-      similarPlayersContainer.style.left = "210px";
       document.body.appendChild(similarPlayersContainer);
       
       let colorIndex = 0; // Initialize color index
@@ -1851,7 +1780,7 @@ function calculateEuclideanDifference(data1, data2) {
           const playerTeam = dataArray[playerIndex][2];
       
       const similarPlayerTable = document.createElement("table");
-      similarPlayerTable.classList.add("metrics-table");
+      similarPlayerTable.classList.add("similar-table");
       
       const headerRow = document.createElement("tr");
       const headerCell = document.createElement("th");
@@ -1912,117 +1841,92 @@ function calculateEuclideanDifference(data1, data2) {
         console.error('Error fetching or processing data:', error);
     });
     
-    
-    
-      </script>
+</script>
 
-      <img src="https://datamb.football/logo.png" alt="Logo" id="logo" crossorigin="anonymous">
-
-
-  <script>async function takeScreenshot() {
-    const body = document.querySelector('body');
-    const isDarkMode = body.classList.contains('dark-mode');
-    const backgroundColor = isDarkMode ? '#0F0F0E' : '#ffffff'; // Black for dark mode, white for light mode
+<script>
+    async function takeScreenshot() {
+      const body = document.querySelector('body');
+      const isDarkMode = body.classList.contains('dark-mode');
+      const backgroundColor = isDarkMode ? '#0F0F0E' : '#ffffff'; // Black for dark mode, white for light mode
+      
+      try {
+        const element = document.body; // Capture entire document body
+        const canvas = await html2canvas(element, {
+          width: 795, 
+          height: 773, 
+          y: +45,
+          x: -5,
+          useCORS: true,
+          backgroundColor: backgroundColor, // Set the background color based on mode
+          scale: window.devicePixelRatio,
+          logging: false, // Disable logging for production
+          foreignObjectRendering: false,
+          scrollX: 0, // Capture from the top of the page
+          scrollY: 0 // Capture from the top of the page
+        });
     
-    try {
-      const element = document.body; // Capture entire document body
-      const canvas = await html2canvas(element, {
-        width: 845, 
-        height: 670, 
-        y: +17, 
-        useCORS: true,
-        proxy: 'path/to/proxy', // Add a proxy path if necessary
-        backgroundColor: backgroundColor, // Set the background color based on mode
-        scale: window.devicePixelRatio,
-        logging: false, // Disable logging for production
-        foreignObjectRendering: true,
-        scrollX: 0, // Capture from the top of the page
-        scrollY: 0 // Capture from the top of the page
-      });
-  
-      const ctx = canvas.getContext('2d');
-  
-      canvas.toBlob(blob => {
-        const link = document.createElement('a');
-        link.href = URL.createObjectURL(blob);
-        link.download = 'screenshot.png';
-        link.click();
-      }, 'image/png');
-    } catch (error) {
-      console.error('Error in takeScreenshot:', error);
-      // Handle errors appropriately (e.g., display to user or log)
+        const ctx = canvas.getContext('2d');
+    
+        canvas.toBlob(blob => {
+          const link = document.createElement('a');
+          link.href = URL.createObjectURL(blob);
+          link.download = 'screenshot.png';
+          link.click();
+        }, 'image/png');
+      } catch (error) {
+        console.error('Error in takeScreenshot:', error);
+        // Handle errors appropriately (e.g., display to user or log)
+      }
     }
+
+  document.addEventListener("DOMContentLoaded", function() {
+    const searchButton = document.getElementById('searchButton1');
+
+    searchButton.addEventListener("click", function(event) {
+      // Select all elements with classes button-1 to button-6, and button-10
+      const elements = document.querySelectorAll('.button-1, .button-2, .button-3, .button-4, .button-5, .button-6, .button-10, .toggle-container, .toggle-container2');
+
+      elements.forEach(element => {
+        // Get the current top position of the element
+        let currentTop = parseFloat(getComputedStyle(element).top);
+        
+        // Move the element down by 30px
+        element.style.top = (currentTop + 46) + 'px';
+      });
+    });
+  });
+
+
+  // Function to toggle dark mode
+  function toggleDarkMode() {
+    const body = document.querySelector("body");
+    body.classList.toggle("dark-mode");
+
+    // Store the user's preference in local storage
+    const isDarkMode = body.classList.contains("dark-mode");
+    localStorage.setItem("darkMode", isDarkMode);
   }
-  
-    
-    </script>
-      <button onclick="takeScreenshot()" class="button-10"><div class="icon2"></div></button>
-    
 
-  <script>
+  // Check if user has a stored preference for dark mode
+  const storedDarkMode = localStorage.getItem("darkMode");
 
-    // Function to toggle dark mode
-    function toggleDarkMode() {
-      const body = document.querySelector("body");
-      body.classList.toggle("dark-mode");
+  if (storedDarkMode === "true") {
+    const body = document.querySelector("body");
+    body.classList.add("dark-mode");
+  }
 
-      // Store the user's preference in local storage
-      const isDarkMode = body.classList.contains("dark-mode");
-      localStorage.setItem("darkMode", isDarkMode);
-    }
-
-    // Check if user has a stored preference for dark mode
-    const storedDarkMode = localStorage.getItem("darkMode");
-
-    if (storedDarkMode === "true") {
-      const body = document.querySelector("body");
-      body.classList.add("dark-mode");
-    }
-
-         
-    function toggleFilling() {
-      const radarPolygons = document.querySelectorAll('.radarPolygon');
-      radarPolygons.forEach(polygon => {
-        polygon.style.fill = polygon.style.fill ? '' : 'none'; // Toggle the filling
-      });
-    }
-
-  </script>
-
-  <div class="toggle-container">
-    <label class="toggle-label"></label>
-    <label class="toggle-checkbox">
-      <input type="checkbox" id="toggleButton" onclick="toggleFilling()" unchecked>
-      <span class="toggle-slider"></span>
-    </label>
-  </div>
-  
+              
+  function toggleFilling() {
+    const radarPolygons = document.querySelectorAll('.radarPolygon');
+    radarPolygons.forEach(polygon => {
+      polygon.style.fill = polygon.style.fill ? '' : 'none'; // Toggle the filling
+    });
+  }
 
 
-  <a href="https://datamb.football/keepers/" target="_top" rel="noopener noreferrer">
-    <button class="button-1" role="button">GK</button></a>
-  
-  <a href="https://datamb.football/centrebacks/" target="_top" rel="noopener noreferrer">
-    <button class="button-2" role="button">CB</button></a>
-  
-  <a href="https://datamb.football/fullbacks/" target="_top" rel="noopener noreferrer">
-    <button class="button-3" role="button">FB</button></a>
-  
-  <a href="https://datamb.football/wingers/" target="_top" rel="noopener noreferrer">
-    <button class="button-4" role="button">FW</button></a>
-  
-  <a href="https://datamb.football/strikers/" target="_top" rel="noopener noreferrer">
-    <button class="button-5" role="button">ST</button></a>
-  
-  <a href="https://datamb.football/teamradars/" target="_top" rel="noopener noreferrer">
-    <button class="button-6" role="button">Team</button></a>
 
-</div>
 
-	<br>
-	<br>
-	<br>
-	
+</script>
+
 </body>
 </html>
-
