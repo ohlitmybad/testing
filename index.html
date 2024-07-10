@@ -497,7 +497,7 @@ font-size: 22px;
 
 .similar-table {
   position: absolute;
-  top: -526px;
+  top: -20px;
   width: auto;
   left: 381px;
   transform: translateX(-50%);
@@ -606,7 +606,7 @@ tr:first-child th:first-child {
            
 svg:nth-of-type(1) {
   width: 1000px;
-  height: 1000px;
+  height: 500px;
 }
 
 
@@ -731,7 +731,7 @@ body.dark-mode .button-8:focus {
 
 .dark-mode-toggle {
     position: absolute;
-    top: 15.3px;
+    top: 11.2px;
     left: 93%;
     display: flex;
     align-items: center;
@@ -1087,15 +1087,15 @@ opacity: .8;
 <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
 </head>
   <body>
-  
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+      <div class="toggle-icon"></div>
+    </div>
     <input type="text" id="searchInput1" class="search-bar" placeholder="Enter name of midfielder..." />
     <input type="button" id="searchButton1" value="+&nbsp;" />
     <div id="resultsTable"></div>
-  <div id="similarPlayersTable"></div><br><br>
+ <br><br>
   <div id="matchingNames"></div>
-  <div class="dark-mode-toggle" onclick="toggleDarkMode()">
-    <div class="toggle-icon"></div>
-  </div>
+ 
   <div class="toggle-container">
     <label class="toggle-label"></label>
     <label class="toggle-checkbox">
