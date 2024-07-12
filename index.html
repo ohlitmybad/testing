@@ -942,7 +942,9 @@ width: 95px;
       &nbsp;<input type="button" id="searchButton1" value="+&nbsp;" /> <a href="https://datamb.football/proteamplot/" target="_self" rel="noopener noreferrer">
 
       <div class="dark-mode-toggle" onclick="toggleDarkMode()"><div class="toggle-icon"></div></div>
-      <button class="button-20" role="button">Team Plots</button></a>    <button onclick="takeScreenshot()" class="button-10"><div class="icon2"></div></button></div>
+      <a href="https://datamb.football/plotteam/" target="_top" rel="noopener noreferrer">
+        <button class="button-20" role="button">Team Plots</button></a>
+          <button onclick="takeScreenshot()" class="button-10"><div class="icon2"></div></button></div>
       <div class="screenshotcontainer">
         <div id="matchingNames"></div>
     <div id="resultsTable"></div>  
@@ -957,7 +959,7 @@ width: 95px;
     </div>
    
   </div>
-  <svg class="radar"><g transform="translate(379.77,225.77)"><g class="axisWrapper">
+  <svg class="radar"><g transform="translate(309.77,225.77)"><g class="axisWrapper">
   
   
     <g class="radar_label">
@@ -1337,7 +1339,7 @@ for (const line of lines) {
      const radarWrapper = svg.appendChild(
        document.createElementNS('http://www.w3.org/2000/svg', 'g')
      );
-     radarWrapper.setAttribute('transform', 'translate(379.77,225.77)');
+     radarWrapper.setAttribute('transform', 'translate(309.77,225.77)');
      radarWrapper.innerHTML = '';
    
      const data = [];
@@ -1590,7 +1592,20 @@ for (const line of lines) {
         polygon.style.fill = polygon.style.fill ? '' : 'none'; // Toggle the filling
       });
     }
-  
+    (function() {
+      function isMobile() {
+        return /Mobi|Android/i.test(navigator.userAgent);
+      }
+    
+      function setZoom(scale) {
+        document.body.style.zoom = scale;
+      }
+    
+      if (isMobile()) {
+        setZoom(0.89);
+      }
+    })();
+    
   
   </script>
 
