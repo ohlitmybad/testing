@@ -2185,16 +2185,20 @@ let dataArray = csvData.trim().split('\n').map(line => line.split(','));
   const backgroundColor = isDarkMode ? '#0F0F0E' : '#ffffff'; // Black for dark mode, white for light mode
   
   try {
+    // Save the current zoom value and temporarily remove it
+    const originalZoom = body.style.zoom;
+    body.style.zoom = '1';
+
     const element = document.querySelector('.screenshotcontainer'); // Capture the screenshotcontainer using the class name
     if (!element) {
       throw new Error('screenshotcontainer element not found');
     }
 
     const canvas = await html2canvas(element, {
-	width: 794,
-    height: element.offsetHeight -66, 
-    y: -10,
-    x: - 10,  
+      width: 794,
+      height: element.offsetHeight - 66, 
+      y: -10,
+      x: -10,  
       useCORS: true,
       backgroundColor: backgroundColor, // Set the background color based on mode
       scale: window.devicePixelRatio,
@@ -2208,11 +2212,15 @@ let dataArray = csvData.trim().split('\n').map(line => line.split(','));
       link.download = 'screenshot.png';
       link.click();
     }, 'image/png');
+
+    // Restore the original zoom value
+    body.style.zoom = originalZoom;
   } catch (error) {
     console.error('Error in takeScreenshot:', error);
     // Handle errors appropriately (e.g., display to user or log)
   }
 }
+
 
 
 
