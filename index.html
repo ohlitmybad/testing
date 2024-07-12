@@ -18,25 +18,24 @@
   <meta property="og:image" content="https://datamb.football/vignettes/pro.png">
 	<meta name="robots" content="noindex">
 	<script>
-  (function() {
-      // Get the width of the viewport
-      var width = window.innerWidth;
-      console.log('Window width:', width);  // Debug log
+ (function() {
+    var width = window.innerWidth;
 
-      // Calculate the initial scale based on the width
-      var initialScale = width / 748.41;
-      console.log('Initial scale:', initialScale);  // Debug log
+    // Find the viewport meta tag
+    var viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (viewportMeta) {
+        if (width < 701) {
+            var initialScale = width / 701;
 
-      // Find the viewport meta tag
-      var viewportMeta = document.querySelector('meta[name="viewport"]');
-      if (viewportMeta) {
-          // Set the viewport meta tag content attribute
-          viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + initialScale + ', maximum-scale=' + initialScale + ', user-scalable=no');
-          console.log('Viewport meta updated with initial scale:', initialScale);  // Debug log
-      } else {
-          console.error('Viewport meta tag not found');
-      }
-  })();
+            viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + initialScale + ', maximum-scale=' + initialScale + ', user-scalable=no');
+        } else {
+            var fixedScale = 1;
+
+            viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + fixedScale + ', maximum-scale=' + fixedScale + ', user-scalable=no');
+        }
+    } 
+})();
+
 </script>
 
 <title>DataMB Pro</title>
