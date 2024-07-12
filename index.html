@@ -1577,12 +1577,15 @@ for (const line of lines) {
         link.download = 'screenshot.png';
         link.click();
       }, 'image/png');
+      // Restore the original zoom value if on iOS
+      if (isIOS() && originalZoom !== null) {
+        body.style.zoom = originalZoom;
+      }
     } catch (error) {
       console.error('Error in takeScreenshot:', error);
       // Handle errors appropriately (e.g., display to user or log)
     }
   }
-  
   
   
     // Function to toggle dark mode
@@ -1620,7 +1623,7 @@ for (const line of lines) {
       }
     
       if (isMobile()) {
-        setZoom(0.93);
+        setZoom(0.91);
       }
     })();
     
@@ -1643,3 +1646,6 @@ for (const line of lines) {
 <br>	<br>
 <br>
 <br>
+	
+</body>
+</html>
