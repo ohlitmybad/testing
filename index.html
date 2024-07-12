@@ -1259,11 +1259,11 @@ body.dark-mode .button-1 {
   const isDarkMode = body.classList.contains('dark-mode');
   const backgroundColor = isDarkMode ? '#0F0F0E' : '#ffffff'; // Black for dark mode, white for light mode
   
-
-  const isIOS = /iPad|iPhone|iPod/.test(navigator.platform)
-|| (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)
-
-
+  const isIOS = () => {
+    return (/iPad|iPhone|iPod/.test(navigator.userAgent) || 
+           (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1)) && 
+           !window.MSStream;
+  };
 
 
   try {
