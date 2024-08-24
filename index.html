@@ -413,6 +413,7 @@ h1 {
 </head>
 
 <body>
+		  <script type="text/javascript">document.body.style.visibility="hidden";</script><div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div><script type="text/javascript" src="https://cdn.membershipworks.com/mfl.js"></script>
 
 
     <div class="spinner" id="spinner">
@@ -625,15 +626,10 @@ const metricColumnMap = {
     'Accurate progressive passes %': 'accurateProgressivePassesPercentage',
     'Save percentage': 'saveRatePercentage'
 };
+
 let pizzaChartInstance = null; // Variable to store the chart instance
-
 function createPizzaChart(rankData, playerName) {
-    const canvas = document.getElementById('pizzaChart');
-    const ctx = canvas.getContext('2d');
-
-    // Set fixed width and height for the canvas
-    canvas.width = 300;  // Set your desired width
-    canvas.height = 300; // Set your desired height
+    const ctx = document.getElementById('pizzaChart').getContext('2d');
 
     // Destroy existing chart if it exists
     if (pizzaChartInstance) {
@@ -667,7 +663,6 @@ function createPizzaChart(rankData, playerName) {
             }]
         },
         options: {
-            maintainAspectRatio: false, // Allow the chart to stretch to the specified dimensions
             plugins: {
                 legend: {
                     display: false // This removes the legend from the top of the chart
