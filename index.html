@@ -653,93 +653,96 @@ function createPizzaChart(rankData, playerName) {
 
     // Create a new chart instance
     pizzaChartInstance = new Chart(ctx, {
-        type: 'polarArea', // Radar chart type
-        data: {
-            labels: labels,
-            datasets: [{
-                label: `${playerName} Rankings`,
-                data: data,
-                backgroundColor: colors,
-            }]
-        },
-        options: {
-            plugins: {
-                legend: {
-                    display: false // This removes the legend from the top of the chart
-                },
-                datalabels: {
-                    display: true,
-                    color: colors, // Set the color of the data labels
-                    align: 'end', // Position at the tip of each slice
-                    anchor: 'end', // Anchor the labels at the outer edge
-                    offset: -5, // Move the label closer to the tip (negative values move it inward)
-                    padding: 0, // Add padding if needed (positive values move it outward)
-                    font: {
-                        size: 9, // Set the font size of the labels
-                    },
-                    formatter: (value) => (1 - value).toFixed(2), // Format the label values if needed
-                },
-                beforeDraw: (chart) => {
-                    const { ctx, chartArea } = chart;
-                    const { top, right, bottom, left, width, height } = chartArea;
-                    const centerX = (left + right) / 2;
-                    const centerY = (top + bottom) / 2;
-                    const radius = Math.min(width, height) / 2;
-
-                    // Draw the outer circle
-                    ctx.save();
-                    ctx.beginPath();
-                    ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
-                    ctx.lineWidth = 2; // Line width of the outer circle
-                    ctx.strokeStyle = 'rgba(0, 0, 0, .5)'; // Color of the outer circle
-                    ctx.stroke();
-                    ctx.restore();
-                }
-            },
-            scales: {
-                r: {
-                    min: 0,
-                    max: 1.04,
-                    reverse: true,
-                    angleLines: {
-                        display: true, // Show lines for each slice
-                        color: 'rgba(0, 0, 0, 0.1)', // Line color and opacity
-                        lineWidth: 2 // Adjust the line width
-                    },
-                    ticks: {
-                        beginAtZero: false,
-                        display: false // Removes the numerical axis labels from the chart
-                    },
-                    pointLabels: {
-    display: true,
-    centerPointLabels: true,
-    font: {
-        size: 10,
-        family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+    type: 'polarArea',
+    data: {
+        labels: labels,
+        datasets: [{
+            data: data,
+            backgroundColor: colors,
+        }]
     },
-    padding: 10,
-    callback: function(label) {
-        const fixedLength = 20; // Fixed length for each label
+    options: {
+        plugins: {
+            legend: {
+                display: false
+            },
+            datalabels: {
+                display: true,
+                color: colors,
+                align: 'end',
+                anchor: 'end',
+                offset: -5,
+                padding: 0,
+                font: {
+                    size: 9,
+                },
+                formatter: (value) => (1 - value).toFixed(2),
+            },
+            beforeDraw: (chart) => {
+                const { ctx, chartArea } = chart;
+                const { top, right, bottom, left, width, height } = chartArea;
+                const centerX = (left + right) / 2;
+                const centerY = (top + bottom) / 2;
+                const radius = Math.min(width, height) / 2;
 
-        // Truncate the label if it exceeds the fixed length
-        if (label.length > fixedLength) {
-            return label.substring(0, fixedLength);
-        }
+                // Draw the outer circle
+                ctx.save();
+                ctx.beginPath();
+                ctx.arc(centerX, centerY, radius, 0, 2 * Math.PI);
+                ctx.lineWidth = 2;
+                ctx.strokeStyle = 'rgba(0, 0, 0, .5)';
+                ctx.stroke();
+                ctx.restore();
+            }
+        },
+        scales: {
+            r: {
+                min: 0,
+                max: 1.04,
+                reverse: true,
+                angleLines: {
+                    display: true,
+                    color: 'rgba(0, 0, 0, 0.1)',
+                    lineWidth: 2
+                },
+                ticks: {
+                    beginAtZero: false,
+                    display: false
+                },
+                pointLabels: {
+                    display: true,
+                    centerPointLabels: true,
+                    font: {
+                        size: 10,
+                        family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+                    },
+                    padding: 10,
+                    callback: function(label) {
+                        const fixedLength = 20;
 
-        // Add spaces to the label to make its length equal to the fixed length
-        const totalPadding = fixedLength - label.length;
-        const paddingBefore = Math.floor(totalPadding / 2);
-        const paddingAfter = totalPadding - paddingBefore;
+                        if (label.length > fixedLength) {
+                            return label.substring(0, fixedLength);
+                        }
 
-        return ' '.repeat(paddingBefore) + label + ' '.repeat(paddingAfter);
-    }
-}
+                        const totalPadding = fixedLength - label.length;
+                        const paddingBefore = Math.floor(totalPadding / 2);
+                        const paddingAfter = totalPadding - paddingBefore;
 
+                        return ' '.repeat(paddingBefore) + label + ' '.repeat(paddingAfter);
+                    }
                 }
             }
         },
-        plugins: [ChartDataLabels] // Register the datalabels plugin
-    });
+        interaction: {
+            mode: null // Disables hover effect
+        },
+        hover: {
+            mode: null // Ensures no hover mode is applied
+        }
+    },
+    plugins: [ChartDataLabels]
+});
+
 }
 
 
