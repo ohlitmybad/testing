@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -405,7 +406,48 @@ h1 {
 .toggleButton2 input[type="checkbox"]:checked + label::before {
   transform:scale(0.88)
 }
+.dropdown {
+        position: relative;
+        display: inline-block;
+    }
 
+    .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 250px;
+        max-height: 300px;
+        overflow-y: auto;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+        padding: 10px;
+    }
+
+    .dropdown-content label {
+        display: block;
+        padding: 5px;
+    }
+
+    .dropdown-content input[type="checkbox"] {
+        margin-right: 10px;
+    }
+
+    .dropdown .dropbtn {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        padding: 10px;
+        font-size: 16px;
+        cursor: pointer;
+    }
+
+    .dropdown .dropbtn:hover {
+        background-color: #45a049;
+    }
+
+    .dropdown.show .dropdown-content {
+        display: block;
+    }
 
   </style>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
@@ -413,9 +455,8 @@ h1 {
 </head>
 
 <body>
-		  <script type="text/javascript">document.body.style.visibility="hidden";</script><div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div><script type="text/javascript" src="https://cdn.membershipworks.com/mfl.js"></script>
 
-
+<script type="text/javascript">document.body.style.visibility="hidden";</script><div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div><script type="text/javascript" src="https://cdn.membershipworks.com/mfl.js"></script>
     <div class="spinner" id="spinner">
   <div class="spinner-icon"></div>
 </div>
@@ -652,7 +693,7 @@ function createPizzaChart(rankData, playerName) {
     const colors = data.map(value => getColor(value));
 
     // Create a new chart instance
-    pizzaChartInstance = new Chart(ctx, {
+  pizzaChartInstance = new Chart(ctx, {
     type: 'polarArea',
     data: {
         labels: labels,
@@ -2858,9 +2899,97 @@ metricsToCompute.forEach(metric => {
 document.getElementById('chartTitle').innerHTML = `
 <img class="logo-image2" src="https://datamb.football/logopro.png" alt="">
 <h3><b>${selectedPlayer.player} (${selectedPlayer.team}, ${selectedPlayer.age})</b></h3>
-          <h1><i>vs ${selectedPlayer.league} ${titleSuffix} ${selectedPlayer.position}s, per 90</i></h1><br>`;
+          <h1><i>vs ${selectedPlayer.league} ${titleSuffix} ${selectedPlayer.position}s, per 90</i></h1><br>
+              <div>
+        <label for="metric-select"></label>
+        <div class="dropdown">
+            <button class="dropbtn"></button>
+            <div id="metric-controls" class="dropdown-content">
+                <!-- Checkboxes will be generated here by JavaScript -->
+            </div>
+        </div>
+    </div>`;
 
-    createPizzaChart(rankData, player.player);}
+    createPizzaChart(rankData, player.player);
+
+// JavaScript part
+let userExclusions = new Set();
+
+// Function to populate checkboxes in the dropdown
+function populateMetricControls() {
+    const metricControlsDiv = document.getElementById('metric-controls');
+    metricControlsDiv.innerHTML = ''; // Clear any existing content
+
+    Object.keys(metricsToInclude).forEach(metric => {
+        const isExcluded = exclusionMapping[playerPosition]?.includes(metric) || userExclusions.has(metric);
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.setAttribute('data-metric', metric);
+        checkbox.checked = !isExcluded;
+
+        const label = document.createElement('label');
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(metric));
+        
+        metricControlsDiv.appendChild(label);
+
+        // Add event listener to handle changes
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                // Remove the metric from userExclusions and exclusionMapping
+                userExclusions.delete(metric);
+
+                // Remove the metric from exclusionMapping array for the player's position
+                const index = exclusionMapping[playerPosition]?.indexOf(metric);
+                if (index !== -1) {
+                    exclusionMapping[playerPosition].splice(index, 1);
+                }
+            } else {
+                userExclusions.add(metric);
+            }
+            updateChart();
+        });
+    });
+}
+function toggleDropdown() {
+    document.querySelector('.dropdown').classList.toggle('show');
+}
+
+// Function to update the chart based on current exclusions
+
+// Function to update the chart based on current exclusions
+function updateChart() {
+    // Filter out the excluded metrics based on position and user selections
+    const metricsToCompute = Object.keys(metricsToInclude).filter(metric => 
+        !exclusionMapping[playerPosition]?.includes(metric) && !userExclusions.has(metric)
+    );
+
+    const rankData = {};
+
+    // Compute the rank data only for the included metrics
+    metricsToCompute.forEach(metric => {
+        const data = metricsToInclude[metric];
+        const playerData = data.find(rank => rank.player === player.player && rank.team === player.team);
+
+        rankData[metric] =  playerData.rank === "N/A" || playerData.rank === "0"
+            ? 1
+            : playerData.rank === 1
+                ? 0
+                : playerData.rank / filteredData1.length;
+    });
+
+    // Redraw the chart with the updated rank data
+    createPizzaChart(rankData, player.player);
+}
+document.querySelector('.dropbtn').addEventListener('click', toggleDropdown);
+
+// Initial setup: populate the dropdown with checkboxes
+populateMetricControls();
+
+// Initial chart rendering
+updateChart();
+
+}
 else if (selectedSection === 'samePositionAndLeagueWithMinutes') {
     // Define the metrics and their corresponding data
     const metricsData = [
@@ -3577,10 +3706,97 @@ metricsToCompute.forEach(metric => {
 document.getElementById('chartTitle').innerHTML = `
 <img class="logo-image2" src="https://datamb.football/logopro.png" alt="">
 <h3><b>${selectedPlayer.player} (${selectedPlayer.team}, ${selectedPlayer.age})</b></h3>
-          <h1><i>vs ${selectedPlayer.league} ${titleSuffix} ${selectedPlayer.position}s</i></h1><br>`;
+          <h1><i>vs ${selectedPlayer.league} ${titleSuffix} ${selectedPlayer.position}s</i></h1><br>
+              <div>
+        <label for="metric-select"></label>
+        <div class="dropdown">
+            <button class="dropbtn"></button>
+            <div id="metric-controls" class="dropdown-content">
+                <!-- Checkboxes will be generated here by JavaScript -->
+            </div>
+        </div>
+    </div>`;
         
 
-    createPizzaChart(rankData, player.player);}
+    createPizzaChart(rankData, player.player);
+// JavaScript part
+let userExclusions = new Set();
+
+// Function to populate checkboxes in the dropdown
+function populateMetricControls() {
+    const metricControlsDiv = document.getElementById('metric-controls');
+    metricControlsDiv.innerHTML = ''; // Clear any existing content
+
+    Object.keys(metricsToInclude).forEach(metric => {
+        const isExcluded = exclusionMapping[playerPosition]?.includes(metric) || userExclusions.has(metric);
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.setAttribute('data-metric', metric);
+        checkbox.checked = !isExcluded;
+
+        const label = document.createElement('label');
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(metric));
+        
+        metricControlsDiv.appendChild(label);
+
+        // Add event listener to handle changes
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                // Remove the metric from userExclusions and exclusionMapping
+                userExclusions.delete(metric);
+
+                // Remove the metric from exclusionMapping array for the player's position
+                const index = exclusionMapping[playerPosition]?.indexOf(metric);
+                if (index !== -1) {
+                    exclusionMapping[playerPosition].splice(index, 1);
+                }
+            } else {
+                userExclusions.add(metric);
+            }
+            updateChart();
+        });
+    });
+}
+function toggleDropdown() {
+    document.querySelector('.dropdown').classList.toggle('show');
+}
+
+// Function to update the chart based on current exclusions
+
+// Function to update the chart based on current exclusions
+function updateChart() {
+    // Filter out the excluded metrics based on position and user selections
+    const metricsToCompute = Object.keys(metricsToInclude).filter(metric => 
+        !exclusionMapping[playerPosition]?.includes(metric) && !userExclusions.has(metric)
+    );
+
+    const rankData = {};
+
+    // Compute the rank data only for the included metrics
+    metricsToCompute.forEach(metric => {
+        const data = metricsToInclude[metric];
+        const playerData = data.find(rank => rank.player === player.player && rank.team === player.team);
+
+        rankData[metric] =  playerData.rank === "N/A" || playerData.rank === "0"
+            ? 1
+            : playerData.rank === 1
+                ? 0
+                : playerData.rank / filteredData1.length;
+    });
+
+    // Redraw the chart with the updated rank data
+    createPizzaChart(rankData, player.player);
+}
+document.querySelector('.dropbtn').addEventListener('click', toggleDropdown);
+
+// Initial setup: populate the dropdown with checkboxes
+populateMetricControls();
+
+// Initial chart rendering
+updateChart();
+
+}
      else if (selectedSection === 'position') {
     // Define the metrics and their corresponding data
     const metricsData = [
@@ -4298,9 +4514,96 @@ metricsToCompute.forEach(metric => {
 document.getElementById('chartTitle').innerHTML = `
 <img class="logo-image2" src="https://datamb.football/logopro.png" alt="">
 <h3><b>${selectedPlayer.player} (${selectedPlayer.team}, ${selectedPlayer.age})</b></h3>
-          <h1><i>vs Top 5 League ${titleSuffix} ${selectedPlayer.position}s, per 90</i></h1><br>`;
+          <h1><i>vs Top 5 League ${titleSuffix} ${selectedPlayer.position}s, per 90</i></h1><br>
+              <div>
+        <label for="metric-select"></label>
+        <div class="dropdown">
+            <button class="dropbtn"></button>
+            <div id="metric-controls" class="dropdown-content">
+                <!-- Checkboxes will be generated here by JavaScript -->
+            </div>
+        </div>
+    </div>`;
 
-    createPizzaChart(rankData, player.player);}
+    createPizzaChart(rankData, player.player);
+// JavaScript part
+let userExclusions = new Set();
+
+// Function to populate checkboxes in the dropdown
+function populateMetricControls() {
+    const metricControlsDiv = document.getElementById('metric-controls');
+    metricControlsDiv.innerHTML = ''; // Clear any existing content
+
+    Object.keys(metricsToInclude).forEach(metric => {
+        const isExcluded = exclusionMapping[playerPosition]?.includes(metric) || userExclusions.has(metric);
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.setAttribute('data-metric', metric);
+        checkbox.checked = !isExcluded;
+
+        const label = document.createElement('label');
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(metric));
+        
+        metricControlsDiv.appendChild(label);
+
+        // Add event listener to handle changes
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                // Remove the metric from userExclusions and exclusionMapping
+                userExclusions.delete(metric);
+
+                // Remove the metric from exclusionMapping array for the player's position
+                const index = exclusionMapping[playerPosition]?.indexOf(metric);
+                if (index !== -1) {
+                    exclusionMapping[playerPosition].splice(index, 1);
+                }
+            } else {
+                userExclusions.add(metric);
+            }
+            updateChart();
+        });
+    });
+}
+function toggleDropdown() {
+    document.querySelector('.dropdown').classList.toggle('show');
+}
+
+// Function to update the chart based on current exclusions
+
+// Function to update the chart based on current exclusions
+function updateChart() {
+    // Filter out the excluded metrics based on position and user selections
+    const metricsToCompute = Object.keys(metricsToInclude).filter(metric => 
+        !exclusionMapping[playerPosition]?.includes(metric) && !userExclusions.has(metric)
+    );
+
+    const rankData = {};
+
+    // Compute the rank data only for the included metrics
+    metricsToCompute.forEach(metric => {
+        const data = metricsToInclude[metric];
+        const playerData = data.find(rank => rank.player === player.player && rank.team === player.team);
+
+        rankData[metric] =  playerData.rank === "N/A" || playerData.rank === "0"
+            ? 1
+            : playerData.rank === 1
+                ? 0
+                : playerData.rank / filteredData1.length;
+    });
+
+    // Redraw the chart with the updated rank data
+    createPizzaChart(rankData, player.player);
+}
+document.querySelector('.dropbtn').addEventListener('click', toggleDropdown);
+
+// Initial setup: populate the dropdown with checkboxes
+populateMetricControls();
+
+// Initial chart rendering
+updateChart();
+
+}
      else if (selectedSection === 'positionWithMinutes') {
     // Define the metrics and their corresponding data
     const metricsData = [
@@ -5021,8 +5324,93 @@ metricsToCompute.forEach(metric => {
 document.getElementById('chartTitle').innerHTML = `
 <img class="logo-image2" src="https://datamb.football/logopro.png" alt="">
 <h3><b>${selectedPlayer.player} (${selectedPlayer.team}, ${selectedPlayer.age})</b></h3>
-          <h1><i>vs Top 5 League ${titleSuffix} ${selectedPlayer.position}s</i></h1><br>`;
-    createPizzaChart(rankData, player.player);}
+          <h1><i>vs Top 5 League ${titleSuffix} ${selectedPlayer.position}s</i></h1><br>
+              <div>
+        <label for="metric-select"></label>
+        <div class="dropdown">
+            <button class="dropbtn"></button>
+            <div id="metric-controls" class="dropdown-content">
+                <!-- Checkboxes will be generated here by JavaScript -->
+            </div>
+        </div>
+    </div>`;
+    createPizzaChart(rankData, player.player);
+// JavaScript part
+let userExclusions = new Set();
+
+// Function to populate checkboxes in the dropdown
+function populateMetricControls() {
+    const metricControlsDiv = document.getElementById('metric-controls');
+    metricControlsDiv.innerHTML = ''; // Clear any existing content
+
+    Object.keys(metricsToInclude).forEach(metric => {
+        const isExcluded = exclusionMapping[playerPosition]?.includes(metric) || userExclusions.has(metric);
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.setAttribute('data-metric', metric);
+        checkbox.checked = !isExcluded;
+
+        const label = document.createElement('label');
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(metric));
+        
+        metricControlsDiv.appendChild(label);
+
+        // Add event listener to handle changes
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                // Remove the metric from userExclusions and exclusionMapping
+                userExclusions.delete(metric);
+
+                // Remove the metric from exclusionMapping array for the player's position
+                const index = exclusionMapping[playerPosition]?.indexOf(metric);
+                if (index !== -1) {
+                    exclusionMapping[playerPosition].splice(index, 1);
+                }
+            } else {
+                userExclusions.add(metric);
+            }
+            updateChart();
+        });
+    });
+}
+function toggleDropdown() {
+    document.querySelector('.dropdown').classList.toggle('show');
+}
+
+// Function to update the chart based on current exclusions
+function updateChart() {
+    // Filter out the excluded metrics based on position and user selections
+    const metricsToCompute = Object.keys(metricsToInclude).filter(metric => 
+        !exclusionMapping[playerPosition]?.includes(metric) && !userExclusions.has(metric)
+    );
+
+    const rankData = {};
+
+    // Compute the rank data only for the included metrics
+    metricsToCompute.forEach(metric => {
+        const data = metricsToInclude[metric];
+        const playerData = data.find(rank => rank.player === player.player && rank.team === player.team);
+
+        rankData[metric] =  playerData.rank === "N/A" || playerData.rank === "0"
+            ? 1
+            : playerData.rank === 1
+                ? 0
+                : playerData.rank / filteredData1.length;
+    });
+
+    // Redraw the chart with the updated rank data
+    createPizzaChart(rankData, player.player);
+}
+document.querySelector('.dropbtn').addEventListener('click', toggleDropdown);
+
+// Initial setup: populate the dropdown with checkboxes
+populateMetricControls();
+
+// Initial chart rendering
+updateChart();
+
+}
      else if (selectedSection === 'league') {
     // Define the metrics and their corresponding data
     const metricsData = [
@@ -5740,8 +6128,95 @@ metricsToCompute.forEach(metric => {
 document.getElementById('chartTitle').innerHTML = `
 <img class="logo-image2" src="https://datamb.football/logopro.png" alt="">
 <h3><b>${selectedPlayer.player} (${selectedPlayer.team}, ${selectedPlayer.age})</b></h3>
-          <h1><i>vs ${selectedPlayer.league} ${titleSuffix} players, per 90</i></h1><br>`;
-    createPizzaChart(rankData, player.player);}
+          <h1><i>vs ${selectedPlayer.league} ${titleSuffix} players, per 90</i></h1><br>
+              <div>
+        <label for="metric-select"></label>
+        <div class="dropdown">
+            <button class="dropbtn"></button>
+            <div id="metric-controls" class="dropdown-content">
+                <!-- Checkboxes will be generated here by JavaScript -->
+            </div>
+        </div>
+    </div>`;
+    createPizzaChart(rankData, player.player);
+// JavaScript part
+let userExclusions = new Set();
+
+// Function to populate checkboxes in the dropdown
+function populateMetricControls() {
+    const metricControlsDiv = document.getElementById('metric-controls');
+    metricControlsDiv.innerHTML = ''; // Clear any existing content
+
+    Object.keys(metricsToInclude).forEach(metric => {
+        const isExcluded = exclusionMapping[playerPosition]?.includes(metric) || userExclusions.has(metric);
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.setAttribute('data-metric', metric);
+        checkbox.checked = !isExcluded;
+
+        const label = document.createElement('label');
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(metric));
+        
+        metricControlsDiv.appendChild(label);
+
+        // Add event listener to handle changes
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                // Remove the metric from userExclusions and exclusionMapping
+                userExclusions.delete(metric);
+
+                // Remove the metric from exclusionMapping array for the player's position
+                const index = exclusionMapping[playerPosition]?.indexOf(metric);
+                if (index !== -1) {
+                    exclusionMapping[playerPosition].splice(index, 1);
+                }
+            } else {
+                userExclusions.add(metric);
+            }
+            updateChart();
+        });
+    });
+}
+function toggleDropdown() {
+    document.querySelector('.dropdown').classList.toggle('show');
+}
+
+// Function to update the chart based on current exclusions
+
+// Function to update the chart based on current exclusions
+function updateChart() {
+    // Filter out the excluded metrics based on position and user selections
+    const metricsToCompute = Object.keys(metricsToInclude).filter(metric => 
+        !exclusionMapping[playerPosition]?.includes(metric) && !userExclusions.has(metric)
+    );
+
+    const rankData = {};
+
+    // Compute the rank data only for the included metrics
+    metricsToCompute.forEach(metric => {
+        const data = metricsToInclude[metric];
+        const playerData = data.find(rank => rank.player === player.player && rank.team === player.team);
+
+        rankData[metric] =  playerData.rank === "N/A" || playerData.rank === "0"
+            ? 1
+            : playerData.rank === 1
+                ? 0
+                : playerData.rank / filteredData1.length;
+    });
+
+    // Redraw the chart with the updated rank data
+    createPizzaChart(rankData, player.player);
+}
+document.querySelector('.dropbtn').addEventListener('click', toggleDropdown);
+
+// Initial setup: populate the dropdown with checkboxes
+populateMetricControls();
+
+// Initial chart rendering
+updateChart();
+
+}
      else if (selectedSection === 'leagueWithMinutes') {
     // Define the metrics and their corresponding data
     const metricsData = [
@@ -6460,9 +6935,96 @@ metricsToCompute.forEach(metric => {
 document.getElementById('chartTitle').innerHTML = `
 <img class="logo-image2" src="https://datamb.football/logopro.png" alt="">
 <h3><b>${selectedPlayer.player} (${selectedPlayer.team}, ${selectedPlayer.age})</b></h3>
-          <h1><i>vs ${selectedPlayer.league} ${titleSuffix} players</i></h1><br>`;
+          <h1><i>vs ${selectedPlayer.league} ${titleSuffix} players</i></h1><br>
+              <div>
+        <label for="metric-select"></label>
+        <div class="dropdown">
+            <button class="dropbtn"></button>
+            <div id="metric-controls" class="dropdown-content">
+                <!-- Checkboxes will be generated here by JavaScript -->
+            </div>
+        </div>
+    </div>`;
 
-    createPizzaChart(rankData, player.player);}
+    createPizzaChart(rankData, player.player);
+// JavaScript part
+let userExclusions = new Set();
+
+// Function to populate checkboxes in the dropdown
+function populateMetricControls() {
+    const metricControlsDiv = document.getElementById('metric-controls');
+    metricControlsDiv.innerHTML = ''; // Clear any existing content
+
+    Object.keys(metricsToInclude).forEach(metric => {
+        const isExcluded = exclusionMapping[playerPosition]?.includes(metric) || userExclusions.has(metric);
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.setAttribute('data-metric', metric);
+        checkbox.checked = !isExcluded;
+
+        const label = document.createElement('label');
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(metric));
+        
+        metricControlsDiv.appendChild(label);
+
+        // Add event listener to handle changes
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                // Remove the metric from userExclusions and exclusionMapping
+                userExclusions.delete(metric);
+
+                // Remove the metric from exclusionMapping array for the player's position
+                const index = exclusionMapping[playerPosition]?.indexOf(metric);
+                if (index !== -1) {
+                    exclusionMapping[playerPosition].splice(index, 1);
+                }
+            } else {
+                userExclusions.add(metric);
+            }
+            updateChart();
+        });
+    });
+}
+function toggleDropdown() {
+    document.querySelector('.dropdown').classList.toggle('show');
+}
+
+// Function to update the chart based on current exclusions
+
+// Function to update the chart based on current exclusions
+function updateChart() {
+    // Filter out the excluded metrics based on position and user selections
+    const metricsToCompute = Object.keys(metricsToInclude).filter(metric => 
+        !exclusionMapping[playerPosition]?.includes(metric) && !userExclusions.has(metric)
+    );
+
+    const rankData = {};
+
+    // Compute the rank data only for the included metrics
+    metricsToCompute.forEach(metric => {
+        const data = metricsToInclude[metric];
+        const playerData = data.find(rank => rank.player === player.player && rank.team === player.team);
+
+        rankData[metric] =  playerData.rank === "N/A" || playerData.rank === "0"
+            ? 1
+            : playerData.rank === 1
+                ? 0
+                : playerData.rank / filteredData1.length;
+    });
+
+    // Redraw the chart with the updated rank data
+    createPizzaChart(rankData, player.player);
+}
+document.querySelector('.dropbtn').addEventListener('click', toggleDropdown);
+
+// Initial setup: populate the dropdown with checkboxes
+populateMetricControls();
+
+// Initial chart rendering
+updateChart();
+
+}
      else if (selectedSection === 'allCsv') {
     // Define the metrics and their corresponding data
     const metricsData = [
@@ -7181,8 +7743,95 @@ metricsToCompute.forEach(metric => {
 document.getElementById('chartTitle').innerHTML = `
 <img class="logo-image2" src="https://datamb.football/logopro.png" alt="">
 <h3><b>${selectedPlayer.player} (${selectedPlayer.team}, ${selectedPlayer.age})</b></h3>
-        <h1><i>vs Top 5 League ${titleSuffix} players, per 90</i></h1><br>`;
-    createPizzaChart(rankData, player.player);}
+        <h1><i>vs Top 5 League ${titleSuffix} players, per 90</i></h1><br>
+            <div>
+        <label for="metric-select"></label>
+        <div class="dropdown">
+            <button class="dropbtn"></button>
+            <div id="metric-controls" class="dropdown-content">
+                <!-- Checkboxes will be generated here by JavaScript -->
+            </div>
+        </div>
+    </div>`;
+    createPizzaChart(rankData, player.player);
+// JavaScript part
+let userExclusions = new Set();
+
+// Function to populate checkboxes in the dropdown
+function populateMetricControls() {
+    const metricControlsDiv = document.getElementById('metric-controls');
+    metricControlsDiv.innerHTML = ''; // Clear any existing content
+
+    Object.keys(metricsToInclude).forEach(metric => {
+        const isExcluded = exclusionMapping[playerPosition]?.includes(metric) || userExclusions.has(metric);
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.setAttribute('data-metric', metric);
+        checkbox.checked = !isExcluded;
+
+        const label = document.createElement('label');
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(metric));
+        
+        metricControlsDiv.appendChild(label);
+
+        // Add event listener to handle changes
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                // Remove the metric from userExclusions and exclusionMapping
+                userExclusions.delete(metric);
+
+                // Remove the metric from exclusionMapping array for the player's position
+                const index = exclusionMapping[playerPosition]?.indexOf(metric);
+                if (index !== -1) {
+                    exclusionMapping[playerPosition].splice(index, 1);
+                }
+            } else {
+                userExclusions.add(metric);
+            }
+            updateChart();
+        });
+    });
+}
+function toggleDropdown() {
+    document.querySelector('.dropdown').classList.toggle('show');
+}
+
+// Function to update the chart based on current exclusions
+
+// Function to update the chart based on current exclusions
+function updateChart() {
+    // Filter out the excluded metrics based on position and user selections
+    const metricsToCompute = Object.keys(metricsToInclude).filter(metric => 
+        !exclusionMapping[playerPosition]?.includes(metric) && !userExclusions.has(metric)
+    );
+
+    const rankData = {};
+
+    // Compute the rank data only for the included metrics
+    metricsToCompute.forEach(metric => {
+        const data = metricsToInclude[metric];
+        const playerData = data.find(rank => rank.player === player.player && rank.team === player.team);
+
+        rankData[metric] =  playerData.rank === "N/A" || playerData.rank === "0"
+            ? 1
+            : playerData.rank === 1
+                ? 0
+                : playerData.rank / filteredData1.length;
+    });
+
+    // Redraw the chart with the updated rank data
+    createPizzaChart(rankData, player.player);
+}
+document.querySelector('.dropbtn').addEventListener('click', toggleDropdown);
+
+// Initial setup: populate the dropdown with checkboxes
+populateMetricControls();
+
+// Initial chart rendering
+updateChart();
+
+}
      else if (selectedSection === 'allCsvWithMinutes') {
     // Define the metrics and their corresponding data
     const metricsData = [
@@ -7899,9 +8548,96 @@ metricsToCompute.forEach(metric => {
 document.getElementById('chartTitle').innerHTML = `
 <img class="logo-image2" src="https://datamb.football/logopro.png" alt="">
 <h3><b>${selectedPlayer.player} (${selectedPlayer.team}, ${selectedPlayer.age})</b></h3>
-        <h1><i>vs Top 5 League ${titleSuffix} players</i></h1><br>`;
+        <h1><i>vs Top 5 League ${titleSuffix} players</i></h1><br>
+            <div>
+        <label for="metric-select"></label>
+        <div class="dropdown">
+            <button class="dropbtn"></button>
+            <div id="metric-controls" class="dropdown-content">
+                <!-- Checkboxes will be generated here by JavaScript -->
+            </div>
+        </div>
+    </div>`;
 
-    createPizzaChart(rankData, player.player);}
+    createPizzaChart(rankData, player.player);
+// JavaScript part
+let userExclusions = new Set();
+
+// Function to populate checkboxes in the dropdown
+function populateMetricControls() {
+    const metricControlsDiv = document.getElementById('metric-controls');
+    metricControlsDiv.innerHTML = ''; // Clear any existing content
+
+    Object.keys(metricsToInclude).forEach(metric => {
+        const isExcluded = exclusionMapping[playerPosition]?.includes(metric) || userExclusions.has(metric);
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.setAttribute('data-metric', metric);
+        checkbox.checked = !isExcluded;
+
+        const label = document.createElement('label');
+        label.appendChild(checkbox);
+        label.appendChild(document.createTextNode(metric));
+        
+        metricControlsDiv.appendChild(label);
+
+        // Add event listener to handle changes
+        checkbox.addEventListener('change', function() {
+            if (this.checked) {
+                // Remove the metric from userExclusions and exclusionMapping
+                userExclusions.delete(metric);
+
+                // Remove the metric from exclusionMapping array for the player's position
+                const index = exclusionMapping[playerPosition]?.indexOf(metric);
+                if (index !== -1) {
+                    exclusionMapping[playerPosition].splice(index, 1);
+                }
+            } else {
+                userExclusions.add(metric);
+            }
+            updateChart();
+        });
+    });
+}
+function toggleDropdown() {
+    document.querySelector('.dropdown').classList.toggle('show');
+}
+
+// Function to update the chart based on current exclusions
+
+// Function to update the chart based on current exclusions
+function updateChart() {
+    // Filter out the excluded metrics based on position and user selections
+    const metricsToCompute = Object.keys(metricsToInclude).filter(metric => 
+        !exclusionMapping[playerPosition]?.includes(metric) && !userExclusions.has(metric)
+    );
+
+    const rankData = {};
+
+    // Compute the rank data only for the included metrics
+    metricsToCompute.forEach(metric => {
+        const data = metricsToInclude[metric];
+        const playerData = data.find(rank => rank.player === player.player && rank.team === player.team);
+
+        rankData[metric] =  playerData.rank === "N/A" || playerData.rank === "0"
+            ? 1
+            : playerData.rank === 1
+                ? 0
+                : playerData.rank / filteredData1.length;
+    });
+
+    // Redraw the chart with the updated rank data
+    createPizzaChart(rankData, player.player);
+}
+document.querySelector('.dropbtn').addEventListener('click', toggleDropdown);
+
+// Initial setup: populate the dropdown with checkboxes
+populateMetricControls();
+
+// Initial chart rendering
+updateChart();
+
+}
 
 
     // Add more sections as needed
