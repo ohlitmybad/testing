@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -217,9 +216,16 @@ h1 {
 
 .logo-image {
     width: 42px; /* Example width */
-   position: absolute;
+   position:absolute;
    left: 500px;
    top: 68px;
+}
+
+.logo-image2 {
+    width: 42px; /* Example width */
+   position:absolute;
+   left: 482.5px;
+   top: 17.5px;
 }
 .toggleSortingButton {
   position: absolute;
@@ -407,8 +413,8 @@ h1 {
 </head>
 
 <body>
-
 		  <script type="text/javascript">document.body.style.visibility="hidden";</script><div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div><script type="text/javascript" src="https://cdn.membershipworks.com/mfl.js"></script>
+
 
     <div class="spinner" id="spinner">
   <div class="spinner-icon"></div>
@@ -2829,6 +2835,7 @@ metricsToCompute.forEach(metric => {
 
 
 document.getElementById('chartTitle').innerHTML = `
+<img class="logo-image2" src="https://datamb.football/logopro.png" alt="">
 <h3><b>${selectedPlayer.player} (${selectedPlayer.team}, ${selectedPlayer.age})</b></h3>
           <h1><i>vs ${selectedPlayer.league} ${titleSuffix} ${selectedPlayer.position}s, per 90</i></h1><br>`;
 
