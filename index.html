@@ -341,7 +341,7 @@ h1 {
 
     #chartContainer {
     display: none; /* Hide the chart container initially */
-    width: 600px;  /* Set the desired width of the container */
+    width: 550px;  /* Set the desired width of the container */
     height: 600px; /* Set the desired height of the container */
     position: relative;
 }
@@ -711,12 +711,30 @@ function createPizzaChart(rankData, playerName) {
                         display: false // Removes the numerical axis labels from the chart
                     },
                     pointLabels: {
-                        display: true,
-                        centerPointLabels: true,
-                        font: {
-                            size: 10 // Adjust the font size of the labels if needed
-                        }
-                    }
+    display: true,
+    centerPointLabels: true,
+    font: {
+        size: 10,
+        family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif"
+    },
+    padding: 10,
+    callback: function(label) {
+        const fixedLength = 20; // Fixed length for each label
+
+        // Truncate the label if it exceeds the fixed length
+        if (label.length > fixedLength) {
+            return label.substring(0, fixedLength);
+        }
+
+        // Add spaces to the label to make its length equal to the fixed length
+        const totalPadding = fixedLength - label.length;
+        const paddingBefore = Math.floor(totalPadding / 2);
+        const paddingAfter = totalPadding - paddingBefore;
+
+        return ' '.repeat(paddingBefore) + label + ' '.repeat(paddingAfter);
+    }
+}
+
                 }
             }
         },
