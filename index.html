@@ -8867,6 +8867,17 @@ toggleButton2.addEventListener('click', function() {
 });
 
 
+window.onclick = function(event) {
+    if (!event.target.matches('.dropbtn') && !event.target.matches('.dropbtn *')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+            var openDropdown = dropdowns[i];
+            if (openDropdown.parentElement.classList.contains('show')) {
+                openDropdown.parentElement.classList.remove('show');
+            }
+        }
+    }
+}
 
   </script>
 
