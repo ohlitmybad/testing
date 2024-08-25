@@ -8868,7 +8868,7 @@ toggleButton2.addEventListener('click', function() {
 
 
 window.onclick = function(event) {
-    if (!event.target.matches('.dropbtn') && !event.target.matches('.dropbtn *')) {
+    if (!event.target.closest('.dropdown')) {
         var dropdowns = document.getElementsByClassName("dropdown-content");
         for (var i = 0; i < dropdowns.length; i++) {
             var openDropdown = dropdowns[i];
@@ -8878,7 +8878,6 @@ window.onclick = function(event) {
         }
     }
 }
-
   </script>
 
 
