@@ -1297,9 +1297,9 @@ body.dark-mode .button-1 {
     }, 'image/png');
 
     // Restore the original zoom value if on iOS
-    if (isIOS() && originalZoom !== null) {
+
       body.style.zoom = originalZoom;
-    }
+    
   } catch (error) {
     console.error('Error in takeScreenshot:', error);
     // Handle errors appropriately (e.g., display to user or log)
