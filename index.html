@@ -19,12 +19,13 @@ body {
     background-color: white;
 }
 
-@supports all and (min-resolution: .001dpcm) and not (-moz-appearance: none) {
+@media not all and (min-resolution:.001dpcm) { 
+  @supports (-webkit-appearance:none) and (not (overflow:-webkit-marquee)) and (not (-ms-ime-align:auto)) {
     body {
       zoom: 0.89;
     }
   }
-
+}
 
 
 
