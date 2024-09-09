@@ -1,1 +1,323 @@
 
+
+
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.535, user-scalable=no"">
+    <meta name="robots" content="noindex">
+    <style>
+
+  
+        .rank-bar-fill {
+            background-color: rgba(0, 110, 255, 0.835);
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 20px;
+        }
+
+        body {
+          zoom: 119.2%; /* Adjust the percentage as needed */
+    font-family: Arial, Helvetica, sans-serif; /* Use Font1 as the primary font */
+    font-size: 14.7px;
+    color: #000000c4;
+    scrollbar-width: none; /* Firefox */
+    margin-left: 17.5px;
+    margin-top:0.2px;
+        background: #fff;
+}
+
+/* Style for selectors */
+select {
+    padding: 8px 12px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    margin-right: 10px;
+}
+
+
+
+
+.toggle-button {
+  position: absolute;
+  left: 704px;
+  top: 23.8px;
+  width: 20px; /* Set width */
+}
+
+/* Hide the default checkbox */
+.toggle-button input[type="checkbox"] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+/* Style the custom checkbox */
+.toggle-button label {
+  display: inline-block;
+  width: 20px; /* Set width */
+  height: 20px; /* Set height */
+  background-color: #ccc;
+  border-radius: 50%; /* Make it round */
+  cursor: pointer;
+  position: absolute;
+}
+
+/* Style the checked state of the custom checkbox */
+.toggle-button input[type="checkbox"]:checked + label {
+  background-color: #8be31e;
+}
+
+/* Style the slider inside the custom checkbox */
+.toggle-button label::before {
+  content: "";
+  position: absolute;
+  width: 12px; /* Set width of the slider */
+  height: 12px; /* Set height of the slider */
+  background-color: white;
+  border-radius: 50%; /* Make it round */
+  left: 20%; /* Adjust position */
+  top: 20%; /* Adjust position */
+  transition: transform 0.3s ease;
+}
+
+/* Style the slider when checkbox is checked */
+.toggle-button input[type="checkbox"]:checked + label::before {
+  transform:scale(0.88)
+}
+
+
+/* Existing CSS for toggleSortingButton */
+.toggle-button:hover::after {
+  content: "Per 90 : Yes / No"; /* Text to display */
+  position: absolute;
+  top: 26px; /* Adjust as needed */
+  left: -30px;
+  background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+  color: #fff; /* Text color */
+  padding: 4px 8px; /* Padding around the text */
+  border-radius: 5px; /* Rounded corners */
+  font-size: 10px; /* Adjust font size as needed */
+  white-space: nowrap; /* Prevent line breaks */
+}
+
+
+.metric-selector {
+    width: 280px; /* Adjust the width as needed */
+    margin-left: 4px;
+}
+
+/* Style for the table rows */
+td {
+    width: 300px;
+}
+
+.rank-bar {
+            background-color: rgb(213, 213, 213);
+            border: 1px solid #fff;
+            border-radius: 20px;
+            height: 17.1px;
+            width: 385px;
+            margin-bottom: 5px;
+            position: relative;
+        }
+
+th {
+    width: 50px;
+}
+
+body {
+          zoom: 124.2%; /* Adjust the percentage as needed */
+          overflow: hidden;
+    scrollbar-width: none; /* Firefox */
+        background: #fff;
+}
+
+.result-container {
+            max-height: 65.2vh; /* Adjust the height based on your content */
+            overflow-y: auto; /* Enable vertical scrolling for metrics */
+            margin-bottom: 11px; /* Optional: Add margin for spacing */
+        }
+        @media only screen and (max-width: 900px) {
+    /* Apply styles for screens smaller than 768px (typical mobile devices) */
+    .result-container {
+        max-height: 87.5vh; /* Adjusted height for mobile */
+	margin-bottom: 18px; /* Optional: Add margin for spacing */
+
+    }
+}
+
+@media only screen and (max-width: 900px) {
+  body {
+    zoom: 100%; /* Reset zoom level for mobile devices */
+  }
+
+  .toggle-button {
+  left: 94.2%;
+  top: 19px;
+}
+.rank-bar {
+            width: 320px;
+        }
+
+        /* Style for the table rows */
+td {
+    width: 365px;
+}
+.half-spacing {
+    margin-bottom: 0.5em; /* Adjust as needed */
+  }
+
+  /* Existing CSS for toggleSortingButton */
+.toggle-button:hover::after {
+  display: none;
+}
+
+.metric-selector {
+    width: 260px; /* Adjust the width as needed */
+    margin-left: 0px;
+}
+
+}
+.smaller-text {
+    font-size: 79%; /* or adjust with specific size like 80% or 0.8em */
+}
+
+
+   </style>
+</head>
+<script type="text/javascript">document.body.style.visibility="hidden";</script><div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div><script type="text/javascript" src="https://cdn.membershipworks.com/mfl.js"></script>
+<body>
+    <select id="metric" class="metric-selector">
+    </select>
+    <select id="position">
+        <option value="Goalkeeper">Goalkeeper</option>
+        <option value="Centre-back">Centre-back</option>
+        <option value="Full-back">Full-back</option>
+        <option value="Midfielder">Midfielder</option>
+        <option value="Winger">Winger</option>
+        <option value="Striker">Striker</option>
+        <option value="All">All positions</option>
+    </select>
+    <select id="league">
+      <option value="Premier League">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Premier League</option>
+      <option value="La Liga">🇪🇸 La Liga</option>
+      <option value="Bundesliga">🇩🇪 Bundesliga</option>
+      <option value="Serie A">🇮🇹 Serie A</option> 
+      <option value="Ligue 1">🇫🇷 Ligue 1</option>
+      <option value="Liga Portugal">🇵🇹 Liga Portugal</option>
+      <option value="Eredivisie">🇳🇱 Eredivisie</option>
+      <option value="Top 5 Leagues">🇪🇺 Top 5 Leagues</option>
+      <option value="Top 7 Leagues">🇪🇺 Top 7 Leagues</option>
+      <option value="Belgium Pro League">🇧🇪 Belgium</option>
+        <option value="Scotland Premiership">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</option>
+        <option value="Austrian Bundesliga">🇦🇹 Austria</option>
+        <option value="Swiss Super League">🇨🇭 Switzerland</option>      
+        <option value="Süper Lig">🇹🇷 Türkiye</option>
+        <option value="Denmark Superliga">🇩🇰 Denmark</option>
+        <option value="Sweden Allsvenskan">🇸🇪 Sweden</option>
+        <option value="Norway Eliteserien">🇳🇴 Norway</option>
+        <option value="Croatia HNL">🇭🇷 Croatia</option>
+        <option value="Serbia SuperLiga">🇷🇸 Serbia</option>
+        <option value="Czech Fortuna Liga">🇨🇿 Czech Republic</option>
+        <option value="Poland">🇵🇱 Poland</option>
+        <option value="Ukraine">🇺🇦 Ukraine</option>
+        <option value="Russia">🇷🇺 Russia</option>
+        <option value="Greece">🇬🇷 Greece</option>
+        <option value="Israel">🇮🇱 Israel</option>
+        <option value="J1 League">🇯🇵 Japan</option>
+        <option value="K League 1">🇰🇷 Korea</option>
+        <option value="Saudi Pro League">🇸🇦 Saudi Arabia</option>
+        <option value="MLS">🇺🇸 United States</option>
+        <option value="LigaMX">🇲🇽 Mexico</option>
+        <option value="Brazil Serie A">🇧🇷 Brazil</option>
+        <option value="Argentina Primera">🇦🇷 Argentina</option>
+        <option value="Uruguay Primera">🇺🇾 Uruguay</option>
+        <option value="Chile">🇨🇱 Chile</option>
+        <option value="Colombia">🇨🇴 Colombia</option>
+        <option value="Ecuador">🇪🇨 Ecuador</option>
+        <option value="Paraguay">🇵🇾 Paraguay</option>
+        <option value="Championship">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Championship</option>
+        <option value="Segunda Division">🇪🇸 Spain Segunda</option>
+        <option value="Serie B">🇮🇹 Serie B</option>
+        <option value="Bundesliga 2">🇩🇪 2. Bundesliga</option>
+        <option value="Ligue 2">🇫🇷 Ligue 2</option> 
+      <option value="No Top 7">🌍 Outside Top 7</option>
+      <option value="South America">🌎 South America</option>
+      <option value="Scandinavia">🌍 Scandinavia</option>
+      <option value="Eastern Europe">🌍 Eastern Europe</option>
+      <option value="All Leagues">🌍 All Leagues</option>
+</select>
+    <select id="age">
+        <option value="">Age</option>
+        <option value="17">U17</option>
+        <option value="18">U18</option>
+        <option value="19">U19</option>
+        <option value="20">U20</option>
+        <option value="21">U21</option>
+        <option value="22">U22</option>
+        <option value="23">U23</option>
+        <option value="24">U24</option>
+        <option value="25">U25</option>
+        <option value="26">U26</option>
+        <option value="27">U27</option>
+        <option value="28">U28</option>
+        <option value="29">U29</option>
+        <option value="30">U30</option>
+        <option value="35">U35</option>
+    </select><div class="toggle-button">
+        <input type="checkbox" id="toggleMetrics" checked> <!-- Add checked attribute here -->
+          <label for="toggleMetrics"></label>
+      </div><br><br><div class="half-spacing"></div>
+	<div class="result-container">
+	<table id="playerTable" style="display: none;">
+        <tr><th id="metricHeader"></th></tr></table></div>
+
+
+    <script>
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://datamb.football/database/INDEX.csv', false); // false for synchronous request
+xhr.send(null);
+let data = xhr.responseText;	
+let extraHeaderRow = 'Player,Team,League,Position,Age,Performance Index,Minutes played,Successful defensive actions per 90,Defensive duels per 90,Aerial duels per 90,Sliding tackles per 90,PAdj Sliding tackles,Shots blocked per 90,Interceptions per 90,PAdj Interceptions,Successful attacking actions per 90,Goals per 90,Non-penalty goals per 90,xG per 90,Head goals per 90,Shots per 90,Assists per 90,Crosses per 90,Crosses to goalie box per 90,Dribbles per 90,Offensive duels per 90,Touches in box per 90,Progressive runs per 90,Accelerations per 90,Fouls suffered per 90,Passes per 90,Forward passes per 90,Short / medium passes per 90,Long passes per 90,Average pass length m,xA per 90,Shot assists per 90,Key passes per 90,Passes to final third per 90,Passes to penalty area per 90,Through passes per 90,Deep completions per 90,Progressive passes per 90,Shots against per 90,Clean sheets,xG against per 90,Prevented goals per 90,Exits per 90,Defensive duels won %,Aerial duels won %,Shots on target %,Goal conversion %,Accurate crosses %,Successful dribbles %,Offensive duels won %,Accurate passes %,Accurate forward passes %,Accurate short / medium passes %,Accurate long passes %,Accurate passes to final third %,Accurate passes to penalty area %,Accurate through passes %,Accurate progressive passes %,Save rate %,Possession +/-';
+data = extraHeaderRow + '\n' + data;
+
+const _0x58f6fa=_0x4fd4;(function(_0x39c6f7,_0x1584ca){const _0x5974fc=_0x4fd4,_0x52a82e=_0x39c6f7();while(!![]){try{const _0x401c15=parseInt(_0x5974fc(0xb4))/0x1+parseInt(_0x5974fc(0xa0))/0x2+parseInt(_0x5974fc(0x7f))/0x3+parseInt(_0x5974fc(0x89))/0x4*(-parseInt(_0x5974fc(0xb2))/0x5)+parseInt(_0x5974fc(0xb3))/0x6*(-parseInt(_0x5974fc(0xaa))/0x7)+parseInt(_0x5974fc(0x7e))/0x8*(parseInt(_0x5974fc(0x95))/0x9)+parseInt(_0x5974fc(0xc5))/0xa;if(_0x401c15===_0x1584ca)break;else _0x52a82e['push'](_0x52a82e['shift']());}catch(_0x3ab8e2){_0x52a82e['push'](_0x52a82e['shift']());}}}(_0x32ff,0xef7f2));let originalDataArray=data[_0x58f6fa(0xc6)]('\x0a')[_0x58f6fa(0xca)](_0x2bc8f1=>_0x2bc8f1[_0x58f6fa(0xc6)](','));const playerTable=document[_0x58f6fa(0xbf)](_0x58f6fa(0xbd)),metricSelect=document[_0x58f6fa(0xbf)](_0x58f6fa(0x79)),positionSelect=document[_0x58f6fa(0xbf)](_0x58f6fa(0x87)),leagueSelect=document['getElementById']('league'),ageInput=document[_0x58f6fa(0xbf)](_0x58f6fa(0xbe)),metricHeader=document[_0x58f6fa(0xbf)]('metricHeader'),toggleButton=document[_0x58f6fa(0xbf)](_0x58f6fa(0x9d));function _0x4fd4(_0x5796ac,_0x427f26){const _0x32ff20=_0x32ff();return _0x4fd4=function(_0x4fd4ba,_0x5848be){_0x4fd4ba=_0x4fd4ba-0x71;let _0x33e276=_0x32ff20[_0x4fd4ba];return _0x33e276;},_0x4fd4(_0x5796ac,_0x427f26);}let isToggled=![],currentDataArray=originalDataArray;for(let i=originalDataArray[0x0]['length']-0x1;i>=0x5;i--){const option=document['createElement'](_0x58f6fa(0xc9));option['value']=i,option[_0x58f6fa(0xad)]=originalDataArray[0x0][i],metricSelect['insertBefore'](option,metricSelect[_0x58f6fa(0xd1)]);}metricSelect[_0x58f6fa(0xc2)]='5',leagueSelect[_0x58f6fa(0x8f)](_0x58f6fa(0x73))[_0x58f6fa(0x78)]=!![],leagueSelect[_0x58f6fa(0x8f)](_0x58f6fa(0xa8))['disabled']=!![],leagueSelect['querySelector'](_0x58f6fa(0x77))[_0x58f6fa(0x78)]=!![],leagueSelect['querySelector']('option[value=\x22No\x20Top\x207\x22]')[_0x58f6fa(0x78)]=!![],positionSelect['querySelector'](_0x58f6fa(0x97))[_0x58f6fa(0x78)]=!![],leagueSelect['querySelector']('option[value=\x22South\x20America\x22]')[_0x58f6fa(0x78)]=!![],leagueSelect[_0x58f6fa(0x8f)]('option[value=\x22Eastern\x20Europe\x22]')[_0x58f6fa(0x78)]=!![],leagueSelect['querySelector'](_0x58f6fa(0xb6))[_0x58f6fa(0x78)]=!![],metricSelect['dispatchEvent'](new Event('change')),toggleButton[_0x58f6fa(0x71)](_0x58f6fa(0xb1),toggleData),metricSelect[_0x58f6fa(0x71)](_0x58f6fa(0xb1),filterTable),positionSelect['addEventListener'](_0x58f6fa(0xb1),filterTable),leagueSelect['addEventListener'](_0x58f6fa(0xb1),filterTable),ageInput[_0x58f6fa(0x71)](_0x58f6fa(0x92),filterTable);function toggleData(){const _0x18c1bf=_0x58f6fa;isToggled=!isToggled;const _0xb2d856=metricSelect[_0x18c1bf(0xc2)];if(isToggled){currentDataArray=originalDataArray[_0x18c1bf(0xca)]((_0x41581b,_0x390ff9)=>{const _0x52d9a2=_0x18c1bf;if(_0x390ff9===0x0)return _0x41581b[_0x52d9a2(0xca)]((_0x32cbd8,_0x129f55)=>{const _0x41cf74=_0x52d9a2;return![0xb,0xe,0x22,0x2c,0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39,0x3a,0x3b,0x3c,0x3d,0x3e,0x3f][_0x41cf74(0xaf)](_0x129f55)?_0x32cbd8[_0x41cf74(0x96)]('\x20per\x2090',''):_0x32cbd8;});else{const _0x2ffa80=parseFloat(_0x41581b[0x6]);return _0x41581b['map']((_0x30f4e2,_0x4e6c48)=>{const _0x348f25=_0x52d9a2;return _0x4e6c48>0x4&&![0x5,0x6,0xb,0xe,0x22,0x2c,0x30,0x31,0x32,0x33,0x34,0x35,0x36,0x37,0x38,0x39,0x3a,0x3b,0x3c,0x3d,0x3e,0x3f,0x40]['includes'](_0x4e6c48)?[0x12,0x23,0x2d,0x2e][_0x348f25(0xaf)](_0x4e6c48)?(_0x30f4e2*_0x2ffa80/0x5a)[_0x348f25(0xd5)](0x1):Math[_0x348f25(0xa9)](_0x30f4e2*_0x2ffa80/0x5a):_0x30f4e2;});}}),metricSelect['innerHTML']='';for(let _0x3efedf=0x5;_0x3efedf<currentDataArray[0x0][_0x18c1bf(0x74)];_0x3efedf++){const _0x1b1929=document['createElement']('option');_0x1b1929['value']=_0x3efedf,_0x1b1929['textContent']=currentDataArray[0x0][_0x3efedf],metricSelect[_0x18c1bf(0xb5)](_0x1b1929);}}else{currentDataArray=originalDataArray,metricSelect[_0x18c1bf(0x8d)]='';for(let _0x1d626c=0x5;_0x1d626c<originalDataArray[0x0]['length'];_0x1d626c++){const _0x309196=document['createElement']('option');_0x309196[_0x18c1bf(0xc2)]=_0x1d626c,_0x309196[_0x18c1bf(0xad)]=originalDataArray[0x0][_0x1d626c],metricSelect['appendChild'](_0x309196);}}metricSelect[_0x18c1bf(0xc2)]=_0xb2d856,handleSelectorsChange(),filterTable();}function filterTable(){const _0x2f40bc=_0x58f6fa;let _0x8f0944=currentDataArray[_0x2f40bc(0x81)](0x1);const _0x222694=metricSelect[_0x2f40bc(0xc2)],_0x55e6e3=positionSelect['value'],_0x35600d=leagueSelect[_0x2f40bc(0xc2)],_0x2e6f24=ageInput['value'];_0x222694===''?metricHeader[_0x2f40bc(0xd8)][_0x2f40bc(0x85)]=_0x2f40bc(0x7a):(metricHeader['style'][_0x2f40bc(0x85)]='',_0x8f0944[_0x2f40bc(0x9a)]((_0x16d73e,_0x42eff8)=>parseFloat(_0x42eff8[_0x222694])-parseFloat(_0x16d73e[_0x222694])));_0x8f0944=_0x8f0944['filter'](_0x1ab009=>_0x1ab009[_0x222694]!=='');if(_0x55e6e3===_0x2f40bc(0x82)){const _0x16ce5b={};_0x8f0944=_0x8f0944[_0x2f40bc(0x8a)](_0x3a0c28=>{const _0x5dd3ee=_0x3a0c28[0x0]+'\x20'+_0x3a0c28[0x1];if(!_0x16ce5b[_0x5dd3ee])return _0x16ce5b[_0x5dd3ee]=!![],!![];return![];});}else _0x55e6e3!==''&&(_0x8f0944=_0x8f0944['filter'](_0x1f33bd=>_0x1f33bd[0x3]===_0x55e6e3));if(_0x35600d===_0x2f40bc(0xd3))_0x8f0944=_0x8f0944[_0x2f40bc(0x8a)](_0xbdabd1=>['Premier\x20League',_0x2f40bc(0x98),_0x2f40bc(0xa3),_0x2f40bc(0xcc),_0x2f40bc(0x9b)][_0x2f40bc(0xaf)](_0xbdabd1[0x2]));else{if(_0x35600d==='Top\x207\x20Leagues')_0x8f0944=_0x8f0944[_0x2f40bc(0x8a)](_0x54dba7=>[_0x2f40bc(0xd6),_0x2f40bc(0x98),_0x2f40bc(0xa3),_0x2f40bc(0xcc),'Serie\x20A',_0x2f40bc(0xd7),_0x2f40bc(0xba)][_0x2f40bc(0xaf)](_0x54dba7[0x2]));else{if(_0x35600d===_0x2f40bc(0x8e))_0x8f0944=_0x8f0944['filter'](_0x630f5d=>[_0x2f40bc(0x72),'Poland','Ukraine',_0x2f40bc(0x76),_0x2f40bc(0xcd),_0x2f40bc(0xac),_0x2f40bc(0xce),_0x2f40bc(0xd2),_0x2f40bc(0xc3),_0x2f40bc(0x8b),'Scotland\x20Premiership',_0x2f40bc(0x75),_0x2f40bc(0xc7),'Süper\x20Lig',_0x2f40bc(0xd4),_0x2f40bc(0x83),_0x2f40bc(0xa5),'Croatia\x20HNL','Serbia\x20SuperLiga',_0x2f40bc(0x9c),'Saudi\x20Pro\x20League',_0x2f40bc(0x86),_0x2f40bc(0xae),'MLS',_0x2f40bc(0xa2),_0x2f40bc(0xbc),_0x2f40bc(0x93),_0x2f40bc(0xb7),_0x2f40bc(0xb0),_0x2f40bc(0xb8),_0x2f40bc(0x7d),_0x2f40bc(0x8c),_0x2f40bc(0xc0)][_0x2f40bc(0xaf)](_0x630f5d[0x2]));else{if(_0x35600d===_0x2f40bc(0xc8))_0x8f0944=_0x8f0944['filter'](_0x58d8ed=>[_0x2f40bc(0x72),'Poland','Ukraine',_0x2f40bc(0x76),_0x2f40bc(0xcd),'Ecuador',_0x2f40bc(0xce),_0x2f40bc(0xd2),_0x2f40bc(0xc3),_0x2f40bc(0xd6),_0x2f40bc(0x98),'La\x20Liga',_0x2f40bc(0xcc),_0x2f40bc(0x9b),'Eredivisie',_0x2f40bc(0xba),_0x2f40bc(0x8b),_0x2f40bc(0x7c),_0x2f40bc(0x75),_0x2f40bc(0xc7),_0x2f40bc(0x90),_0x2f40bc(0xd4),_0x2f40bc(0x83),_0x2f40bc(0xa5),_0x2f40bc(0xa4),_0x2f40bc(0xa6),_0x2f40bc(0x9c),_0x2f40bc(0x94),_0x2f40bc(0x86),'K\x20League\x201','MLS',_0x2f40bc(0xa2),_0x2f40bc(0xbc),_0x2f40bc(0x93),_0x2f40bc(0xb7),_0x2f40bc(0xb0),'Segunda\x20Division',_0x2f40bc(0x7d),'Bundesliga\x202',_0x2f40bc(0xc0)][_0x2f40bc(0xaf)](_0x58d8ed[0x2]));else{if(_0x35600d===_0x2f40bc(0xb9))_0x8f0944=_0x8f0944[_0x2f40bc(0x8a)](_0xcb797a=>['Brazil\x20Serie\x20A',_0x2f40bc(0x93),_0x2f40bc(0xb7),_0x2f40bc(0xc3),_0x2f40bc(0xd2),_0x2f40bc(0xce),'Ecuador'][_0x2f40bc(0xaf)](_0xcb797a[0x2]));else{if(_0x35600d===_0x2f40bc(0xc4))_0x8f0944=_0x8f0944[_0x2f40bc(0x8a)](_0xd61c4e=>['Norway\x20Eliteserien',_0x2f40bc(0xd4),_0x2f40bc(0x83)][_0x2f40bc(0xaf)](_0xd61c4e[0x2]));else{if(_0x35600d==='Eastern\x20Europe')_0x8f0944=_0x8f0944['filter'](_0x55289b=>[_0x2f40bc(0x9c),_0x2f40bc(0xa6),_0x2f40bc(0xa4),_0x2f40bc(0x76),_0x2f40bc(0x99),_0x2f40bc(0xbb)]['includes'](_0x55289b[0x2]));else _0x35600d!==''&&(_0x8f0944=_0x8f0944[_0x2f40bc(0x8a)](_0x114216=>_0x114216[0x2]===_0x35600d));}}}}}}_0x2e6f24!==''&&(_0x8f0944=_0x8f0944[_0x2f40bc(0x8a)](_0x468737=>_0x468737[0x4]<=_0x2e6f24+0x1)),displayTable(_0x8f0944);}function displayTable(_0x313739){const _0x1467d4=_0x58f6fa;playerTable[_0x1467d4(0x8d)]='';if(metricSelect[_0x1467d4(0xc2)]===''){playerTable[_0x1467d4(0xd8)][_0x1467d4(0x85)]=_0x1467d4(0x7a);return;}else playerTable[_0x1467d4(0xd8)][_0x1467d4(0x85)]='';_0x313739[_0x1467d4(0x9a)]((_0x26c71e,_0x27e48c)=>parseFloat(_0x27e48c[metricSelect[_0x1467d4(0xc2)]])-parseFloat(_0x26c71e[metricSelect[_0x1467d4(0xc2)]]));let _0x29e481=null,_0x205d2a=0x0,_0xfa3715=0x64,_0x28e798=0x64,_0x5ce6a3=Math[_0x1467d4(0x80)](..._0x313739[_0x1467d4(0xca)](_0xe7def4=>parseFloat(_0xe7def4[metricSelect['value']]))),_0x29cd12=Math[_0x1467d4(0x91)](..._0x313739[_0x1467d4(0xca)](_0x53b645=>parseFloat(_0x53b645[metricSelect[_0x1467d4(0xc2)]])));_0x313739[_0x1467d4(0x9e)]((_0xf2f0bd,_0x1f5c7a)=>{const _0x2e9327=_0x1467d4;let _0x3890eb,_0x5a1c29;if(_0xf2f0bd[metricSelect[_0x2e9327(0xc2)]]===_0x29e481)_0x3890eb=_0xfa3715,_0x5a1c29=_0x28e798;else{if(_0xf2f0bd[metricSelect['value']]==='0')_0x3890eb=0x0,_0x5a1c29=0x0;else{if(metricSelect[_0x2e9327(0xc2)]==='46')_0x3890eb=(_0x313739[_0x2e9327(0x74)]-_0x1f5c7a)/_0x313739[_0x2e9327(0x74)]*0x64,_0x5a1c29=(_0x313739[_0x2e9327(0x74)]-_0x1f5c7a)/_0x313739[_0x2e9327(0x74)]*0x64;else{if(metricSelect[_0x2e9327(0xc2)]==='64')_0x3890eb=(_0x313739['length']-_0x1f5c7a)/_0x313739[_0x2e9327(0x74)]*0x64,_0x5a1c29=(_0x313739[_0x2e9327(0x74)]-_0x1f5c7a)/_0x313739[_0x2e9327(0x74)]*0x64;else metricSelect[_0x2e9327(0xc2)]==='5'?(_0x3890eb=parseFloat(_0xf2f0bd[metricSelect[_0x2e9327(0xc2)]])*0x64/0x63,_0x5a1c29=(_0x313739[_0x2e9327(0x74)]-_0x1f5c7a)/_0x313739['length']*0x64):(_0x3890eb=Math[_0x2e9327(0x80)](parseFloat(_0xf2f0bd[metricSelect['value']])/_0x5ce6a3*0x64,1.5),_0x5a1c29=(_0x313739[_0x2e9327(0x74)]-_0x1f5c7a)/_0x313739[_0x2e9327(0x74)]*0x64);}}_0x29e481=_0xf2f0bd[metricSelect[_0x2e9327(0xc2)]],_0x205d2a=_0x1f5c7a,_0xfa3715=_0x3890eb,_0x28e798=_0x5a1c29;}const _0x25fcca=Math[_0x2e9327(0xa9)](0xff*(0x1-Math['pow'](_0x5a1c29/0x64,1.3))),_0x1a286e=Math['round'](_0x5a1c29),_0x4120bd=Math['round'](0xff*Math[_0x2e9327(0xa1)](_0x5a1c29/0x64,1.3)),_0x14d68b=0.835,_0x5caa67=_0x2e9327(0xa7)+_0x25fcca+',\x20'+_0x1a286e+',\x20'+_0x4120bd+',\x20'+_0x14d68b+')',_0x5237d0=document[_0x2e9327(0xab)]('tr');_0x5237d0[_0x2e9327(0x8d)]='\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<td>'+(_0x205d2a+0x1)+'.\x20'+_0xf2f0bd[0x0]+_0x2e9327(0x7b)+_0xf2f0bd[0x1]+',\x20'+Math[_0x2e9327(0xa9)](_0xf2f0bd[0x4])+_0x2e9327(0xc1)+_0xf2f0bd[metricSelect[_0x2e9327(0xc2)]]+'</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-bar\x22>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<div\x20class=\x22rank-bar-fill\x22\x20style=\x22width:\x20'+_0x3890eb+_0x2e9327(0x84)+_0x5caa67+_0x2e9327(0x88),playerTable[_0x2e9327(0xb5)](_0x5237d0);});}function _0x32ff(){const _0x3c3437=['Saudi\x20Pro\x20League','54GwewcG','replace','option[value=\x22All\x22]','Bundesliga','Ukraine','sort','Serie\x20A','Czech\x20Fortuna\x20Liga','toggleMetrics','forEach','option[value=\x22No\x20Top\x207\x22]','2724342hhQzVY','pow','LigaMX','La\x20Liga','Croatia\x20HNL','Norway\x20Eliteserien','Serbia\x20SuperLiga','rgba(','option[value=\x22Top\x207\x20Leagues\x22]','round','21xzJmmY','createElement','Ecuador','textContent','K\x20League\x201','includes','Championship','change','5NlmHie','3104652SdHhnm','1626820KxLbrP','appendChild','option[value=\x22Scandinavia\x22]','Uruguay\x20Primera','Segunda\x20Division','South\x20America','Liga\x20Portugal','Poland','Brazil\x20Serie\x20A','playerTable','age','getElementById','Ligue\x202',')</span></td>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20<th>','value','Colombia','Scandinavia','8323820fMIvlO','split','Swiss\x20Super\x20League','All\x20Leagues','option','map','option[value=\x22Eastern\x20Europe\x22]','Ligue\x201','Israel','Paraguay','option[value=\x22South\x20America\x22]','Top\x207\x20Leagues','firstChild','Chile','Top\x205\x20Leagues','Denmark\x20Superliga','toFixed','Premier\x20League','Eredivisie','style','addEventListener','Greece','option[value=\x22Top\x205\x20Leagues\x22]','length','Austrian\x20Bundesliga','Russia','option[value=\x22All\x20Leagues\x22]','disabled','metric','none','&nbsp;<span\x20class=\x22smaller-text\x22>(','Scotland\x20Premiership','Serie\x20B','8736TsaiuL','371160RRcGBV','max','slice','All','Sweden\x20Allsvenskan','%;\x20background-color:\x20','display','J1\x20League','position','\x22></div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</div>\x0a\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20\x20</th>\x0a\x20\x20\x20\x20\x20\x20\x20\x20','5673364icACpJ','filter','Belgium\x20Pro\x20League','Bundesliga\x202','innerHTML','No\x20Top\x207','querySelector','Süper\x20Lig','min','input','Argentina\x20Primera'];_0x32ff=function(){return _0x3c3437;};return _0x32ff();}function handleSelectorsChange(){const _0x14acef=_0x58f6fa,_0x1f37d5=parseInt(metricSelect[_0x14acef(0xc2)]),_0x3abba2=positionSelect['value'],_0x4a62a4=leagueSelect[_0x14acef(0xc2)],_0x2af189=metricSelect['querySelectorAll']('option');_0x1f37d5===0x5?(leagueSelect[_0x14acef(0x8f)](_0x14acef(0x73))[_0x14acef(0x78)]=!![],leagueSelect[_0x14acef(0x8f)](_0x14acef(0xa8))[_0x14acef(0x78)]=!![],positionSelect['querySelector'](_0x14acef(0x97))[_0x14acef(0x78)]=!![],leagueSelect[_0x14acef(0x8f)](_0x14acef(0x9f))['disabled']=!![],leagueSelect[_0x14acef(0x8f)](_0x14acef(0x77))['disabled']=!![],leagueSelect[_0x14acef(0x8f)](_0x14acef(0xcf))[_0x14acef(0x78)]=!![],leagueSelect['querySelector'](_0x14acef(0xcb))[_0x14acef(0x78)]=!![],leagueSelect[_0x14acef(0x8f)](_0x14acef(0xb6))[_0x14acef(0x78)]=!![]):(leagueSelect[_0x14acef(0x8f)](_0x14acef(0x73))[_0x14acef(0x78)]=![],leagueSelect[_0x14acef(0x8f)](_0x14acef(0xa8))[_0x14acef(0x78)]=![],positionSelect[_0x14acef(0x8f)](_0x14acef(0x97))[_0x14acef(0x78)]=![],leagueSelect[_0x14acef(0x8f)](_0x14acef(0x9f))[_0x14acef(0x78)]=![],leagueSelect[_0x14acef(0x8f)](_0x14acef(0x77))[_0x14acef(0x78)]=![],leagueSelect['querySelector'](_0x14acef(0xcf))[_0x14acef(0x78)]=![],leagueSelect[_0x14acef(0x8f)](_0x14acef(0xcb))[_0x14acef(0x78)]=![],leagueSelect[_0x14acef(0x8f)](_0x14acef(0xb6))[_0x14acef(0x78)]=![]),_0x3abba2===_0x14acef(0x82)||(_0x4a62a4==='Top\x205\x20Leagues'||_0x4a62a4===_0x14acef(0xd0)||_0x4a62a4==='No\x20Top\x207'||_0x4a62a4===_0x14acef(0xc8)||_0x4a62a4===_0x14acef(0xb9)||_0x4a62a4===_0x14acef(0xc4)||_0x4a62a4==='Eastern\x20Europe')?(_0x2af189[0x0]['disabled']=!![],_0x1f37d5===0x0&&(metricSelect[_0x14acef(0xc2)]='1',filterTable())):_0x2af189[0x0]['disabled']=![];}metricSelect['addEventListener']('change',handleSelectorsChange),positionSelect[_0x58f6fa(0x71)](_0x58f6fa(0xb1),handleSelectorsChange),leagueSelect[_0x58f6fa(0x71)]('change',handleSelectorsChange),filterTable();
+</script>
+	<script>
+    function removeText() {
+        const elements = document.querySelectorAll('*');
+        elements.forEach(element => {
+            if (element.children.length === 0) { // Only process elements without children
+                if (element.textContent.includes(' Wanderers')) {
+                    element.textContent = element.textContent.replace(/ Wanderers/g, '');
+                }
+            }
+        });
+    }
+
+    // Call the function after the DOM is fully loaded
+    document.addEventListener('DOMContentLoaded', removeText);
+
+    // Set up a MutationObserver to watch for changes in the DOM
+    const observer = new MutationObserver(removeText);
+
+    // Observe changes in the entire document
+    observer.observe(document.body, {
+        childList: true,
+        subtree: true,
+        characterData: true
+    });
+</script>
+</body>
+</html>
+
