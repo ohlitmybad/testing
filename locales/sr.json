@@ -1,0 +1,50 @@
+{
+  "header": {
+    "teams": "Timovi",
+    "pro": "Pro",
+    "guide": "Vodič"
+  },
+  "meta": {
+    "title": "DataMB | Poređenje igrača",
+    "description": "Uporedite statistike fudbalera iz top 7 liga. Koristite naš radar alat za poređenje i druge alate za vizuelizaciju podataka iz Premier lige, La Lige, Bundeslige, Serije A, Lige 1, Eredivizije, Primeira lige i drugih liga."
+  },
+  "search": {
+    "placeholder": "Unesite ime tima ili igrača..."
+  },
+  "positions": {
+    "title": "Top 7 liga — 2023/24, 2024/25",
+    "goalkeepers": {
+      "title": "GOLMANI",
+      "description": "Uporedi golmane"
+    },
+    "centrebacks": {
+      "title": "ŠTOPERI",
+      "description": "Uporedi štopere"
+    },
+    "fullbacks": {
+      "title": "BEKOVI",
+      "description": "Uporedi bekove i vingbekove"
+    },
+    "midfielders": {
+      "title": "VEZNI",
+      "description": "Uporedi defanzivne, centralne i ofanzivne vezne"
+    },
+    "wingers": {
+      "title": "KRILA",
+      "description": "Uporedi krila i ofanzivne vezne"
+    },
+    "strikers": {
+      "title": "NAPADAČI",
+      "description": "Uporedi napadače (centarfore)"
+    }
+  },
+  "pro": {
+    "title": "PRO — Više liga, Više sezona"
+  },
+  "footer": {
+    "rights": "© Sva prava zadržana",
+    "privacy": "Privatnost",
+    "contact": "Kontakt",
+    "about": "O nama"
+  }
+} 

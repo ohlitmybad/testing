@@ -1,0 +1,50 @@
+{
+  "header": {
+    "teams": "Takımlar",
+    "pro": "Pro",
+    "guide": "Rehber"
+  },
+  "meta": {
+    "title": "DataMB | Oyuncuları Karşılaştır",
+    "description": "En iyi 7 ligdeki futbolcuların istatistiklerini karşılaştırın. Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga ve diğer liglerin verilerini görselleştirmek için radar karşılaştırma ve diğer araçlarımızı kullanın."
+  },
+  "search": {
+    "placeholder": "Bir takım veya oyuncu adı girin..."
+  },
+  "positions": {
+    "title": "En İyi 7 Lig — 2023/24, 2024/25",
+    "goalkeepers": {
+      "title": "KALECİLER",
+      "description": "Kalecileri karşılaştır"
+    },
+    "centrebacks": {
+      "title": "STOPER",
+      "description": "Stoper oyuncularını karşılaştır"
+    },
+    "fullbacks": {
+      "title": "BEKLERİ",
+      "description": "Bek ve kanat beklerini karşılaştır"
+    },
+    "midfielders": {
+      "title": "ORTA SAHA",
+      "description": "Defansif, merkez ve ofansif orta saha oyuncularını karşılaştır"
+    },
+    "wingers": {
+      "title": "KANAT OYUNCULARI",
+      "description": "Kanat oyuncularını ve ofansif orta sahaları karşılaştır"
+    },
+    "strikers": {
+      "title": "FORVETLER",
+      "description": "Forvetleri (santrforları) karşılaştır"
+    }
+  },
+  "pro": {
+    "title": "PRO — Daha Fazla Lig, Daha Fazla Sezon"
+  },
+  "footer": {
+    "rights": "© Tüm Hakları Saklıdır",
+    "privacy": "Gizlilik",
+    "contact": "İletişim",
+    "about": "Hakkında"
+  }
+} 

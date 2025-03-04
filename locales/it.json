@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "title": "DataMB | Confronta Giocatori",
+    "description": "Confronta le statistiche dei calciatori dei top 7 campionati. Utilizza il nostro strumento di confronto radar e altri strumenti per visualizzare i dati di Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga e altri campionati."
+  },
+  "header": {
+    "teams": "Squadre",
+    "pro": "Pro",
+    "guide": "Guida"
+  },
+  "search": {
+    "placeholder": "Inserisci il nome di una squadra o di un giocatore..."
+  },
+  "positions": {
+    "title": "Top 7 Campionati — 2023/24, 2024/25",
+    "goalkeepers": {
+      "title": "PORTIERI",
+      "description": "Confronta i portieri"
+    },
+    "centrebacks": {
+      "title": "DIFENSORI CENTRALI",
+      "description": "Confronta i difensori centrali"
+    },
+    "fullbacks": {
+      "title": "TERZINI",
+      "description": "Confronta terzini ed esterni"
+    },
+    "midfielders": {
+      "title": "CENTROCAMPISTI",
+      "description": "Confronta centrocampisti difensivi, centrali e offensivi"
+    },
+    "wingers": {
+      "title": "ALI",
+      "description": "Confronta ali e trequartisti"
+    },
+    "strikers": {
+      "title": "ATTACCANTI",
+      "description": "Confronta gli attaccanti (punte centrali)"
+    }
+  },
+  "pro": {
+    "title": "PRO — Più campionati, Più stagioni"
+  },
+  "footer": {
+    "rights": "© Tutti i diritti riservati",
+    "privacy": "Privacy",
+    "contact": "Contatti",
+    "about": "Chi siamo"
+  }
+} 

@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "title": "DataMB | 선수 비교",
+    "description": "톱 7 리그의 축구 선수 통계를 비교하세요. 레이더 비교 도구와 기타 도구를 사용하여 프리미어리그, 라리가, 분데스리가, 세리에 A, 리그 1, 에레디비시, 프리메이라리가 등의 데이터를 시각화하세요."
+  },
+  "header": {
+    "teams": "팀",
+    "pro": "프로",
+    "guide": "가이드"
+  },
+  "search": {
+    "placeholder": "팀 또는 선수 이름을 입력하세요..."
+  },
+  "positions": {
+    "title": "톱 7 리그 — 2023/24, 2024/25",
+    "goalkeepers": {
+      "title": "골키퍼",
+      "description": "골키퍼 비교"
+    },
+    "centrebacks": {
+      "title": "센터백",
+      "description": "센터백 비교"
+    },
+    "fullbacks": {
+      "title": "풀백",
+      "description": "풀백과 윙백 비교"
+    },
+    "midfielders": {
+      "title": "미드필더",
+      "description": "수비형, 중앙, 공격형 미드필더 비교"
+    },
+    "wingers": {
+      "title": "윙어",
+      "description": "윙어와 공격형 미드필더 비교"
+    },
+    "strikers": {
+      "title": "스트라이커",
+      "description": "스트라이커(센터포워드) 비교"
+    }
+  },
+  "pro": {
+    "title": "프로 — 더 많은 리그, 더 많은 시즌"
+  },
+  "footer": {
+    "rights": "© 모든 권리 보유",
+    "privacy": "개인정보",
+    "contact": "문의하기",
+    "about": "소개"
+  }
+} 

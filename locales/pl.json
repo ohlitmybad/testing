@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "title": "DataMB | Porównaj Zawodników",
+    "description": "Porównaj statystyki piłkarzy z 7 najlepszych lig. Użyj naszego narzędzia do porównywania radarowego i innych narzędzi do wizualizacji danych z Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga i innych lig."
+  },
+  "header": {
+    "teams": "Drużyny",
+    "pro": "Pro",
+    "guide": "Przewodnik"
+  },
+  "search": {
+    "placeholder": "Wpisz nazwę drużyny lub zawodnika..."
+  },
+  "positions": {
+    "title": "Top 7 Lig — 2023/24, 2024/25",
+    "goalkeepers": {
+      "title": "BRAMKARZE",
+      "description": "Porównaj bramkarzy"
+    },
+    "centrebacks": {
+      "title": "ŚRODKOWI OBROŃCY",
+      "description": "Porównaj środkowych obrońców"
+    },
+    "fullbacks": {
+      "title": "BOCZNI OBROŃCY",
+      "description": "Porównaj bocznych obrońców i wahadłowych"
+    },
+    "midfielders": {
+      "title": "POMOCNICY",
+      "description": "Porównaj defensywnych, środkowych i ofensywnych pomocników"
+    },
+    "wingers": {
+      "title": "SKRZYDŁOWI",
+      "description": "Porównaj skrzydłowych i ofensywnych pomocników"
+    },
+    "strikers": {
+      "title": "NAPASTNICY",
+      "description": "Porównaj napastników (środkowych napastników)"
+    }
+  },
+  "pro": {
+    "title": "PRO — Więcej lig, Więcej sezonów"
+  },
+  "footer": {
+    "rights": "© Wszelkie prawa zastrzeżone",
+    "privacy": "Prywatność",
+    "contact": "Kontakt",
+    "about": "O nas"
+  }
+} 
