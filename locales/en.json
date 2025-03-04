@@ -1,0 +1,50 @@
+{
+  "meta": {
+    "title": "DataMB | Compare Players",
+    "description": "Compare football players stats from the top 7 leagues. Use our radar comparison and other tools to visualise data from Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga and more leagues."
+  },
+  "header": {
+    "teams": "Teams",
+    "pro": "Pro",
+    "guide": "Guide"
+  },
+  "search": {
+    "placeholder": "Enter a team or player name..."
+  },
+  "positions": {
+    "title": "Top 7 Leagues — 2023/24, 2024/25",
+    "goalkeepers": {
+      "title": "GOALKEEPERS",
+      "description": "Compare goalkeepers"
+    },
+    "centrebacks": {
+      "title": "CENTREBACKS",
+      "description": "Compare central defenders"
+    },
+    "fullbacks": {
+      "title": "FULLBACKS",
+      "description": "Compare fullbacks and wingbacks"
+    },
+    "midfielders": {
+      "title": "MIDFIELDERS",
+      "description": "Compare defensive, central, and attacking midfielders"
+    },
+    "wingers": {
+      "title": "WINGERS",
+      "description": "Compare wingers and attacking midfielders"
+    },
+    "strikers": {
+      "title": "STRIKERS",
+      "description": "Compare strikers (centre-forwards)"
+    }
+  },
+  "pro": {
+    "title": "PRO — More leagues, More seasons"
+  },
+  "footer": {
+    "rights": "© All Rights Reserved",
+    "privacy": "Privacy",
+    "contact": "Contact",
+    "about": "About"
+  }
+} 
