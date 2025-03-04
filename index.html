@@ -1,7 +1,12 @@
-
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="language" content="en">
+<link rel="alternate" hreflang="en" href="https://datamb.football/" />
+<link rel="alternate" hreflang="es" href="https://datamb.football/?lang=es" />
+<link rel="alternate" hreflang="fr" href="https://datamb.football/?lang=fr" />
+<link rel="alternate" hreflang="de" href="https://datamb.football/?lang=de" />
+<link rel="alternate" hreflang="x-default" href="https://datamb.football/" />
 
 <link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
   <title data-i18n="meta.title">DataMB | Compare Players</title>
@@ -598,10 +603,24 @@ function _0x5707(_0xd20fa7,_0x4d36b5){const _0x4dcd69=_0x4dcd();return _0x5707=f
 // Translation functionality
 function setLanguage(language) {
   localStorage.setItem('preferredLanguage', language);
+  // Update URL with language parameter
+  const url = new URL(window.location.href);
+  if (language === 'en') {
+    url.searchParams.delete('lang');
+  } else {
+    url.searchParams.set('lang', language);
+  }
+  window.history.pushState({}, '', url);
   applyLanguage(language);
 }
 
 function getPreferredLanguage() {
+  // Check URL parameter first
+  const urlParams = new URLSearchParams(window.location.search);
+  const langParam = urlParams.get('lang');
+  if (langParam) {
+    return langParam;
+  }
   return localStorage.getItem('preferredLanguage') || getBrowserLanguage() || 'en';
 }
 
@@ -647,11 +666,15 @@ function applyLanguage(language) {
 const preferredLanguage = getPreferredLanguage();
 document.getElementById('language-switcher').value = preferredLanguage;
 applyLanguage(preferredLanguage);
+// Update meta language tag when language changes
+document.querySelector('meta[name="language"]').setAttribute('content', preferredLanguage);
 
 // Handle language switch
 document.getElementById('language-switcher').addEventListener('change', function(e) {
   const selectedLanguage = e.target.value;
   setLanguage(selectedLanguage);
+  // Update meta language tag
+  document.querySelector('meta[name="language"]').setAttribute('content', selectedLanguage);
 });
 </script>
 
