@@ -17,7 +17,7 @@
   <meta name="twitter:title" content="DataMB | Compare Players">
   <meta name="twitter:description" content="Radar Comparison Tool">
   <meta name="twitter:image" content="https://datamb.football/vignettes/radars.png">
-  <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/2.3.0/iconify-icon.min.js"></script>
 
 	  <title translate="no">DataMB | Compare Players</title>
 
@@ -405,7 +405,78 @@ header a {
     font-size: 20px; /* Increase the text size */
 }
 
-    
+#language-switcher iconify-icon {
+  font-size: 20px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+#language-switcher option {
+  padding: 5px;
+  display: flex;
+  align-items: center;
+}
+
+.language-switcher-container {
+  position: relative;
+  display: inline-block;
+}
+
+.language-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  color: #000;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+}
+
+.language-button iconify-icon {
+  font-size: 24px;
+  opacity: 0.7;
+}
+
+.language-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 10px;
+  width: 200px;
+  max-height: 300px;
+  overflow-y: auto;
+  z-index: 1000;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #000;
+  text-decoration: none;
+}
+
+.language-option:hover {
+  background: #f5f5f5;
+}
+
+.language-option iconify-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.language-dropdown.show {
+  display: block;
+}
+
     </style>
 
 
@@ -419,14 +490,33 @@ header a {
   <nav class="navigation">
     <a href="https://datamb.football/teams" class="button10" data-i18n="header.teams">Teams</a>
     <a href="https://datamb.football/join" class="button10" data-i18n="header.pro">Pro</a>
-    <a href="https://datamb.football/guide" class="button10" data-i18n="header.guide">Guide</a>&nbsp;&nbsp;
-    <select id="language-switcher" class="button10" style="border: none; background: none; font-size: 24px; cursor: pointer;">
-      <option value="en">EN</option>
-      <option value="es">ES</option>
-      <option value="fr">FR</option>
-      <option value="de">DE</option>
-    </select>&nbsp;&nbsp;
+    <a href="https://datamb.football/guide" class="button10" data-i18n="header.guide">Guide</a>
   </nav>
+  <div class="language-switcher-container">
+    <button class="language-button" id="languageButton">
+      <iconify-icon icon="carbon:earth-filled"></iconify-icon>
+    </button>
+    <div class="language-dropdown" id="languageDropdown">
+      <a href="?lang=en" class="language-option"><iconify-icon icon="flag:gb-4x3"></iconify-icon>English</a>
+      <a href="?lang=es" class="language-option"><iconify-icon icon="flag:es-4x3"></iconify-icon>Español</a>
+      <a href="?lang=fr" class="language-option"><iconify-icon icon="flag:fr-4x3"></iconify-icon>Français</a>
+      <a href="?lang=de" class="language-option"><iconify-icon icon="flag:de-4x3"></iconify-icon>Deutsch</a>
+      <a href="?lang=it" class="language-option"><iconify-icon icon="flag:it-4x3"></iconify-icon>Italiano</a>
+      <a href="?lang=pt" class="language-option"><iconify-icon icon="flag:pt-4x3"></iconify-icon>Português</a>
+      <a href="?lang=nl" class="language-option"><iconify-icon icon="flag:nl-4x3"></iconify-icon>Nederlands</a>
+      <a href="?lang=tr" class="language-option"><iconify-icon icon="flag:tr-4x3"></iconify-icon>Türkçe</a>
+      <a href="?lang=pl" class="language-option"><iconify-icon icon="flag:pl-4x3"></iconify-icon>Polski</a>
+      <a href="?lang=ar" class="language-option"><iconify-icon icon="fa6-solid:align-right"></iconify-icon>العربية</a>
+      <a href="?lang=id" class="language-option"><iconify-icon icon="flag:id-4x3"></iconify-icon>Indonesia</a>
+      <a href="?lang=ja" class="language-option"><iconify-icon icon="flag:jp-4x3"></iconify-icon>日本語</a>
+      <a href="?lang=ko" class="language-option"><iconify-icon icon="flag:kr-4x3"></iconify-icon>한국어</a>
+      <a href="?lang=el" class="language-option"><iconify-icon icon="flag:gr-4x3"></iconify-icon>Ελληνικά</a>
+      <a href="?lang=ru" class="language-option"><iconify-icon icon="flag:ru-4x3"></iconify-icon>Русский</a>
+      <a href="?lang=cs" class="language-option"><iconify-icon icon="flag:cz-4x3"></iconify-icon>Čeština</a>
+      <a href="?lang=sr" class="language-option"><iconify-icon icon="flag:rs-4x3"></iconify-icon>Српски</a>
+      <a href="?lang=hr" class="language-option"><iconify-icon icon="flag:hr-4x3"></iconify-icon>Hrvatski</a>
+    </div>
+  </div>
   <div class="search-container">
     <button id="searchButton"><iconify-icon icon="ion:search-outline"></iconify-icon></button>
 </div>
@@ -664,22 +754,41 @@ function applyLanguage(language) {
       // Update meta tags
       document.title = translations.meta.title;
       document.querySelector('meta[name="description"]').setAttribute('content', translations.meta.description);
+      document.querySelector('meta[name="language"]').setAttribute('content', language);
     });
 }
 
 // Initialize translations
 const preferredLanguage = getPreferredLanguage();
-document.getElementById('language-switcher').value = preferredLanguage;
 applyLanguage(preferredLanguage);
-// Update meta language tag when language changes
-document.querySelector('meta[name="language"]').setAttribute('content', preferredLanguage);
 
-// Handle language switch
-document.getElementById('language-switcher').addEventListener('change', function(e) {
-  const selectedLanguage = e.target.value;
-  setLanguage(selectedLanguage);
-  // Update meta language tag
-  document.querySelector('meta[name="language"]').setAttribute('content', selectedLanguage);
+// Language dropdown functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const languageButton = document.getElementById('languageButton');
+  const languageDropdown = document.getElementById('languageDropdown');
+
+  // Toggle dropdown on button click
+  languageButton.addEventListener('click', function(e) {
+    e.stopPropagation();
+    languageDropdown.classList.toggle('show');
+  });
+
+  // Handle language option clicks
+  document.querySelectorAll('.language-option').forEach(option => {
+    option.addEventListener('click', function(e) {
+      e.preventDefault();
+      const lang = this.getAttribute('href').split('=')[1];
+      setLanguage(lang);
+      languageDropdown.classList.remove('show');
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener('click', function(event) {
+    if (!event.target.closest('.language-switcher-container')) {
+      languageDropdown.classList.remove('show');
+    }
+  });
 });
 </script>
 
