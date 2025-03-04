@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -597,6 +596,7 @@ function _0x5707(_0xd20fa7,_0x4d36b5){const _0x4dcd69=_0x4dcd();return _0x5707=f
 <script>
 // Translation functionality
 function setLanguage(language) {
+  console.log('Setting language to:', language);
   localStorage.setItem('preferredLanguage', language);
   applyLanguage(language);
 }
@@ -610,9 +610,17 @@ function getBrowserLanguage() {
 }
 
 function applyLanguage(language) {
-  fetch(`locales/${language}.json`)
-    .then(response => response.json())
+  console.log('Applying language:', language);
+  fetch(`./locales/${language}.json`)
+    .then(response => {
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+      return response.json();
+    })
     .then(translations => {
+      console.log('Loaded translations:', translations);
+      
       // Update text content for elements with data-i18n attribute
       document.querySelectorAll('[data-i18n]').forEach(element => {
         const keys = element.getAttribute('data-i18n').split('.');
@@ -621,7 +629,11 @@ function applyLanguage(language) {
           value = value[key];
         }
         if (value) {
-          element.textContent = value;
+          if (element.tagName === 'META') {
+            element.setAttribute('content', value);
+          } else {
+            element.textContent = value;
+          }
         }
       });
 
@@ -639,19 +651,29 @@ function applyLanguage(language) {
 
       // Update meta tags
       document.title = translations.meta.title;
-      document.querySelector('meta[name="description"]').setAttribute('content', translations.meta.description);
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute('content', translations.meta.description);
+      }
+    })
+    .catch(error => {
+      console.error('Error loading translations:', error);
     });
 }
 
-// Initialize translations
-const preferredLanguage = getPreferredLanguage();
-document.getElementById('language-switcher').value = preferredLanguage;
-applyLanguage(preferredLanguage);
-
-// Handle language switch
-document.getElementById('language-switcher').addEventListener('change', function(e) {
-  const selectedLanguage = e.target.value;
-  setLanguage(selectedLanguage);
+// Initialize translations when DOM is loaded
+document.addEventListener('DOMContentLoaded', function() {
+  console.log('DOM loaded, initializing translations');
+  const preferredLanguage = getPreferredLanguage();
+  const languageSwitcher = document.getElementById('language-switcher');
+  if (languageSwitcher) {
+    languageSwitcher.value = preferredLanguage;
+    languageSwitcher.addEventListener('change', function(e) {
+      const selectedLanguage = e.target.value;
+      setLanguage(selectedLanguage);
+    });
+  }
+  applyLanguage(preferredLanguage);
 });
 </script>
 
