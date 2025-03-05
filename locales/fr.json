@@ -5,37 +5,37 @@
     "guide": "Guide"
   },
   "meta": {
-    "title": "DataMB | Comparer les joueurs",
-    "description": "Comparez les statistiques des joueurs de football des 7 meilleures ligues. Utilisez notre outil de comparaison radar et d'autres outils pour visualiser les données de Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga et plus encore."
+    "title": "DataMB | Comparaison de joueurs",
+    "description": "Comparez les statistiques des joueurs de football des 7 grands championnats européens. Utilise notre outil de comparaison radar et d'autres outils pour visualiser les données de Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga et plus encore."
   },
   "search": {
     "placeholder": "Entrez un nom d'équipe ou de joueur..."
   },
   "positions": {
-    "title": "Top 7 Ligues — 2023/24, 2024/25",
+    "title": "7 Grands Championnats — 2023/24, 2024/25",
     "goalkeepers": {
       "title": "GARDIENS",
-      "description": "Comparer les gardiens de but"
+      "description": "Compare les gardiens de but"
     },
     "centrebacks": {
-      "title": "DÉFENSEURS CENTRAUX",
-      "description": "Comparer les défenseurs centraux"
+      "title": "DÉFENSEURS",
+      "description": "Comparaisons de défenseurs centraux"
     },
     "fullbacks": {
       "title": "LATÉRAUX",
-      "description": "Comparer les arrières latéraux et pistons"
+      "description": "Comparaisons d'arrières latéraux et pistons"
     },
     "midfielders": {
       "title": "MILIEUX",
-      "description": "Comparer les milieux défensifs, centraux et offensifs"
+      "description": "Comparaisons de milieux défensifs, centraux et offensifs"
     },
     "wingers": {
       "title": "AILIERS",
-      "description": "Comparer les ailiers et milieux offensifs"
+      "description": "Comparaisons d'ailiers et milieux offensifs"
     },
     "strikers": {
-      "title": "ATTAQUANTS",
-      "description": "Comparer les attaquants (avant-centres)"
+      "title": "BUTEURS",
+      "description": "Comparaisons de buteurs (avant-centres)"
     }
   },
   "pro": {
