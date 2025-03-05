@@ -2,26 +2,9 @@
 <html>
 <head>
 <meta name="language" content="en">
-<link rel="alternate" hreflang="en" href="https://datamb.football/" />
-<link rel="alternate" hreflang="es" href="https://datamb.football/?lang=es" />
-<link rel="alternate" hreflang="fr" href="https://datamb.football/?lang=fr" />
-<link rel="alternate" hreflang="de" href="https://datamb.football/?lang=de" />
-<link rel="alternate" hreflang="x-default" href="https://datamb.football/" />
-<link rel="alternate" hreflang="it" href="https://datamb.football/?lang=it" />
-<link rel="alternate" hreflang="pt" href="https://datamb.football/?lang=pt" />
-<link rel="alternate" hreflang="nl" href="https://datamb.football/?lang=nl" />
-<link rel="alternate" hreflang="tr" href="https://datamb.football/?lang=tr" />
-<link rel="alternate" hreflang="pl" href="https://datamb.football/?lang=pl" />
-<link rel="alternate" hreflang="ar" href="https://datamb.football/?lang=ar" />
-<link rel="alternate" hreflang="id" href="https://datamb.football/?lang=id" />
-<link rel="alternate" hreflang="ja" href="https://datamb.football/?lang=ja" />
-<link rel="alternate" hreflang="ko" href="https://datamb.football/?lang=ko" />
-<link rel="alternate" hreflang="el" href="https://datamb.football/?lang=el" />
-<link rel="alternate" hreflang="ru" href="https://datamb.football/?lang=ru" />
-<link rel="alternate" hreflang="cs" href="https://datamb.football/?lang=cs" />
-<link rel="alternate" hreflang="sr" href="https://datamb.football/?lang=sr" />
-<link rel="alternate" hreflang="hr" href="https://datamb.football/?lang=hr" />
-
+<link rel="alternate" hreflang="en" href="https://datamb.football/radars" />
+<link rel="alternate" hreflang="x-default" href="https://datamb.football/radars" />
+<link rel="alternate" hreflang="fr" href="https://datamb.football/radars?lang=fr" />
 <link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
   <title data-i18n="meta.title">DataMB | Compare Players</title>
   <meta property="og:image" content="https://datamb.football/vignettes/radars.png">
@@ -280,61 +263,6 @@ color: black;
   margin-bottom: 0; /* Remove bottom margin from the paragraph elements */
 }
 
-.header {
-  font-family: system-ui;
-  padding: 20px;
-  text-align: center;
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.header .logo {
-  display: flex;
-  align-items: center;
-}
-
-.header .logo img {
-  width: 46px;
-  height: 46px;
-opacity: 0.84;
-}
-
-.header .logo-text {
-  margin-left: 10px;
-  font-size: 28px;
-color: #444444;
-  font-weight: 600;
-}
-
-.header .navigation {
-  display: center;
-  align-items: center;
-      word-spacing: 3em; /* Adjust the spacing as needed */	
-}
-
-.header .button10 {
-  margin: 0 10px;
-  padding: 0px 20px;
-  color: #444444;
-  text-decoration: none;
-  border-radius: 0px;
-font-size: 24px;
-}
-
-header a {
-      color: black;
-      text-decoration: none;
-    }
-
-.header .twitter-link svg {
-  width: 25px;
-  height: 24px;
-  fill: #bcbcbc;
-}
-
-
 
 
 
@@ -418,17 +346,83 @@ header a {
     font-size: 20px; /* Increase the text size */
 }
 
-#language-switcher iconify-icon {
-  font-size: 20px;
-  vertical-align: middle;
-  display: inline-block;
-}
-
-#language-switcher option {
-  padding: 5px;
+.header {
+  font-family: system-ui;
+  padding: 20px;
+  color: #fff;
   display: flex;
   align-items: center;
+  justify-content: space-between;
 }
+
+.header .logo {
+  display: flex;
+  align-items: center;
+  margin-right: auto; /* Push logo to the left */
+}
+
+.header .logo img {
+  width: 46px;
+  height: 46px;
+  opacity: 0.84;
+}
+
+.header .logo-text {
+  margin-left: 10px;
+  font-size: 28px;
+  color: #444444;
+  font-weight: 600;
+}
+
+.header .navigation {
+  display: flex;
+  align-items: center;
+  gap: 2em; /* Reduced gap between buttons */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%); /* Center the navigation */
+}
+
+/* Hide navigation on small screens */
+@media screen and (max-width: 650px) {
+  .header .navigation {
+    display: none;
+  }
+}
+
+.header .button10 {
+  text-decoration: none;
+  color: #202021;
+  font-size: 18px;
+  font-weight: 550;
+  padding: 15px 24px;
+  border-radius: 13px;
+  transition: all 0.2s ease;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.3px;
+}
+
+.header .button10:hover {
+  background-color: #efeeef;  /* Flat UI light gray */
+}
+
+
+/* Group search and language buttons */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto; /* Push buttons to the right */
+}
+
+header a {
+      color: black;
+      text-decoration: none;
+    }
+
+
+
+
 
 .language-switcher-container {
   position: relative;
@@ -440,7 +434,7 @@ header a {
   border: none;
   cursor: pointer;
   padding: 10px;
-  color: #000;
+  color: #444444;
   display: flex;
   align-items: center;
   font-size: 17px;
@@ -499,45 +493,25 @@ header a {
     <a href="https://datamb.football">
         <img src="https://datamb.football/logo.png" alt="Player Radars | Football player statistics comparison | Radar comparison tool | Top 7 European Leagues" /></a>
     <div class="logo-text"><a href="https://datamb.football">&nbsp;Radars</a></div>
-  </div>&nbsp;
+  </div>
   <nav class="navigation">
     <a href="https://datamb.football/teams" class="button10" data-i18n="header.teams">Teams</a>
     <a href="https://datamb.football/join" class="button10" data-i18n="header.pro">Pro</a>
     <a href="https://datamb.football/guide" class="button10" data-i18n="header.guide">Guide</a>
   </nav>
+  <div class="header-right">
+  <div class="search-container">
+    <button id="searchButton"><iconify-icon icon="ion:search-outline"></iconify-icon></button>
+</div>
   <div class="language-switcher-container">
     <button class="language-button" id="languageButton">
       <iconify-icon icon="heroicons:globe-alt"></iconify-icon>
     </button>
     <div class="language-dropdown" id="languageDropdown">
       <a href="?lang=en" class="language-option"><iconify-icon icon="flag:gb-4x3"></iconify-icon>English</a>
-      <a href="?lang=es" class="language-option"><iconify-icon icon="flag:es-4x3"></iconify-icon>Español</a>
       <a href="?lang=fr" class="language-option"><iconify-icon icon="flag:fr-4x3"></iconify-icon>Français</a>
-      <a href="?lang=de" class="language-option"><iconify-icon icon="flag:de-4x3"></iconify-icon>Deutsch</a>
-      <a href="?lang=it" class="language-option"><iconify-icon icon="flag:it-4x3"></iconify-icon>Italiano</a>
-      <a href="?lang=pt" class="language-option"><iconify-icon icon="flag:pt-4x3"></iconify-icon>Português</a>
-      <a href="?lang=nl" class="language-option"><iconify-icon icon="flag:nl-4x3"></iconify-icon>Nederlands</a>
-      <a href="?lang=tr" class="language-option"><iconify-icon icon="flag:tr-4x3"></iconify-icon>Türkçe</a>
-      <a href="?lang=pl" class="language-option"><iconify-icon icon="flag:pl-4x3"></iconify-icon>Polski</a>
-      <a href="?lang=ar" class="language-option"><iconify-icon icon="fa6-solid:align-right"></iconify-icon>العربية</a>
-      <a href="?lang=id" class="language-option"><iconify-icon icon="flag:id-4x3"></iconify-icon>Indonesia</a>
-      <a href="?lang=ja" class="language-option"><iconify-icon icon="flag:jp-4x3"></iconify-icon>日本語</a>
-      <a href="?lang=ko" class="language-option"><iconify-icon icon="flag:kr-4x3"></iconify-icon>한국어</a>
-      <a href="?lang=el" class="language-option"><iconify-icon icon="flag:gr-4x3"></iconify-icon>Ελληνικά</a>
-      <a href="?lang=ru" class="language-option"><iconify-icon icon="flag:ru-4x3"></iconify-icon>Русский</a>
-      <a href="?lang=cs" class="language-option"><iconify-icon icon="flag:cz-4x3"></iconify-icon>Čeština</a>
-      <a href="?lang=sr" class="language-option"><iconify-icon icon="flag:rs-4x3"></iconify-icon>Српски</a>
-      <a href="?lang=hr" class="language-option"><iconify-icon icon="flag:hr-4x3"></iconify-icon>Hrvatski</a>
     </div>
-  </div>
-  <div class="search-container">
-    <button id="searchButton"><iconify-icon icon="ion:search-outline"></iconify-icon></button>
-</div>
-  <a href="https://twitter.com/datamb_" target="_blank" class="twitter-link">
-    <svg width="25" height="24" fill="#bcbcbc" xmlns="http://www.w3.org/2000/svg">
-      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
-    </svg>
-  </a>
+  </div></div>
 </header>
 
   </head>
