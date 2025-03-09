@@ -935,6 +935,12 @@ const _0x5a5c2d=_0x5142;(function(_0x4ae5e2,_0x171055){const _0x1f5ab4=_0x5142,_
           if (i === 5) {
             const link = document.createElement('a');
             link.textContent = value;
+            
+            // Add data-i18n attribute for position translation
+            // Map the position value to the corresponding translation key
+            const positionKey = value.toLowerCase().replace(/[^a-z]/g, '');
+            link.setAttribute('data-i18n', `positions.${positionKey}`);
+            
             link.href = 'https://datamb.football/midfielders'; // Replace with the URL you want to link to for cell 5
             td2.appendChild(link);
           } else if (i === 2) {
