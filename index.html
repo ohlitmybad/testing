@@ -2,18 +2,34 @@
 <html>
 <head>	
   <meta name="language" content="en">
-<link rel="canonical" href="https://datamb.football/Atlético Madrid_Team_stats/" />
-<link rel="alternate" hreflang="x-default" href="https://datamb.football/Atlético Madrid_Team_stats/" />
-<link rel="alternate" hreflang="en" href="https://datamb.football/Atlético Madrid_Team_stats/?lang=en" /> 
+<link rel="canonical" href="https://datamb.football/[PLAYER_NAME]_Midfielder_stats/" />
+<link rel="alternate" hreflang="x-default" href="https://datamb.football/[PLAYER_NAME]_Midfielder_stats/" />
+<link rel="alternate" hreflang="en" href="https://datamb.football/[PLAYER_NAME]_Midfielder_stats/?lang=en" /> 
+
   <meta name="viewport" content="width=device-width, user-scalable=no">
-  <title>Atlético Madrid<span data-i18n="meta.title"> Football Stats and Visuals | DataMB</span></title>
+  <title data-i18n="meta.title" data-template="prefix-name">[PLAYER_NAME] Football Stats and Visuals | DataMB</title>
   <link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
-  <meta name="description" content="Atlético Madrid" data-i18n="meta.tdescription" data-i18n-content=" 2024/25 data profile compared to other teams in Europe's Top 7 Leagues. Check out Atlético Madrid statistics with our radar chart and plots, or compare Atlético Madrid to other teams using our data comparison tool.">
-  <meta property="og:image" content="https://datamb.football/vignettes/teamprofile.png">
+  <meta name="description" data-i18n="meta.description" data-template="prefix-name" content="[PLAYER_NAME] 2024/25 data profile compared to midfielders in Europe's Top 7 Leagues. Check out his statistics with our radar chart and plots, or compare [PLAYER_NAME] to other players using our data comparison tool.">
+  <meta property="og:image" content="https://datamb.football/vignettes/profile.png">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:site" content="@DataMB_">
-  <meta name="twitter:title" content="Atlético Madrid | DataMB">
-  <meta name="twitter:image" content="https://datamb.football/vignettes/teamprofile.png">
+  <meta name="twitter:title" content="[PLAYER_NAME] | DataMB">
+  <meta name="twitter:image" content="https://datamb.football/vignettes/profile.png">
+  <script>
+    // Store template information before player names are replaced
+    document.addEventListener('DOMContentLoaded', function() {
+      // Store template information for elements with data-template attribute
+      document.querySelectorAll('[data-template]').forEach(element => {
+        const templateType = element.getAttribute('data-template');
+        
+        // Store the template pattern
+        if (templateType === 'prefix-name') {
+          // For elements where player name is at the beginning
+          element.setAttribute('data-name-position', 'prefix');
+        }
+      });
+    });
+  </script>
   <script>
     (function() {
         var width = window.innerWidth;
@@ -34,10 +50,11 @@
 <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
 <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.3.0/papaparse.min.js"></script>
+  
 
 
 <style>
+
 
 
   
@@ -456,40 +473,11 @@ header a {
     font-size: 20px;
   }
   
-  #output a {
+  .metrics-table a {
+    text-decoration: none; /* Remove underlining */
 
-text-decoration: none; /* Remove underlining */
+  }
 
-color: #3062FB; /* Set link color to purple */
-
-}
-
-
-  
-
-#output {  
-
-background-color: #FFFFFF; /* Background color */
-
-padding: 15px; /* Add some padding */
-
-border: 4px solid #c4eed1; /* Add a border */
-
-border-radius: 12px; /* Add rounded corners */
-
-font-size: 17px; /* Set the font size */
-
-width: 300px;
-
-color: #333; /* Text color */
-
-font-family: Arial, sans-serif; /* Choose a font-family */
-
-text-align: center; /* Center-align text */
-
-line-height: 1.5; /* Set line height */
-
-}
 
   #metrics-table a {
     text-decoration: none; /* Remove underlining */
@@ -544,26 +532,17 @@ top: 20px;
 
 
 .scatter-plot-wrapper {
-
-position: relative;
-
-top: 22px;
-
-left: 42px;
-
+  position: relative;
+top: 26px;
 }
 
-.output {
-
-flex: 1;
-
-max-width: 300px;
-
-  align-self: center; /* Ensure the element itself is centered */
-
-text-align: center; /* Center text or content inside the div */
-
+.scatter-plot-wrapper-2 {
+  position: relative;
+top: 26px;
+left: -20px;
 }
+
+
 
 /* Limit the width of individual elements and center them */
 .metric-table, .radar-wrapper, .scatter-plot-wrapper, .scatter-plot-wrapper-2 {
@@ -579,7 +558,7 @@ text-align: center; /* Center text or content inside the div */
 
 .scatter-plot, .scatter-plot-2 {
   max-height: 400px; /* Keep aspect ratio */
-  max-width: 100%; /* Ensure it scales down on smaller screens */
+  max-width: 123%; /* Ensure it scales down on smaller screens */
 }
 
 /* Limit the width of the radar SVG */
@@ -608,7 +587,7 @@ text-align: center; /* Center text or content inside the div */
   }
 
 
-    .metric-table, .radar-wrapper, .scatter-plot-wrapper, .scatter-plot-wrapper-2, .output {
+    .metric-table, .radar-wrapper, .scatter-plot-wrapper, .scatter-plot-wrapper-2 {
 
   margin: 20px 40px;
 
@@ -616,17 +595,10 @@ text-align: center; /* Center text or content inside the div */
 
 
 
-.scatter-plot {
-position: relative;
-left: 20px;
-max-height: 400px; /* Keep aspect ratio */
-max-width: 115%; /* Ensure it scales down on smaller screens */
-}
+.scatter-plot-wrapper, .scatter-plot-wrapper-2 {
+top:-10px;
+left: 0px
 
-
-.scatter-plot-wrapper {
-top: 12px;
-left: -20px
 }
 .radar-wrapper {
 
@@ -636,7 +608,7 @@ left: 10px
 }
 .plot-button {
     position:relative;
-    left:30px;
+    left:10px;
   }
 }
 
@@ -677,20 +649,17 @@ left: 10px
     display: none;
   }
   
-  .header-row {
-    color: #3a3a3a; /* Text color */
-    font-size: 20px; /* Adjust the font size */
-    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    margin-bottom: 20px; /* Add some margin to separate it from the player rows */
-    /* Add any other styles you want for the header row */
-    border-bottom: 2px solid #3a3a3a; /* Add border with desired thickness and color */
-  }
+  
 
+
+  
   </style>
+
+
 <header class="header">
   <div class="logo">
     <a href="https://datamb.football">
-        <img src="https://datamb.football/logo.png" alt="Atlético Madrid statistics and data visuals. Atlético Madrid compared to top 7 league teams in 2024/25. Atlético Madrid club data profile, team radar comparison and plot chart"/></a>
+        <img src="https://datamb.football/logo.png" alt="[PLAYER_NAME] football statistics and data visuals. 2024/25 [PLAYER_NAME] player data profile compared to top 7 league players. Radar comparison and plot charts"/></a>
     <div class="logo-text"><a href="https://datamb.football">&nbsp;Radars</a></div>
   </div>
   <nav class="navigation">
@@ -714,7 +683,6 @@ left: 10px
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7677714701428206"
      crossorigin="anonymous"></script>
      <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
-
 </head>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSBMXX80EF"></script>
@@ -737,84 +705,95 @@ left: 10px
 
 
 <script>
-  
-  const xhr2 = new XMLHttpRequest();
-  xhr2.open('GET', 'https://datamb.football/database/searchbar.csv', false); // false for synchronous request
-  xhr2.send(null);
-  
-  let dataCSV = xhr2.responseText;
+  const xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://datamb.football/database/searchbar.csv', false); // false for synchronous request
+xhr.send(null);
 
-const _0x1cda9d=_0x3279;(function(_0x3d1616,_0x106f05){const _0x561e6e=_0x3279,_0x2e8a41=_0x3d1616();while(!![]){try{const _0x282d7f=-parseInt(_0x561e6e(0x1a1))/0x1+parseInt(_0x561e6e(0x18f))/0x2*(-parseInt(_0x561e6e(0x195))/0x3)+-parseInt(_0x561e6e(0x18b))/0x4+-parseInt(_0x561e6e(0x1a2))/0x5+-parseInt(_0x561e6e(0x19a))/0x6+parseInt(_0x561e6e(0x188))/0x7*(-parseInt(_0x561e6e(0x19d))/0x8)+parseInt(_0x561e6e(0x191))/0x9*(parseInt(_0x561e6e(0x19b))/0xa);if(_0x282d7f===_0x106f05)break;else _0x2e8a41['push'](_0x2e8a41['shift']());}catch(_0x219362){_0x2e8a41['push'](_0x2e8a41['shift']());}}}(_0x113e,0x28c6f));const dataLines=dataCSV[_0x1cda9d(0x199)]('\x0a'),searchButton=document[_0x1cda9d(0x18a)](_0x1cda9d(0x182)),searchInputModal=document[_0x1cda9d(0x18a)]('searchInputModal'),searchInput=document[_0x1cda9d(0x18a)]('searchInput'),autocompleteBox=document[_0x1cda9d(0x18a)](_0x1cda9d(0x18c)),data1=dataLines[_0x1cda9d(0x18e)](_0x2eff42=>{const [_0x577075,_0x1d5918]=_0x2eff42['split'](',');return{'name':_0x577075,'link':_0x1d5918};});function _0x113e(){const _0x254e59=['trim','getElementById','274776cBvuqt','autocompleteBox','link','map','442SSdBdl','length','1620naLciC','block','includes','name','4038eTYCsb','createElement','replace','href','split','327870eYOUMc','53290VqPTPN','div','8696OyNMkN','target','appendChild','style','53872WUKLzq','603865uRsUWF','display','click','input','addEventListener','searchButton','none','toLowerCase','forEach','filter','textContent','1267oKEowq'];_0x113e=function(){return _0x254e59;};return _0x113e();}function removeDiacritics(_0x521617){return _0x521617['normalize']('NFD')['replace'](/[\u0300-\u036f]/g,'');}function search2(_0x20c915){const _0x2d8964=_0x1cda9d;autocompleteBox['innerHTML']='';const _0x25dc8b=removeDiacritics(_0x20c915)[_0x2d8964(0x197)](/[^\w\s]/g,'')[_0x2d8964(0x184)](),_0x4c0cab=data1[_0x2d8964(0x186)](_0x122915=>{const _0x3f413e=_0x2d8964,_0x19a3ab=removeDiacritics(_0x122915[_0x3f413e(0x194)])[_0x3f413e(0x197)](/[^\w\s]/g,'')[_0x3f413e(0x184)]();return _0x19a3ab[_0x3f413e(0x193)](_0x25dc8b);});if(_0x4c0cab[_0x2d8964(0x190)]===0x0){autocompleteBox[_0x2d8964(0x1a0)][_0x2d8964(0x1a3)]='none';return;}_0x4c0cab[_0x2d8964(0x185)](_0x548088=>{const _0xc8b0f0=_0x2d8964,_0xaae7d=document[_0xc8b0f0(0x196)](_0xc8b0f0(0x19c)),_0x25de77=document[_0xc8b0f0(0x196)]('a');_0x25de77[_0xc8b0f0(0x198)]=_0x548088[_0xc8b0f0(0x18d)],_0x25de77[_0xc8b0f0(0x187)]=_0x548088[_0xc8b0f0(0x194)],_0xaae7d[_0xc8b0f0(0x19f)](_0x25de77),autocompleteBox[_0xc8b0f0(0x19f)](_0xaae7d);}),autocompleteBox[_0x2d8964(0x1a0)][_0x2d8964(0x1a3)]=_0x2d8964(0x192);}function _0x3279(_0xecdda4,_0x35cb52){const _0x113ead=_0x113e();return _0x3279=function(_0x32790c,_0x3803af){_0x32790c=_0x32790c-0x182;let _0x4b6796=_0x113ead[_0x32790c];return _0x4b6796;},_0x3279(_0xecdda4,_0x35cb52);}searchButton[_0x1cda9d(0x1a6)](_0x1cda9d(0x1a4),()=>{const _0x2900c9=_0x1cda9d;searchInputModal[_0x2900c9(0x1a0)][_0x2900c9(0x1a3)]=_0x2900c9(0x192);}),searchInput[_0x1cda9d(0x1a6)](_0x1cda9d(0x1a5),()=>{const _0xa04743=_0x1cda9d,_0x40b10d=searchInput['value'];_0x40b10d[_0xa04743(0x189)]()===''?autocompleteBox[_0xa04743(0x1a0)][_0xa04743(0x1a3)]='none':search2(_0x40b10d);}),document[_0x1cda9d(0x1a6)](_0x1cda9d(0x1a4),_0x4eaaf3=>{const _0x505703=_0x1cda9d;_0x4eaaf3[_0x505703(0x19e)]===searchInputModal&&(searchInputModal[_0x505703(0x1a0)]['display']=_0x505703(0x183));});
+let dataCSV = xhr.responseText;
+
+const _0x5a5c2d=_0x5142;(function(_0x4ae5e2,_0x171055){const _0x1f5ab4=_0x5142,_0x4cdb37=_0x4ae5e2();while(!![]){try{const _0x3afa22=parseInt(_0x1f5ab4(0xa8))/0x1*(-parseInt(_0x1f5ab4(0xb6))/0x2)+parseInt(_0x1f5ab4(0xbb))/0x3+-parseInt(_0x1f5ab4(0x9e))/0x4*(parseInt(_0x1f5ab4(0xa2))/0x5)+parseInt(_0x1f5ab4(0xae))/0x6+parseInt(_0x1f5ab4(0xbc))/0x7+-parseInt(_0x1f5ab4(0xaa))/0x8*(-parseInt(_0x1f5ab4(0xa0))/0x9)+-parseInt(_0x1f5ab4(0xbe))/0xa*(parseInt(_0x1f5ab4(0xab))/0xb);if(_0x3afa22===_0x171055)break;else _0x4cdb37['push'](_0x4cdb37['shift']());}catch(_0x1427be){_0x4cdb37['push'](_0x4cdb37['shift']());}}}(_0x52bb,0x59fa0));const dataLines=dataCSV[_0x5a5c2d(0xb5)]('\x0a'),searchButton=document[_0x5a5c2d(0xa5)](_0x5a5c2d(0xa1)),searchInputModal=document[_0x5a5c2d(0xa5)]('searchInputModal'),searchInput=document[_0x5a5c2d(0xa5)](_0x5a5c2d(0xc0)),autocompleteBox=document[_0x5a5c2d(0xa5)](_0x5a5c2d(0xb3)),data1=dataLines['map'](_0x25b9ec=>{const _0x188cb6=_0x5a5c2d,[_0x37829c,_0x135ccf]=_0x25b9ec[_0x188cb6(0xb5)](',');return{'name':_0x37829c,'link':_0x135ccf};});function _0x5142(_0x91cc0a,_0x361212){const _0x52bb26=_0x52bb();return _0x5142=function(_0x514259,_0x37adb4){_0x514259=_0x514259-0x99;let _0x29d9f9=_0x52bb26[_0x514259];return _0x29d9f9;},_0x5142(_0x91cc0a,_0x361212);}function _0x52bb(){const _0x3bd6c6=['replace','split','45174fxMLYv','appendChild','value','target','includes','501672VaVVkL','4952297iMiCMK','innerHTML','1488890idHbOF','trim','searchInput','input','addEventListener','link','style','block','1931500nwUXxJ','filter','756cBmWBX','searchButton','5JjKGuX','textContent','NFD','getElementById','normalize','name','6FNylug','display','9816GfedBU','44MmjqNG','createElement','click','3628404umwpKQ','toLowerCase','none','forEach','length','autocompleteBox'];_0x52bb=function(){return _0x3bd6c6;};return _0x52bb();}function removeDiacritics(_0x464131){const _0xe0c2fa=_0x5a5c2d;return _0x464131[_0xe0c2fa(0xa6)](_0xe0c2fa(0xa4))[_0xe0c2fa(0xb4)](/[\u0300-\u036f]/g,'');}function search2(_0x394513){const _0x949ea9=_0x5a5c2d;autocompleteBox[_0x949ea9(0xbd)]='';const _0x339607=removeDiacritics(_0x394513)[_0x949ea9(0xb4)](/[^\w\s]/g,'')[_0x949ea9(0xaf)](),_0x4cdd40=data1[_0x949ea9(0x9f)](_0x264779=>{const _0x40cc7d=_0x949ea9,_0x405e2a=removeDiacritics(_0x264779['name'])[_0x40cc7d(0xb4)](/[^\w\s]/g,'')[_0x40cc7d(0xaf)]();return _0x405e2a[_0x40cc7d(0xba)](_0x339607);});if(_0x4cdd40[_0x949ea9(0xb2)]===0x0){autocompleteBox[_0x949ea9(0x9c)]['display']=_0x949ea9(0xb0);return;}_0x4cdd40[_0x949ea9(0xb1)](_0x56128b=>{const _0x282f6f=_0x949ea9,_0x48093f=document[_0x282f6f(0xac)]('div'),_0x1b2914=document['createElement']('a');_0x1b2914['href']=_0x56128b[_0x282f6f(0x9b)],_0x1b2914[_0x282f6f(0xa3)]=_0x56128b[_0x282f6f(0xa7)],_0x48093f[_0x282f6f(0xb7)](_0x1b2914),autocompleteBox[_0x282f6f(0xb7)](_0x48093f);}),autocompleteBox['style'][_0x949ea9(0xa9)]=_0x949ea9(0x9d);}searchButton[_0x5a5c2d(0x9a)]('click',()=>{const _0x525d6c=_0x5a5c2d;searchInputModal[_0x525d6c(0x9c)][_0x525d6c(0xa9)]=_0x525d6c(0x9d);}),searchInput['addEventListener'](_0x5a5c2d(0x99),()=>{const _0x2e034c=_0x5a5c2d,_0x330e2e=searchInput[_0x2e034c(0xb8)];_0x330e2e[_0x2e034c(0xbf)]()===''?autocompleteBox[_0x2e034c(0x9c)][_0x2e034c(0xa9)]=_0x2e034c(0xb0):search2(_0x330e2e);}),document['addEventListener'](_0x5a5c2d(0xad),_0x697f09=>{const _0x27985e=_0x5a5c2d;_0x697f09[_0x27985e(0xb9)]===searchInputModal&&(searchInputModal[_0x27985e(0x9c)]['display']=_0x27985e(0xb0));});
+
 </script>
 
+	
+
+
+
+<br> 
 <div class="container">
   <div class="desktop-row">
     <div id="resultsTable" class="metric-table"></div>
     <div class="radar-wrapper">
       <svg class="radar"><g transform="translate(231.77,225.77)"><g class="axisWrapper">
         <g class="radar_label">
-          <text class="label" data-type="Aerial%" data-idx="0" transform="translate(-60 -196.04) scale(1.3) rotate(-1.7)" data-i18n="radar.metrics.physicality">Physicality</text>
+          <text class="label" data-type="Aerial%" data-idx="0" transform="translate(-60 -196.04) scale(1.3) rotate(-1.7)" data-i18n="radar.metrics.key_passes">Key Passes</text>
       </g>
       
       <g class="radar_label">
-          <text class="label" data-type="Long%" data-idx="6" transform="matrix(0.65, -1.118, 1.118, 0.65, -188.21, -80.03) rotate(7.5)" data-i18n="radar.metrics.defending">Defending</text>
+          <text class="label" data-type="Long%" data-idx="6" transform="matrix(0.65, -1.118, 1.118, 0.65, -188.21, -80.03) rotate(7.5)" data-i18n="radar.metrics.forward_pass_percentage">Fwd Pass%</text>
       </g>
       
       <g class="radar_label">
-          <text class="label" data-type="Passes" data-idx="5" transform="matrix(-0.494, -1.209, 1.209, -0.494, -173, 107.54) rotate(3.87)" data-i18n="radar.metrics.counters">Counters</text>
+          <text class="label" data-type="Passes" data-idx="5" transform="matrix(-0.494, -1.209, 1.209, -0.494, -173, 107.54) rotate(3.87)" data-i18n="radar.metrics.forward_passes">Fwd Passes</text>
       </g>
       
       <g class="radar_label">
-          <text class="label" data-type="Exits" data-idx="4" transform="translate(-132.12 177.16) scale(1.3) rotate(21)" data-i18n="radar.metrics.possession">Possession</text>
+          <text class="label" data-type="Exits" data-idx="4" transform="translate(-120.12 183.16) scale(1.3) rotate(20)" data-i18n="radar.metrics.carrying">Carrying</text>
       </g>
       
       <g class="radar_label">
-          <text class="label" data-type="Aerial" data-idx="3" transform="translate(71.82 206.54) scale(1.3) rotate(-31)" data-i18n="radar.metrics.attacking">Attacking</text>
+          <text class="label" data-type="Aerial" data-idx="3" transform="translate(71.82 206.54) scale(1.3) rotate(-31)" data-i18n="radar.metrics.defensive_actions">Def Actions</text>
       </g>
       
       <g class="radar_label">
-          <text class="label" data-type="Def Actions" data-idx="2" transform="translate(200.22 6.30) scale(1.3) rotate(99.11)" data-i18n="radar.metrics.goals">Goals</text>
+          <text class="label" data-type="Def Actions" data-idx="2" transform="translate(200.22 6.30) scale(1.3) rotate(99.11)" data-i18n="radar.metrics.duels_percentage">Duels%</text>
       </g>
       
       <g class="radar_label">
-          <text class="label" data-type="Shotstopping" data-idx="1" transform="translate(125.64 -163.65) scale(1.3) rotate(51.49)" data-i18n="radar.metrics.pressing">Pressing</text>
+          <text class="label" data-type="Shotstopping" data-idx="1" transform="translate(125.64 -163.65) scale(1.3) rotate(52.49)" data-i18n="radar.metrics.progressive_passes">Prog Passes</text>
       </g>
-      <circle class="blackCircle" r="190" style="fill:none; stroke:#D3D3D3; stroke-width:1;"></circle>
-      <circle class="gridCircle" r="190" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
-      <circle class="gridCircle" r="160" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
-      <circle class="gridCircle" r="120" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
-      <circle class="gridCircle" r="80" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
-      <circle class="gridCircle" r="40" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
-      <line x1="0" y1="0" x2="9.33" y2="189.4543362" stroke="#D3D3D3" stroke-width="1" transform="translate(-9.33, -189.4543362)"></line>
-      <line x1="0" y1="0" x2="-142.0538533333333" y2="126.24" stroke="#D3D3D3" stroke-width="1" transform="translate(141.74184, -126.24)"></line>
-      <line x1="0" y1="0" x2="-187.31589333333332" y2="-32.31413333333333" stroke="#D3D3D3" stroke-width="1" transform="translate(187.5574112, 32.2528)"></line>
-      <line x1="0" y1="0" x2="-91.84497333333333" y2="-166.92245333333333" stroke="#D3D3D3" stroke-width="1" transform="translate(91.84497333333333, 166.21328)"></line>
-      <line x1="0" y1="0" x2="72.99733333333333" y2="-175.84917333333335" stroke="#D3D3D3" stroke-width="1" transform="translate(-72.99997333333334, 175.334068)"></line>
-      <line x1="0" y1="0" x2="182.73258666666666" y2="-52.67472" stroke="#D3D3D3" stroke-width="1" transform="translate(-182.7209384, 52.480128)"></line>
-      <line x1="0" y1="0" x2="154.67849333333334" y2="109.91788799999999" stroke="#D3D3D3" stroke-width="1" transform="translate(-154.6883792222, -110.017215488)"></line>
-      <g class="radarWrapper"></g>
-      </g></g></svg>      <a href="https://datamb.football/teamradars/">
-        <button class="radar-button" data-i18n="teams.radar.compare">Compare teams</button>
-      </a>
-    </div>
-  </div>
+  <circle class="blackCircle" r="190" style="fill:none; stroke:#D3D3D3; stroke-width:1;"></circle>
+  <circle class="gridCircle" r="190" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
+  <circle class="gridCircle" r="160" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
+  <circle class="gridCircle" r="120" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
+  <circle class="gridCircle" r="80" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
+  <circle class="gridCircle" r="40" style="fill: rgb(16, 135, 188); fill-opacity: 0.03;"></circle>
+  <line x1="0" y1="0" x2="9.33" y2="189.4543362" stroke="#D3D3D3" stroke-width="1" transform="translate(-9.33, -189.4543362)"></line>
+  <line x1="0" y1="0" x2="-142.0538533333333" y2="126.24" stroke="#D3D3D3" stroke-width="1" transform="translate(141.74184, -126.24)"></line>
+  <line x1="0" y1="0" x2="-187.31589333333332" y2="-32.31413333333333" stroke="#D3D3D3" stroke-width="1" transform="translate(187.5574112, 32.2528)"></line>
+  <line x1="0" y1="0" x2="-91.84497333333333" y2="-166.92245333333333" stroke="#D3D3D3" stroke-width="1" transform="translate(91.84497333333333, 166.21328)"></line>
+  <line x1="0" y1="0" x2="72.99733333333333" y2="-175.84917333333335" stroke="#D3D3D3" stroke-width="1" transform="translate(-72.99997333333334, 175.334068)"></line>
+  <line x1="0" y1="0" x2="182.73258666666666" y2="-52.67472" stroke="#D3D3D3" stroke-width="1" transform="translate(-182.7209384, 52.480128)"></line>
+  <line x1="0" y1="0" x2="154.67849333333334" y2="109.91788799999999" stroke="#D3D3D3" stroke-width="1" transform="translate(-154.6883792222, -110.017215488)"></line>
+  
+  <g class="radarWrapper"></g> 
+</g></g></svg>      <a href="https://datamb.football/midfielders/">
+  <button class="radar-button" data-i18n="cm.radar.compare">Compare midfielders</button>
+</a>
+</div>
+</div>
+  
+  
+<div class="desktop-row">
 
-  <!-- Second row: Output and scatter plot with plot-button -->
-  <div class="desktop-row">
-    <div id="output" class="output"></div>
+  <!-- Wrapper for scatter plot and button -->
+  <div class="scatter-plot-wrapper">
+    <svg id="scatter-plot" class="scatter-plot"></svg>
+    <a href="https://datamb.football/join/">
+      <button class="plot-button" data-i18n="plot.more">Plot more metrics</button>
+    </a></div>
 
-    <!-- Wrapper for scatter plot and button -->
-    <div class="scatter-plot-wrapper">
-      <svg id="scatter-plot" class="scatter-plot"></svg>
-      <a href="https://datamb.football/plotteam/">
-        <button class="plot-button" data-i18n="plot.more">Plot more metrics</button>
-      </a>
-    </div>
+
+    <div class="scatter-plot-wrapper-2">
+    <svg id="scatter-plot-2" class="scatter-plot-2"></svg>
+    <a href="https://datamb.football/join/">
+      <button class="plot-button" data-i18n="plot.more">Plot more metrics</button>
+    </a>
   </div>
 </div>
-
-
-        
+</div>
+  
+ 
 <select id="select-league" onchange="updateChart()">
   <option value="all">Top 7 Leagues</option>
   <option value="Premier League">Premier League</option>
@@ -825,91 +804,97 @@ const _0x1cda9d=_0x3279;(function(_0x3d1616,_0x106f05){const _0x561e6e=_0x3279,_
   <option value="Primeira Liga">Primeira Liga</option>
   <option value="Eredivisie">Eredivisie</option>
   </select>
-  
-<input type="text" id="searchInput1" class="search-bar" placeholder=""/>
+  <input type="text" id="searchInput1" class="search-bar" placeholder=""/>
+
 <input type="button" id="searchButton1" value=""/>
-<center><br>
+  <center><br>
 
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7677714701428206"
-       crossorigin="anonymous"></script>
-  <!-- radarplotsearch -->
-  <ins class="adsbygoogle"
-       style="display:block"
-       data-ad-client="ca-pub-7677714701428206"
-       data-ad-slot="6673239737"
-       data-ad-format="auto"
-       data-full-width-responsive="true"></ins>
-  <script>
-       (adsbygoogle = window.adsbygoogle || []).push({});
-  </script> <br></center>
-
-
-<script>
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7677714701428206"
+         crossorigin="anonymous"></script>
+    <!-- radarplotsearch -->
+    <ins class="adsbygoogle"
+         style="display:block"
+         data-ad-client="ca-pub-7677714701428206"
+         data-ad-slot="6673239737"
+         data-ad-format="auto"
+         data-full-width-responsive="true"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script> <br></center>
   
   
-  const csvData = '1,Atlético Madrid,vs Top 7 League teams,2024/25,La Liga,0.725,0.644,0.733,0.664,0.947,0.775,0.076';  
-
-
-
-  const dataArray = csvData.split('\n').map(line => line.split(','));
-
-  const colorClasses = ['result-color-blue'];
-  
-  let searchResults = []; // Declare the search results variable
+    <script>
   
   
-  function removeSpecialChars(str) {
-    return str.normalize('NFD').replace(/[\u0300-\u036f\s]/g, '');
-  }
-  
-  function search(query) {
-    const results = dataArray.filter(data =>
-      removeSpecialChars(data[1].toLowerCase()).includes(removeSpecialChars(query.toLowerCase()))
-    );
-    return results;
-  }
-  
-  function createTable(teamName, teamIndex, color) {
-    const resultsTable = document.getElementById('resultsTable');
-    const headerNames = [
-      '',
-      '',
-      '',
-      'Season',
-      'League',
-      'Goals',
-      'Attacking',
-      'Possession',
-      'Counters',
-      'Defending',
-      'Physicality',
-      'Pressing'
-          ];
+      const csvData = `Csvdata`;    
 
-    // Translation keys for header names
-    const headerTranslationKeys = [
-      '',
-      '',
-      '',
-      'table.season',
-      'table.league',
-      'table.metrics.goals',
-      'table.metrics.attacking',
-      'table.metrics.possession',
-      'table.metrics.counters',
-      'table.metrics.defending',
-      'table.metrics.physicality',
-      'table.metrics.pressing'
-    ];
+
+      const dataArray = csvData.split('\n').map(line => line.split(','));
+  
+      const colorClasses = ['result-color-blue'];
+      
+      let searchResults = []; // Declare the search results variable
+      
+      
+      function removeSpecialChars(str) {
+        return str.normalize('NFD').replace(/[\u0300-\u036f\s]/g, '');
+      }
+      
+      function search(query) {
+        const results = dataArray.filter(data =>
+          removeSpecialChars(data[1].toLowerCase()).includes(removeSpecialChars(query.toLowerCase()))
+        );
+        return results;
+      }
+      
+      function createTable(teamName, teamIndex, color) {
+        const resultsTable = document.getElementById('resultsTable');
+        const headerNames = [
+          '',
+          '',
+          'Club',
+          'League',
+          'Age',
+          'Position',
+          'Season',
+          'Duel %',
+      'Defensive actions',
+      'Progressive carries',
+      'Forward passes',
+      'Forward pass accuracy %',
+      'Key passes',
+      'Progressive passes',
+          'Minutes played'
     
-  
-    // Check if table headers exist
-    const headersExist = resultsTable.querySelector('th') !== null;
-  
-    const table = headersExist ? resultsTable.querySelector('table') : document.createElement('table');
-    table.classList.add('metrics-table');
-  
-    if (!headersExist) {
+              ];
+    
+        // Translation keys for header names
+        const headerTranslationKeys = [
+          '',
+          '',
+          'table.club',
+          'table.league',
+          'table.age',
+          'table.position',
+          'table.season',
+          'table.metrics.duel_success',
+          'table.metrics.defensive_actions',
+          'table.metrics.progressive_carries',
+          'table.metrics.forward_passes',
+          'table.metrics.forward_pass_accuracy',
+          'table.metrics.key_passes',
+          'table.metrics.progressive_passes',
+          'table.minutes_played'
+        ];
+        
+      
+        // Check if table headers exist
+        const headersExist = resultsTable.querySelector('th') !== null;
+      
+        const table = headersExist ? resultsTable.querySelector('table') : document.createElement('table');
+        table.classList.add('metrics-table');
+      
+        if (!headersExist) {
           // Create the table header
           const headerRow = document.createElement('tr');
           for (let i = 0; i < headerNames.length; i++) {
@@ -921,41 +906,56 @@ const _0x1cda9d=_0x3279;(function(_0x3d1616,_0x106f05){const _0x561e6e=_0x3279,_
             headerRow.appendChild(th);
           }
         }
-  
-    const teamData = dataArray[teamIndex];
-    for (let i = 1; i < headerNames.length; i++) {
-      const dataRow = document.createElement('tr');
-      const td1 = document.createElement('td');
-          
-          // Add data-i18n attribute to the first cell in each row
-          if (headerTranslationKeys[i]) {
-            td1.setAttribute('data-i18n', headerTranslationKeys[i]);
-          }
-          td1.textContent = headerNames[i];
-      dataRow.appendChild(td1);
       
-      const td2 = document.createElement('td');
-      let value = teamData[i];
-    
-        if (i === 2) {
-          const vsSpan = document.createElement('span');
-          vsSpan.setAttribute('data-i18n', 'table.vs_top_7_leagues');
-          vsSpan.textContent = "vs Top 7 Leagues";
-          td2.appendChild(vsSpan);
-          value = '';
-        } else if (i >= 5 && i <= 11) {
-          value = parseFloat(value) * 100;
-          const roundedValue = Math.round(value);
-          const lastDigit = roundedValue % 10;
-          let percentileSuffix = 'th';
-          if (lastDigit === 1 && roundedValue !== 11) {
-            percentileSuffix = 'st';
-          } else if (lastDigit === 2 && roundedValue !== 12) {
-            percentileSuffix = 'nd';
-          } else if (lastDigit === 3 && roundedValue !== 13) {
-            percentileSuffix = 'rd';
+
+        const teamData = dataArray[teamIndex];
+
+        for (let i = 1; i < headerNames.length; i++) {
+
+          const dataRow = document.createElement('tr');
+
+          const td1 = document.createElement('td');
+
+          
+
+          // Add data-i18n attribute to the first cell in each row
+
+          if (headerTranslationKeys[i]) {
+
+            td1.setAttribute('data-i18n', headerTranslationKeys[i]);
+
           }
-                        // Store the numeric value separately
+
+          td1.textContent = headerNames[i];
+          dataRow.appendChild(td1);
+          
+          const td2 = document.createElement('td');
+          let value = teamData[i];
+        
+          if (i === 5) {
+            const link = document.createElement('a');
+            link.textContent = value;
+            link.href = 'https://datamb.football/midfielders'; // Replace with the URL you want to link to for cell 5
+            td2.appendChild(link);
+          } else if (i === 2) {
+            const link = document.createElement('a');
+            link.textContent = value;
+            link.href = 'https://datamb.football/[TEAM_NAME]_Team_stats'; // Replace with the URL you want to link to for cell 2
+            td2.appendChild(link);
+          } else {
+            if (i >= 7 && i <= 13) {
+              value = parseFloat(value) * 100;
+              const roundedValue = Math.round(value);
+              const lastDigit = roundedValue % 10;
+              let percentileSuffix = 'th';
+              if (lastDigit === 1 && roundedValue !== 11) {
+                percentileSuffix = 'st';
+              } else if (lastDigit === 2 && roundedValue !== 12) {
+                percentileSuffix = 'nd';
+              } else if (lastDigit === 3 && roundedValue !== 13) {
+                percentileSuffix = 'rd';
+              }
+                            // Store the numeric value separately
               const numericValue = roundedValue;
               
               // Create a span for the percentile suffix to make it translatable
@@ -985,18 +985,20 @@ const suffixSpan = document.createElement('span');
               
               // Set empty text content since we're using child nodes
               value = '';
-        }
-    
-        if ([1, 2, 3, 4].includes(i)) {
-          td2.classList.add('black'); // Add the black class
-        }
+            }
         
-        if (value !== '') {
-          td2.textContent = value;
-        }
-        td2.classList.add(color);
-    
-        // Apply color based on value range
+            if ([1, 2, 3, 4, 5, 6, 14].includes(i)) {
+              td2.classList.add('black'); // Add the black class
+            }
+            
+
+                          if (value !== '') {
+
+              td2.textContent = value;
+
+            }            td2.classList.add(color);
+        
+            if ([7, 8, 9, 10, 11, 12, 13].includes(i)) { 
               // Apply color based on value range
               let numericValue;
               if (value === '') {
@@ -1011,320 +1013,883 @@ const suffixSpan = document.createElement('span');
               } else if (numericValue >= 0 && numericValue <= 25) {
                 td2.classList.add('red');
               }
-            
-          
+            }
+          }
         
           dataRow.appendChild(td2);
           table.appendChild(dataRow);
         }
-if (!headersExist) {
-  resultsTable.appendChild(table);
-}
-  
-    const combResults = dataArray[teamIndex].join(', ');
-    console.log(combResults);
-  
-    const outerRadius = 190;
-    const center = [0, 0];
-    const angles = [
-      0,
-      (2 * Math.PI) / 7,
-      (4 * Math.PI) / 7,
-      (6 * Math.PI) / 7,
-      (8 * Math.PI) / 7,
-      (10 * Math.PI) / 7,
-      (12 * Math.PI) / 7
-    ];
-  
-    function axisValueToCartesian(axis, value) {
-      let angle = angles[axis - 1];
-      angle += (2 * Math.PI / 7) * 0.2;
-      const x = 190 * value * Math.cos(angle);
-      const y = 190 * value * Math.sin(angle);
-      return { x, y };
+        
+    if (!headersExist) {
+      resultsTable.appendChild(table);
     }
-  
-    const svg = document.querySelector('.radar');
-    const radarWrapper = svg.appendChild(
-      document.createElementNS('http://www.w3.org/2000/svg', 'g')
-    );
-    radarWrapper.setAttribute('transform', 'translate(231.77,225.77)');
-    radarWrapper.innerHTML = '';
-  
-    const data = [];
-    const rowCols = combResults.split(',');
-    for (let i = 5; i < 12; i++) {
-      data.push({ axis: i - 4, value: parseFloat(rowCols[i]) });
-    }
-  
-    const points = data
-      .map(({ axis, value }) => {
-        const { x, y } = axisValueToCartesian(axis, value);
-        return `${x},${y}`;
-      })
-      .join(' ');
-  
-    const polyline = document.createElementNS(
-      'http://www.w3.org/2000/svg',
-      'polyline'
-    );
-    polyline.setAttribute('class', `radarLines ${color}`);
-    polyline.setAttribute('points', `${points} ${points.split(' ')[0]}`);
-    polyline.setAttribute('stroke-width', '3');
-    polyline.setAttribute('fill', 'none');
-    radarWrapper.appendChild(polyline);
-  
-    const polygon = document.createElementNS(
-      'http://www.w3.org/2000/svg',
-      'polygon'
-    );
-    polygon.setAttribute('class', `radarPolygon ${color}`);
-    polygon.setAttribute('points', points);
-    polygon.style.fillOpacity = '0.2';
-    radarWrapper.appendChild(polygon);
-  
-    data.forEach(({ axis, value }) => {
-      const { x, y } = axisValueToCartesian(axis, value);
-      const circle = document.createElementNS(
-        'http://www.w3.org/2000/svg',
-        'circle'
-      );
-      circle.setAttribute('class', `radarCircle ${color}`);
-      circle.style.fillOpacity = '0.86';
-      circle.setAttribute('r', '6');
-      circle.setAttribute('cx', x);
-      circle.setAttribute('cy', y);
-      radarWrapper.appendChild(circle);
-    });
-  }
-  
-  
-  
-  function toggleFilling() {
-    const radarPolygons = document.querySelectorAll('.radarPolygon');
-    radarPolygons.forEach(polygon => {
-      polygon.style.fill = polygon.style.fill ? '' : 'none'; // Toggle the filling
-    });
-  }
-  
-  
-    const teamNames = new Set();
-  
-  
-  function createTableForTeam1() {
-    const searchInput1 = document.getElementById('searchInput1');
-    const searchButton1 = document.getElementById('searchButton1');
-    const resultsTable = document.getElementById('resultsTable');
-    const teamNamesList = document.createElement('ul');
-    teamNamesList.style.fontFamily = 'Arial, sans-serif';
-    teamNamesList.style.listStyleType = 'none';
-    teamNamesList.style.paddingLeft = '9px';
-    resultsTable.appendChild(teamNamesList);
-    let searchCounter = 0;
-  
-    searchButton1.addEventListener('click', function () {
-      const searchQuery = searchInput1.value;
-      const results = search(searchQuery);
-  
-      // Reset the toggle state before performing a new search
-      const radarPolygons = document.querySelectorAll('.radarPolygon');
-      radarPolygons.forEach(polygon => {
-        polygon.style.fill = '';
-      });
-  
-      if (results) {
-        const teamId = parseInt(results[0]);
-        const teamName =
-          results[1] + ' (' + results[2] + ', ' + results[3] + ') - ' + results[11] + ' min';
-        const color = colorClasses[searchCounter % colorClasses.length];
-  
-        createTable(teamName, teamId - 1, color);
-  
-        searchCounter++;
+      
+        const combResults = dataArray[teamIndex].join(', ');
+        console.log(combResults);
+      
+        const outerRadius = 190;
+        const center = [0, 0];
+        const angles = [
+          0,
+          (2 * Math.PI) / 7,
+          (4 * Math.PI) / 7,
+          (6 * Math.PI) / 7,
+          (8 * Math.PI) / 7,
+          (10 * Math.PI) / 7,
+          (12 * Math.PI) / 7
+        ];
+      
+        function axisValueToCartesian(axis, value) {
+          let angle = angles[axis - 1];
+          angle += (2 * Math.PI / 7) * 0.2;
+          const x = 190 * value * Math.cos(angle);
+          const y = 190 * value * Math.sin(angle);
+          return { x, y };
+        }
+      
+        const svg = document.querySelector('.radar');
+        const radarWrapper = svg.appendChild(
+          document.createElementNS('http://www.w3.org/2000/svg', 'g')
+        );
+        radarWrapper.setAttribute('transform', 'translate(231.77,225.77)');
+        radarWrapper.innerHTML = '';
+      
+        const data = [];
+        const rowCols = combResults.split(',');
+        for (let i = 7; i < 14; i++) {
+          data.push({ axis: i - 6, value: parseFloat(rowCols[i]) });
+        }
+      
+        const points = data
+          .map(({ axis, value }) => {
+            const { x, y } = axisValueToCartesian(axis, value);
+            return `${x},${y}`;
+          })
+          .join(' ');
+      
+        const polyline = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'polyline'
+        );
+        polyline.setAttribute('class', `radarLines ${color}`);
+        polyline.setAttribute('points', `${points} ${points.split(' ')[0]}`);
+        polyline.setAttribute('stroke-width', '3');
+        polyline.setAttribute('fill', 'none');
+        radarWrapper.appendChild(polyline);
+      
+        const polygon = document.createElementNS(
+          'http://www.w3.org/2000/svg',
+          'polygon'
+        );
+        polygon.setAttribute('class', `radarPolygon ${color}`);
+        polygon.setAttribute('points', points);
+        polygon.style.fillOpacity = '0.2';
+        radarWrapper.appendChild(polygon);
+      
+        data.forEach(({ axis, value }) => {
+          const { x, y } = axisValueToCartesian(axis, value);
+          const circle = document.createElementNS(
+            'http://www.w3.org/2000/svg',
+            'circle'
+          );
+          circle.setAttribute('class', `radarCircle ${color}`);
+          circle.style.fillOpacity = '0.86';
+          circle.setAttribute('r', '6');
+          circle.setAttribute('cx', x);
+          circle.setAttribute('cy', y);
+          radarWrapper.appendChild(circle);
+        });
       }
-    });
-  }
-  
-  createTableForTeam1();
-  searchButton1.click(); // Trigger the search button click event
-
-  
-</script>
-
-<script>
-
-
-  // Your special characters dictionary and translation table
-  const special_characters = {
-      'á': 'a', 'à': 'a', 'â': 'a', 'ä': 'a', 'å': 'a',
-      'é': 'e', 'è': 'e', 'ê': 'e', 'ë': 'e',
-      'í': 'i', 'ì': 'i', 'î': 'i', 'ï': 'i',
-      'ó': 'o', 'ò': 'o', 'ô': 'o', 'ö': 'o', 'ø': 'o',
-      'ú': 'u', 'ù': 'u', 'û': 'u', 'ü': 'u',
-      'ç': 'c', 'ñ': 'n',
-      'ß': 'ss', 'æ': 'ae', 'œ': 'oe'
-      // Add other special characters and their replacements here
-  };
-
-  // Create a translation table using the special_characters dictionary
-  const translation_table = new Map(Object.entries(special_characters));
-
-  function clean_and_replace(text) {
-    // Remove leading/trailing spaces
-    text = text.trim();
-  
-    // Replace known special characters with their corresponding values from the translation table
-    text = text.replace(/[áàâäåéèêëíìîïóòôöøúùûüçñßæœ]/g, (match) => translation_table.get(match) || '_');
-  
-    // Replace spaces and other non-alphanumeric characters with underscores
-    text = text.replace(/[^a-zA-Z0-9]+/g, '_');
-  
-    return text;
-  }
-
-  // Function to generate the link based on player's name and position
-  function generatePlayerLink(player) {
-      const cleanedName = clean_and_replace(player[0]);
-      const cleanedPosition = clean_and_replace(player[1]);
-      return `https://datamb.football/${cleanedName}_${player[1]}_stats/`;
-  }
-
-  function filterPlayers() {
-    const selectedTeam = 'Atlético Madrid'; // Change to the desired team
-    const xhr = new XMLHttpRequest();
-    xhr.open('GET', 'https://datamb.football/database/playerforteam.csv', false); // false for synchronous request
-    xhr.send(null);
+      
+      
+      
+      function toggleFilling() {
+        const radarPolygons = document.querySelectorAll('.radarPolygon');
+        radarPolygons.forEach(polygon => {
+          polygon.style.fill = polygon.style.fill ? '' : 'none'; // Toggle the filling
+        });
+      }
+      
+      
+        const teamNames = new Set();
+      
+      
+      function createTableForTeam1() {
+        const searchInput = document.getElementById('searchInput1');
+        const searchButton = document.getElementById('searchButton1');
+        const resultsTable = document.getElementById('resultsTable');
+        const teamNamesList = document.createElement('ul');
+        teamNamesList.style.fontFamily = 'Arial, sans-serif';
+        teamNamesList.style.listStyleType = 'none';
+        teamNamesList.style.paddingLeft = '9px';
+        resultsTable.appendChild(teamNamesList);
+        let searchCounter = 0;
+      
+        searchButton.addEventListener('click', function () {
+          const searchQuery = searchInput.value;
+          const results = search(searchQuery);
+      
+          // Reset the toggle state before performing a new search
+          const radarPolygons = document.querySelectorAll('.radarPolygon');
+          radarPolygons.forEach(polygon => {
+            polygon.style.fill = '';
+          });
+      
+          if (results) {
+            const teamId = parseInt(results[0]);
+            const teamName =
+              results[1] + ' (' + results[2] + ', ' + results[3] + ') - ' + results[11] + ' min';
+            const color = colorClasses[searchCounter % colorClasses.length];
+      
+            createTable(teamName, teamId - 1, color);
+      
+            searchCounter++;
+          }
+        });
+      }
+      
+      createTableForTeam1();
+      searchButton1.click(); // Trigger the search button click event
     
-    let csv = xhr.responseText;
+      
+            
+      
+        </script>
 
+       <script>
+ 
+ 
+const allData = [];
+let isFirstFileProcessed = false;
 
+const urls = [
+'https://datamb.football/database/CURRENT/TOP72425/CM/CM.xlsx',
 
-      Papa.parse(csv, {
-        header: false,
-        skipEmptyLines: true,
-        dynamicTyping: true,
-        complete: function (results) {
-            const data = results.data.slice(1); // Skip the header row
-    
-            const teamPlayers = data.filter(player => player[2] === selectedTeam);
-    
-            const uniquePlayersMap = new Map();
-            teamPlayers.forEach(player => {
-                if (!uniquePlayersMap.has(player[0])) {
-                    uniquePlayersMap.set(player[0], player);
-                } else {
-                    // If a duplicate is found, we'll choose one player at random
-                    const existingPlayer = uniquePlayersMap.get(player[0]);
-                    if (Math.random() < 0.5) {
-                        uniquePlayersMap.set(player[0], player);
+];
+
+const fetchPromises = urls.map(url => fetch(url).then(response => response.arrayBuffer()));
+
+Promise.all(fetchPromises)
+    .then(responses => {
+        responses.forEach((data, index) => {
+            const url = urls[index]; // Get the URL of the current file being processed
+            const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+            const sheetName = workbook.SheetNames[0];
+            const sheet = workbook.Sheets[sheetName];
+            const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+
+            // Perform transformations
+            // 1. Cut column C and paste it to the end
+            const columnC = jsonData.map(row => row[2]);
+            jsonData.forEach((row, index) => row.push(columnC[index]));
+            jsonData.forEach(row => row.splice(2, 1));
+
+            // 2. Delete specified columns
+            const columnsToDelete = [27, 28, 29, 30, 59, 61, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85];
+            columnsToDelete.sort((a, b) => b - a); // Sort in descending order
+            columnsToDelete.forEach(col => {
+                jsonData.forEach(row => row.splice(col, 1));
+            });
+
+            // 3. Insert new columns and fill with appropriate values
+            if (url === 'https://datamb.football/database/CURRENT/TOP72425/CM/CM.xlsx' && !isFirstFileProcessed) {
+                // Include header only for the first file ('gk4.xlsx')
+                jsonData.forEach(row => row.unshift(null)); // Insert empty column at the beginning
+                jsonData[0][0] = "ID"; // Set header for the new column
+                isFirstFileProcessed = true; // Mark the first file as processed
+            } else {
+                // Exclude header for all other files
+                jsonData.forEach(row => row.unshift(undefined)); // Insert undefined at the beginning
+            }
+
+            // Fill ID column
+            for (let i = 1; i < jsonData.length; i++) {
+                jsonData[i][0] = i;
+            }
+
+            // 4. Replace ", m" with " m" and ", %" with " %"
+            jsonData.forEach(row => {
+                for (let i = 0; i < row.length; i++) {
+                    if (typeof row[i] === 'string') {
+                        row[i] = row[i].replace(', m', ' m').replace(', %', ' %');
                     }
                 }
             });
-    
-            const uniquePlayers = Array.from(uniquePlayersMap.values());
-    
-            uniquePlayers.sort((a, b) => b[3] - a[3]);
-    
-            const outputDiv = document.getElementById('output');
-            outputDiv.innerHTML = '';
-    
-            // Create the header row
-            const headerDiv = document.createElement('div');
-            headerDiv.textContent = 'MOST LEAGUE MINUTES';
-            headerDiv.setAttribute('data-i18n', 'teams.minutes');
-            headerDiv.classList.add('header-row'); // Add the CSS class
-            outputDiv.appendChild(headerDiv);
-            
-    
-            uniquePlayers.forEach(player => {
-                const playerDiv = document.createElement('div');
-                const nameLink = document.createElement('a');
-                nameLink.href = generatePlayerLink(player); // Generate the player link
-                nameLink.textContent = player[0];
-                const positionLink = document.createElement('a');
-                positionLink.textContent = player[1];
-                
-                // Add data-i18n attribute based on position
-                if (player[1] === 'Goalkeeper') {
-                    positionLink.href = 'https://datamb.football/keepers';
-                    positionLink.setAttribute('data-i18n', 'positions.goalkeeper');
-                } else if (player[1] === 'Centre-back') {
-                    positionLink.href = 'https://datamb.football/centrebacks';
-                    positionLink.setAttribute('data-i18n', 'positions.centreback');
-                } else if (player[1] === 'Full-back') {
-                    positionLink.href = 'https://datamb.football/fullbacks';
-                    positionLink.setAttribute('data-i18n', 'positions.fullback');
-                } else if (player[1] === 'Midfielder') {
-                    positionLink.href = 'https://datamb.football/midfielders';
-                    positionLink.setAttribute('data-i18n', 'positions.midfielder');
-                } else if (player[1] === 'Winger') {
-                    positionLink.href = 'https://datamb.football/wingers';
-                    positionLink.setAttribute('data-i18n', 'positions.winger');
-                } else if (player[1] === 'Striker') {
-                    positionLink.href = 'https://datamb.football/strikers';
-                    positionLink.setAttribute('data-i18n', 'positions.striker');
-                }
-                playerDiv.appendChild(nameLink);
-                playerDiv.appendChild(document.createTextNode(', '));
-                playerDiv.appendChild(positionLink);
-                playerDiv.appendChild(document.createTextNode(`, ${player[3]}`));
-                outputDiv.appendChild(playerDiv);
-            });
-        }
-    });       }
 
-  // Automatically call filterPlayers when the page loads
-  filterPlayers();   
-  
-</script>
+            // 5. Collect the transformed data (excluding header for non-first 'gk4.xlsx')
+            allData.push(...(url === 'https://datamb.football/database/CURRENT/TOP72425/CM/CM.xlsx' ? jsonData : jsonData.slice(1)));
+        });
+const leagues = {
+
+   
+  "Liga Portugal": [
+"Porto", "Benfica", "Famalicão", "Sporting CP", "Sporting Braga", "Gil Vicente",
+"Arouca", "Boavista", "Vizela", "Chaves", "Estoril",
+"Estrela Amadora", "Vitória Guimarães", "Farense",
+"Casa Pia AC", "Moreirense", "Portimonense", "Rio Ave",
+],
+"Ligue 1": [
+"PSG", "Nice", "Lens", "Monaco", "Olympique Marseille",
+"Nantes", "Toulouse", "Lille", "Lorient", "Olympique Lyonnais", "Brest", "Reims",
+"Montpellier", "Le Havre", "Clermont", "Rennes", "Metz",
+"Strasbourg",
+],
+"Premier League": [
+"Chelsea", "Manchester City", "West Ham United", "Tottenham Hotspur", "Arsenal",
+"Manchester United", "Newcastle United", "Burnley", "Brighton", "Wolverhampton Wanderers",
+"Fulham", "Liverpool", "Sheffield United", "Nottingham Forest", "Bournemouth",
+"Aston Villa", "Brentford", "Everton", "Luton Town", "Crystal Palace",
+],
 
 
+"Bundesliga": [
+"Bayern München", "Borussia Dortmund", "Eintracht Frankfurt", "Union Berlin", "Köln",
+"Freiburg", "Stuttgart", "Bayer Leverkusen", "Hoffenheim", "Darmstadt 98",
+"Bochum", "Wolfsburg", "Heidenheim", "Augsburg", "Borussia M'gladbach",
+"Mainz 05", "RB Leipzig", "Werder Bremen",
+],
 
+"Eredivisie": [
+"AZ", "Feyenoord", "Ajax", "PSV", "Sparta Rotterdam",
+"Twente", "Heracles", "Volendam", "PEC Zwolle", "Heerenveen",
+"NEC", "Vitesse", "Excelsior", "Utrecht", "RKC Waalwijk",
+"Go Ahead Eagles", "Almere City", "Fortuna Sittard",
+],
+"La Liga": [
+"Real Madrid", "Barcelona", "Villarreal", "Real Sociedad", "Sevilla",
+"Real Betis", "Granada", "Girona", "Valencia", "Atlético Madrid",
+"Athletic Bilbao", "Celta de Vigo", "Deportivo Alavés", "Osasuna", "Almería",
+"Rayo Vallecano", "Mallorca", "Las Palmas", "Getafe", "Cádiz",
+],
+"Serie A": [
+"Juventus", "Roma", "Napoli", "Lazio", "Milan",
+"Internazionale", "Fiorentina", "Atalanta", "Torino", "Udinese",
+"Lecce", "Hellas Verona", "Monza", "Salernitana", "Empoli",
+"Genoa", "Sassuolo", "Frosinone", "Cagliari", "Bologna",
+],
 
-<script>
-
-function _0x3fc6(){const _0xa8845d=['912640fCcqGY','595MnGukT','6345MeamSy','44Ukoavx','158448ZJlXKC','3230qmewxg','96568OLdsXQ','561PnXBJb','open','6YXVRqC','1361864ZukPVZ','send','18vLFKcy','split','responseText','3592NJvyKT'];_0x3fc6=function(){return _0xa8845d;};return _0x3fc6();}const _0x47852c=_0xaa83;function _0xaa83(_0x4b4647,_0x2cfaae){const _0x3fc6ea=_0x3fc6();return _0xaa83=function(_0xaa83a9,_0x1e7ca6){_0xaa83a9=_0xaa83a9-0x1eb;let _0x3ecafb=_0x3fc6ea[_0xaa83a9];return _0x3ecafb;},_0xaa83(_0x4b4647,_0x2cfaae);}(function(_0x11c88a,_0x1a3ff4){const _0x16faba=_0xaa83,_0x3d8d9e=_0x11c88a();while(!![]){try{const _0x4bb9a5=parseInt(_0x16faba(0x1ed))/0x1*(-parseInt(_0x16faba(0x1f1))/0x2)+parseInt(_0x16faba(0x1fa))/0x3*(parseInt(_0x16faba(0x1f4))/0x4)+-parseInt(_0x16faba(0x1ee))/0x5+parseInt(_0x16faba(0x1f7))/0x6*(-parseInt(_0x16faba(0x1ef))/0x7)+-parseInt(_0x16faba(0x1f8))/0x8+-parseInt(_0x16faba(0x1f0))/0x9*(parseInt(_0x16faba(0x1f3))/0xa)+-parseInt(_0x16faba(0x1f5))/0xb*(-parseInt(_0x16faba(0x1f2))/0xc);if(_0x4bb9a5===_0x1a3ff4)break;else _0x3d8d9e['push'](_0x3d8d9e['shift']());}catch(_0x2d16b3){_0x3d8d9e['push'](_0x3d8d9e['shift']());}}}(_0x3fc6,0x26bcf));const xhr=new XMLHttpRequest();xhr[_0x47852c(0x1f6)]('GET','https://datamb.football/database/TEAM/teamplots.csv',![]),xhr[_0x47852c(0x1f9)](null);let csvData2=xhr[_0x47852c(0x1ec)];
-let extraHeaderRow = 'ID,Player,Top 7 Leagues,Goals per 90,xG per 90,Shots on target per 90,Shots on target %,Passes completed,Pass accuracy %,Possession %,Positional attacks per 90,Counter attacks per 90,Touches in the box per 90,Goals conceded per 90,SoT against per 90,Defensive duels per 90,Defensive duel %,Aerial duels per 90,Aerial duels %,Passes per possession,PPDA\n';
-
-// Define translation keys for each header column
-var headerI18nKeys = {
-  3: 'plotmetrics.goals_per_90',
-  4: 'plotmetrics.xg_per_90',
-  5: 'plotmetrics.shots_on_target_per_90',
-  6: 'plotmetrics.shots_on_target_percentage',
-  7: 'plotmetrics.passes_completed',
-  8: 'plotmetrics.pass_accuracy_percentage',
-  9: 'plotmetrics.possession_percentage',
-  10: 'plotmetrics.positional_attacks_per_90',
-  11: 'plotmetrics.counter_attacks_per_90',
-  12: 'plotmetrics.touches_in_the_box_per_90',
-  13: 'plotmetrics.goals_conceded_per_90',
-  14: 'plotmetrics.sot_against_per_90',
-  15: 'plotmetrics.defensive_duels_per_90',
-  16: 'plotmetrics.defensive_duel_percentage',
-  17: 'plotmetrics.aerial_duels_per_90',
-  18: 'plotmetrics.aerial_duels_percentage',
-  19: 'plotmetrics.passes_per_possession',
-  20: 'plotmetrics.ppda'
 };
 
-// Concatenate the extra header row with the fetched CSV data
-csvData2 = extraHeaderRow + csvData2;
-csvData2=csvData2[_0x47852c(0x1eb)]('\x5cn')['join']('\x0a'); 
+function getTeamLeague(team) {
+            for (const [league, teams] of Object.entries(leagues)) {
+                if (teams.includes(team)) {
+                    return league;
+                }
+            }
+            return "Unknown League";
+        }
+
+        const outputLines = [];
+        allData.forEach(row => {
+            if (row.length >= 3) {
+                const team = row[2];
+                const league = getTeamLeague(team);
+                row[2] = league; // Replace the third element with the league information
+                outputLines.push(row.join(",")); // Join the modified parts back into a line
+            } else {
+                // Handle rows that don't have at least 3 elements as needed
+                outputLines.push(row.join(","));
+            }
+        });
+
+        const output_data = outputLines.join("\n");
+
+        // Concatenate the extra header row with the fetched CSV data
+        let csvData2 = output_data;
+
+        // Replace all '\n' characters with actual new rows in the CSV
+        csvData2 = csvData2.split('\\n').join('\n');
 
 
-              
-var rows = csvData2.trim().split('\n');
-var headerRaw = rows[0].split(',');
-var header = headerRaw; // Keep the original header
 
+        
+        var rows = csvData2.trim().split('\n');
+        var header = rows[0].split(',');
+        var data = rows.slice(1).map(function(row) {
+         return row.split(',').map(function(d, i) {
+           if (i >= 3) { // Assuming columns 2 and onwards contain numeric values
+             return parseFloat(d);
+           } else {
+             return d;
+           }
+         });
+        });
+        
+         var margin = { top: 40, right: 80, bottom: 100, left: 100 };
+         var width = 620 - margin.left - margin.right;
+         var height = 415 - margin.top - margin.bottom;
+        
+        var medianLinesVisible = false;
+        
+        
+        var container = d3.select("body")
+         .append("div")
+         .style("position", "relative");
+         
+        
+        var selectX = container.append("select")
+         .attr("id", "select-x")
+         .on("change", updateChart)
+         .style("position", "absolute")
+         .style("left", "80px")
+         .style("top", "0px");
+         
+        
+        var selectY = container.append("select")
+         .attr("id", "select-y")
+         .on("change", updateChart)
+         .style("position", "absolute")
+         .style("left", "330px")
+         .style("top", "0px");
+        
+        
+        var xMedian = d3.median(data, function(d) { return d[header.indexOf(xMetric)]; });
+        var yMedian = d3.median(data, function(d) { return d[header.indexOf(yMetric)]; });
+        
+        
+        var names = data.map(function(row) {
+         return row[1];
+        });
+        
+        
+         header.slice(57).forEach(function(metric) {
+           selectX.append("option")
+             .text(metric)
+             .attr("value", metric)
+             .attr("data-i18n", "plotmetrics." + metric.replace(/\s+/g, '_').toLowerCase());
+           });
+         header.slice(40).forEach(function(metric) {
+           selectY.append("option")
+             .text(metric)
+             .attr("value", metric)
+             .attr("data-i18n", "plotmetrics." + metric.replace(/\s+/g, '_').toLowerCase());
+           });
+        
+         var svg = d3.select("#scatter-plot")
+           .attr("width", width + margin.left + margin.right)
+           .attr("height", height + margin.top + margin.bottom)
+           .append("g")
+           .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+        
+         var xMetric = header[6];
+         var yMetric = header[8];
+        
+         var xScale = d3.scaleLinear()
+           .domain([0, d3.max(data, function(d) { return d[3]; })])
+           .range([0, width]);
+         var yScale = d3.scaleLinear()
+           .domain([0, d3.max(data, function(d) { return d[3]; })])
+           .range([height, 0]);
+        
+        var xAxis = d3.axisBottom(xScale)
+         .tickSize(0); 
+        var yAxis = d3.axisLeft(yScale)
+         .tickSize(0); 
+        
+        var xExtent = d3.extent(data, function(d) { return d[header.indexOf(xMetric)]; });
+        var yExtent = d3.extent(data, function(d) { return d[header.indexOf(yMetric)]; });
+        
+        svg.append("g")
+         .attr("transform", "translate(0," + height + ")")
+         .call(xAxis)
+         .selectAll("text")
+         .remove();
+        
+        svg.append("g")
+         .call(yAxis)
+         .selectAll("text")
+         .remove();
+        
+        svg.append("text")
+         .attr("class", "x-label")
+         .attr("text-anchor", "end")
+         .attr("x", width)
+         .attr("y", height + margin.top)
+         .text(header[3])
+         .style("font-family", "Arial")
+         .style("font-size", "12px");
+        
+        
+        svg.append("text")
+         .attr("class", "y-label")
+         .attr("text-anchor", "end")
+         .attr("transform", "rotate(-90)")
+         .attr("y", -35)
+         .attr("x", 0)
+         .text(header[3])
+         .style("font-family", "Arial")
+         .style("font-size", "12px");
+        
+        
+        svg.append("g")
+         .attr("class", "x-axis")
+         .attr("transform", "translate(0," + height + ")")
+         .call(d3.axisBottom(xScale).tickSize(0));
+        
+        svg.append("g")
+         .attr("class", "y-axis")
+         .call(d3.axisLeft(yScale).tickSize(0));
+        
+        
+        var clickedCircles = []; // array to keep track of clicked circles
+        var filteredData; // declare filteredData in a higher scope
+        var filteredNames; // declare filteredNames in a higher scope
+        var medianLinesVisible = true;
+        
+        var circles = svg.selectAll("circle")
+         .data(data)
+         .enter()
+         .append("circle")
+         .attr("cx", function(d) { return xScale(d[header.indexOf(xMetric)]); })
+         .attr("cy", function(d) { return yScale(d[header.indexOf(yMetric)]); })
+         .attr("r", 6)
+         .style("fill", "#4682B4B4")
+         .on("click", function(d, i) {
+           var clickedIndex = clickedCircles.indexOf(i);
+           if (clickedIndex === -1) {
+             // circle is not already clicked
+             clickedCircles.push(i); // add to clickedCircles array
+             d3.select(this)
+               .classed("clicked", true) // apply the "clicked" class
+               .classed("hovered", false)
+               .style("fill", "red");
+        svg.append("text")
+          .attr("x", xScale(d[header.indexOf(xMetric)]) - 20)
+          .attr("y", yScale(d[header.indexOf(yMetric)]) + 20)
+          .text(names[i])
+          .classed("player-name", true)
+          .style("font-family", "Arial")
+          .style("font-size", "12px");
+        
+          
+           }
+         });
+        
+        
+        
+        // X-axis median line
+        var xMedianLine = svg.append("line")
+         .attr("class", "x-median")
+         .attr("x1", xScale(xMedian))
+         .attr("y1", 0)
+         .attr("x2", xScale(xMedian))
+         .attr("y2", height)
+         .style("stroke", "red")
+         .style("stroke-dasharray", "4")
+         .style("display", medianLinesVisible ? "block" : "none");
+        
+        // Y-axis median line
+        var yMedianLine = svg.append("line")
+         .attr("class", "y-median")
+         .attr("x1", 0)
+         .attr("y1", yScale(yMedian))
+         .attr("x2", width)
+         .attr("y2", yScale(yMedian))
+         .style("stroke", "red")
+         .style("stroke-dasharray", "4")
+         .style("display", medianLinesVisible ? "block" : "none");
+        
+        
+         updateChart();
+        
+        function updateChart() {
+         xMetric = selectX.property("value");
+         yMetric = selectY.property("value");
+         var selectedLeague = document.getElementById("select-league").value;
+        
+         // Filter data based on the selected league
+        
+         if (selectedLeague !== "all") {
+           filteredData = data.filter(function(d) {
+             return d[header.indexOf('Top 7 Leagues')] === selectedLeague;
+           });
+           filteredNames = names.filter(function(name, i) {
+             return data[i][header.indexOf('Top 7 Leagues')] === selectedLeague;
+           });
+         } else {
+           filteredData = data;
+           filteredNames = names;
+         }
+        
+         // Update scales with filtered data
+         // Update scales with filtered data
+         xScale.domain(d3.extent(filteredData, function(d) { return d[header.indexOf(xMetric)]; })).nice();
+         yScale.domain(d3.extent(filteredData, function(d) { return d[header.indexOf(yMetric)]; })).nice();
+        
+         // Toggle median lines visibility
+         if (medianLinesVisible) {
+           // Calculate the new medians based on the selected metrics
+           var xMedian = d3.median(filteredData, function(d) { return d[header.indexOf(xMetric)]; });
+           var yMedian = d3.median(filteredData, function(d) { return d[header.indexOf(yMetric)]; });
+        
+           // X-axis median line
+           xMedianLine
+             .attr("x1", xScale(xMedian))
+             .attr("y1", 0)
+             .attr("x2", xScale(xMedian))
+             .attr("y2", height)
+             .style("display", "block");
+        
+           // Y-axis median line
+           yMedianLine
+             .attr("x1", 0)
+             .attr("y1", yScale(yMedian))
+             .attr("x2", width)
+             .attr("y2", yScale(yMedian))
+             .style("display", "block");
+         } else {
+           xMedianLine.style("display", "none");
+           yMedianLine.style("display", "none");
+         }
+        
+         svg.select(".x-label")
+           .text(xMetric)
+           .attr("data-i18n", "plotmetrics." + xMetric.replace(/\s+/g, '_').toLowerCase());
+        
+         svg.select(".y-label")
+           .text(yMetric)
+           .attr("data-i18n", "plotmetrics." + yMetric.replace(/\s+/g, '_').toLowerCase());
+        
+          var circles = svg.selectAll("circle")
+           .data(filteredData, function(d) {
+             return d[0]; // Use unique identifier as the data key
+           });
+        
+         circles.exit().remove();
+         circles.enter()
+         .append("circle")
+         .merge(circles)
+         .attr("cx", function (d) {
+           return xScale(d[header.indexOf(xMetric)]);
+         })
+         .attr("cy", function (d) {
+           return yScale(d[header.indexOf(yMetric)]);
+         })
+         .attr("r", 6)
+         .style("fill", function (d) {
+           return clickedCircles.includes(d[0]) ? "red" : "#4682B4B4";
+         })
+         .classed("highlighted", false)
+         .classed("clicked", function (d) {
+           return clickedCircles.includes(d[0]);
+         })
+         .on("click", null) // Disable click event for users
+         .on("mouseover", function (d) {
+           d3.select(this)
+           tooltip.transition()
+             .duration(200)
+             .style("opacity", 0.9);
+        
+           tooltip.html(filteredNames[filteredData.indexOf(d)] + "<br/>" + xMetric + ": " + d[header.indexOf(xMetric)] + "<br/>" + yMetric + ": " + d[header.indexOf(yMetric)])
+             .style("left", (d3.event.pageX + 10) + "px")
+             .style("top", (d3.event.pageY - 28) + "px");
+         })
+         .on("mouseout", function (d) {
+           var circle = d3.select(this);
+           var index = clickedCircles.indexOf(d[0]);
+        
+           if (!circle.classed("clicked")) {
+             circle
+               .classed("hovered", false)
+               .style("fill", "#4682B4B4");
+           }
+        
+           tooltip.transition()
+             .duration(500)
+             .style("opacity", 0);
+         });
+        
+        
+         // Display player names for clicked circles
+         var clickedCirclesData = filteredData.filter(function(d) {
+           return clickedCircles.includes(d[0]);
+         });
+        
+         var playerNames = svg.selectAll(".player-name")
+           .data(clickedCirclesData, function(d) {
+             return d[0]; // Use unique identifier as the data key
+           });
+        
+         playerNames.exit().remove();
+        
+         playerNames.enter()
+           .append("text")
+           .attr("class", "player-name")
+           .merge(playerNames)
+           .attr("x", function(d) {
+             return xScale(d[header.indexOf(xMetric)]) - 20;
+           })
+           .attr("y", function(d) {
+             return yScale(d[header.indexOf(yMetric)]) + 20;
+           })
+           .style("font-family", "Arial")
+           .style("font-size", "12px")
+           .text(function(d) {
+             return filteredNames[filteredData.indexOf(d)];
+           });
+        
+         svg.select(".x-axis")
+           .transition()
+           .duration(1000)
+           .call(d3.axisBottom(xScale).tickSize(0));
+        
+         svg.select(".y-axis")
+           .transition()
+           .duration(1000)
+           .call(d3.axisLeft(yScale).tickSize(0));
+        }
+        
+        function circleClick(d, i) {
+         var circle = d3.select(this);
+         var identifier = d[0]; // Unique identifier of the data point
+        
+         var index = clickedCircles.indexOf(identifier);
+        
+         if (index > -1) {
+           circle
+             .classed("clicked", false)
+             .style("fill", "#4682B4B4");
+        
+           clickedCircles.splice(index, 1);
+        
+           // Remove the player name text element
+           svg.select(".player-name-" + identifier).remove();
+         } else {
+           circle
+             .classed("clicked", true)
+             .style("fill", "red");
+        
+           clickedCircles.push(identifier);
+        
+           // Append the player name text element
+           svg.append("text")
+             .attr("class", "player-name player-name-" + identifier)
+             .attr("x", xScale(d[header.indexOf(xMetric)]) - 20)
+             .attr("y", yScale(d[header.indexOf(yMetric)]) + 20)
+             .style("font-family", "Arial")
+             .style("font-size", "12px")
+             .text(filteredNames[filteredData.indexOf(d)]);
+         }
+        
+         updateClickedPlayerName(xMetric, yMetric);
+        
+         circles.on("click", function(d, i) {
+           var clickedCircle = d3.select(this);
+           var circleName = filteredNames[i];
+        
+           // Check if the circle is already clicked
+           var isClicked = clickedCircles.includes(circleName);
+        
+           if (isClicked) {
+             // Remove the circle from clickedCircles and reset its style
+             clickedCircles = clickedCircles.filter(function(name) {
+               return name !== circleName;
+             });
+             clickedCircle
+               .style("fill", "#4682B4B4")
+               .classed("clicked", false);
+           } else {
+             // Add the circle to clickedCircles and update its style
+             clickedCircles.push(circleName);
+             clickedCircle
+               .style("fill", "red")
+               .classed("clicked", true);
+           }
+        
+           // Update the chart based on the clicked circles
+           updateChart();
+         });
+        
+         // Restore the style for previously clicked circles
+         circles.each(function(d, i) {
+           var circleName = filteredNames[i];
+           var clicked = clickedCircles.includes(circleName);
+           d3.select(this).classed("clicked", clicked);
+         });
+        
+        
+        }
+        
+        // Set the default search value
+        var defaultSearchValue = "[PLAYER_NAME]";
+        
+        // Find the index of the default search value in the filteredNames array
+        var defaultSearchIndex = filteredNames.indexOf(defaultSearchValue);
+        
+        // Check if the default search value exists in the filteredNames array
+        if (defaultSearchIndex !== -1) {
+         // Get the dot corresponding to the default search value
+         var defaultSearchDot = circles.filter(function(d, i) {
+           return i === defaultSearchIndex;
+         });
+        
+         // Trigger a click event on the default search dot
+         defaultSearchDot.each(circleClick);
+        }
+        
+      })
+      .catch(error => {
+          console.error('Error fetching or processing data:', error);
+      });
+ </script>
+ 
+ 
+ 
+ <script>
+ 
+
+  const allData2 = [];
+  let isFirstFileProcessed2 = false;
+  const urls2 = [
+  'https://datamb.football/database/CURRENT/TOP72425/CM/CM.xlsx',
+];
+  
+  const fetchPromises2 = urls2.map(url => fetch(url).then(response => response.arrayBuffer()));
+  
+  Promise.all(fetchPromises2)
+      .then(responses => {
+          responses.forEach((data, index) => {
+              const url = urls2[index]; // Get the URL of the current file being processed
+              const workbook = XLSX.read(new Uint8Array(data), { type: 'array' });
+              const sheetName = workbook.SheetNames[0];
+              const sheet = workbook.Sheets[sheetName];
+              const jsonData = XLSX.utils.sheet_to_json(sheet, { header: 1 });
+  
+              // Perform transformations
+              // 1. Cut column C and paste it to the end
+              const columnC = jsonData.map(row => row[2]);
+              jsonData.forEach((row, index) => row.push(columnC[index]));
+              jsonData.forEach(row => row.splice(2, 1));
+  
+              // 2. Delete specified columns
+              const columnsToDelete = [27, 28, 29, 30, 59, 61, 73, 74, 75, 76, 77, 78, 79, 80, 81, 82, 83, 84, 85];
+              columnsToDelete.sort((a, b) => b - a); // Sort in descending order
+              columnsToDelete.forEach(col => {
+                  jsonData.forEach(row => row.splice(col, 1));
+              });
+  
+              // 3. Insert new columns and fill with appropriate values
+              if (url === 'https://datamb.football/database/CURRENT/TOP72425/CM/CM.xlsx' && !isFirstFileProcessed) {
+                  // Include header only for the first file ('gk4.xlsx')
+                  jsonData.forEach(row => row.unshift(null)); // Insert empty column at the beginning
+                  jsonData[0][0] = "ID"; // Set header for the new column
+                  isFirstFileProcessed = true; // Mark the first file as processed
+              } else {
+                  // Exclude header for all other files
+                  jsonData.forEach(row => row.unshift(undefined)); // Insert undefined at the beginning
+              }
+  
+              // Fill ID column
+              for (let i = 1; i < jsonData.length; i++) {
+                  jsonData[i][0] = i;
+              }
+  
+              // 4. Replace ", m" with " m" and ", %" with " %"
+              jsonData.forEach(row => {
+                  for (let i = 0; i < row.length; i++) {
+                      if (typeof row[i] === 'string') {
+                          row[i] = row[i].replace(', m', ' m').replace(', %', ' %');
+                      }
+                  }
+              });
+  
+              // 5. Collect the transformed data (excluding header for non-first 'gk4.xlsx')
+              allData2.push(...(url === 'https://datamb.football/database/CURRENT/TOP72425/CM/CM.xlsx' ? jsonData : jsonData.slice(1)));
+          });
+  
+  const leagues = {
+  
+     
+    "Liga Portugal": [
+  "Porto", "Benfica", "Famalicão", "Sporting CP", "Sporting Braga", "Gil Vicente",
+  "Arouca", "Boavista", "Vizela", "Chaves", "Estoril",
+  "Estrela Amadora", "Vitória Guimarães", "Farense",
+  "Casa Pia AC", "Moreirense", "Portimonense", "Rio Ave",
+  ],
+  "Ligue 1": [
+  "PSG", "Nice", "Lens", "Monaco", "Olympique Marseille",
+  "Nantes", "Toulouse", "Lille", "Lorient", "Olympique Lyonnais", "Brest", "Reims",
+  "Montpellier", "Le Havre", "Clermont", "Rennes", "Metz",
+  "Strasbourg",
+  ],
+  "Premier League": [
+  "Chelsea", "Manchester City", "West Ham United", "Tottenham Hotspur", "Arsenal",
+  "Manchester United", "Newcastle United", "Burnley", "Brighton", "Wolverhampton Wanderers",
+  "Fulham", "Liverpool", "Sheffield United", "Nottingham Forest", "Bournemouth",
+  "Aston Villa", "Brentford", "Everton", "Luton Town", "Crystal Palace",
+  ],
+  
+  
+  "Bundesliga": [
+  "Bayern München", "Borussia Dortmund", "Eintracht Frankfurt", "Union Berlin", "Köln",
+  "Freiburg", "Stuttgart", "Bayer Leverkusen", "Hoffenheim", "Darmstadt 98",
+  "Bochum", "Wolfsburg", "Heidenheim", "Augsburg", "Borussia M'gladbach",
+  "Mainz 05", "RB Leipzig", "Werder Bremen",
+  ],
+  
+  "Eredivisie": [
+  "AZ", "Feyenoord", "Ajax", "PSV", "Sparta Rotterdam",
+  "Twente", "Heracles", "Volendam", "PEC Zwolle", "Heerenveen",
+  "NEC", "Vitesse", "Excelsior", "Utrecht", "RKC Waalwijk",
+  "Go Ahead Eagles", "Almere City", "Fortuna Sittard",
+  ],
+  "La Liga": [
+  "Real Madrid", "Barcelona", "Villarreal", "Real Sociedad", "Sevilla",
+  "Real Betis", "Granada", "Girona", "Valencia", "Atlético Madrid",
+  "Athletic Bilbao", "Celta de Vigo", "Deportivo Alavés", "Osasuna", "Almería",
+  "Rayo Vallecano", "Mallorca", "Las Palmas", "Getafe", "Cádiz",
+  ],
+  "Serie A": [
+  "Juventus", "Roma", "Napoli", "Lazio", "Milan",
+  "Internazionale", "Fiorentina", "Atalanta", "Torino", "Udinese",
+  "Lecce", "Hellas Verona", "Monza", "Salernitana", "Empoli",
+  "Genoa", "Sassuolo", "Frosinone", "Cagliari", "Bologna",
+  ],
+  
+  };
+  
+  function getTeamLeague2(team) {
+              for (const [league, teams] of Object.entries(leagues)) {
+                  if (teams.includes(team)) {
+                      return league;
+                  }
+              }
+              return "Unknown League";
+          }
+  
+          const outputLines2 = [];
+          allData2.forEach(row => {
+              if (row.length >= 3) {
+                  const team = row[2];
+                  const league = getTeamLeague2(team);
+                  row[2] = league; // Replace the third element with the league information
+                  outputLines2.push(row.join(",")); // Join the modified parts back into a line
+              } else {
+                  // Handle rows that don't have at least 3 elements as needed
+                  outputLines2.push(row.join(","));
+              }
+          });
+  
+          const output_data2 = outputLines2.join("\n");
+  
+          // Concatenate the extra header row with the fetched CSV data
+          let csvData3 = output_data2;
+  
+          // Replace all '\n' characters with actual new rows in the CSV
+          csvData3 = csvData3.split('\\n').join('\n');
+  
+  
+  
+          
+var rows = csvData3.trim().split('\n');
+var header = rows[0].split(',');
 var data = rows.slice(1).map(function(row) {
 return row.split(',').map(function(d, i) {
- if (i >= 3) { // Assuming columns 2 and onwards contain numeric values
-   return parseFloat(d);
- } else {
-   return d;
- }
+  if (i >= 3) { // Assuming columns 2 and onwards contain numeric values
+    return parseFloat(d);
+  } else {
+    return d;
+  }
 });
 });
 
@@ -1337,16 +1902,23 @@ var medianLinesVisible = false;
 
 var container = d3.select("body")
 .append("div")
-.style("display", "none");
+.style("position", "relative");
 
 
 var selectX = container.append("select")
+.attr("id", "select-x")
 .on("change", updateChart)
+.style("position", "absolute")
+.style("left", "80px")
+.style("top", "0px");
 
 
 var selectY = container.append("select")
+.attr("id", "select-y")
 .on("change", updateChart)
-
+.style("position", "absolute")
+.style("left", "330px")
+.style("top", "0px");
 
 
 var xMedian = d3.median(data, function(d) { return d[header.indexOf(xMetric)]; });
@@ -1358,34 +1930,34 @@ return row[1];
 });
 
 
-header.slice(3).forEach(function(metric) {
- selectX.append("option")
-   .text(metric)
-   .attr("value", metric)
-   .attr("data-i18n", headerI18nKeys[header.indexOf(metric)] || "")
- });
-header.slice(13).forEach(function(metric) {
- selectY.append("option")
-   .text(metric)
-   .attr("value", metric)
-   .attr("data-i18n", headerI18nKeys[header.indexOf(metric)] || "")
- });
+header.slice(34).forEach(function(metric) {
+  selectX.append("option")
+    .text(metric)
+    .attr("value", metric)
+    .attr("data-i18n", "plotmetrics." + metric.replace(/\s+/g, '_').toLowerCase());
+  });
+header.slice(66).forEach(function(metric) {
+  selectY.append("option")
+    .text(metric)
+    .attr("value", metric)
+    .attr("data-i18n", "plotmetrics." + metric.replace(/\s+/g, '_').toLowerCase());
+  });
 
-var svg = d3.select("#scatter-plot")
- .attr("width", width + margin.left + margin.right)
- .attr("height", height + margin.top + margin.bottom)
- .append("g")
- .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+var svg = d3.select("#scatter-plot-2")
+  .attr("width", width + margin.left + margin.right)
+  .attr("height", height + margin.top + margin.bottom)
+  .append("g")
+  .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
 
-var xMetric = header[6];
-var yMetric = header[8];
+var xMetric = header[63];
+var yMetric = header[32];
 
 var xScale = d3.scaleLinear()
- .domain([0, d3.max(data, function(d) { return d[3]; })])
- .range([0, width]);
+  .domain([0, d3.max(data, function(d) { return d[3]; })])
+  .range([0, width]);
 var yScale = d3.scaleLinear()
- .domain([0, d3.max(data, function(d) { return d[3]; })])
- .range([height, 0]);
+  .domain([0, d3.max(data, function(d) { return d[3]; })])
+  .range([height, 0]);
 
 var xAxis = d3.axisBottom(xScale)
 .tickSize(0); 
@@ -1412,7 +1984,6 @@ svg.append("text")
 .attr("x", width)
 .attr("y", height + margin.top)
 .text(header[3])
-.attr("data-i18n", headerI18nKeys[3] || "")
 .style("font-family", "Arial")
 .style("font-size", "12px");
 
@@ -1424,7 +1995,6 @@ svg.append("text")
 .attr("y", -35)
 .attr("x", 0)
 .text(header[3])
-.attr("data-i18n", headerI18nKeys[3] || "")
 .style("font-family", "Arial")
 .style("font-size", "12px");
 
@@ -1453,24 +2023,24 @@ var circles = svg.selectAll("circle")
 .attr("r", 6)
 .style("fill", "#4682B4B4")
 .on("click", function(d, i) {
- var clickedIndex = clickedCircles.indexOf(i);
- if (clickedIndex === -1) {
-   // circle is not already clicked
-   clickedCircles.push(i); // add to clickedCircles array
-   d3.select(this)
-     .classed("clicked", true) // apply the "clicked" class
-     .classed("hovered", false)
-     .style("fill", "red");
+  var clickedIndex = clickedCircles.indexOf(i);
+  if (clickedIndex === -1) {
+    // circle is not already clicked
+    clickedCircles.push(i); // add to clickedCircles array
+    d3.select(this)
+      .classed("clicked", true) // apply the "clicked" class
+      .classed("hovered", false)
+      .style("fill", "red");
 svg.append("text")
-.attr("x", xScale(d[header.indexOf(xMetric)]) - 20)
-.attr("y", yScale(d[header.indexOf(yMetric)]) + 20)
-.text(names[i])
-.classed("player-name", true)
-.style("font-family", "Arial")
-.style("font-size", "12px");
+ .attr("x", xScale(d[header.indexOf(xMetric)]) - 20)
+ .attr("y", yScale(d[header.indexOf(yMetric)]) + 20)
+ .text(names[i])
+ .classed("player-name", true)
+ .style("font-family", "Arial")
+ .style("font-size", "12px");
 
-
- }
+ 
+  }
 });
 
 
@@ -1508,15 +2078,15 @@ var selectedLeague = document.getElementById("select-league").value;
 // Filter data based on the selected league
 
 if (selectedLeague !== "all") {
- filteredData = data.filter(function(d) {
-   return d[header.indexOf('Top 7 Leagues')] === selectedLeague;
- });
- filteredNames = names.filter(function(name, i) {
-   return data[i][header.indexOf('Top 7 Leagues')] === selectedLeague;
- });
+  filteredData = data.filter(function(d) {
+    return d[header.indexOf('Top 7 Leagues')] === selectedLeague;
+  });
+  filteredNames = names.filter(function(name, i) {
+    return data[i][header.indexOf('Top 7 Leagues')] === selectedLeague;
+  });
 } else {
- filteredData = data;
- filteredNames = names;
+  filteredData = data;
+  filteredNames = names;
 }
 
 // Update scales with filtered data
@@ -1526,125 +2096,125 @@ yScale.domain(d3.extent(filteredData, function(d) { return d[header.indexOf(yMet
 
 // Toggle median lines visibility
 if (medianLinesVisible) {
- // Calculate the new medians based on the selected metrics
- var xMedian = d3.median(filteredData, function(d) { return d[header.indexOf(xMetric)]; });
- var yMedian = d3.median(filteredData, function(d) { return d[header.indexOf(yMetric)]; });
+  // Calculate the new medians based on the selected metrics
+  var xMedian = d3.median(filteredData, function(d) { return d[header.indexOf(xMetric)]; });
+  var yMedian = d3.median(filteredData, function(d) { return d[header.indexOf(yMetric)]; });
 
- // X-axis median line
- xMedianLine
-   .attr("x1", xScale(xMedian))
-   .attr("y1", 0)
-   .attr("x2", xScale(xMedian))
-   .attr("y2", height)
-   .style("display", "block");
+  // X-axis median line
+  xMedianLine
+    .attr("x1", xScale(xMedian))
+    .attr("y1", 0)
+    .attr("x2", xScale(xMedian))
+    .attr("y2", height)
+    .style("display", "block");
 
- // Y-axis median line
- yMedianLine
-   .attr("x1", 0)
-   .attr("y1", yScale(yMedian))
-   .attr("x2", width)
-   .attr("y2", yScale(yMedian))
-   .style("display", "block");
+  // Y-axis median line
+  yMedianLine
+    .attr("x1", 0)
+    .attr("y1", yScale(yMedian))
+    .attr("x2", width)
+    .attr("y2", yScale(yMedian))
+    .style("display", "block");
 } else {
- xMedianLine.style("display", "none");
- yMedianLine.style("display", "none");
+  xMedianLine.style("display", "none");
+  yMedianLine.style("display", "none");
 }
 
 svg.select(".x-label")
- .text(xMetric)
- .attr("data-i18n", headerI18nKeys[header.indexOf(xMetric)] || "");
+  .text(xMetric)
+  .attr("data-i18n", "plotmetrics." + xMetric.replace(/\s+/g, '_').toLowerCase());
 
 svg.select(".y-label")
- .text(yMetric)
- .attr("data-i18n", headerI18nKeys[header.indexOf(yMetric)] || "");
+  .text(yMetric)
+  .attr("data-i18n", "plotmetrics." + yMetric.replace(/\s+/g, '_').toLowerCase());
 
-var circles = svg.selectAll("circle")
- .data(filteredData, function(d) {
-   return d[0]; // Use unique identifier as the data key
- });
+ var circles = svg.selectAll("circle")
+  .data(filteredData, function(d) {
+    return d[0]; // Use unique identifier as the data key
+  });
 
 circles.exit().remove();
 circles.enter()
 .append("circle")
 .merge(circles)
 .attr("cx", function (d) {
- return xScale(d[header.indexOf(xMetric)]);
+  return xScale(d[header.indexOf(xMetric)]);
 })
 .attr("cy", function (d) {
- return yScale(d[header.indexOf(yMetric)]);
+  return yScale(d[header.indexOf(yMetric)]);
 })
 .attr("r", 6)
 .style("fill", function (d) {
- return clickedCircles.includes(d[0]) ? "red" : "#4682B4B4";
+  return clickedCircles.includes(d[0]) ? "red" : "#4682B4B4";
 })
 .classed("highlighted", false)
 .classed("clicked", function (d) {
- return clickedCircles.includes(d[0]);
+  return clickedCircles.includes(d[0]);
 })
 .on("click", null) // Disable click event for users
 .on("mouseover", function (d) {
- d3.select(this)
- tooltip.transition()
-   .duration(200)
-   .style("opacity", 0.9);
+  d3.select(this)
+  tooltip.transition()
+    .duration(200)
+    .style("opacity", 0.9);
 
- tooltip.html(filteredNames[filteredData.indexOf(d)] + "<br/>" + xMetric + ": " + d[header.indexOf(xMetric)] + "<br/>" + yMetric + ": " + d[header.indexOf(yMetric)])
-   .style("left", (d3.event.pageX + 10) + "px")
-   .style("top", (d3.event.pageY - 28) + "px");
+  tooltip.html(filteredNames[filteredData.indexOf(d)] + "<br/>" + xMetric + ": " + d[header.indexOf(xMetric)] + "<br/>" + yMetric + ": " + d[header.indexOf(yMetric)])
+    .style("left", (d3.event.pageX + 10) + "px")
+    .style("top", (d3.event.pageY - 28) + "px");
 })
 .on("mouseout", function (d) {
- var circle = d3.select(this);
- var index = clickedCircles.indexOf(d[0]);
+  var circle = d3.select(this);
+  var index = clickedCircles.indexOf(d[0]);
 
- if (!circle.classed("clicked")) {
-   circle
-     .classed("hovered", false)
-     .style("fill", "#4682B4B4");
- }
+  if (!circle.classed("clicked")) {
+    circle
+      .classed("hovered", false)
+      .style("fill", "#4682B4B4");
+  }
 
- tooltip.transition()
-   .duration(500)
-   .style("opacity", 0);
+  tooltip.transition()
+    .duration(500)
+    .style("opacity", 0);
 });
 
 
 // Display player names for clicked circles
 var clickedCirclesData = filteredData.filter(function(d) {
- return clickedCircles.includes(d[0]);
+  return clickedCircles.includes(d[0]);
 });
 
 var playerNames = svg.selectAll(".player-name")
- .data(clickedCirclesData, function(d) {
-   return d[0]; // Use unique identifier as the data key
- });
+  .data(clickedCirclesData, function(d) {
+    return d[0]; // Use unique identifier as the data key
+  });
 
 playerNames.exit().remove();
 
 playerNames.enter()
- .append("text")
- .attr("class", "player-name")
- .merge(playerNames)
- .attr("x", function(d) {
-   return xScale(d[header.indexOf(xMetric)]) - 20;
- })
- .attr("y", function(d) {
-   return yScale(d[header.indexOf(yMetric)]) + 20;
- })
- .style("font-family", "Arial")
- .style("font-size", "12px")
- .text(function(d) {
-   return filteredNames[filteredData.indexOf(d)];
- });
+  .append("text")
+  .attr("class", "player-name")
+  .merge(playerNames)
+  .attr("x", function(d) {
+    return xScale(d[header.indexOf(xMetric)]) - 20;
+  })
+  .attr("y", function(d) {
+    return yScale(d[header.indexOf(yMetric)]) + 20;
+  })
+  .style("font-family", "Arial")
+  .style("font-size", "12px")
+  .text(function(d) {
+    return filteredNames[filteredData.indexOf(d)];
+  });
 
 svg.select(".x-axis")
- .transition()
- .duration(1000)
- .call(d3.axisBottom(xScale).tickSize(0));
+  .transition()
+  .duration(1000)
+  .call(d3.axisBottom(xScale).tickSize(0));
 
 svg.select(".y-axis")
- .transition()
- .duration(1000)
- .call(d3.axisLeft(yScale).tickSize(0));
+  .transition()
+  .duration(1000)
+  .call(d3.axisLeft(yScale).tickSize(0));
 }
 
 function circleClick(d, i) {
@@ -1654,72 +2224,72 @@ var identifier = d[0]; // Unique identifier of the data point
 var index = clickedCircles.indexOf(identifier);
 
 if (index > -1) {
- circle
-   .classed("clicked", false)
-   .style("fill", "#4682B4B4");
+  circle
+    .classed("clicked", false)
+    .style("fill", "#4682B4B4");
 
- clickedCircles.splice(index, 1);
+  clickedCircles.splice(index, 1);
 
- // Remove the player name text element
- svg.select(".player-name-" + identifier).remove();
+  // Remove the player name text element
+  svg.select(".player-name-" + identifier).remove();
 } else {
- circle
-   .classed("clicked", true)
-   .style("fill", "red");
+  circle
+    .classed("clicked", true)
+    .style("fill", "red");
 
- clickedCircles.push(identifier);
+  clickedCircles.push(identifier);
 
- // Append the player name text element
- svg.append("text")
-   .attr("class", "player-name player-name-" + identifier)
-   .attr("x", xScale(d[header.indexOf(xMetric)]) - 20)
-   .attr("y", yScale(d[header.indexOf(yMetric)]) + 20)
-   .style("font-family", "Arial")
-   .style("font-size", "12px")
-   .text(filteredNames[filteredData.indexOf(d)]);
+  // Append the player name text element
+  svg.append("text")
+    .attr("class", "player-name player-name-" + identifier)
+    .attr("x", xScale(d[header.indexOf(xMetric)]) - 20)
+    .attr("y", yScale(d[header.indexOf(yMetric)]) + 20)
+    .style("font-family", "Arial")
+    .style("font-size", "12px")
+    .text(filteredNames[filteredData.indexOf(d)]);
 }
 
 updateClickedPlayerName(xMetric, yMetric);
 
 circles.on("click", function(d, i) {
- var clickedCircle = d3.select(this);
- var circleName = filteredNames[i];
+  var clickedCircle = d3.select(this);
+  var circleName = filteredNames[i];
 
- // Check if the circle is already clicked
- var isClicked = clickedCircles.includes(circleName);
+  // Check if the circle is already clicked
+  var isClicked = clickedCircles.includes(circleName);
 
- if (isClicked) {
-   // Remove the circle from clickedCircles and reset its style
-   clickedCircles = clickedCircles.filter(function(name) {
-     return name !== circleName;
-   });
-   clickedCircle
-     .style("fill", "#4682B4B4")
-     .classed("clicked", false);
- } else {
-   // Add the circle to clickedCircles and update its style
-   clickedCircles.push(circleName);
-   clickedCircle
-     .style("fill", "red")
-     .classed("clicked", true);
- }
+  if (isClicked) {
+    // Remove the circle from clickedCircles and reset its style
+    clickedCircles = clickedCircles.filter(function(name) {
+      return name !== circleName;
+    });
+    clickedCircle
+      .style("fill", "#4682B4B4")
+      .classed("clicked", false);
+  } else {
+    // Add the circle to clickedCircles and update its style
+    clickedCircles.push(circleName);
+    clickedCircle
+      .style("fill", "red")
+      .classed("clicked", true);
+  }
 
- // Update the chart based on the clicked circles
- updateChart();
+  // Update the chart based on the clicked circles
+  updateChart();
 });
 
 // Restore the style for previously clicked circles
 circles.each(function(d, i) {
- var circleName = filteredNames[i];
- var clicked = clickedCircles.includes(circleName);
- d3.select(this).classed("clicked", clicked);
+  var circleName = filteredNames[i];
+  var clicked = clickedCircles.includes(circleName);
+  d3.select(this).classed("clicked", clicked);
 });
 
 
 }
 
 // Set the default search value
-var defaultSearchValue = "Atlético Madrid";
+var defaultSearchValue = "[PLAYER_NAME]";
 
 // Find the index of the default search value in the filteredNames array
 var defaultSearchIndex = filteredNames.indexOf(defaultSearchValue);
@@ -1728,15 +2298,19 @@ var defaultSearchIndex = filteredNames.indexOf(defaultSearchValue);
 if (defaultSearchIndex !== -1) {
 // Get the dot corresponding to the default search value
 var defaultSearchDot = circles.filter(function(d, i) {
- return i === defaultSearchIndex;
+  return i === defaultSearchIndex;
 });
 
 // Trigger a click event on the default search dot
 defaultSearchDot.each(circleClick);
 }
 
+        })
+        .catch(error => {
+            console.error('Error fetching or processing data:', error);
+        });
+ </script>
 
-</script>
 <script>
   function setLanguage(language) {
     localStorage.setItem('preferredLanguage', language);
@@ -1793,13 +2367,76 @@ defaultSearchDot.each(circleClick);
               value = value[key];
             }
             if (value) {
+              // Check if this element has template information
+              const namePosition = element.getAttribute('data-name-position');
+              
+              // Get current content which now has the actual player name
+              let currentContent = '';
               if (element.tagName === 'META') {
-              element.setAttribute('content', value);
-          } else if (value.includes('<')) {
-              element.innerHTML = value;
-          } else {
-              element.textContent = value;
-          }          }
+                currentContent = element.getAttribute('content');
+              } else {
+                currentContent = element.textContent || element.innerHTML;
+              }
+              
+              // Apply translation with player name handling
+              if (namePosition) {
+                let translatedContent = '';
+                
+                // Extract the actual player name from the current content
+                let playerName = '';
+                
+                if (namePosition === 'prefix') {
+                  // For title and twitter title, player name is at the beginning
+                  // Extract player name from beginning of content
+                  const spaceIndex = currentContent.indexOf(' ');
+                  if (spaceIndex > 0) {
+                    playerName = currentContent.substring(0, spaceIndex);
+                  }
+                  
+                  // Apply translation with player name at beginning
+                  translatedContent = playerName + ' ' + value;
+                } 
+                else if (namePosition === 'complex') {
+                  // For description with multiple player name mentions
+                  // Extract player name from beginning of content
+                  const spaceIndex = currentContent.indexOf(' ');
+                  if (spaceIndex > 0) {
+                    playerName = currentContent.substring(0, spaceIndex);
+                  }
+                  
+                  // Apply translation with player name in multiple places
+                  translatedContent = playerName + ' ' + value;
+                  
+                  // Add player name in other places if needed
+                  if (translatedContent.includes('statistics')) {
+                    translatedContent = translatedContent.replace('statistics', playerName + '\'s statistics');
+                  }
+                  
+                  if (translatedContent.includes('compare with')) {
+                    translatedContent = translatedContent.replace('compare with', 'compare ' + playerName + ' to');
+                  }
+                }
+                
+                // Apply the modified translation
+                if (element.tagName === 'META') {
+                  element.setAttribute('content', translatedContent);
+                } else if (value.includes('<')) {
+                  element.innerHTML = translatedContent;
+                } else {
+                  element.textContent = translatedContent;
+                }
+              } 
+              // Normal translation without player name
+              else {
+                if (element.tagName === 'META') {
+                  element.setAttribute('content', value);
+                } else if (value.includes('<')) {
+                  element.innerHTML = value;
+                } else {
+                  element.textContent = value;
+                }
+              }
+            }
           });
           // REMOVE FOR PAGES WITH NO METADATA
           document.querySelector('meta[name="language"]').setAttribute('content', language);
@@ -1845,27 +2482,28 @@ defaultSearchDot.each(circleClick);
   });
 </script>
 
-<footer class="footer">   
+<footer class="footer">
+   
   <div class="google-play-container">
 
   <a href='https://play.google.com/store/apps/details?id=com.datamb.datamb.webviewflutter&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'></a>
 <a href='https://apps.apple.com/app/datamb/id6456224067?l=en-GB'><img alt='Download on the App Store' src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'></a></div>
 <div class="logo">
-    <img src="https://i.imgur.com/UurMbGS.png" alt="Atlético Madrid stats and data visuals. Atlético Madrid compared to top 7 league teams in 2024/25. Atlético Madrid club data profile, team radar comparison and plot chart" />
+    <img src="https://i.imgur.com/UurMbGS.png" alt="[PLAYER_NAME] football stats and data visuals. 2024/25 [PLAYER_NAME] player data profile compared to top 7 league players. Radar comparison and plot charts" />
   </div>
 
   <p class="description">DataMB</p>
-  <p class="info">© All Rights Reserved</p>
+  <p class="info" data-i18n="footer.copyright">© All Rights Reserved</p>
   <hr class="divider" />
   <div class="sub-footer">
     <nav>
-      <a class="terms" target="_blank" href="https://datamb.football/privacy">Privacy</a>
-      <a class="privacy" href="https://datamb.football/guide#contact">Contact</a>
-      <a class="glossary" href="https://datamb.football/guide#aboutus">About</a>
+      <a class="terms data-i18n="footer.terms" target="_blank" href="https://datamb.football/privacy">Privacy</a>
+      <a class="privacy data-i18n="footer.privacy" href="https://datamb.football/guide#contact">Contact</a>
+      <a class="glossary data-i18n="footer.glossary" href="https://datamb.football/guide#aboutus">About</a>
     </nav>
     <nav>
       <a target="_blank" href="https://twitter.com/datamb_" class="twitter-link">
-        <svg width="23" height="22" fill="#000000" xmlns="http://www.w3.org/2000/svg">
+                <svg width="23" height="22" fill="#000000" xmlns="http://www.w3.org/2000/svg">
           <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
         </svg>
       </a>
@@ -1873,8 +2511,6 @@ defaultSearchDot.each(circleClick);
   </div>
 </footer>
 
+
 </body>
 </html>
-
-
-
