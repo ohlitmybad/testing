@@ -1,50 +1,57 @@
 {
+  "meta": {
+    "title": "DataMB | Graphiques d'Équipes",
+    "description": "Visualisez les statistiques des équipes des 7 meilleurs championnats. Analysez les performances avec des métriques comme les buts, les buts concédés, xG, tirs cadrés, pressing, duels défensifs, précision des passes et plus pour les équipes de Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Liga Portugal."
+  },
   "header": {
-    "teams": "Équipes",
+    "home": "Accueil",
     "pro": "Pro",
     "guide": "Guide"
   },
-  "meta": {
-    "title": "DataMB | Comparaison de joueurs",
-    "description": "Comparez les statistiques des joueurs de football des 7 grands championnats européens. Utilise notre outil de comparaison radar et d'autres outils pour visualiser les données de Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga et plus encore."
+  "leagues": {
+    "top7": "Top 7 Championnats",
+    "top5": "Top 5 Championnats"
+  },
+  "metrics": {
+    "goals-per-90": "Buts par 90",
+    "xg-per-90": "xG par 90",
+    "shots-on-target-per-90": "Tirs cadrés par 90",
+    "shots-on-target-pct": "Tirs cadrés %",
+    "passes-completed": "Passes complétées",
+    "pass-accuracy-pct": "Précision des passes %",
+    "possession-pct": "Possession %",
+    "positional-attacks-per-90": "Attaques positionnelles par 90",
+    "counter-attacks-per-90": "Contre-attaques par 90",
+    "touches-in-the-box-per-90": "Touches dans la surface par 90",
+    "goals-conceded-per-90": "Buts concédés par 90",
+    "sot-against-per-90": "Tirs cadrés contre par 90",
+    "defensive-duels-per-90": "Duels défensifs par 90",
+    "defensive-duel-pct": "Duels défensifs %",
+    "aerial-duels-per-90": "Duels aériens par 90",
+    "aerial-duels-pct": "Duels aériens %",
+    "passes-per-possession": "Passes par possession",
+    "ppda": "PPDA"
+  },
+  "tooltip": {
+    "median-lines": "Afficher les lignes médianes",
+    "showMedianLines": "Afficher les lignes médianes",
+    "hideMedianLines": "Masquer les lignes médianes",
+    "select-all": "Sélectionner toutes les équipes",
+    "selectAll": "Sélectionner toutes les équipes",
+    "unselectAll": "Désélectionner toutes les équipes",
+    "screenshot": "Télécharger le graphique",
+    "xg-line-title": "Ligne G = xG",
+    "xg-line-above": "Les équipes au-dessus de cette ligne marquent plus de buts qu'attendu.",
+    "xg-line-below": "Les équipes en dessous de cette ligne marquent moins de buts qu'attendu.",
+    "xg-line-right": "Les équipes à droite de cette ligne marquent plus de buts qu'attendu.",
+    "xg-line-left": "Les équipes à gauche de cette ligne marquent moins de buts qu'attendu."
+  },
+  "promo": {
+    "radar-link": "Comparer les équipes avec des radars",
+    "pro-link": "Obtenez Pro pour les graphiques de joueurs"
   },
   "search": {
-    "placeholder": "Entrez un nom d'équipe ou de joueur..."
-  },
-  "positions": {
-    "title": "7 Grands Championnats — 2023/24, 2024/25",
-    "goalkeepers": {
-      "title": "GARDIENS",
-      "description": "Compare les gardiens de but"
-    },
-    "centrebacks": {
-      "title": "DÉFENSEURS",
-      "description": "Comparaisons de défenseurs centraux"
-    },
-    "fullbacks": {
-      "title": "LATÉRAUX",
-      "description": "Comparaisons d'arrières latéraux et pistons"
-    },
-    "midfielders": {
-      "title": "MILIEUX",
-      "description": "Comparaisons de milieux défensifs, centraux et offensifs"
-    },
-    "wingers": {
-      "title": "AILIERS",
-      "description": "Comparaisons d'ailiers et milieux offensifs"
-    },
-    "strikers": {
-      "title": "BUTEURS",
-      "description": "Comparaisons de buteurs (avant-centres)"
-    }
-  },
-  "pro": {
-    "title": "PRO — Plus de ligues, Plus de saisons"
-  },
-  "footer": {
-    "rights": "© Tous droits réservés",
-    "privacy": "Confidentialité",
-    "contact": "Contact",
-    "about": "À propos"
+    "placeholder": "Entrez un nom d'équipe ou de joueur...",
+    "placeholder2": "Rechercher..."
   }
 } 
