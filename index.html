@@ -1,1 +1,1896 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
+    <meta name="description" content="Plot Top 7 League team statistics. Visualize team performance and analyze multiple metrics such as Goals, Goals conceded, xG, Shots on target, Pressing, Defensive duels, Pass completion and more for teams in Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@DataMB_">
+    <meta name="twitter:title" content="DataMB | Plot Teams">
+    <meta name="twitter:description" content="Generate scatter plots for Top 7 League teams">
+    <meta name="twitter:image" content="https://datamb.football/vignettes/teamplots.png">
+    <meta property="og:image" content="https://datamb.football/vignettes/teamplots.png">
+    <title translate="no">DataMB | Plot Teams</title>
+    <script>
+        (function() {
+            var width = window.innerWidth;
+            var viewportMeta = document.querySelector('meta[name="viewport"]');
+            if (viewportMeta) {
+      if (width < 645) {
+                
+            var initialScale = width / 645;
+      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + initialScale + ', user-scalable=no');
+      } else {
+                  var fixedScale = 1;
+          viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + fixedScale + ', user-scalable=no');
+      
+        }
+          } 
+      })();
+      </script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f5f7fa;
+            --container-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+            --hover-color: #f0f0f0;
+            --button-color: #3498db;
+            --button-text: #ffffff;
+            --header-bg: #ffffff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
 
+        .dark-mode {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #0e0f0f;
+            --container-bg: #1a1a1a;
+            --text-color: #e0e0e0;
+            --border-color: #333333;
+            --hover-color: #252525;
+            --button-color: #2980b9;
+            --button-text: #ffffff;
+            --header-bg: #0e0f0f;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .header {
+            background-color: var(--header-bg);
+            display: flex;
+            padding: 20px;
+            align-items: center;
+            justify-content: space-between;
+            box-shadow: var(--shadow);
+            position: relative;
+            font-family: system-ui;
+            top: 0;
+            z-index: 100;
+        }
+
+
+        .container {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+        }
+
+        /* Replace plot-container with a simpler structure */
+        .chart-wrapper {
+            background-color: var(--container-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            width: 100%;
+        }
+
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid var(--border-color);
+            width: 100%;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 5px;
+            border: 1px solid rgba(0, 0, 0, 0.2);
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        select, input {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--container-bg);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.2s;
+            height: 36px;
+            box-sizing: border-box;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        /* Ensure consistent height for controls in the same row */
+        select, input, .btn:not(.btn-icon), .custom-select-trigger, .metric-select-trigger {
+            height: 36px;
+            box-sizing: border-box;
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            background-color: var(--button-color);
+            color: var(--button-text);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            height: 36px;
+            box-sizing: border-box;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--hover-color);
+        }
+
+        .btn-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border-radius: 6px;
+        }
+
+        #search-bar, #select-league {
+            width: 178px;
+        }
+
+        #select-x, #select-y {
+            width: 190px;
+        }
+
+        /* Add tooltip for icon buttons */
+        .btn-icon .icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+        }
+
+        .btn-icon i {
+            font-size: 18px;
+        }
+
+        .position-filters {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .position-btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            background-color: var(--container-bg);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .position-btn:hover, .position-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .chart-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-top: 30px; /* Consistent spacing from controls */
+        }
+
+        #scatter-plot {
+            width: 100%;
+            height: auto; /* Height will be set dynamically */
+            display: block;
+            margin: 0 auto;
+            max-width: 1082px;
+        }
+        
+        .watermark-logo {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            width: 100px;
+            opacity: 0;
+            z-index: 1;
+            pointer-events: none; /* Ensure it doesn't interfere with chart interactions */
+        }
+
+        .tooltip {
+            position: absolute;
+            background-color: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 10px;
+            font-size: 12px;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.2s;
+            box-shadow: var(--shadow);
+            z-index: 1000;
+        }
+
+        /* Custom button tooltips */
+        .btn-tooltip {
+            position: relative;
+            display: inline-block;
+        }
+
+        .btn-tooltip .btn-tooltip-text {
+            visibility: hidden;
+            width: 120px;
+            background-color: var(--container-bg);
+            color: var(--text-color);
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1001;
+            bottom: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            font-weight: normal;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            pointer-events: none;
+        }
+
+        /* Hide button tooltips on mobile */
+        @media (max-width: 768px) {
+            .btn-tooltip .btn-tooltip-text {
+                display: none;
+            }
+        }
+
+        .btn-tooltip .btn-tooltip-text::after {
+            content: "";
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: var(--border-color) transparent transparent transparent;
+        }
+
+        .btn-tooltip:hover .btn-tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .player-name {
+            font-size: 12px;
+            font-weight: 500;
+        }
+
+        circle {
+            cursor: pointer;
+            transition: r 0.2s, fill 0.2s;
+        }
+
+        circle.highlighted {
+            stroke: #ff00ff;
+            stroke-width: 3px;
+        }
+
+        /* Add new styles for better search highlighting */
+        circle.search-match {
+            fill: #ff3366 !important; /* Bright pink fill */
+            stroke: #ffffff;
+            stroke-width: 2px;
+            filter: drop-shadow(0 0 5px rgba(255, 51, 102, 0.7));
+            animation: circlePulse 1.5s infinite ease-in-out;
+        }
+
+        .dark-mode circle.search-match {
+            stroke: #000000;
+        }
+
+        @keyframes circlePulse {
+            0% { r: 6; }
+            50% { r: 9; }
+            100% { r: 6; }
+        }
+
+        .team-label.search-match {
+            font-weight: 700 !important;
+            fill: #ff3366 !important;
+            filter: drop-shadow(0 0 2px rgba(255, 255, 255, 1));
+            opacity: 1 !important;
+            animation: labelPulse 1.5s infinite ease-in-out;
+        }
+
+        @keyframes labelPulse {
+            0% { font-size: 12px; }
+            50% { font-size: 14px; }
+            100% { font-size: 12px; }
+        }
+
+        .dark-mode .team-label.search-match {
+            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 1));
+        }
+
+        .team-label.search-dimmed {
+            opacity: 0 !important;
+        }
+
+        .team-label {
+            pointer-events: none;
+            text-shadow: 0px 0px 2px white, 0px 0px 2px white, 0px 0px 2px white, 0px 0px 2px white;
+        }
+
+        .dark-mode .team-label {
+            fill: #f5f5f5 !important;
+            text-shadow: 0px 0px 2px #1a1a1a, 0px 0px 2px #1a1a1a, 0px 0px 2px #1a1a1a, 0px 0px 2px #1a1a1a;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--container-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            transition: background-color 0.3s;
+        }
+
+        .toggle-icon::before {
+            font-family: "Ionicons";
+            content: "\f467";
+            font-size: 20px;
+            color: var(--text-color);
+        }
+
+        .dark-mode .toggle-icon::before {
+            content: "\f3b0";
+        }
+
+        @media (max-width: 768px) {
+  
+            
+  .chart-wrapper {
+      padding: 15px;
+  }
+  
+  
+  /* Remove fixed height for scatter plot - now handled by updateChartDimensions */
+  #scatter-plot {
+      min-height: 500px; /* Minimum height for mobile */
+  }
+  
+  select, input {
+      width: 100%;
+  }
+  
+  
+  /* Make text elements more readable on mobile */
+  .x-label, .y-label {
+      font-size: 12px;
+  }
+  
+  /* Adjust tooltip position for mobile */
+  .tooltip {
+      max-width: 80%;
+  }
+}
+
+        /* Styles for the diagonal reference line */
+        .dark-mode .xy-line {
+            stroke: #3cb371; /* Slightly different green for dark mode */
+        }
+
+
+  
+  .search-input-modal {
+      display: none;
+      position: fixed; 
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.7); 
+      z-index: 999; 
+  }
+  
+  .search-input-container {
+      position: absolute;
+      top: 30%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 4px;
+      z-index: 1000; 
+  }
+  
+  #searchInput {
+              width: 370px;
+              padding: 12px;
+              border: 3px solid #ccc;
+              border-radius: 4px;
+              font-size: 18.3px;
+              outline: none;
+              height: 50px;
+              background-color: #fff;
+              ;          }
+  
+          #autocompleteBox {
+              width: 370px;
+              max-height: 150px;
+              overflow-y: auto;
+              background-color: #fff;
+          }
+  
+  
+          #autocompleteBox ul {
+              list-style: none;
+              padding: 0;
+              margin: 0;
+          }
+  
+          #autocompleteBox li {
+              margin: 0;
+              padding: 5px;
+          }
+  
+          #autocompleteBox {
+              line-height: 2; 
+              text-align: center !important;
+  
+          }
+  
+          #autocompleteBox a {
+              text-decoration: none;
+              font-family: Arial, sans-serif;
+              text-align: center !important;
+              color: #333 !important;
+              cursor: pointer; 
+          }
+  
+          #autocompleteBox li:hover {
+              background-color: #f0f0f0;
+          }
+          #searchButton3 {
+            padding: 8.5px;  /* Reduced from 10px */
+  background-color: #0074d9;
+  color: #fff;
+  border: none;
+  width: 34px;  /* Reduced from 40px */
+  height: 34px;  /* Reduced from 40px */
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 17px;  /* Reduced from 20px */
+  }
+
+
+  body.dark-mode .header .button10 {
+      color: #aeaeae;
+}
+body.dark-mode .header .button10:hover {
+  color: #2563eb;
+background-color: #ffffff;
+}
+
+    body.dark-mode header a {
+      color: #aeaeae;
+}
+
+body.dark-mode .header .logo img {
+  opacity: 0.88;
+}
+
+
+body.dark-mode .language-button {
+      background-color: #0F0F0E;
+      color: #aeaeae;
+}
+
+body.dark-mode .language-button:hover {
+      background-color: #0F0F0E;
+      color: #aeaeae;
+}
+
+
+
+  
+
+.header .logo {
+  display: flex;
+  align-items: center;
+  margin-right: auto; /* Push logo to the left */
+}
+
+.header .logo img {
+  height: 34px;
+  width: auto;
+  opacity: 0.84;
+}
+.header .logo-text {
+  margin-left: 10px;
+  font-size: 23px;
+  font-weight: 600;
+  transform: translateY(-1.1px); /* Move logo text slightly higher */
+}
+
+.header .navigation {
+  display: flex;
+  align-items: center;
+  gap: 25px; /* Reduced gap between buttons */
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%) translateY(-2px); /* Center the navigation and move it higher */
+}
+
+
+
+.header .button10 {
+  padding: 0.5rem 1rem;
+  text-decoration: none;
+  color: #333;
+  line-height: 1.6;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+  font-size: 1.1rem;  /* Added larger font size */
+}
+
+
+.header .button10:hover {
+  background-color: #f0f0f0;
+  color: #2563eb;
+
+}
+
+
+
+/* Group search and language buttons */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto; /* Push buttons to the right */
+  transform: translateY(-1.25px); /* Move search and language buttons higher */
+}
+
+header a {
+      color: black;
+      text-decoration: none;
+    }
+
+    .language-switcher-container {
+  position: relative;
+  display: none;
+}
+
+.language-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  color: #444444;
+  display: flex;
+  align-items: center;
+  font-size: 17px;
+}
+
+.language-button iconify-icon {
+  font-size: 24px;
+  opacity: 0.7;
+}
+
+.language-dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 10px;
+  width: 200px;
+  z-index: 1000;
+}
+
+.language-option {
+  display: flex;
+  align-items: center;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  color: #444444;
+  text-decoration: none;
+}
+
+
+
+.language-option iconify-icon {
+  margin-right: 10px;
+  font-size: 20px;
+}
+
+.language-dropdown.show {
+  display: block;
+}
+
+/* Styles for flag icons in select dropdown */
+#select-league option {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+}
+
+#select-league iconify-icon {
+    display: inline-flex;
+    vertical-align: middle;
+}
+
+/* Styles for custom league selector dropdown */
+.custom-select-container {
+    position: relative;
+    width: 172px;
+}
+
+.metric-select-container {
+    position: relative;
+    width: 192px;
+}
+
+.custom-select-trigger, .metric-select-trigger {
+    display: flex;
+    align-items: center;
+    padding: 0 12px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    cursor: pointer;
+    user-select: none;
+    position: relative;
+    line-height: 1;
+}
+
+.custom-select-trigger span, .metric-select-trigger span {
+    display: inline-block;
+    transform: translateY(1px);
+}
+
+.custom-select-trigger::after, .metric-select-trigger::after {
+    content: '';
+    width: 6px;
+    height: 6px;
+    margin-left: auto;
+    border-right: 1.5px solid var(--text-color);
+    border-bottom: 1.5px solid var(--text-color);
+    transform: rotate(45deg) translateY(-2px);
+    transition: transform 0.3s;
+    opacity: 0.7;
+    margin-right: 2px;
+}
+
+.custom-select-trigger.open::after, .metric-select-trigger.open::after {
+    transform: rotate(-135deg) translateY(1px);
+}
+
+.custom-select-options, .metric-select-options {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: var(--container-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    margin-top: 5px;
+    max-height: 300px;
+    overflow-y: auto;
+    z-index: 100;
+    font-size: 13px;
+    display: none;
+    box-shadow: var(--shadow);
+}
+
+.custom-select-option, .metric-select-option {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
+.custom-select-option:hover, .metric-select-option:hover {
+    background-color: var(--hover-color);
+}
+
+.custom-select-option.selected, .metric-select-option.selected {
+    background-color: rgba(52, 152, 219, 0.1);
+}
+
+.custom-select-option iconify-icon, .metric-select-option iconify-icon {
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+body.dark-mode .language-button:hover {
+      background-color: #0F0F0E;
+      color: #aeaeae;
+}
+
+body.dark-mode .language-dropdown {
+  background: #e8e6e6;
+}
+
+body.dark-mode .language-option {
+  color: #000000;
+}
+
+/* Dark mode styles for custom dropdown */
+.dark-mode .custom-select-trigger,
+.dark-mode .custom-select-options,
+.dark-mode .metric-select-trigger,
+.dark-mode .metric-select-options {
+    border-color: var(--border-color);
+    background-color: var(--container-bg);
+    color: var(--text-color);
+}
+
+.dark-mode .custom-select-option:hover,
+.dark-mode .metric-select-option:hover {
+    background-color: var(--hover-color);
+}
+
+.dark-mode .custom-select-option.selected,
+.dark-mode .metric-select-option.selected {
+    background-color: rgba(52, 152, 219, 0.2);
+}
+
+.custom-select-option iconify-icon, .metric-select-option iconify-icon {
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Adjust flag icon alignment in the trigger */
+#league-select-trigger iconify-icon {
+    margin-right: 8px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    transform: translateY(-1px);
+}
+@media screen and (max-width: 550px) { .header .navigation { display: none; } }
+
+        /* Enhanced Dark Mode Styles */
+        .dark-mode .chart-wrapper {
+            background-color: var(--container-bg);
+            border: 1px solid #333;
+        }
+
+        .dark-mode .btn {
+            background-color: var(--button-color);
+        }
+
+        .dark-mode .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .dark-mode .btn-outline:hover {
+            background-color: var(--hover-color);
+            border-color: #444;
+        }
+
+        .dark-mode .position-btn {
+            background-color: #1a1a1a;
+            color: var(--text-color);
+            border: 1px solid #333;
+        }
+
+        .dark-mode .position-btn:hover, 
+        .dark-mode .position-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .dark-mode input, 
+        .dark-mode select {
+            background-color: #1a1a1a;
+            color: var(--text-color);
+            border-color: #333;
+        }
+
+        .dark-mode input::placeholder {
+            color: #777;
+        }
+
+        .dark-mode input:focus, 
+        .dark-mode select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+        }
+
+        .dark-mode .tooltip {
+            background-color: #1a1a1a;
+            border-color: #333;
+            color: var(--text-color);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .legend {
+            border-top-color: #333;
+        }
+
+        .dark-mode .legend-item {
+            color: #ccc;
+        }
+
+        .dark-mode .btn-tooltip .btn-tooltip-text {
+            background-color: #1a1a1a;
+            border-color: #333;
+            color: #e0e0e0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .btn-tooltip .btn-tooltip-text::after {
+            border-color: #333 transparent transparent transparent;
+        }
+
+        .dark-mode .team-label {
+            fill: #e0e0e0 !important;
+            text-shadow: 0px 0px 3px #0e0f0f, 0px 0px 3px #0e0f0f, 0px 0px 3px #0e0f0f, 0px 0px 3px #0e0f0f;
+        }
+
+        .dark-mode .x-axis path,
+        .dark-mode .y-axis path,
+        .dark-mode .x-axis line,
+        .dark-mode .y-axis line {
+            stroke: #444;
+        }
+
+        .dark-mode .x-axis text,
+        .dark-mode .y-axis text {
+            fill: #aaa;
+        }
+
+        .dark-mode .x-label,
+        .dark-mode .y-label {
+            fill: #ccc;
+        }
+
+        .dark-mode .median-line {
+            stroke: rgba(255, 255, 255, 0.2) !important;
+        }
+
+        .dark-mode .xy-line {
+            stroke: #2ecc71;
+            opacity: 0.8;
+        }
+
+        .dark-mode .dark-mode-toggle {
+            background-color: #1a1a1a;
+            border: 1px solid #333;
+        }
+
+        .dark-mode .toggle-icon::before {
+            color: #e0e0e0;
+        }
+
+ 
+
+
+
+        .dark-mode #searchButton3 {
+            background-color: #0074d9;
+            color: #fff;
+        }
+
+
+        .dark-mode .header .button10 {
+            color: #aaa;
+        }
+
+        .dark-mode .header .button10:hover {
+            color: #2563eb;
+            background-color: #1a1a1a;
+        }
+
+        .dark-mode header a {
+            color: #aaa;
+        }
+
+        .dark-mode .header .logo img {
+            opacity: 0.9;
+            filter: brightness(0.9);
+        }
+
+        .dark-mode .language-button {
+            background-color: #0e0f0f;
+            color: #aaa;
+        }
+
+        .dark-mode .language-button:hover {
+            background-color: #1a1a1a;
+        }
+
+        .dark-mode .language-dropdown {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .dark-mode .language-option {
+            color: #e0e0e0;
+        }
+
+        .dark-mode .language-option:hover {
+            background-color: #252525;
+        }
+
+        .dark-mode #search-bar::placeholder {
+            color: #777;
+        }
+
+        .dark-mode circle {
+            stroke-width: 1px;
+        }
+
+        .dark-mode circle.highlighted {
+            stroke: #ff00ff;
+            stroke-width: 3px;
+        }
+
+        .dark-mode circle.search-match {
+            fill: #ff3366 !important;
+            stroke: #0e0f0f;
+            stroke-width: 2px;
+            filter: drop-shadow(0 0 5px rgba(255, 51, 102, 0.7));
+        }
+
+        .dark-mode .watermark-logo {
+            opacity: 0 !important;
+            filter: brightness(0.7) invert(0.8);
+        }
+        
+        /* Additional dark mode styles for chart elements */
+        .dark-mode .chart-container {
+            background-color: var(--container-bg);
+        }
+        
+  
+        
+    
+        
+        .dark-mode .team-label.search-match {
+            filter: drop-shadow(0 0 2px rgba(0, 0, 0, 1));
+        }
+        
+        /* Fix for custom select dropdown in dark mode */
+        .dark-mode .custom-select-trigger::after, 
+        .dark-mode .metric-select-trigger::after {
+            border-right: 1.5px solid var(--text-color);
+            border-bottom: 1.5px solid var(--text-color);
+        }
+        
+        /* Improve contrast for selected items in dark mode */
+        .dark-mode .custom-select-option.selected, 
+        .dark-mode .metric-select-option.selected {
+            background-color: rgba(52, 152, 219, 0.3);
+        }
+        
+        /* Improve visibility of SVG elements in dark mode */
+        .dark-mode svg text {
+            fill: #ccc;
+        }
+        
+        .dark-mode .legend-color {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* Improve button states in dark mode */
+        .dark-mode .btn:hover {
+            background-color: #3498db;
+        }
+        
+        .dark-mode .btn-outline:active {
+            background-color: #333;
+        }
+        
+        /* Improve focus states for accessibility */
+        .dark-mode input:focus,
+        .dark-mode select:focus,
+        .dark-mode .btn:focus {
+            box-shadow: 0 0 0 2px rgba(52, 152, 219, 0.5);
+        }
+        
+        /* Fix for buttons staying focused with blue outline */
+        button:focus, 
+        .btn:focus, 
+        select:focus, 
+        input:focus {
+            outline: none;
+        }
+        
+        /* Custom focus styles for better accessibility */
+        button:focus-visible, 
+        .btn:focus-visible, 
+        select:focus-visible, 
+        input:focus-visible {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--primary-color);
+        }
+        
+        /* Remove focus styles when using mouse */
+        button:focus:not(:focus-visible), 
+        .btn:focus:not(:focus-visible), 
+        select:focus:not(:focus-visible), 
+        input:focus:not(:focus-visible) {
+            box-shadow: none;
+        }
+
+
+
+.logo img {
+  width: 50px;
+  height: 50px;
+}
+
+/* Promo links styling */
+.promo-links-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 15px auto 25px;
+    max-width: 800px;
+    flex-wrap: wrap;
+    padding: 0 20px;
+}
+
+.promo-link {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    background-color: var(--container-bg);
+    color: var(--text-color);
+    text-decoration: none;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow);
+    font-weight: 500;
+    flex: 1;
+    min-width: 220px;
+    max-width: 350px;
+    justify-content: center;
+}
+
+.promo-link iconify-icon {
+    margin-right: 8px;
+}
+
+.promo-link:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.radar-link {
+    border-left: 4px solid #3498db;
+}
+
+.pro-link {
+    border-left: 4px solid #f39c12;
+}
+
+.dark-mode .radar-link {
+    border-left: 4px solid #2980b9;
+}
+
+.dark-mode .pro-link {
+    border-left: 4px solid #d35400;
+}
+
+@media (max-width: 768px) {
+  
+    
+    .control-group {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    select, input {
+        width: 100%;
+    }
+    
+    /* Make text elements more readable on mobile */
+    .x-label, .y-label {
+        font-size: 12px;
+    }
+    
+    /* Adjust tooltip position for mobile */
+    .tooltip {
+        max-width: 80%;
+    }
+    
+    /* Adjust promo links for mobile */
+    .promo-links-container {
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+        padding: 0 15px;
+    }
+}
+
+    </style>
+
+  <header class="header">
+    <div class="logo">
+      <a href="https://datamb.football">
+        <img src="https://datamb.football/logo.png" alt="Football team statistics comparison. Radar comparison tool. Visualise and compare team data from the top 7 leagues : Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga" /></a>
+        <div class="logo-text"><a href="https://datamb.football">&nbsp;Teams</a></div>
+    </div>
+    <nav class="navigation">
+      <a href="https://datamb.football/teams" class="button10" data-i18n="header.home">Home</a>
+      <a href="https://datamb.football/join" class="button10" data-i18n="header.pro">Pro</a>
+      <a href="https://datamb.football/guide" class="button10" data-i18n="header.guide">Guide</a>
+    </nav>
+    <div class="header-right">
+    <div class="search-container">
+      <button id="searchButton3"><iconify-icon icon="ion:search-outline"></iconify-icon></button>
+  </div>
+    <div class="language-switcher-container">
+      <button class="language-button" id="languageButton">
+        <iconify-icon icon="heroicons:globe-alt"></iconify-icon>
+      </button>
+      <div class="language-dropdown" id="languageDropdown">
+        <a href="?lang=en" class="language-option"><iconify-icon icon="flag:gb-4x3"></iconify-icon>English</a>
+      </div>
+    </div></div>
+  </header>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7677714701428206"
+     crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSBMXX80EF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PSBMXX80EF');
+</script>
+</head>
+<div class="search-input-modal" id="searchInputModal">
+    <div class="search-input-container">
+        <input type="text" id="searchInput" placeholder="Enter a team or player name...">
+        <div id="autocompleteBox"></div>
+    </div>
+</div>
+<script>
+    const xhr1 = new XMLHttpRequest();
+  xhr1.open('GET', 'https://datamb.football/database/searchbar.csv', false); // false for synchronous request
+  xhr1.send(null);
+  
+  let dataCSV = xhr1.responseText;
+    
+function _0x5707(_0xd20fa7,_0x4d36b5){const _0x4dcd69=_0x4dcd();return _0x5707=function(_0x57077a,_0xde96b9){_0x57077a=_0x57077a-0x140;let _0x383e81=_0x4dcd69[_0x57077a];return _0x383e81;},_0x5707(_0xd20fa7,_0x4d36b5);}const _0xedf2b2=_0x5707;(function(_0x16e1b0,_0x125833){const _0x222c5a=_0x5707,_0x3f540c=_0x16e1b0();while(!![]){try{const _0x3105f2=parseInt(_0x222c5a(0x161))/0x1+parseInt(_0x222c5a(0x144))/0x2+parseInt(_0x222c5a(0x148))/0x3+-parseInt(_0x222c5a(0x155))/0x4+parseInt(_0x222c5a(0x141))/0x5*(-parseInt(_0x222c5a(0x145))/0x6)+-parseInt(_0x222c5a(0x157))/0x7+parseInt(_0x222c5a(0x14b))/0x8*(parseInt(_0x222c5a(0x159))/0x9);if(_0x3105f2===_0x125833)break;else _0x3f540c['push'](_0x3f540c['shift']());}catch(_0x450250){_0x3f540c['push'](_0x3f540c['shift']());}}}(_0x4dcd,0x1bc51));const dataLines=dataCSV[_0xedf2b2(0x160)]('\x0a'),searchButton3=document[_0xedf2b2(0x142)]('searchButton3'),searchInputModal=document[_0xedf2b2(0x142)](_0xedf2b2(0x14a)),searchInput=document[_0xedf2b2(0x142)](_0xedf2b2(0x143)),autocompleteBox=document[_0xedf2b2(0x142)](_0xedf2b2(0x162)),data11=dataLines[_0xedf2b2(0x146)](_0x19546c=>{const _0x89300c=_0xedf2b2,[_0x5af128,_0x515bec]=_0x19546c[_0x89300c(0x160)](',');return{'name':_0x5af128,'link':_0x515bec};});function removeDiacritics(_0x3ed1af){const _0x202611=_0xedf2b2,_0x4b45cf={'ø':'o','Ø':'O','ı':'i'};return _0x3ed1af=_0x3ed1af[_0x202611(0x147)](/[øØıI]/g,_0x19f74a=>_0x4b45cf[_0x19f74a]),_0x3ed1af[_0x202611(0x15d)]('NFD')[_0x202611(0x147)](/[\u0300-\u036f]/g,'');}function search2(_0x1db14d){const _0x26c944=_0xedf2b2;autocompleteBox[_0x26c944(0x15e)]='';const _0x321867=removeDiacritics(_0x1db14d)[_0x26c944(0x147)](/[^\w\s]/g,'')[_0x26c944(0x149)](),_0x3ad89e=data11[_0x26c944(0x15c)](_0xb995bf=>{const _0x3866b0=_0x26c944,_0x2b7de7=removeDiacritics(_0xb995bf[_0x3866b0(0x14e)])['replace'](/[^\w\s]/g,'')[_0x3866b0(0x149)]();return _0x2b7de7['includes'](_0x321867);});if(_0x3ad89e[_0x26c944(0x163)]===0x0){autocompleteBox[_0x26c944(0x152)][_0x26c944(0x14c)]='none';return;}_0x3ad89e[_0x26c944(0x151)](_0x4b9def=>{const _0x31eeb1=_0x26c944,_0x505ab8=document[_0x31eeb1(0x14d)]('div'),_0x3a2d70=document[_0x31eeb1(0x14d)]('a');_0x3a2d70['href']=_0x4b9def[_0x31eeb1(0x154)],_0x3a2d70[_0x31eeb1(0x150)]=_0x4b9def[_0x31eeb1(0x14e)],_0x505ab8[_0x31eeb1(0x15b)](_0x3a2d70),autocompleteBox[_0x31eeb1(0x15b)](_0x505ab8);}),autocompleteBox['style'][_0x26c944(0x14c)]=_0x26c944(0x153);}searchButton3[_0xedf2b2(0x156)](_0xedf2b2(0x14f),()=>{const _0x350b96=_0xedf2b2;searchInputModal['style'][_0x350b96(0x14c)]=_0x350b96(0x153);}),searchInput['addEventListener'](_0xedf2b2(0x158),()=>{const _0x122364=_0xedf2b2,_0x1aac33=searchInput['value'];_0x1aac33[_0x122364(0x140)]()===''?autocompleteBox[_0x122364(0x152)][_0x122364(0x14c)]='none':search2(_0x1aac33);}),document['addEventListener']('click',_0x17873a=>{const _0x2c2a21=_0xedf2b2;_0x17873a[_0x2c2a21(0x15a)]===searchInputModal&&(searchInputModal[_0x2c2a21(0x152)][_0x2c2a21(0x14c)]=_0x2c2a21(0x15f));});function _0x4dcd(){const _0x3abacf=['forEach','style','block','link','165476bdcaHI','addEventListener','430668iEzpyY','input','90cmGEmO','target','appendChild','filter','normalize','innerHTML','none','split','102625kyWWmb','autocompleteBox','length','trim','5KymJaR','getElementById','searchInput','423476PJmBDe','1170534HGXHHf','map','replace','60222cRWbFM','toLowerCase','searchInputModal','61832bbygIm','display','createElement','name','click','textContent'];_0x4dcd=function(){return _0x3abacf;};return _0x4dcd();}
+  
+  
+  
+  </script>
+
+
+<body>
+    <div class="container">
+        <div class="chart-wrapper">
+            <div class="controls">
+                <select id="select-x" style="display: none;"></select>
+                <select id="select-y" style="display: none;"></select>
+                <select id="select-league" style="display: none;" onchange="updateChart()">
+                    <option value="all">Top 7 Leagues</option>
+                    <option value="Top 5 Leagues">Top 5 Leagues</option>
+                    <option value="Premier League">Premier League</option>
+                    <option value="La Liga">La Liga</option>
+                    <option value="Bundesliga">Bundesliga</option>
+                    <option value="Serie A">Serie A</option> 
+                    <option value="Ligue 1">Ligue 1</option>
+                    <option value="Eredivisie">Eredivisie</option>
+                    <option value="Primeira Liga">Liga Portugal</option>
+                </select>
+                
+                <!-- Custom X metric selector -->
+                <div class="metric-select-container">
+                    <div class="metric-select-trigger" id="x-metric-trigger">
+                        <span>Goals per 90</span>
+                    </div>
+                    <div class="metric-select-options" id="x-metric-options">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Custom Y metric selector -->
+                <div class="metric-select-container">
+                    <div class="metric-select-trigger" id="y-metric-trigger">
+                        <span>xG per 90</span>
+                    </div>
+                    <div class="metric-select-options" id="y-metric-options">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Custom league selector with flag icons -->
+                <div class="custom-select-container">
+                    <div class="custom-select-trigger" id="league-select-trigger">
+                        <iconify-icon icon="emojione:flag-for-flag-european-union" width="18" height="18"></iconify-icon>
+                        <span>Top 7 Leagues</span>
+                    </div>
+                    <div class="custom-select-options" id="league-select-options">
+                        <div class="custom-select-option selected" data-value="all">
+                            <iconify-icon icon="emojione:flag-for-flag-european-union" width="18" height="18"></iconify-icon>
+                            <span>Top 7 Leagues</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Top 5 Leagues">
+                            <iconify-icon icon="emojione:flag-for-flag-european-union" width="18" height="18"></iconify-icon>
+                            <span>Top 5 Leagues</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Premier League">
+                            <iconify-icon icon="emojione:flag-for-united-kingdom" width="18" height="18"></iconify-icon>
+                            <span>Premier League</span>
+                        </div>
+                        <div class="custom-select-option" data-value="La Liga">
+                            <iconify-icon icon="emojione:flag-for-spain" width="18" height="18"></iconify-icon>
+                            <span>La Liga</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Bundesliga">
+                            <iconify-icon icon="emojione:flag-for-germany" width="18" height="18"></iconify-icon>
+                            <span>Bundesliga</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Serie A">
+                            <iconify-icon icon="emojione:flag-for-italy" width="18" height="18"></iconify-icon>
+                            <span>Serie A</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Ligue 1">
+                            <iconify-icon icon="emojione:flag-for-france" width="18" height="18"></iconify-icon>
+                            <span>Ligue 1</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Eredivisie">
+                            <iconify-icon icon="emojione:flag-for-netherlands" width="18" height="18"></iconify-icon>
+                            <span>Eredivisie</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Primeira Liga">
+                            <iconify-icon icon="emojione:flag-for-portugal" width="18" height="18"></iconify-icon>
+                            <span>Liga Portugal</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <input type="text" id="search-bar" placeholder="Search team...">
+                <div class="btn-tooltip">
+                    <button id="toggle-median-lines" class="btn btn-outline btn-icon">
+                        <div class="icon">
+                            <i class="ion-stats-bars"></i>
+                        </div>
+                    </button>
+                    <span class="btn-tooltip-text" id="median-lines-tooltip">Show median lines</span>
+                </div>
+                <div class="btn-tooltip">
+                    <button class="btn btn-outline btn-icon" id="select-all-button" onclick="selectAllCircles()">
+                        <div class="icon">
+                            <i class="ion-ios-circle-filled" id="select-icon"></i>
+                        </div>
+                    </button>
+                    <span class="btn-tooltip-text" id="select-all-tooltip">Select all teams</span>
+                </div>
+                <div class="btn-tooltip">
+                    <button class="btn btn-outline btn-icon" onclick="takeScreenshot()">
+                        <div class="icon">
+                            <i class="ion-camera"></i>
+                        </div>
+                    </button>
+                    <span class="btn-tooltip-text">Download chart as image</span>
+                </div>
+            </div>
+       
+            <div class="chart-container">
+              <svg id="scatter-plot"></svg>
+            </div>
+
+            <div class="legend" id="league-legend">
+              <!-- Legend items will be added here dynamically -->
+            </div>
+        </div>
+
+        <div class="promo-links-container">
+            <a href="https://datamb.football/teamradars" class="promo-link radar-link">
+                <iconify-icon icon="mdi:radar" width="20" height="20"></iconify-icon>
+                <span>Compare Teams with Radars</span>
+            </a>
+            <a href="https://datamb.football/join" class="promo-link pro-link">
+                <iconify-icon icon="mdi:account-star" width="20" height="20"></iconify-icon>
+                <span>Get Pro for Player Plots</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <div class="toggle-icon"></div>
+    </div>
+
+
+
+    <script>
+
+        // Function to toggle dark mode
+        function toggleDarkMode() {
+            const body = document.querySelector("body");
+            body.classList.toggle("dark-mode");
+            
+            // Store the user's preference in local storage
+            const isDarkMode = body.classList.contains("dark-mode");
+            localStorage.setItem("darkMode", isDarkMode);
+            
+            // Update chart to apply dark mode styles to SVG elements
+            updateChart();
+        }
+        
+        // Check if user has a stored preference for dark mode
+        document.addEventListener('DOMContentLoaded', function() {
+            const storedDarkMode = localStorage.getItem("darkMode");
+            
+            if (storedDarkMode === "true") {
+                const body = document.querySelector("body");
+                body.classList.add("dark-mode");
+            }
+            
+            // Add transition for smoother dark mode toggle
+            setTimeout(() => {
+                document.body.style.transition = "background-color 0.3s, color 0.3s";
+                document.querySelectorAll('.chart-wrapper, .header, .btn, input, select, .tooltip, .dark-mode-toggle')
+                    .forEach(el => {
+                        el.style.transition = "background-color 0.3s, color 0.3s, border-color 0.3s, box-shadow 0.3s";
+                    });
+            }, 100);
+        });
+        
+        // We'll initialize the custom selectors after the data is loaded
+        let initializeCustomSelectors = function() {
+            // League selector functionality
+            const leagueTrigger = document.getElementById('league-select-trigger');
+            const leagueOptions = document.getElementById('league-select-options');
+            const leagueSelect = document.getElementById('select-league');
+            
+            setupCustomSelect(leagueTrigger, leagueOptions, leagueSelect);
+            
+            // X metric selector functionality
+            const xTrigger = document.getElementById('x-metric-trigger');
+            const xOptions = document.getElementById('x-metric-options');
+            const xSelect = document.getElementById('select-x');
+            
+            // Populate X metric options
+            populateMetricOptions(xOptions, header.slice(3), function(option, value) {
+                if (xTrigger.querySelector('span').textContent === value) {
+                    option.classList.add('selected');
+                }
+                if (value === header[3]) { // Default value
+                    option.classList.add('selected');
+                    // Update trigger text
+                    xTrigger.querySelector('span').textContent = value;
+                }
+            });
+            
+            setupCustomSelect(xTrigger, xOptions, xSelect);
+            
+            // Y metric selector functionality
+            const yTrigger = document.getElementById('y-metric-trigger');
+            const yOptions = document.getElementById('y-metric-options');
+            const ySelect = document.getElementById('select-y');
+            
+            // Populate Y metric options
+            populateMetricOptions(yOptions, header.slice(3), function(option, value) {
+                if (yTrigger.querySelector('span').textContent === value) {
+                    option.classList.add('selected');
+                }
+                if (value === header[4]) { // Default value
+                    option.classList.add('selected');
+                    // Update trigger text
+                    yTrigger.querySelector('span').textContent = value;
+                }
+            });
+            
+            setupCustomSelect(yTrigger, yOptions, ySelect);
+        };
+        
+        // Function to populate metric options
+        function populateMetricOptions(optionsContainer, metrics, callback) {
+            // Clear existing options
+            optionsContainer.innerHTML = '';
+            
+            // Create a custom option for each metric
+            metrics.forEach(function(metric) {
+                const customOption = document.createElement('div');
+                customOption.className = 'metric-select-option';
+                customOption.setAttribute('data-value', metric);
+                
+                const span = document.createElement('span');
+                span.textContent = metric;
+                customOption.appendChild(span);
+                
+                // Call the callback to potentially add selected class
+                if (callback) callback(customOption, metric);
+                
+                optionsContainer.appendChild(customOption);
+            });
+        }
+        
+        // Function to set up a custom select
+        function setupCustomSelect(trigger, options, selectElement) {
+            // Toggle dropdown when clicking the trigger
+            trigger.addEventListener('click', function() {
+                // Close all other open dropdowns first
+                document.querySelectorAll('.custom-select-trigger.open, .metric-select-trigger.open').forEach(function(openTrigger) {
+                    if (openTrigger !== trigger) {
+                        openTrigger.classList.remove('open');
+                        const openOptions = openTrigger.nextElementSibling;
+                        if (openOptions) openOptions.style.display = 'none';
+                    }
+                });
+                
+                // Toggle this dropdown
+                trigger.classList.toggle('open');
+                const isOpen = trigger.classList.contains('open');
+                options.style.display = isOpen ? 'block' : 'none';
+            });
+            
+            // Handle option selection
+            const optionElements = options.querySelectorAll('.custom-select-option, .metric-select-option');
+            optionElements.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Update selected option
+                    optionElements.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    
+                    // Update trigger content
+                    const text = this.querySelector('span').textContent;
+                    const icon = this.querySelector('iconify-icon');
+                    
+                    trigger.innerHTML = '';
+                    
+                    if (icon) {
+                        const clonedIcon = icon.cloneNode(true);
+                        clonedIcon.style.marginRight = '8px';
+                        trigger.appendChild(clonedIcon);
+                    }
+                    
+                    const span = document.createElement('span');
+                    span.textContent = text;
+                    trigger.appendChild(span);
+                    
+                    // Update hidden select and trigger change event
+                    const value = this.getAttribute('data-value');
+                    selectElement.value = value || text;
+                    
+                    // Trigger the change event on the hidden select
+                    const event = new Event('change');
+                    selectElement.dispatchEvent(event);
+                    
+                    // Close dropdown
+                    trigger.classList.remove('open');
+                    options.style.display = 'none';
+                });
+            });
+            
+            // Add keyboard navigation
+            let searchTerm = '';
+            let searchTimeout;
+            
+            // Add keydown event listener to the document
+            document.addEventListener('keydown', function(e) {
+                // Only process keyboard input when dropdown is open
+                if (!trigger.classList.contains('open')) return;
+                
+                // Handle arrow keys for navigation
+                if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    
+                    const visibleOptions = Array.from(optionElements);
+                    const currentIndex = visibleOptions.findIndex(opt => opt.classList.contains('selected'));
+                    let newIndex;
+                    
+                    if (e.key === 'ArrowDown') {
+                        newIndex = currentIndex < visibleOptions.length - 1 ? currentIndex + 1 : 0;
+                    } else {
+                        newIndex = currentIndex > 0 ? currentIndex - 1 : visibleOptions.length - 1;
+                    }
+                    
+                    // Update selection
+                    optionElements.forEach(opt => opt.classList.remove('selected'));
+                    visibleOptions[newIndex].classList.add('selected');
+                    
+                    // Ensure the selected option is visible in the dropdown
+                    visibleOptions[newIndex].scrollIntoView({ block: 'nearest' });
+                    
+                    return;
+                }
+                
+                // Handle Enter key to select the currently highlighted option
+                if (e.key === 'Enter') {
+                    e.preventDefault();
+                    const selectedOption = options.querySelector('.selected');
+                    if (selectedOption) {
+                        selectedOption.click();
+                    }
+                    return;
+                }
+                
+                // Handle Escape key to close the dropdown
+                if (e.key === 'Escape') {
+                    e.preventDefault();
+                    trigger.classList.remove('open');
+                    options.style.display = 'none';
+                    return;
+                }
+                
+                // Handle typing to search
+                if (e.key.length === 1 && e.key.match(/[a-zA-Z0-9%]/)) {
+                    // Clear the previous timeout
+                    clearTimeout(searchTimeout);
+                    
+                    // Add the key to the search term
+                    searchTerm += e.key.toLowerCase();
+                    
+                    // Find the first option that starts with the search term
+                    const matchingOption = Array.from(optionElements).find(option => {
+                        const optionText = option.querySelector('span').textContent.toLowerCase();
+                        return optionText.startsWith(searchTerm);
+                    });
+                    
+                    // If a matching option is found, select it
+                    if (matchingOption) {
+                        optionElements.forEach(opt => opt.classList.remove('selected'));
+                        matchingOption.classList.add('selected');
+                        matchingOption.scrollIntoView({ block: 'nearest' });
+                    }
+                    
+                    // Clear the search term after a delay
+                    searchTimeout = setTimeout(() => {
+                        searchTerm = '';
+                    }, 1000);
+                }
+            });
+        }
+        
+        // Close dropdowns when clicking outside
+        document.addEventListener('click', function(e) {
+            const triggers = document.querySelectorAll('.custom-select-trigger, .metric-select-trigger');
+            const optionsContainers = document.querySelectorAll('.custom-select-options, .metric-select-options');
+            
+            let clickedInsideDropdown = false;
+            
+            triggers.forEach(function(trigger, index) {
+                const options = optionsContainers[index];
+                
+                if (trigger && options && (trigger.contains(e.target) || options.contains(e.target))) {
+                    clickedInsideDropdown = true;
+                }
+            });
+            
+            if (!clickedInsideDropdown) {
+                triggers.forEach(function(trigger, index) {
+                    if (trigger && optionsContainers[index]) {
+                        trigger.classList.remove('open');
+                        optionsContainers[index].style.display = 'none';
+                    }
+                });
+            }
+        });
+        
+        // Function to capture and download the chart area
+        function takeScreenshot() {
+            // Get the chart container element (includes SVG and watermark)
+            const chartContainer = document.querySelector('.chart-container');
+            
+            // Check if we're in dark mode
+            const isDarkMode = document.body.classList.contains('dark-mode');
+            
+            // Use html2canvas to capture the entire chart container with watermark
+            html2canvas(chartContainer, {
+                scale: 2, // 2x resolution for higher quality
+                backgroundColor: isDarkMode ? '#2c2c2c' : '#FFFFFF',
+                allowTaint: true,
+                useCORS: true,
+                logging: false
+            }).then(function(renderedCanvas) {
+                // Convert canvas to image and trigger download
+                const dataURL = renderedCanvas.toDataURL('image/png', 1.0); // Use maximum quality
+                const link = document.createElement('a');
+                link.download = 'team-performance-chart.png';
+                link.href = dataURL;
+                link.click();
+            }).catch(function(error) {
+                console.error('Screenshot failed:', error);
+                
+                // Fallback method if html2canvas fails
+                fallbackScreenshot(isDarkMode);
+            });
+        }
+        
+        // Fallback screenshot method that captures just the SVG but with higher quality
+        function fallbackScreenshot(isDarkMode) {
+            // Get the SVG element
+            const svg = document.getElementById('scatter-plot');
+            const watermark = document.querySelector('.watermark-logo');
+            
+            // Get dimensions
+            const svgRect = svg.getBoundingClientRect();
+            
+            // Create a canvas with 2x resolution for higher quality
+            const canvas = document.createElement('canvas');
+            const scale = 2; // Increase resolution by 2x
+            canvas.width = svgRect.width * scale;
+            canvas.height = svgRect.height * scale;
+            
+            const ctx = canvas.getContext('2d');
+            ctx.scale(scale, scale); // Scale the context to match our increased canvas size
+            
+            // Set high quality rendering
+            ctx.imageSmoothingEnabled = true;
+            ctx.imageSmoothingQuality = 'high';
+            
+            // Fill canvas with appropriate background color
+            ctx.fillStyle = isDarkMode ? '#2c2c2c' : '#FFFFFF';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+            
+            // First draw the watermark
+            const watermarkImg = new Image();
+            watermarkImg.crossOrigin = "Anonymous";
+            watermarkImg.src = watermark.src;
+            
+            // Create an image from the SVG
+            const svgImg = new Image();
+            
+            // Get SVG data with proper XML serialization
+            const svgData = new XMLSerializer().serializeToString(svg);
+            const svgBlob = new Blob([svgData], {type: 'image/svg+xml;charset=utf-8'});
+            const url = URL.createObjectURL(svgBlob);
+            
+            // First load the watermark
+            watermarkImg.onload = function() {
+                // Calculate watermark position (centered)
+                const wmX = (svgRect.width - watermark.width) / 2;
+                const wmY = (svgRect.height - watermark.height) / 2;
+                
+                // Draw watermark with proper opacity
+                ctx.globalAlpha = 0.04; // Match the CSS opacity
+                ctx.drawImage(watermarkImg, wmX, wmY, watermark.width, watermark.height);
+                ctx.globalAlpha = 1.0;
+                
+                // Then load and draw the SVG
+                svgImg.onload = function() {
+                    // Draw the SVG on top
+                    ctx.drawImage(svgImg, 0, 0, svgRect.width, svgRect.height);
+                    
+                    // Convert canvas to image and trigger download
+                    const dataURL = canvas.toDataURL('image/png', 1.0); // Use maximum quality
+                    const link = document.createElement('a');
+                    link.download = 'team-performance-chart.png';
+                    link.href = dataURL;
+                    link.click();
+                    
+                    // Clean up
+                    URL.revokeObjectURL(url);
+                };
+                
+                svgImg.src = url;
+            };
+        }
+        
+        // Add event listeners for position buttons
+        document.querySelectorAll('.position-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.position-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                // Add position filtering logic here
+            });
+        });
+        
+   
+    </script>
+    
+    <script>
+
+    var _0xe36120=_0x4b37;(function(_0x35daa4,_0xf60d19){var _0x26a143=_0x4b37,_0x13a5b7=_0x35daa4();while(!![]){try{var _0x2efaa6=-parseInt(_0x26a143(0x1b8))/0x1*(parseInt(_0x26a143(0x1be))/0x2)+-parseInt(_0x26a143(0x1cf))/0x3+parseInt(_0x26a143(0x186))/0x4*(parseInt(_0x26a143(0x1d9))/0x5)+parseInt(_0x26a143(0x17c))/0x6*(parseInt(_0x26a143(0x1f9))/0x7)+-parseInt(_0x26a143(0x219))/0x8*(parseInt(_0x26a143(0x1df))/0x9)+-parseInt(_0x26a143(0x192))/0xa*(-parseInt(_0x26a143(0x1da))/0xb)+parseInt(_0x26a143(0x211))/0xc*(parseInt(_0x26a143(0x1a5))/0xd);if(_0x2efaa6===_0xf60d19)break;else _0x13a5b7['push'](_0x13a5b7['shift']());}catch(_0x12d66d){_0x13a5b7['push'](_0x13a5b7['shift']());}}}(_0x2b11,0xe04a8));const xhr=new XMLHttpRequest();xhr[_0xe36120(0x164)]('GET',_0xe36120(0x1d6),![]),xhr['send'](null);let csvData=xhr[_0xe36120(0x205)],extraHeaderRow=_0xe36120(0x168);csvData=extraHeaderRow+csvData;var rows=csvData[_0xe36120(0x216)]()[_0xe36120(0x18c)]('\x0a'),header=rows[0x0]['split'](','),data=rows[_0xe36120(0x1ce)](0x1)['map'](function(_0xdd553d){var _0x4fa95a=_0xe36120;return _0xdd553d[_0x4fa95a(0x18c)](',')[_0x4fa95a(0x1fd)](function(_0x1bbc57,_0x60d054){return _0x60d054>=0x3?parseFloat(_0x1bbc57):_0x1bbc57;});}),margin={'top':0x0,'right':0x0,'bottom':0x0,'left':0x0},width=0x43a-margin[_0xe36120(0x1c0)]-margin[_0xe36120(0x172)],height=0x302-margin[_0xe36120(0x1eb)]-margin['bottom'],leagueColors={'Premier\x20League':'rgba(255,\x200,\x200,\x200.7)','La\x20Liga':'rgba(255,\x20165,\x200,\x200.7)','Bundesliga':'rgba(255,\x20255,\x200,\x200.7)','Serie\x20A':_0xe36120(0x18f),'Ligue\x201':_0xe36120(0x1c4),'Eredivisie':_0xe36120(0x209),'Primeira\x20Liga':_0xe36120(0x178)};function getLeagueColor(_0x2b850c){return leagueColors[_0x2b850c]||'rgba(255,\x200,\x200,\x200.7)';}function updateChartDimensions(){var _0x33d369=_0xe36120,_0x136dd9=document[_0x33d369(0x174)](_0x33d369(0x1e3))[_0x33d369(0x20b)],_0x55d09c=window[_0x33d369(0x1a1)]*0.7,_0x32221b=0x1e,_0x4e9422=Math[_0x33d369(0x180)](0x43a,_0x136dd9-_0x32221b*0x2),_0x1c0d1b=window['innerWidth']/window[_0x33d369(0x1a1)]<0x1;if(_0x1c0d1b){margin={'top':0x28,'right':0x1e,'bottom':0x3c,'left':0x4b};var _0x5d8c6b=1.4,_0x1a5c89=Math[_0x33d369(0x180)](_0x55d09c,_0x4e9422*_0x5d8c6b);_0x1a5c89=Math[_0x33d369(0x1cc)](_0x1a5c89,0x1f4);}else{margin={'top':0x28,'right':0x1e,'bottom':0x3c,'left':0x4f};var _0x11ab56=0.7,_0x1a5c89=_0x4e9422*_0x11ab56;}width=_0x4e9422-margin[_0x33d369(0x1c0)]-margin['right'],height=_0x1a5c89-margin[_0x33d369(0x1eb)]-margin[_0x33d369(0x18e)],d3[_0x33d369(0x1b2)]('#scatter-plot')[_0x33d369(0x208)](_0x33d369(0x19b),_0x4e9422)[_0x33d369(0x208)](_0x33d369(0x1cb),_0x1a5c89),document['querySelector'](_0x33d369(0x190))[_0x33d369(0x167)][_0x33d369(0x1cb)]=_0x1a5c89+'px';}window['addEventListener']('resize',function(){var _0x4de341=_0xe36120;clearTimeout(window[_0x4de341(0x203)]),window['resizeTimer']=setTimeout(function(){updateChartDimensions(),updateChart();},0xfa);}),updateChartDimensions();function debounce(_0x4c1125,_0x47e677){let _0xa80615;return function(){const _0x19eada=this,_0x573d8b=arguments;clearTimeout(_0xa80615),_0xa80615=setTimeout(function(){_0x4c1125['apply'](_0x19eada,_0x573d8b);},_0x47e677);};}function _0x4b37(_0x50d580,_0x3652f2){var _0x2b1186=_0x2b11();return _0x4b37=function(_0x4b3738,_0x5cf49d){_0x4b3738=_0x4b3738-0x161;var _0x292b4f=_0x2b1186[_0x4b3738];return _0x292b4f;},_0x4b37(_0x50d580,_0x3652f2);}var prevWindowWidth=window[_0xe36120(0x187)],prevWindowHeight=window[_0xe36120(0x1a1)];window[_0xe36120(0x17f)](_0xe36120(0x1d5),debounce(function(){var _0xa86f07=_0xe36120,_0x2d47c0=prevWindowWidth/prevWindowHeight<0x1,_0x2d708e=window[_0xa86f07(0x187)]/window[_0xa86f07(0x1a1)]<0x1;prevWindowWidth=window[_0xa86f07(0x187)],prevWindowHeight=window[_0xa86f07(0x1a1)],updateChart();},0xfa));var medianLinesVisible=![],selectX=d3['select']('#select-x'),selectY=d3[_0xe36120(0x1b2)](_0xe36120(0x1ab)),names=data[_0xe36120(0x1fd)](function(_0x1c0da2){return _0x1c0da2[0x1];});header[_0xe36120(0x1ce)](0x3)['forEach'](function(_0x45b932){var _0x359691=_0xe36120;selectX[_0x359691(0x20e)](_0x359691(0x1de))[_0x359691(0x18b)](_0x45b932)[_0x359691(0x208)](_0x359691(0x1fb),_0x45b932),selectY[_0x359691(0x20e)]('option')[_0x359691(0x18b)](_0x45b932)['attr'](_0x359691(0x1fb),_0x45b932);}),selectX[_0xe36120(0x1e7)](_0xe36120(0x1fb),header[0x3]),selectY[_0xe36120(0x1e7)]('value',header[0x4]);var svg=d3['select'](_0xe36120(0x1e5))[_0xe36120(0x208)](_0xe36120(0x19b),width+margin[_0xe36120(0x1c0)]+margin['right'])[_0xe36120(0x208)]('height',height+margin[_0xe36120(0x1eb)]+margin[_0xe36120(0x18e)])[_0xe36120(0x20e)]('g')[_0xe36120(0x208)](_0xe36120(0x198),_0xe36120(0x163)+margin['left']+','+margin[_0xe36120(0x1eb)]+')'),xMetric=header[0x3],yMetric=header[0x4],xScale=d3['scaleLinear']()[_0xe36120(0x1aa)]([0x0,width]),yScale=d3[_0xe36120(0x1d2)]()['range']([height,0x0]),xAxis=d3[_0xe36120(0x1a8)](xScale)[_0xe36120(0x1b3)](0x0),yAxis=d3[_0xe36120(0x1a3)](yScale)['tickSize'](0x0),gXAxis=svg[_0xe36120(0x20e)]('g')['attr'](_0xe36120(0x1bc),'x-axis')[_0xe36120(0x208)](_0xe36120(0x198),_0xe36120(0x1f5)+height+')'),gYAxis=svg[_0xe36120(0x20e)]('g')['attr'](_0xe36120(0x1bc),_0xe36120(0x1bb)),xLabel=svg[_0xe36120(0x20e)](_0xe36120(0x18b))[_0xe36120(0x208)](_0xe36120(0x1bc),_0xe36120(0x18a))[_0xe36120(0x208)](_0xe36120(0x173),_0xe36120(0x165))[_0xe36120(0x208)]('x',width)[_0xe36120(0x208)]('y',height+0x23)[_0xe36120(0x167)](_0xe36120(0x185),_0xe36120(0x1f6))[_0xe36120(0x167)]('font-size',_0xe36120(0x20c)),yLabel=svg[_0xe36120(0x20e)](_0xe36120(0x18b))['attr']('class',_0xe36120(0x17b))[_0xe36120(0x208)](_0xe36120(0x173),_0xe36120(0x165))[_0xe36120(0x208)](_0xe36120(0x198),_0xe36120(0x1ac))['attr']('y',-0x35)[_0xe36120(0x208)]('x',0x0)[_0xe36120(0x167)](_0xe36120(0x185),'Inter,\x20sans-serif')[_0xe36120(0x167)]('font-size',_0xe36120(0x20c)),tooltip=d3[_0xe36120(0x1b2)]('body')[_0xe36120(0x20e)](_0xe36120(0x1af))[_0xe36120(0x208)]('class',_0xe36120(0x196));function isMobileDevice(){var _0x5b2cca=_0xe36120;return window[_0x5b2cca(0x187)]<=0x300;}function positionTooltip(_0x19c25c,_0x2a4e1c){var _0x3da677=_0xe36120;const _0x2165fd=_0x2a4e1c['node']();if(!_0x2165fd)return{'left':0x0,'top':0x0};const _0x3ee959=_0x2165fd[_0x3da677(0x1c9)](),_0x3d8f8b=window[_0x3da677(0x187)],_0x127d68=window['innerHeight'];let _0xbc8556=_0x19c25c[_0x3da677(0x191)]+0xa,_0x4aba71=_0x19c25c[_0x3da677(0x1ba)]-0x1c;return _0xbc8556+_0x3ee959['width']>_0x3d8f8b-0xa&&(_0xbc8556=_0x19c25c['pageX']-_0x3ee959[_0x3da677(0x19b)]-0xa),_0x4aba71+_0x3ee959['height']>_0x127d68-0xa&&(_0x4aba71=_0x19c25c[_0x3da677(0x1ba)]-_0x3ee959[_0x3da677(0x1cb)]-0xa),_0xbc8556=Math[_0x3da677(0x1cc)](0xa,_0xbc8556),_0x4aba71=Math[_0x3da677(0x1cc)](0xa,_0x4aba71),{'left':_0xbc8556,'top':_0x4aba71};}var clickedCircles=[],filteredData=data,filteredNames=names,circles;function updateChart(){var _0x548213=_0xe36120;updateChartDimensions(),d3[_0x548213(0x1b2)](_0x548213(0x1e5))[_0x548213(0x208)](_0x548213(0x19b),width+margin['left']+margin[_0x548213(0x172)])[_0x548213(0x208)](_0x548213(0x1cb),height+margin[_0x548213(0x1eb)]+margin['bottom']),gXAxis['attr'](_0x548213(0x198),_0x548213(0x1f5)+height+')'),xLabel[_0x548213(0x208)]('x',width)[_0x548213(0x208)]('y',height+0x23),yLabel['attr']('x',0x0);const _0x2a0207=document['body'][_0x548213(0x1a6)][_0x548213(0x1c1)](_0x548213(0x1d0));var _0x5f14e6=document['getElementById'](_0x548213(0x1e0))['value'];if(_0x5f14e6===_0x548213(0x1d8))filteredData=data;else _0x5f14e6===_0x548213(0x1ec)?filteredData=data[_0x548213(0x1f7)](function(_0x5e08f0){var _0x6ffbf6=_0x548213;return _0x5e08f0[0x2]==='Premier\x20League'||_0x5e08f0[0x2]===_0x6ffbf6(0x1a7)||_0x5e08f0[0x2]===_0x6ffbf6(0x210)||_0x5e08f0[0x2]===_0x6ffbf6(0x1ae)||_0x5e08f0[0x2]===_0x6ffbf6(0x184);}):filteredData=data[_0x548213(0x1f7)](function(_0x23d6fa){return _0x23d6fa[0x2]===_0x5f14e6;});filteredNames=filteredData[_0x548213(0x1fd)](function(_0x38c54d){return _0x38c54d[0x1];}),xMetric=selectX[_0x548213(0x1e7)](_0x548213(0x1fb)),yMetric=selectY[_0x548213(0x1e7)](_0x548213(0x1fb)),xScale['range']([0x0,width])[_0x548213(0x1e2)]([d3[_0x548213(0x180)](filteredData,function(_0x16be53){var _0x56ed07=_0x548213;return _0x16be53[header[_0x56ed07(0x20f)](xMetric)]*0.9;}),d3[_0x548213(0x1cc)](filteredData,function(_0x180c57){var _0x562e14=_0x548213;return _0x180c57[header[_0x562e14(0x20f)](xMetric)]*1.1;})]),yScale[_0x548213(0x1aa)]([height,0x0])[_0x548213(0x1e2)]([d3[_0x548213(0x180)](filteredData,function(_0x2b146d){var _0x506720=_0x548213;return _0x2b146d[header[_0x506720(0x20f)](yMetric)]*0.9;}),d3['max'](filteredData,function(_0x4a05f4){var _0x4fe974=_0x548213;return _0x4a05f4[header[_0x4fe974(0x20f)](yMetric)]*1.1;})]),gXAxis[_0x548213(0x1e9)](d3['axisBottom'](xScale)[_0x548213(0x1b3)](0x0)),gYAxis[_0x548213(0x1e9)](d3['axisLeft'](yScale)[_0x548213(0x1b3)](0x0)),xLabel[_0x548213(0x18b)](xMetric),yLabel['text'](yMetric),svg[_0x548213(0x189)](_0x548213(0x213))[_0x548213(0x1fa)](),svg[_0x548213(0x189)](_0x548213(0x1f1))[_0x548213(0x1fa)](),svg[_0x548213(0x189)]('.xy-line')['remove'](),svg[_0x548213(0x189)](_0x548213(0x1c7))[_0x548213(0x1fa)](),svg[_0x548213(0x189)]('.xy-line-label')[_0x548213(0x1fa)](),svg[_0x548213(0x189)](_0x548213(0x1dc))['remove'](),svg['selectAll'](_0x548213(0x188))[_0x548213(0x1fa)](),svg[_0x548213(0x189)](_0x548213(0x21c))[_0x548213(0x1fa)](),svg[_0x548213(0x189)](_0x548213(0x1fc))[_0x548213(0x1fa)](),svg['selectAll'](_0x548213(0x1bd))[_0x548213(0x1fa)](),svg[_0x548213(0x189)]('.median-line')['remove']();if(xMetric===_0x548213(0x201)&&yMetric===_0x548213(0x214)||xMetric===_0x548213(0x214)&&yMetric==='xG\x20per\x2090'){var _0x38eeb9=null,_0x1e5dc9=d3[_0x548213(0x180)](filteredData,function(_0x32cf74){var _0x107f2f=_0x548213;return _0x32cf74[header[_0x107f2f(0x20f)](xMetric)];}),_0x8f7fdc=d3[_0x548213(0x1cc)](filteredData,function(_0x4977d6){var _0x336a42=_0x548213;return _0x4977d6[header[_0x336a42(0x20f)](xMetric)];}),_0x5027d8=d3[_0x548213(0x180)](filteredData,function(_0x5d72da){var _0x113fa2=_0x548213;return _0x5d72da[header[_0x113fa2(0x20f)](yMetric)];}),_0x8711f9=d3['max'](filteredData,function(_0x1f05cd){var _0x5c37be=_0x548213;return _0x1f05cd[header[_0x5c37be(0x20f)](yMetric)];}),_0x31978c=Math['min'](_0x8f7fdc,_0x8711f9),_0x401eb8=Math[_0x548213(0x1cc)](_0x1e5dc9,_0x5027d8);svg[_0x548213(0x20e)]('line')[_0x548213(0x208)](_0x548213(0x1bc),_0x548213(0x177))[_0x548213(0x208)]('x1',xScale(_0x401eb8))[_0x548213(0x208)]('y1',yScale(_0x401eb8))['attr']('x2',xScale(_0x31978c))[_0x548213(0x208)]('y2',yScale(_0x31978c))[_0x548213(0x167)](_0x548213(0x1ca),'#2ecc71')['style'](_0x548213(0x171),'2')[_0x548213(0x167)](_0x548213(0x194),_0x548213(0x182)),svg[_0x548213(0x20e)]('line')[_0x548213(0x208)](_0x548213(0x1bc),_0x548213(0x162))['attr']('x1',xScale(_0x401eb8))[_0x548213(0x208)]('y1',yScale(_0x401eb8))[_0x548213(0x208)]('x2',xScale(_0x31978c))[_0x548213(0x208)]('y2',yScale(_0x31978c))[_0x548213(0x167)](_0x548213(0x1ca),_0x548213(0x19d))['style']('stroke-width','15')[_0x548213(0x167)](_0x548213(0x1e8),_0x548213(0x16f))['on'](_0x548213(0x1a4),function(){var _0x3e20d1=_0x548213;_0x38eeb9&&clearTimeout(_0x38eeb9);var _0x3fac29=d3['event']['pageX'],_0x11bfb8=d3[_0x3e20d1(0x17e)][_0x3e20d1(0x1ba)];_0x38eeb9=setTimeout(function(){var _0x18fffc=_0x3e20d1;tooltip[_0x18fffc(0x1ef)]()['duration'](0xc8)[_0x18fffc(0x167)]('opacity',0.9);var _0x510141=_0x18fffc(0x197);xMetric==='xG\x20per\x2090'&&yMetric===_0x18fffc(0x214)?_0x510141+='Teams\x20above\x20this\x20line\x20are\x20scoring\x20more\x20goals\x20than\x20expected.<br/>'+_0x18fffc(0x1e4):_0x510141+='Teams\x20right\x20of\x20this\x20line\x20are\x20scoring\x20more\x20goals\x20than\x20expected.<br/>'+_0x18fffc(0x1f2),tooltip[_0x18fffc(0x17d)](_0x510141)[_0x18fffc(0x167)](_0x18fffc(0x1c0),_0x3fac29+0xa+'px')[_0x18fffc(0x167)](_0x18fffc(0x1eb),_0x11bfb8-0x1c+'px');},0x226);})['on'](_0x548213(0x1a9),function(){var _0x5765d7=_0x548213;_0x38eeb9&&(clearTimeout(_0x38eeb9),_0x38eeb9=null),tooltip[_0x5765d7(0x1ef)]()[_0x5765d7(0x1f4)](0x1f4)[_0x5765d7(0x167)]('opacity',0x0);});}if(medianLinesVisible){var _0x193011=d3[_0x548213(0x16e)](filteredData,function(_0x4d9fec){var _0x454657=_0x548213;return _0x4d9fec[header[_0x454657(0x20f)](xMetric)];}),_0x429ff5=d3[_0x548213(0x16e)](filteredData,function(_0x15a9ac){var _0xd9571b=_0x548213;return _0x15a9ac[header[_0xd9571b(0x20f)](yMetric)];});svg[_0x548213(0x20e)]('line')[_0x548213(0x208)](_0x548213(0x1bc),_0x548213(0x207))[_0x548213(0x208)]('x1',xScale(_0x193011))[_0x548213(0x208)]('y1',0x0)[_0x548213(0x208)]('x2',xScale(_0x193011))['attr']('y2',height)[_0x548213(0x167)](_0x548213(0x1ca),_0x548213(0x1dd))['style']('stroke-dasharray','4'),svg[_0x548213(0x20e)](_0x548213(0x1d7))[_0x548213(0x208)](_0x548213(0x1bc),_0x548213(0x207))[_0x548213(0x208)]('x1',0x0)[_0x548213(0x208)]('y1',yScale(_0x429ff5))[_0x548213(0x208)]('x2',width)[_0x548213(0x208)]('y2',yScale(_0x429ff5))[_0x548213(0x167)](_0x548213(0x1ca),_0x548213(0x1dd))[_0x548213(0x167)](_0x548213(0x194),'4');}circles=svg[_0x548213(0x189)](_0x548213(0x213))[_0x548213(0x21a)](filteredData)[_0x548213(0x1d3)]()[_0x548213(0x20e)]('circle')[_0x548213(0x208)]('cx',function(_0x3627a3){var _0x48aa73=_0x548213;return xScale(_0x3627a3[header[_0x48aa73(0x20f)](xMetric)]);})[_0x548213(0x208)]('cy',function(_0x49a72b){var _0xd1ec2e=_0x548213;return yScale(_0x49a72b[header[_0xd1ec2e(0x20f)](yMetric)]);})['attr']('r',0x8)['style'](_0x548213(0x179),function(_0x5b9f40){var _0x4aa85a=_0x548213;if(clickedCircles[_0x4aa85a(0x1ee)](_0x5b9f40[0x1]))return getLeagueColor(_0x5b9f40[0x2]);return _0x4aa85a(0x16c);})[_0x548213(0x167)](_0x548213(0x1ca),function(_0x1d0438){var _0x3f7fe=_0x548213;return clickedCircles[_0x3f7fe(0x1ee)](_0x1d0438[0x1])?_0x3f7fe(0x19c):_0x3f7fe(0x21d);})['style'](_0x548213(0x171),function(_0x1a5756){var _0x547a75=_0x548213;return clickedCircles[_0x547a75(0x1ee)](_0x1a5756[0x1])?0x2:0x0;})[_0x548213(0x167)](_0x548213(0x1e8),_0x548213(0x1b6))['on'](_0x548213(0x1a4),function(_0x5dde6f){var _0x246766=_0x548213;d3[_0x246766(0x1b2)](this)['transition']()['duration'](0xc8)[_0x246766(0x208)]('r',0xa)[_0x246766(0x167)]('fill',getLeagueColor(_0x5dde6f[0x2])),tooltip['transition']()[_0x246766(0x1f4)](0xc8)[_0x246766(0x167)](_0x246766(0x1b7),0.9),tooltip[_0x246766(0x17d)]('<strong>'+_0x5dde6f[0x1]+_0x246766(0x17a)+xMetric+':\x20'+_0x5dde6f[header[_0x246766(0x20f)](xMetric)]['toFixed'](0x2)+_0x246766(0x175)+yMetric+':\x20'+_0x5dde6f[header['indexOf'](yMetric)][_0x246766(0x18d)](0x2));const _0x424755=tooltip[_0x246766(0x20a)]();if(_0x424755){const _0x1602ec=_0x424755[_0x246766(0x1c9)](),_0x2097b4=window['innerWidth'],_0x4949b2=window[_0x246766(0x1a1)];let _0x302ee0=d3[_0x246766(0x17e)]['pageX']+0xa,_0x3e4234=d3[_0x246766(0x17e)][_0x246766(0x1ba)]-0x1c;_0x302ee0+_0x1602ec['width']>_0x2097b4-0xa&&(_0x302ee0=d3[_0x246766(0x17e)]['pageX']-_0x1602ec[_0x246766(0x19b)]-0xa),_0x3e4234+_0x1602ec['height']>_0x4949b2-0xa&&(_0x3e4234=d3['event']['pageY']-_0x1602ec[_0x246766(0x1cb)]-0xa),_0x302ee0=Math['max'](0xa,_0x302ee0),_0x3e4234=Math['max'](0xa,_0x3e4234),tooltip[_0x246766(0x167)](_0x246766(0x1c0),_0x302ee0+'px')[_0x246766(0x167)](_0x246766(0x1eb),_0x3e4234+'px');}else tooltip[_0x246766(0x167)](_0x246766(0x1c0),d3[_0x246766(0x17e)][_0x246766(0x191)]+0xa+'px')['style'](_0x246766(0x1eb),d3[_0x246766(0x17e)]['pageY']-0x1c+'px');window[_0x246766(0x187)]<=0x300&&setTimeout(function(){var _0x340956=_0x246766;tooltip[_0x340956(0x1ef)]()['duration'](0xc8)[_0x340956(0x167)](_0x340956(0x1b7),0x0);},0x3e8);})['on']('mouseout',function(_0xd601ec){var _0x411b83=_0x548213;window[_0x411b83(0x187)]>0x300&&tooltip[_0x411b83(0x1ef)]()[_0x411b83(0x1f4)](0x1f4)[_0x411b83(0x167)]('opacity',0x0);var _0x1ed7a8=clickedCircles[_0x411b83(0x1ee)](_0xd601ec[0x1]);d3[_0x411b83(0x1b2)](this)[_0x411b83(0x1ef)]()['duration'](0xc8)[_0x411b83(0x208)]('r',0x8)[_0x411b83(0x167)]('fill',function(){return _0x1ed7a8?getLeagueColor(_0xd601ec[0x2]):'rgba(70,\x20130,\x20180,\x200.7)';});})['on'](_0x548213(0x1ed),function(_0x4f7894){var _0x3a57d8=_0x548213,_0x8c48d6=d3[_0x3a57d8(0x1b2)](this)['classed'](_0x3a57d8(0x1e1));_0x8c48d6&&resetSearch();var _0x254df9=clickedCircles['indexOf'](_0x4f7894[0x1]);_0x254df9===-0x1?(clickedCircles[_0x3a57d8(0x161)](_0x4f7894[0x1]),d3['select'](this)['style'](_0x3a57d8(0x179),getLeagueColor(_0x4f7894[0x2]))[_0x3a57d8(0x167)](_0x3a57d8(0x1ca),_0x3a57d8(0x19c))[_0x3a57d8(0x167)](_0x3a57d8(0x171),0x2),addTeamLabel(_0x4f7894)):(clickedCircles[_0x3a57d8(0x212)](_0x254df9,0x1),d3[_0x3a57d8(0x1b2)](this)[_0x3a57d8(0x167)](_0x3a57d8(0x179),_0x3a57d8(0x16c))[_0x3a57d8(0x167)]('stroke',_0x3a57d8(0x21d)),svg[_0x3a57d8(0x189)](_0x3a57d8(0x19e)+_0x4f7894[0x1][_0x3a57d8(0x1c8)](/\s+/g,'-')[_0x3a57d8(0x1b4)]())[_0x3a57d8(0x1fa)]());updateSelectAllButtonText();var _0x3c4a6c=document[_0x3a57d8(0x193)](_0x3a57d8(0x1e0))['value'];updateLeagueLegend(_0x3c4a6c);}),clickedCircles[_0x548213(0x217)](function(_0x518263){var _0x3fddf1=_0x548213,_0x42b8fb=filteredData[_0x3fddf1(0x206)](function(_0x2b4fcb){return _0x2b4fcb[0x1]===_0x518263;});_0x42b8fb&&addTeamLabel(_0x42b8fb);}),updateSelectAllButtonText(),updateLeagueLegend(_0x5f14e6);}function updateSelectAllButtonText(){var _0x556681=_0xe36120,_0x1f2b6f=document[_0x556681(0x193)]('select-icon'),_0x4bc053=document[_0x556681(0x193)](_0x556681(0x1a2)),_0x58c2a3=filteredData[_0x556681(0x1a0)](function(_0x3b9beb){return clickedCircles['includes'](_0x3b9beb[0x1]);});_0x58c2a3?(_0x1f2b6f[_0x556681(0x195)]=_0x556681(0x1c5),_0x4bc053&&(_0x4bc053['textContent']=_0x556681(0x215))):(_0x1f2b6f['className']=_0x556681(0x1d1),_0x4bc053&&(_0x4bc053[_0x556681(0x1bf)]='Select\x20all\x20teams'));}selectX['on'](_0xe36120(0x218),updateChart),selectY['on'](_0xe36120(0x218),updateChart);function removeSpecialCharsAndDiacritics(_0xb3c4c){var _0x403238=_0xe36120;if(!_0xb3c4c)return'';return _0xb3c4c[_0x403238(0x1c2)](_0x403238(0x21e))[_0x403238(0x1c8)](/[\u0300-\u036f]/g,'')[_0x403238(0x1c8)](/Ø/g,'O')[_0x403238(0x1c8)](/ø/g,'o');}var searchBar=document[_0xe36120(0x193)](_0xe36120(0x1ad));searchBar['addEventListener']('input',function(){var _0x3fae67=_0xe36120,_0x55cf90=searchBar[_0x3fae67(0x1fb)][_0x3fae67(0x1b4)]();if(_0x55cf90===''){resetSearch();return;}var _0x47fc86=removeSpecialCharsAndDiacritics(_0x55cf90);svg[_0x3fae67(0x189)](_0x3fae67(0x213))[_0x3fae67(0x170)](_0x3fae67(0x1e1),![])[_0x3fae67(0x167)]('fill',function(_0xbfc680){var _0x429e34=_0x3fae67;return clickedCircles['includes'](_0xbfc680[0x1])?getLeagueColor(_0xbfc680[0x2]):_0x429e34(0x16c);})['style'](_0x3fae67(0x1ca),function(_0x258bc6){var _0x1e9251=_0x3fae67;return clickedCircles[_0x1e9251(0x1ee)](_0x258bc6[0x1])?_0x1e9251(0x19c):_0x1e9251(0x21d);})['style'](_0x3fae67(0x171),function(_0x871694){var _0x3a66b3=_0x3fae67;return clickedCircles[_0x3a66b3(0x1ee)](_0x871694[0x1])?0x2:0x0;})[_0x3fae67(0x167)](_0x3fae67(0x1f7),_0x3fae67(0x21d))['each'](function(){var _0x2865eb=_0x3fae67;d3[_0x2865eb(0x1b2)](this)[_0x2865eb(0x167)]('r',null);}),svg[_0x3fae67(0x189)](_0x3fae67(0x1f1))[_0x3fae67(0x170)](_0x3fae67(0x1e1),![])[_0x3fae67(0x170)](_0x3fae67(0x1b1),![]);var _0x483d3a=[];svg[_0x3fae67(0x189)](_0x3fae67(0x213))[_0x3fae67(0x1f7)](function(_0x4132c7){var _0x8fceda=_0x3fae67,_0x2a3774=_0x4132c7[0x1]['toLowerCase'](),_0x101dc7=removeSpecialCharsAndDiacritics(_0x2a3774),_0x49ad16=_0x2a3774[_0x8fceda(0x1ee)](_0x55cf90)||_0x101dc7[_0x8fceda(0x1ee)](_0x47fc86);return _0x49ad16&&_0x483d3a[_0x8fceda(0x161)](_0x4132c7[0x1]),_0x49ad16;})['classed'](_0x3fae67(0x1e1),!![])[_0x3fae67(0x19f)](function(){var _0x71ebdd=_0x3fae67;this['parentNode'][_0x71ebdd(0x200)](this);}),_0x483d3a['length']>0x0?(svg['selectAll'](_0x3fae67(0x1f1))['classed']('search-dimmed',!![]),svg[_0x3fae67(0x189)](_0x3fae67(0x1f1))['filter'](function(){var _0x2a5698=_0x3fae67,_0x1c6987=d3[_0x2a5698(0x1b2)](this)[_0x2a5698(0x18b)]();return _0x483d3a[_0x2a5698(0x1ee)](_0x1c6987);})[_0x3fae67(0x170)](_0x3fae67(0x1e1),!![])[_0x3fae67(0x170)](_0x3fae67(0x1b1),![])[_0x3fae67(0x19f)](function(){var _0x563f69=_0x3fae67;this[_0x563f69(0x202)][_0x563f69(0x200)](this);}),_0x483d3a[_0x3fae67(0x217)](function(_0x52830b){var _0x1abc4d=_0x3fae67,_0x57a42c='team-label-'+_0x52830b[_0x1abc4d(0x1c8)](/\s+/g,'-')[_0x1abc4d(0x1b4)]();if(svg['select']('.'+_0x57a42c)[_0x1abc4d(0x176)]()===0x0){var _0x12a4a8=filteredData['find'](function(_0x1f8810){return _0x1f8810[0x1]===_0x52830b;});_0x12a4a8&&(addTeamLabel(_0x12a4a8),svg[_0x1abc4d(0x1b2)]('.'+_0x57a42c)[_0x1abc4d(0x170)]('search-match',!![]));}})):(svg[_0x3fae67(0x189)](_0x3fae67(0x1f1))[_0x3fae67(0x19f)](function(){var _0x49e2c8=_0x3fae67,_0x2a7280=d3['select'](this),_0x2e4c3b=_0x2a7280[_0x49e2c8(0x18b)]();!clickedCircles[_0x49e2c8(0x1ee)](_0x2e4c3b)&&_0x2a7280['remove']();}),svg[_0x3fae67(0x189)](_0x3fae67(0x213))[_0x3fae67(0x167)](_0x3fae67(0x179),function(_0x495799){return clickedCircles['includes'](_0x495799[0x1])?getLeagueColor(_0x495799[0x2]):'rgba(70,\x20130,\x20180,\x200.7)';})[_0x3fae67(0x167)]('stroke',function(_0x4524bc){var _0x350307=_0x3fae67;return clickedCircles[_0x350307(0x1ee)](_0x4524bc[0x1])?_0x350307(0x19c):'none';})['style'](_0x3fae67(0x171),function(_0x1e8a7e){var _0x43fa1a=_0x3fae67;return clickedCircles[_0x43fa1a(0x1ee)](_0x1e8a7e[0x1])?0x2:0x0;}));});function resetSearch(){var _0x2f186e=_0xe36120;searchBar[_0x2f186e(0x1fb)]='',svg['selectAll']('circle')[_0x2f186e(0x170)](_0x2f186e(0x1e1),![])[_0x2f186e(0x167)]('fill',function(_0xe9f827){var _0x2ed4c8=_0x2f186e;return clickedCircles['includes'](_0xe9f827[0x1])?getLeagueColor(_0xe9f827[0x2]):_0x2ed4c8(0x16c);})[_0x2f186e(0x167)]('stroke',function(_0x161eea){var _0x5223bd=_0x2f186e;return clickedCircles[_0x5223bd(0x1ee)](_0x161eea[0x1])?'#000':_0x5223bd(0x21d);})['style'](_0x2f186e(0x171),function(_0x56f3d1){var _0x5c28f8=_0x2f186e;return clickedCircles[_0x5c28f8(0x1ee)](_0x56f3d1[0x1])?0x2:0x0;})[_0x2f186e(0x167)](_0x2f186e(0x1f7),_0x2f186e(0x21d))[_0x2f186e(0x19f)](function(){var _0x56f1a0=_0x2f186e;d3[_0x56f1a0(0x1b2)](this)[_0x56f1a0(0x167)]('r',null),d3[_0x56f1a0(0x1b2)](this)[_0x56f1a0(0x1b9)]();}),svg[_0x2f186e(0x189)](_0x2f186e(0x1f1))[_0x2f186e(0x170)]('search-match',![])[_0x2f186e(0x170)](_0x2f186e(0x1b1),![])['each'](function(){var _0x2880c4=_0x2f186e;d3[_0x2880c4(0x1b2)](this)[_0x2880c4(0x1b9)]();}),svg[_0x2f186e(0x189)](_0x2f186e(0x1f1))[_0x2f186e(0x19f)](function(){var _0x10cbdf=_0x2f186e,_0x649f0c=d3['select'](this),_0x4299b9=_0x649f0c[_0x10cbdf(0x18b)]();!clickedCircles[_0x10cbdf(0x1ee)](_0x4299b9)&&_0x649f0c[_0x10cbdf(0x1fa)]();});}var toggleButton=document[_0xe36120(0x193)]('toggle-median-lines');toggleButton[_0xe36120(0x17f)](_0xe36120(0x1ed),function(){var _0x3978ee=_0xe36120;medianLinesVisible=!medianLinesVisible,updateChart();const _0x5914af=document[_0x3978ee(0x193)]('median-lines-tooltip');_0x5914af[_0x3978ee(0x1bf)]=medianLinesVisible?_0x3978ee(0x21b):_0x3978ee(0x16a);});function selectAllCircles(){var _0xe063f1=_0xe36120,_0x233433=filteredData['every'](function(_0x59e49e){var _0x101f6d=_0x4b37;return clickedCircles[_0x101f6d(0x1ee)](_0x59e49e[0x1]);});_0x233433?(clickedCircles=[],svg[_0xe063f1(0x189)]('circle')['style']('fill','rgba(70,\x20130,\x20180,\x200.7)')[_0xe063f1(0x167)](_0xe063f1(0x1ca),_0xe063f1(0x21d)),svg[_0xe063f1(0x189)]('.team-label')[_0xe063f1(0x1fa)]()):(svg[_0xe063f1(0x189)](_0xe063f1(0x213))['each'](function(_0x217ad7){var _0x2c26f6=_0xe063f1;!clickedCircles[_0x2c26f6(0x1ee)](_0x217ad7[0x1])&&(clickedCircles[_0x2c26f6(0x161)](_0x217ad7[0x1]),d3[_0x2c26f6(0x1b2)](this)[_0x2c26f6(0x167)](_0x2c26f6(0x179),getLeagueColor(_0x217ad7[0x2]))[_0x2c26f6(0x167)](_0x2c26f6(0x1ca),_0x2c26f6(0x19c))['style'](_0x2c26f6(0x171),0x2));}),filteredData[_0xe063f1(0x217)](function(_0x12a78a){addTeamLabel(_0x12a78a);}));updateSelectAllButtonText();var _0x32ebe3=document[_0xe063f1(0x193)](_0xe063f1(0x1e0))[_0xe063f1(0x1fb)];updateLeagueLegend(_0x32ebe3);}document['querySelectorAll']('.position-btn')[_0xe36120(0x217)](_0x331a0=>{var _0x4a1949=_0xe36120;_0x331a0[_0x4a1949(0x17f)](_0x4a1949(0x1ed),function(){var _0x543d91=_0x4a1949;document[_0x543d91(0x1b5)](_0x543d91(0x1f3))[_0x543d91(0x217)](_0x3a8d71=>_0x3a8d71['classList'][_0x543d91(0x1fa)](_0x543d91(0x1db))),this[_0x543d91(0x1a6)]['add'](_0x543d91(0x1db)),updateChart();});}),updateChart(),initializeCustomSelectors();function updateLeagueLegend(_0x558502){var _0x52fef3=_0xe36120,_0x495d93=document[_0x52fef3(0x193)](_0x52fef3(0x1ff));if(_0x558502!==_0x52fef3(0x1d8)&&_0x558502!==_0x52fef3(0x1ec)){_0x495d93[_0x52fef3(0x167)][_0x52fef3(0x1cd)]='none';return;}if(clickedCircles[_0x52fef3(0x181)]===0x0){_0x495d93['style']['display']=_0x52fef3(0x21d);return;}_0x495d93[_0x52fef3(0x167)]['display']=_0x52fef3(0x1d4),_0x495d93[_0x52fef3(0x183)]='';var _0x260586=document['createElement'](_0x52fef3(0x1af));_0x260586['style']['fontWeight']='bold',_0x260586['style'][_0x52fef3(0x204)]=_0x52fef3(0x1ea),_0x495d93['appendChild'](_0x260586);var _0xb1fdc4=[];if(_0x558502===_0x52fef3(0x1d8))_0xb1fdc4=Object[_0x52fef3(0x1f0)](leagueColors);else _0x558502===_0x52fef3(0x1ec)&&(_0xb1fdc4=[_0x52fef3(0x166),'La\x20Liga',_0x52fef3(0x210),'Serie\x20A',_0x52fef3(0x184)]);_0xb1fdc4['forEach'](function(_0x3c9c50){var _0x195a72=_0x52fef3,_0x25f7e2=document['createElement'](_0x195a72(0x1af));_0x25f7e2[_0x195a72(0x195)]=_0x195a72(0x169);var _0x321b4b=document['createElement'](_0x195a72(0x1af));_0x321b4b[_0x195a72(0x195)]='legend-color',_0x321b4b[_0x195a72(0x167)][_0x195a72(0x16b)]=leagueColors[_0x3c9c50];var _0x5c6be5=document['createElement']('span');_0x5c6be5[_0x195a72(0x1bf)]=_0x3c9c50,_0x25f7e2['appendChild'](_0x321b4b),_0x25f7e2['appendChild'](_0x5c6be5),_0x495d93[_0x195a72(0x200)](_0x25f7e2);});}const data1=dataLines[_0xe36120(0x1fd)](_0x41f7ba=>{var _0xc2b5dc=_0xe36120;const [_0x106675,_0x292814]=_0x41f7ba[_0xc2b5dc(0x18c)](',');return{'name':_0x106675,'link':_0x292814};});function search2(_0x77ed53){var _0x16be6a=_0xe36120;autocompleteBox['innerHTML']='';const _0x419cda=_0x77ed53['toLowerCase'](),_0x45deb3=data1[_0x16be6a(0x1f7)](_0x4e8d5a=>{var _0x380da9=_0x16be6a;const _0x28b0ac=_0x4e8d5a[_0x380da9(0x1b0)]?_0x4e8d5a[_0x380da9(0x1b0)][_0x380da9(0x1b4)]():'';return _0x28b0ac[_0x380da9(0x1ee)](_0x419cda);});if(_0x45deb3[_0x16be6a(0x181)]===0x0){autocompleteBox[_0x16be6a(0x167)][_0x16be6a(0x1cd)]=_0x16be6a(0x21d);return;}_0x45deb3[_0x16be6a(0x217)](_0x1ea8d4=>{var _0x3827f0=_0x16be6a;if(_0x1ea8d4[_0x3827f0(0x1b0)]&&_0x1ea8d4['link']){const _0x173e72=document[_0x3827f0(0x199)]('div'),_0x846234=document[_0x3827f0(0x199)]('a');_0x846234[_0x3827f0(0x20d)]=_0x1ea8d4[_0x3827f0(0x1fe)],_0x846234[_0x3827f0(0x1bf)]=_0x1ea8d4[_0x3827f0(0x1b0)],_0x173e72[_0x3827f0(0x200)](_0x846234),autocompleteBox[_0x3827f0(0x200)](_0x173e72);}}),autocompleteBox[_0x16be6a(0x167)][_0x16be6a(0x1cd)]='block';}searchInput[_0xe36120(0x17f)](_0xe36120(0x19a),()=>{var _0x2745d1=_0xe36120;const _0x427f6d=searchInput['value'];_0x427f6d[_0x2745d1(0x216)]()===''?autocompleteBox[_0x2745d1(0x167)][_0x2745d1(0x1cd)]=_0x2745d1(0x21d):search2(_0x427f6d);});function addTeamLabel(_0x443079){var _0x1f2e67=_0xe36120,_0x59e3de=xScale(_0x443079[header[_0x1f2e67(0x20f)](xMetric)]),_0x23d001=yScale(_0x443079[header[_0x1f2e67(0x20f)](yMetric)]),_0x52c364=_0x1f2e67(0x1e6)+_0x443079[0x1][_0x1f2e67(0x1c8)](/\s+/g,'-')['toLowerCase']();if(svg['select']('.'+_0x52c364)['size']()>0x0)return;var _0x269bbd=svg['append'](_0x1f2e67(0x18b))['attr']('class','team-label\x20'+_0x52c364)['attr']('x',_0x59e3de+0xc)[_0x1f2e67(0x208)]('y',_0x23d001+0x4)[_0x1f2e67(0x18b)](_0x443079[0x1])[_0x1f2e67(0x167)](_0x1f2e67(0x185),_0x1f2e67(0x1f6))[_0x1f2e67(0x167)](_0x1f2e67(0x1c3),_0x1f2e67(0x1c6))['style']('font-weight','500')[_0x1f2e67(0x167)](_0x1f2e67(0x179),'#333');positionLabelToAvoidOverlap(_0x269bbd,_0x59e3de,_0x23d001);}function positionLabelToAvoidOverlap(_0x5c3d69,_0x150257,_0x5a31fa){var _0x3e7677=_0xe36120,_0x37d642=svg[_0x3e7677(0x189)](_0x3e7677(0x1f1))[_0x3e7677(0x1f7)](function(){return this!==_0x5c3d69['node']();}),_0x1b9293=_0x5c3d69[_0x3e7677(0x20a)]()['getBBox'](),_0x1bdf33=[{'x':_0x150257+0xc,'y':_0x5a31fa+0x4},{'x':_0x150257+0xc,'y':_0x5a31fa-0xa},{'x':_0x150257+0xc,'y':_0x5a31fa+0x12},{'x':_0x150257-_0x1b9293[_0x3e7677(0x19b)]-0x5,'y':_0x5a31fa+0x4},{'x':_0x150257-_0x1b9293[_0x3e7677(0x19b)]-0x5,'y':_0x5a31fa-0xa},{'x':_0x150257-_0x1b9293[_0x3e7677(0x19b)]-0x5,'y':_0x5a31fa+0x12},{'x':_0x150257-_0x1b9293[_0x3e7677(0x19b)]/0x2,'y':_0x5a31fa-0xf},{'x':_0x150257-_0x1b9293[_0x3e7677(0x19b)]/0x2,'y':_0x5a31fa+0x19}],_0x338d1e=findPositionWithoutOverlap(_0x1bdf33,_0x37d642,_0x1b9293);_0x5c3d69['attr']('x',_0x338d1e['x'])[_0x3e7677(0x208)]('y',_0x338d1e['y']);}function _0x2b11(){var _0x4b41a5=['90414XdswLc','html','event','addEventListener','min','length','5,3','innerHTML','Ligue\x201','font-family','3696460mZQrLT','innerWidth','.performance-label','selectAll','x-label','text','split','toFixed','bottom','rgba(0,\x20128,\x200,\x200.7)','.chart-container','pageX','10KWrqhx','getElementById','stroke-dasharray','className','tooltip','<strong>G\x20=\x20xG\x20Line</strong><br/>','transform','createElement','input','width','#000','transparent','.team-label-','each','every','innerHeight','select-all-tooltip','axisLeft','mouseover','91ZtHVQo','classList','La\x20Liga','axisBottom','mouseout','range','#select-y','rotate(-90)','search-bar','Serie\x20A','div','name','search-dimmed','select','tickSize','toLowerCase','querySelectorAll','pointer','opacity','9089CXVPOw','interrupt','pageY','y-axis','class','.xy-line-hover','242JycjQf','textContent','left','contains','normalize','font-size','rgba(0,\x200,\x20255,\x200.7)','ion-ios-circle-outline','12px','.xy-line-bg','replace','getBoundingClientRect','stroke','height','max','display','slice','3320295yTXsvN','dark-mode','ion-ios-circle-filled','scaleLinear','enter','flex','resize','https://datamb.football/database/TEAM/teamplots.csv','line','all','5TTicUo','2454155nOhRop','active','.xy-line-label-bg','rgba(0,\x200,\x200,\x200.3)','option','14265SiEnMR','select-league','search-match','domain','.chart-wrapper','Teams\x20below\x20this\x20line\x20are\x20scoring\x20fewer\x20goals\x20than\x20expected.','#scatter-plot','team-label-','property','cursor','call','15px','top','Top\x205\x20Leagues','click','includes','transition','keys','.team-label','Teams\x20left\x20of\x20this\x20line\x20are\x20scoring\x20fewer\x20goals\x20than\x20expected.','.position-btn','duration','translate(0,','Inter,\x20sans-serif','filter','median-lines-tooltip','749xgpIGh','remove','value','marker#arrow-over,\x20marker#arrow-under','map','link','league-legend','appendChild','xG\x20per\x2090','parentNode','resizeTimer','marginRight','responseText','find','median-line','attr','rgba(75,\x200,\x20130,\x200.7)','node','clientWidth','14px','href','append','indexOf','Bundesliga','1955472vuSGbq','splice','circle','Goals\x20per\x2090','Unselect\x20all\x20teams','trim','forEach','change','3912HUwdAo','data','Hide\x20median\x20lines','linearGradient#line-gradient','none','NFD','push','xy-line-hover','translate(','open','end','Premier\x20League','style','ID,Player,Top\x207\x20Leagues,Goals\x20per\x2090,xG\x20per\x2090,Shots\x20on\x20target\x20per\x2090,Shots\x20on\x20target\x20%,Passes\x20completed,Pass\x20accuracy\x20%,Possession\x20%,Positional\x20attacks\x20per\x2090,Counter\x20attacks\x20per\x2090,Touches\x20in\x20the\x20box\x20per\x2090,Goals\x20conceded\x20per\x2090,SoT\x20against\x20per\x2090,Defensive\x20duels\x20per\x2090,Defensive\x20duel\x20%,Aerial\x20duels\x20per\x2090,Aerial\x20duels\x20%,Passes\x20per\x20possession,PPDA\x0a','legend-item','Show\x20median\x20lines','backgroundColor','rgba(70,\x20130,\x20180,\x200.7)','getBBox','median','help','classed','stroke-width','right','text-anchor','querySelector','<br/>','size','xy-line','rgba(238,\x20130,\x20238,\x200.7)','fill','</strong><br/>','y-label'];_0x2b11=function(){return _0x4b41a5;};return _0x2b11();}function findPositionWithoutOverlap(_0x258d18,_0x4bc871,_0x405d28){var _0x3a5743=_0xe36120;for(var _0x4bbee6=0x0;_0x4bbee6<_0x258d18[_0x3a5743(0x181)];_0x4bbee6++){var _0x3726f7=_0x258d18[_0x4bbee6],_0x430fcd=![],_0x55a2c8={'x1':_0x3726f7['x'],'y1':_0x3726f7['y']-_0x405d28[_0x3a5743(0x1cb)],'x2':_0x3726f7['x']+_0x405d28['width'],'y2':_0x3726f7['y']+0x5};if(_0x55a2c8['x1']<0x0||_0x55a2c8['x2']>width||_0x55a2c8['y1']<0x0||_0x55a2c8['y2']>height)continue;_0x4bc871[_0x3a5743(0x19f)](function(){var _0x1338f3=_0x3a5743,_0x21bdbe=d3['select'](this)[_0x1338f3(0x20a)]()[_0x1338f3(0x16d)](),_0x38121e=parseFloat(d3[_0x1338f3(0x1b2)](this)[_0x1338f3(0x208)]('x')),_0x598998=parseFloat(d3[_0x1338f3(0x1b2)](this)[_0x1338f3(0x208)]('y')),_0xa56ae7={'x1':_0x38121e,'y1':_0x598998-_0x21bdbe[_0x1338f3(0x1cb)],'x2':_0x38121e+_0x21bdbe[_0x1338f3(0x19b)],'y2':_0x598998+0x5};!(_0x55a2c8['x2']<_0xa56ae7['x1']||_0x55a2c8['x1']>_0xa56ae7['x2']||_0x55a2c8['y2']<_0xa56ae7['y1']||_0x55a2c8['y1']>_0xa56ae7['y2'])&&(_0x430fcd=!![]);});if(!_0x430fcd)return _0x3726f7;}for(var _0x4bbee6=0x0;_0x4bbee6<_0x258d18[_0x3a5743(0x181)];_0x4bbee6++){var _0x3726f7=_0x258d18[_0x4bbee6],_0x55a2c8={'x1':_0x3726f7['x'],'y1':_0x3726f7['y']-_0x405d28[_0x3a5743(0x1cb)],'x2':_0x3726f7['x']+_0x405d28['width'],'y2':_0x3726f7['y']+0x5};if(_0x55a2c8['x1']>=0x0&&_0x55a2c8['x2']<=width&&_0x55a2c8['y1']>=0x0&&_0x55a2c8['y2']<=height)return _0x3726f7;}var _0x441672={'x':Math[_0x3a5743(0x180)](Math[_0x3a5743(0x1cc)](0x0,_0x258d18[0x0]['x']),width-_0x405d28[_0x3a5743(0x19b)]),'y':Math['min'](Math[_0x3a5743(0x1cc)](_0x405d28[_0x3a5743(0x1cb)],_0x258d18[0x0]['y']),height)};return _0x441672;}var originalUpdateChart=updateChart;updateChart=function(){originalUpdateChart(),setTimeout(function(){var _0x3f7228=_0x4b37,_0x1b7022=svg[_0x3f7228(0x189)]('.team-label');_0x1b7022[_0x3f7228(0x19f)](function(){var _0xffd9e8=_0x3f7228,_0xcca060=d3['select'](this),_0x5bb92c=_0xcca060['text'](),_0x51f2b2=filteredData[_0xffd9e8(0x206)](function(_0x16e6fb){return _0x16e6fb[0x1]===_0x5bb92c;});if(_0x51f2b2){var _0x19eca6=xScale(_0x51f2b2[header['indexOf'](xMetric)]),_0x1a0eaf=yScale(_0x51f2b2[header['indexOf'](yMetric)]);positionLabelToAvoidOverlap(_0xcca060,_0x19eca6,_0x1a0eaf);}});},0xa);},document[_0xe36120(0x17f)]('DOMContentLoaded',function(){var _0x19d985=_0xe36120;const _0x170385=document[_0x19d985(0x193)](_0x19d985(0x1f8));_0x170385['textContent']=medianLinesVisible?'Hide\x20median\x20lines':_0x19d985(0x16a);});
+    
+    </script>
+  <script>
+    // Translation functionality
+    function setLanguage(language) {
+      localStorage.setItem('preferredLanguage', language);
+      // Update URL with language parameter
+      const url = new URL(window.location.href);
+      if (language === 'en') {
+        url.searchParams.delete('lang');
+      } else {
+        url.searchParams.set('lang', language);
+      }
+      window.history.pushState({}, '', url);
+      applyLanguage(language);
+    }
+    
+    function getPreferredLanguage() {
+      // Check URL parameter first
+      const urlParams = new URLSearchParams(window.location.search);
+      const langParam = urlParams.get('lang');
+      if (langParam) {
+        return langParam;
+      }
+      return localStorage.getItem('preferredLanguage') || getBrowserLanguage() || 'en';
+    }
+    
+    function getBrowserLanguage() {
+      return navigator.language.slice(0, 2);
+    }
+    
+    function applyLanguage(language) {
+      fetch(`locales/${language}.json`)
+        .then(response => response.json())
+        .then(translations => {
+          // Update text content for elements with data-i18n attribute
+          document.querySelectorAll('[data-i18n]').forEach(element => {
+            const keys = element.getAttribute('data-i18n').split('.');
+            let value = translations;
+            for (const key of keys) {
+              value = value[key];
+            }
+            if (value) {
+              element.textContent = value;
+            }
+          });
+    
+          // Update placeholders for elements with data-i18n-placeholder attribute
+          document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
+            const keys = element.getAttribute('data-i18n-placeholder').split('.');
+            let value = translations;
+            for (const key of keys) {
+              value = value[key];
+            }
+            if (value) {
+              element.placeholder = value;
+            }
+          });
+    
+          // Update meta tags
+          document.title = translations.meta.title;
+          document.querySelector('meta[name="description"]').setAttribute('content', translations.meta.description);
+          document.querySelector('meta[name="language"]').setAttribute('content', language);
+        });
+    }
+    
+    // Initialize translations
+    const preferredLanguage = getPreferredLanguage();
+    applyLanguage(preferredLanguage);
+    
+    // Language dropdown functionality
+    document.addEventListener('DOMContentLoaded', function() {
+      const languageButton = document.getElementById('languageButton');
+      const languageDropdown = document.getElementById('languageDropdown');
+    
+      // Toggle dropdown on button click
+      languageButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        languageDropdown.classList.toggle('show');
+      });
+    
+      // Handle language option clicks
+      document.querySelectorAll('.language-option').forEach(option => {
+        option.addEventListener('click', function(e) {
+          e.preventDefault();
+          const lang = this.getAttribute('href').split('=')[1];
+          setLanguage(lang);
+          languageDropdown.classList.remove('show');
+        });
+      });
+    
+      // Close dropdown when clicking outside
+      document.addEventListener('click', function(event) {
+        if (!event.target.closest('.language-switcher-container')) {
+          languageDropdown.classList.remove('show');
+        }
+      });
+    });
+    </script>
+    
+</body>
+</html>
