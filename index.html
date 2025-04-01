@@ -751,6 +751,7 @@ function translateRankSuffix(suffix) {
 <script>
   function loadMembershipworks() {
     const container = document.getElementById('membershipworksPlaceholder');
+    document.body.style.visibility = "hidden";
     container.innerHTML = '<div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div>';
     
     const script = document.createElement('script');
@@ -758,7 +759,6 @@ function translateRankSuffix(suffix) {
     script.src = 'https://cdn.membershipworks.com/mfl.js';
     document.body.appendChild(script);
     
-    document.body.style.visibility = "hidden";
   }
   
   // For when data loading is complete
@@ -770,24 +770,18 @@ function translateRankSuffix(suffix) {
       mutations.forEach(function(mutation) {
         if (mutation.target.style.display === 'none' && mutation.target.id === 'loadingContainer') {
           // The loading container has been hidden, meaning data is loaded
-          setTimeout(loadMembershipworks, 100);
+          setTimeout(loadMembershipworks, 1);
           observer.disconnect();
         }
       });
     });
-    
-    // Start observing the loading container for style changes
-    observer.observe(document.getElementById('loadingContainer'), { 
+
+       // Start observing the loading container for style changes
+       observer.observe(document.getElementById('loadingContainer'), { 
       attributes: true,
       attributeFilter: ['style']
     });
-    
-    // Fallback if observer doesn't trigger
-    setTimeout(function() {
-      if (!document.getElementById('SFctr')) {
-        loadMembershipworks();
-      }
-    }, 10000);
+
   });
 </script>
 </body>
