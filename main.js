@@ -371,8 +371,6 @@ function updateCurrentMetricValue(parsedData, selectedPlayer, metric) {
     return playerData[columnName];
 }
 
-function startApp() {
-
 // Main script
 let allData = [];
 let worker = new Worker('xlsxWorker.js');
@@ -12365,9 +12363,7 @@ document.getElementById('toggleSortingButton').addEventListener('change', functi
 });
 
 
-};
-	}
-	function toggleActive(element) {
+};function toggleActive(element) {
   element.classList.toggle('active');
 }
 
