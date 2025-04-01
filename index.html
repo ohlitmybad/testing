@@ -499,7 +499,9 @@ h1 {
   top: -15px;
 }
 	
-
+.membershipworksplaceholder{
+  height: 10px;
+}
 	
   </style>
 </head>
@@ -515,8 +517,7 @@ h1 {
 <!-- <script type="text/javascript">document.body.style.visibility="hidden";</script><div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div><script type="text/javascript" src="https://cdn.membershipworks.com/mfl.js"></script> -->
 
 <!-- Placeholder for Membershipworks -->
-<div id="membershipworksPlaceholder"></div>
-
+<div id="membershipworksPlaceholder" class="membershipworksplaceholder"></div>
     <div class="spinner" id="spinner">
   <div class="spinner-icon"></div>
 </div>
@@ -751,6 +752,7 @@ function translateRankSuffix(suffix) {
 <script>
   function loadMembershipworks() {
     const container = document.getElementById('membershipworksPlaceholder');
+    
     document.body.style.visibility = "hidden";
     container.innerHTML = '<div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div>';
     
@@ -770,7 +772,7 @@ function translateRankSuffix(suffix) {
       mutations.forEach(function(mutation) {
         if (mutation.target.style.display === 'none' && mutation.target.id === 'loadingContainer') {
           // The loading container has been hidden, meaning data is loaded
-          setTimeout(loadMembershipworks, 1);
+          setTimeout(loadMembershipworks, 100);
           observer.disconnect();
         }
       });
