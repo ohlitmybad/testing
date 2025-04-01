@@ -409,7 +409,7 @@ h1 {
   height: 100%;
   background: rgba(255, 255, 255, 0.9);
   z-index: 9998;
-  display: none; /* Hide by default */
+  display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -499,22 +499,23 @@ h1 {
   top: -15px;
 }
 	
-  
 
 	
   </style>
 </head>
 
 <body>
-	<div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div>
-	<script type="text/javascript" src="https://cdn.membershipworks.com/mfl.js"></script>
-
-	<div class="loading-container" id="loadingContainer">
+		<div class="loading-container" id="loadingContainer">
   <div class="loading-text" data-i18n="loading">Loading data...</div>
   <div class="loading-bar">
     <div class="loading-progress"></div>
   </div>
 </div>
+<!-- Membershipworks script moved to the end, will be loaded dynamically -->
+<!-- <script type="text/javascript">document.body.style.visibility="hidden";</script><div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div><script type="text/javascript" src="https://cdn.membershipworks.com/mfl.js"></script> -->
+
+<!-- Placeholder for Membershipworks -->
+<div id="membershipworksPlaceholder"></div>
 
     <div class="spinner" id="spinner">
   <div class="spinner-icon"></div>
@@ -571,72 +572,6 @@ h1 {
     <script src="main.js"></script>
 
 <script>
-// Script to coordinate MembershipWorks login and data loading
-(function() {
-  // Hide content initially until we determine if loading is needed
-  document.getElementById('fullcontainer').style.visibility = 'hidden';
-  
-  let dataLoaded = false;
-  let membershipVerified = false;
-  
-  // Function to check if both conditions are met and show content
-  function checkAndShowContent() {
-    if (dataLoaded && membershipVerified) {
-      document.getElementById('loadingContainer').style.display = 'none';
-      document.getElementById('fullcontainer').style.visibility = 'visible';
-    }
-  }
-  
-  // Check if worker message handler exists in main.js
-  if (window.Worker) {
-    // Override the worker message handler to coordinate with MembershipWorks
-    const originalWorkerOnMessage = window.worker && window.worker.onmessage;
-    
-    if (window.worker) {
-      window.worker.onmessage = function(event) {
-        if (event.data.type === 'complete') {
-          dataLoaded = true;
-          checkAndShowContent();
-        }
-        
-        // Call the original handler if it exists
-        if (originalWorkerOnMessage) {
-          originalWorkerOnMessage(event);
-        }
-      };
-    }
-  }
-  
-  // Listen for MembershipWorks events
-  window.addEventListener('SFready', function() {
-    // MembershipWorks is fully loaded
-    
-    // Check login status after a short delay to ensure it's processed
-    setTimeout(function() {
-      if (window.SF && window.SF.member && window.SF.member.account) {
-        // User is logged in
-        membershipVerified = true;
-        
-        // Only show loading if data is not ready yet
-        if (!dataLoaded) {
-          document.getElementById('loadingContainer').style.display = 'flex';
-        }
-      } else {
-        // Not logged in or not a member, show login form
-        // MembershipWorks will handle this automatically
-      }
-      
-      checkAndShowContent();
-    }, 100);
-  });
-  
-  // Set a maximum loading time to prevent infinite loading
-  setTimeout(function() {
-    document.getElementById('loadingContainer').style.display = 'none';
-    document.getElementById('fullcontainer').style.visibility = 'visible';
-  }, 30000); // 30 seconds max loading time
-})();
-
 // Set default hover content immediately when DOM loads
 document.addEventListener('DOMContentLoaded', function() {
   const toggleButton = document.querySelector('.toggle-button');
@@ -813,6 +748,47 @@ function translateRankSuffix(suffix) {
   
 
   </script>
-        
+<script>
+  function loadMembershipworks() {
+    const container = document.getElementById('membershipworksPlaceholder');
+    container.innerHTML = '<div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div>';
+    
+    const script = document.createElement('script');
+    script.type = 'text/javascript';
+    script.src = 'https://cdn.membershipworks.com/mfl.js';
+    document.body.appendChild(script);
+    
+    document.body.style.visibility = "hidden";
+  }
+  
+  // For when data loading is complete
+  document.addEventListener('DOMContentLoaded', function() {
+    const originalHideLoadingContainer = document.getElementById('loadingContainer').style.display;
+    
+    // Setup a mutation observer to watch for changes
+    const observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        if (mutation.target.style.display === 'none' && mutation.target.id === 'loadingContainer') {
+          // The loading container has been hidden, meaning data is loaded
+          setTimeout(loadMembershipworks, 100);
+          observer.disconnect();
+        }
+      });
+    });
+    
+    // Start observing the loading container for style changes
+    observer.observe(document.getElementById('loadingContainer'), { 
+      attributes: true,
+      attributeFilter: ['style']
+    });
+    
+    // Fallback if observer doesn't trigger
+    setTimeout(function() {
+      if (!document.getElementById('SFctr')) {
+        loadMembershipworks();
+      }
+    }, 10000);
+  });
+</script>
 </body>
 </html>
