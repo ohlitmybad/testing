@@ -1,1 +1,2457 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="robots" content="noindex">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.16.9/xlsx.full.min.js"></script>
+    
+    <style>
+        :root {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #f5f7fa;
+            --container-bg: #ffffff;
+            --text-color: #333333;
+            --border-color: #e0e0e0;
+            --hover-color: #f0f0f0;
+            --button-color: #3498db;
+            --button-text: #ffffff;
+            --header-bg: #ffffff;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            --table-bg: #f2f2f2;
+        }
+
+        .dark-mode {
+            --primary-color: #3498db;
+            --secondary-color: #2ecc71;
+            --background-color: #0e0f0f;
+            --container-bg: #1a1a1a;
+            --text-color: #e0e0e0;
+            --border-color: #333333;
+            --hover-color: #252525;
+            --button-color: #2980b9;
+            --button-text: #ffffff;
+            --header-bg: #0e0f0f;
+            --shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+            --table-bg: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            height: 96vh;
+            margin: 2vh auto;
+            padding: 0 20px;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .chart-wrapper {
+            background-color: var(--container-bg);
+            border-radius: 10px;
+            box-shadow: var(--shadow);
+            padding: 20px 25px;
+            position: relative;
+            width: 100%;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        .controls {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-bottom: 20px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        select, input {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--container-bg);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            transition: border-color 0.2s;
+            height: 36px;
+            box-sizing: border-box;
+        }
+
+        select:focus, input:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+
+        .btn {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 6px;
+            background-color: var(--button-color);
+            color: var(--button-text);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background-color 0.2s;
+            height: 36px;
+            box-sizing: border-box;
+        }
+
+        .btn:hover {
+            background-color: #2980b9;
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--border-color);
+            color: var(--text-color);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--hover-color);
+        }
+
+        .btn-icon {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            padding: 0;
+            border-radius: 6px;
+        }
+
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--container-bg);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            z-index: 100;
+            transition: background-color 0.3s;
+        }
+
+.dark-mode .rank-bar {
+    border: 1px solid #000000;
+}
+
+        .toggle-icon::before {
+            font-family: "Ionicons";
+            content: "\f467";
+            font-size: 30px;
+            color: var(--text-color);
+        }
+
+        .dark-mode .toggle-icon::before {
+            content: "\f3b0";
+            font-size: 20px;
+        }
+
+        .selectors-container {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+
+        .metric-selector {
+            width: 280px;
+        }
+
+        .metric-selector.with-toggle {
+            width: 246px;
+        }
+
+        #position {
+            width: 140px;
+        }
+
+        #league {
+            width: 180px;
+        }
+
+        #age {
+            width: 80px;
+        }
+
+        .metrics-toggle-button {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .metrics-toggle-button button {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--container-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-size: 18px;
+        }
+
+        .metrics-toggle-button button i {
+            font-weight: bold;
+            -webkit-text-stroke: 0.8px currentColor;
+            text-stroke: 0.8px currentColor;
+        }
+    
+    
+    
+
+    
+    
+        .metrics-toggle-button button:hover {
+            background-color: var(--hover-color);
+        }
+
+    
+        .metrics-toggle-button button.active {
+            background-color: var(--primary-color);
+            color: var(--button-text);
+            border-color: var(--primary-color);
+        }
+
+        .metrics-toggle-button .btn-tooltip-text {
+            visibility: hidden;
+            width: 120px;
+            background-color: var(--container-bg);
+            color: var(--text-color);
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1001;
+            top: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            font-weight: normal;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            pointer-events: none;
+        }
+
+        .metrics-toggle-button .btn-tooltip-text::after {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent var(--border-color) transparent;
+        }
+
+        .metrics-toggle-button:hover .btn-tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        .past-season-button {
+            position: relative;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .past-season-button button {
+            width: 36px;
+            height: 36px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--container-bg);
+            color: var(--text-color);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s ease;
+            font-size: 18px;
+        }
+
+        .past-season-button button:hover {
+            background-color: var(--hover-color);
+        }
+
+        .past-season-button button.active {
+            background-color: var(--primary-color);
+            color: var(--button-text);
+            border-color: var(--primary-color);
+        }
+
+        .past-season-button .btn-tooltip-text {
+            visibility: hidden;
+            width: 120px;
+            background-color: var(--container-bg);
+            color: var(--text-color);
+            text-align: center;
+            border-radius: 6px;
+            padding: 5px;
+            position: absolute;
+            z-index: 1001;
+            top: 125%;
+            left: 50%;
+            margin-left: -60px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            font-size: 12px;
+            font-weight: normal;
+            box-shadow: var(--shadow);
+            border: 1px solid var(--border-color);
+            pointer-events: none;
+        }
+
+        .past-season-button .btn-tooltip-text::after {
+            content: "";
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            margin-left: -5px;
+            border-width: 5px;
+            border-style: solid;
+            border-color: transparent transparent var(--border-color) transparent;
+        }
+
+        .past-season-button:hover .btn-tooltip-text {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Hide button tooltips on touch devices */
+        @media (hover: none) {
+            .metrics-toggle-button .btn-tooltip-text,
+            .past-season-button .btn-tooltip-text {
+                display: none !important;
+            }
+        }
+
+        .result-container {
+            flex: 1;
+            overflow-y: auto;
+            margin-top: 5.6px;
+            border-radius: 8px;
+            background-color: var(--container-bg);
+            box-shadow: var(--shadow);
+            text-align: center;
+            min-height: 0;
+        }
+
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            background-color: var(--container-bg);
+            margin: 0 auto;
+            table-layout: fixed;
+        }
+        
+        table td:first-child, table th:first-child {
+            white-space: nowrap;
+            width: 280px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-align: left;
+        }
+        
+        table td:nth-child(2), table th:nth-child(2) {
+            width: 90px;
+            white-space: nowrap;
+        }
+        
+        table td:nth-child(3), table th:nth-child(3) {
+            width: calc(100% - 360px);
+            padding: 6px 0;
+        }
+
+        th, td {
+            padding: 6px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-color);
+            font-size: 14px;
+        }
+
+        th {
+            font-weight: 600;
+            color: var(--text-color);
+        }
+  
+        .rank-bar {
+            background-color: rgb(213, 213, 213);
+            border: 1px solid #fff;
+            border-radius: 20px;
+            height: 22px;
+            width: 100%;
+            max-width: 650px;
+            margin-bottom: 5px;
+            position: relative;
+            margin: 0 auto;
+            display: block;
+        }
+
+        .rank-bar-fill {
+            background-color: var(--primary-color);
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-radius: 10px;
+            transition: width 0.3s ease;
+        }
+
+        .smaller-text {
+            font-size: 0.85em;
+            opacity: 0.7;
+        }
+
+        /* Desktop-only hover effect for table rows */
+        @media (hover: hover) and (pointer: fine) {
+            table tr:hover {
+                background-color: #f5f5f5;
+                transition: background-color 0.2s ease;
+            }
+            
+            .dark-mode table tr:hover {
+                background-color: #2a2a2a;
+            }
+        }
+
+
+
+        /* Hide scrollbars but keep functionality */
+        .result-container::-webkit-scrollbar {
+            width: 6px;
+        }
+
+        .result-container::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        .result-container::-webkit-scrollbar-thumb {
+            background-color: transparent;
+            border-radius: 3px;
+        }
+
+        .result-container:hover::-webkit-scrollbar-thumb {
+            background-color: var(--border-color);
+        }
+
+        .result-container::-webkit-scrollbar-thumb:hover {
+            background-color: var(--primary-color);
+        }
+
+        .custom-select-container {
+            position: relative;
+            width: 180px;
+            margin-bottom: 0;
+        }
+        .custom-select-trigger {
+            display: flex;
+            align-items: center;
+            padding: 0 12px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background-color: var(--container-bg);
+            color: var(--text-color);
+            font-family: 'Inter', sans-serif;
+            font-size: 14px;
+            cursor: pointer;
+            user-select: none;
+            position: relative;
+            line-height: 1.4;
+            height: 36px;
+            transition: all 0.2s ease;
+        }
+        .custom-select-trigger span {
+            display: inline-block;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: calc(100% - 20px);
+            padding: 2px 0;
+        }
+        
+        .custom-select-trigger.has-icon span {
+            margin-left: 1px;
+        }
+        .custom-select-trigger::after {
+            content: '';
+            width: 6px;
+            height: 6px;
+            margin-left: auto;
+            border-right: 1.5px solid var(--text-color);
+            border-bottom: 1.5px solid var(--text-color);
+            transform: rotate(45deg) translateY(-2px);
+            transition: transform 0.3s;
+            opacity: 0.7;
+            margin-right: 2px;
+        }
+        .custom-select-trigger.open::after {
+            transform: rotate(-135deg) translateY(1px);
+        }
+        .custom-select-options {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--container-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-top: 4px;
+            max-height: 300px;
+            overflow-y: auto;
+            z-index: 1000;
+            font-size: 14px;
+            display: none;
+            box-shadow: var(--shadow);
+        }
+        .custom-select-option {
+            padding: 8px 16px;
+            cursor: pointer;
+            color: var(--text-color);
+            transition: background-color 0.2s ease;
+            line-height: 1.4;
+            display: flex;
+            align-items: center;
+        }
+        .custom-select-option iconify-icon, .custom-select-trigger iconify-icon {
+            transform: translateY(-1px);
+            margin-right: 8px;
+        }
+        .custom-select-option:hover {
+            background-color: var(--hover-color);
+        }
+        .custom-select-option.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .metric-category-header {
+            padding: 10px 16px;
+            font-weight: 600;
+            color: var(--text-color);
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.7px;
+            background-color: rgba(0, 0, 0, 0.03);
+            border-bottom: 1px solid var(--border-color);
+            top: 0;
+            z-index: 1;
+            margin: 8px 0;
+            pointer-events: none;
+            cursor: default;
+        }
+
+        .metric-category-header:first-child {
+            margin-top: 0;
+        }
+
+        .dark-mode .metric-category-header {
+            background-color: rgba(255, 252, 252, 0.05);
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        
+    
+        .metric-selector {
+
+                width: 220px;
+            }
+            
+                /* Mobile styles */
+        @media (max-width: 900px) {
+            .rank-bar {
+                height: 18px;
+            }
+            
+            table td:first-child {
+                width: 220px;
+            }
+            
+            .metric-selector {
+                width: auto !important;
+                min-width: 145px;
+                flex: 1;
+                max-width: 220px;
+            }
+            
+
+            
+            .custom-select-container:not(.metric-selector) {
+                width: 115px !important;
+                flex-shrink: 0;
+            }
+            
+            .custom-select-container:not(.metric-selector)[style*="width: 180px"] {
+                width: 160px !important;
+            }
+            
+            .custom-select-container:not(.metric-selector)[style*="width: 80px"] {
+                width: 75px !important;
+            }
+        }
+
+        /* Very small mobile - reset to normal sizes */
+        @media (max-width: 717px) {
+            .metric-selector {
+                width: 280px !important;
+                min-width: unset !important;
+                flex: unset !important;
+                max-width: unset !important;
+            }
+            
+            .metric-selector.with-toggle {
+                width: 246px !important;
+            }
+            
+            .custom-select-container:not(.metric-selector) {
+                flex-shrink: unset !important;
+            }
+            
+            .custom-select-container:not(.metric-selector)[style*="width: 140px"] {
+                width: 140px !important;
+            }
+            
+            .custom-select-container:not(.metric-selector)[style*="width: 180px"] {
+                width: 180px !important;
+            }
+            
+            .custom-select-container:not(.metric-selector)[style*="width: 80px"] {
+                width: 80px !important;
+            }
+            
+            /* Smaller text and height for micro screens */
+            .custom-select-trigger {
+                font-size: 13px;
+                height: 33px;
+                padding: 0 10px;
+            }
+            
+            .custom-select-options {
+                font-size: 13px;
+            }
+            
+            .custom-select-option {
+                font-size: 13px;
+            }
+            
+            .btn {
+                font-size: 13px;
+                height: 33px;
+                padding: 6px 14px;
+            }
+            
+            .btn-icon {
+                width: 33px;
+                height: 33px;
+                font-size: 15px;
+            }
+            
+            .metrics-toggle-button button,
+            .past-season-button button {
+                width: 33px;
+                height: 33px;
+                font-size: 15px;
+            }
+            
+            select, input {
+                font-size: 13px;
+                height: 33px;
+                padding: 6px 10px;
+            }
+        
+        }
+
+        body.dark-mode #SFctr {
+        color: #ffffff !important
+        }
+        
+        
+        #SFctr input {
+            background-color: #ffffff !important;
+        color:#000000 !important;
+        border: 1px solid #c2c2c2 !important
+        }
+
+#SFctr {
+	font-family: Arial, Helvetica, sans-serif !important;
+	color: #000000 !important;
+
+
+}
+
+	    @media only screen and (min-width: 900px) {
+
+#SFctr {
+		      transform: scale(0.808);
+  transform-origin: top left; /* Adjust the origin point if needed */
+		    
+	    }
+ }
+	    
+#SFusrlogpst strong:first-child {
+  font-size: 0px;
+}
+
+#SFusrlogpst input[type="checkbox"],
+#SFusrlogpwd input[type="checkbox"],
+#SFusrlogpst i,
+#SFusrlogpwd i {
+  display: none !important;
+}
+
+#SFctr .SFfrm input[type="text"],
+#SFctr .SFfrm input[type="password"],
+#SFctr .SFfrm button {
+  border-radius: 6px;
+}
+
+#SFusrlogpwd strong {
+  visibility: hidden; /* Hide the original text */
+  position: relative;
+}
+
+#SFusrlogpwd strong::after {
+  content: "Forgot Password?"; /* Add the new text */
+  visibility: visible;
+  position: absolute;
+  font-size: 12px;
+  font-weight: 400;
+  left: 100px;
+  white-space: nowrap; /* Prevent text from wrapping */
+  top: -15px;
+}
+    </style>
+</head>
+
+<body>
+    <script type="text/javascript">document.body.style.visibility="hidden";</script><div id="SFctr" data-org="31002" data-mfl="64c215764c0b6076026762a3"><div style="clear:both"></div></div><script type="text/javascript" src="https://cdn.membershipworks.com/mfl.js"></script>
+
+    <div class="container">
+        <div class="chart-wrapper">
+            <div class="selectors-container">
+                <!-- Custom Metric Selector -->
+                <div class="custom-select-container metric-selector">
+                    <div class="custom-select-trigger" id="metric-select-trigger">
+                        <span data-i18n="metrics.minutesPlayed">Minutes played</span>
+                    </div>
+                    <div class="custom-select-options" id="metric-select-options" style="display: none;">
+                    </div>
+                </div>
+                <select id="metric" style="display: none;">
+                </select>
+                <input type="checkbox" id="toggleSort" style="display: none;">
+                
+                <!-- Custom Position Selector -->
+                <div class="custom-select-container" style="width: 140px;">
+                    <div class="custom-select-trigger" id="position-select-trigger">
+                        <span data-i18n="positions.goalkeeper">Goalkeeper</span>
+                    </div>
+                    <div class="custom-select-options" id="position-select-options" style="display: none;">
+                        <div class="custom-select-option selected" data-value="Goalkeeper">
+                            <span data-i18n="positions.goalkeeper">Goalkeeper</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Centre-back">
+                            <span data-i18n="positions.centreback">Centre-back</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Full-back">
+                            <span data-i18n="positions.fullback">Full-back</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Midfielder">
+                            <span data-i18n="positions.midfielder">Midfielder</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Winger">
+                            <span data-i18n="positions.winger">Winger</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Striker">
+                            <span data-i18n="positions.striker">Striker</span>
+                        </div>
+                        <div class="custom-select-option" data-value="All">
+                            <span data-i18n="positions.all">All positions</span>
+                        </div>
+                    </div>
+                </div>
+                <select id="position" style="display: none;">
+                    <option value="Goalkeeper" data-i18n="positions.goalkeeper">Goalkeeper</option>
+                    <option value="Centre-back" data-i18n="positions.centreback">Centre-back</option>
+                    <option value="Full-back" data-i18n="positions.fullback">Full-back</option>
+                    <option value="Midfielder" data-i18n="positions.midfielder">Midfielder</option>
+                    <option value="Winger" data-i18n="positions.winger">Winger</option>
+                    <option value="Striker" data-i18n="positions.striker">Striker</option>
+                    <option value="All" data-i18n="positions.all">All positions</option>
+                </select>
+                <select id="league" style="display: none;">
+                    <option value="All Leagues" data-i18n="leagues.allLeagues">🌍 All Leagues</option>
+                    <option value="Top 7 Leagues" data-i18n="leagues.top7">🇪🇺 Top 7 Leagues</option>
+                    <option value="Top 5 Leagues" data-i18n="leagues.top5">🇪🇺 Top 5 Leagues</option>
+                    <option value="Premier League" data-i18n="leagues.premierLeague">🏴 Premier League</option>
+                    <option value="La Liga" data-i8n="leagues.laLiga">🇪🇸 La Liga</option>
+                    <option value="Bundesliga" data-i18n="leagues.bundesliga">🇩🇪 Bundesliga</option>
+                    <option value="Serie A" data-i18n="leagues.serieA">🇮🇹 Serie A</option> 
+                    <option value="Ligue 1" data-i18n="leagues.ligue1">🇫🇷 Ligue 1</option>
+                    <option value="Liga Portugal" data-i18n="leagues.ligaPortugal">🇵🇹 Liga Portugal</option>
+                    <option value="Eredivisie" data-i18n="leagues.eredivisie">🇳🇱 Eredivisie</option>
+                    <option value="Belgium Pro League" data-i18n="leagues.belgium">🇧🇪 Belgium</option>
+                    <option value="Scotland Premiership" data-i18n="leagues.scotland">🏴󠁧󠁢󠁳󠁣󠁴󠁿 Scotland</option>
+                    <option value="Austrian Bundesliga" data-i18n="leagues.austria">🇦🇹 Austria</option>
+                    <option value="Swiss Super League" data-i18n="leagues.switzerland">🇨🇭 Switzerland</option>      
+                    <option value="Süper Lig" data-i18n="leagues.turkey">🇹🇷 Türkiye</option>
+                    <option value="Denmark Superliga" data-i18n="leagues.denmark">🇩🇰 Denmark</option>
+                    <option value="Sweden Allsvenskan" data-i18n="leagues.sweden">🇸🇪 Sweden</option>
+                    <option value="Norway Eliteserien" data-i18n="leagues.norway">🇳🇴 Norway</option>
+                    <option value="Croatia HNL" data-i18n="leagues.croatia">🇭🇷 Croatia</option>
+                    <option value="Serbia SuperLiga" data-i18n="leagues.serbia">🇷🇸 Serbia</option>
+                    <option value="Czech Fortuna Liga" data-i18n="leagues.czech">🇨🇿 Czech Republic</option>
+                    <option value="Poland" data-i18n="leagues.poland">🇵🇱 Poland</option>
+                    <option value="Ukraine" data-i18n="leagues.ukraine">🇺🇦 Ukraine</option>
+                    <option value="Russia" data-i18n="leagues.russia">🇷🇺 Russia</option>
+                    <option value="Greece" data-i18n="leagues.greece">🇬🇷 Greece</option>
+                    <option value="Israel" data-i18n="leagues.israel">🇮🇱 Israel</option>
+                    <option value="J1 League" data-i18n="leagues.japan">🇯🇵 Japan</option>
+                    <option value="K League 1" data-i18n="leagues.korea">🇰🇷 Korea</option>
+                    <option value="Saudi Pro League" data-i18n="leagues.saudiArabia">🇸🇦 Saudi Arabia</option>
+                    <option value="MLS" data-i18n="leagues.usa">🇺🇸 MLS</option>
+                    <option value="LigaMX" data-i18n="leagues.mexico">🇲🇽 Mexico</option>
+                    <option value="Brazil Serie A" data-i18n="leagues.brazil">🇧🇷 Brazil</option>
+                    <option value="Argentina Primera" data-i18n="leagues.argentina">🇦🇷 Argentina</option>
+                    <option value="Uruguay Primera" data-i18n="leagues.uruguay">🇺🇾 Uruguay</option>
+                    <option value="Chile" data-i18n="leagues.chile">🇨🇱 Chile</option>
+                    <option value="Colombia" data-i18n="leagues.colombia">🇨🇴 Colombia</option>
+                    <option value="Ecuador" data-i18n="leagues.ecuador">🇪🇨 Ecuador</option>
+                    <option value="Paraguay" data-i18n="leagues.paraguay">🇵🇾 Paraguay</option>
+                    <option value="Championship" data-i18n="leagues.championship">🏴󠁧󠁢󠁥󠁮󠁧󠁿 Championship</option>
+                    <option value="Segunda Division" data-i18n="leagues.segundaDivision">🇪🇸 Spain Segunda</option>
+                    <option value="Serie B" data-i18n="leagues.serieB">🇮🇹 Serie B</option>
+                    <option value="Bundesliga 2" data-i18n="leagues.bundesliga2">🇩🇪 2. Bundesliga</option>
+                    <option value="Ligue 2" data-i18n="leagues.ligue2">🇫🇷 Ligue 2</option>
+                    <option value="No Top 7" data-i18n="leagues.outsideTop7">🌍 Outside Top 7</option>
+                    <option value="South America" data-i18n="leagues.southAmerica">🌎 South America</option>
+                    <option value="Scandinavia" data-i18n="leagues.scandinavia">🌍 Scandinavia</option>
+                    <option value="Eastern Europe" data-i18n="leagues.easternEurope">🌍 Eastern Europe</option>
+                </select>
+                <!-- Custom League Selector -->
+                
+                <div class="custom-select-container" style="width: 180px;">
+                  <div class="custom-select-trigger has-icon" id="league-select-trigger">
+                    <iconify-icon icon="emojione:flag-for-united-kingdom" width="18" height="18"></iconify-icon>
+                    <span data-i18n="leagues.premierLeague">Premier League</span>
+                  </div>
+                  <div class="custom-select-options" id="league-select-options" style="display: none;">
+                    <div class="custom-select-option" data-value="All Leagues">
+                      <iconify-icon icon="emojione:globe-showing-europe-africa" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.allLeagues">All Leagues</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Top 7 Leagues">
+                      <iconify-icon icon="emojione:flag-for-flag-european-union" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.top7">Top 7 Leagues</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Top 5 Leagues">
+                      <iconify-icon icon="emojione:flag-for-flag-european-union" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.top5">Top 5 Leagues</span>
+                    </div>
+                    <div class="custom-select-option selected" data-value="Premier League">
+                      <iconify-icon icon="emojione:flag-for-united-kingdom" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.premierLeague">Premier League</span>
+                    </div>
+                    <div class="custom-select-option" data-value="La Liga">
+                      <iconify-icon icon="emojione:flag-for-spain" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.laLiga">La Liga</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Bundesliga">
+                      <iconify-icon icon="emojione:flag-for-germany" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.bundesliga">Bundesliga</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Serie A">
+                      <iconify-icon icon="emojione:flag-for-italy" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.serieA">Serie A</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Ligue 1">
+                      <iconify-icon icon="emojione:flag-for-france" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.ligue1">Ligue 1</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Liga Portugal">
+                      <iconify-icon icon="emojione:flag-for-portugal" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.ligaPortugal">Liga Portugal</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Eredivisie">
+                      <iconify-icon icon="emojione:flag-for-netherlands" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.eredivisie">Eredivisie</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Belgium Pro League">
+                      <iconify-icon icon="emojione:flag-for-belgium" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.belgium">Belgium</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Scotland Premiership">
+                      <div class="scotland-flag-icon" style="width: 18px; height: 18px; border-radius: 50%; overflow: hidden; margin-right: 8px; background-color: #005EB8; background-image: url('https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/svg/1f3f4-e0067-e0062-e0073-e0063-e0074-e007f.svg'); background-size: 150% 150%; background-position: center;"></div>
+                      <span data-i18n="leagues.scotland">Scotland</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Austrian Bundesliga">
+                      <iconify-icon icon="emojione:flag-for-austria" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.austria">Austria</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Swiss Super League">
+                      <iconify-icon icon="emojione:flag-for-switzerland" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.switzerland">Switzerland</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Süper Lig">
+                      <iconify-icon icon="emojione:flag-for-turkey" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.turkey">Türkiye</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Denmark Superliga">
+                      <iconify-icon icon="emojione:flag-for-denmark" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.denmark">Denmark</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Sweden Allsvenskan">
+                      <iconify-icon icon="emojione:flag-for-sweden" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.sweden">Sweden</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Norway Eliteserien">
+                      <iconify-icon icon="emojione:flag-for-norway" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.norway">Norway</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Croatia HNL">
+                      <iconify-icon icon="emojione:flag-for-croatia" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.croatia">Croatia</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Serbia SuperLiga">
+                      <iconify-icon icon="emojione:flag-for-serbia" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.serbia">Serbia</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Czech Fortuna Liga">
+                      <iconify-icon icon="emojione:flag-for-czechia" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.czech">Czech Republic</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Poland">
+                      <iconify-icon icon="emojione:flag-for-poland" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.poland">Poland</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Ukraine">
+                      <iconify-icon icon="emojione:flag-for-ukraine" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.ukraine">Ukraine</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Russia">
+                      <iconify-icon icon="emojione:flag-for-russia" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.russia">Russia</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Greece">
+                      <iconify-icon icon="emojione:flag-for-greece" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.greece">Greece</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Israel">
+                      <iconify-icon icon="emojione:flag-for-israel" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.israel">Israel</span>
+                    </div>
+                    <div class="custom-select-option" data-value="J1 League">
+                      <iconify-icon icon="emojione:flag-for-japan" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.japan">Japan</span>
+                    </div>
+                    <div class="custom-select-option" data-value="K League 1">
+                      <iconify-icon icon="emojione:flag-for-south-korea" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.korea">Korea</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Saudi Pro League">
+                      <iconify-icon icon="emojione:flag-for-saudi-arabia" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.saudiArabia">Saudi Arabia</span>
+                    </div>
+                    <div class="custom-select-option" data-value="MLS">
+                      <iconify-icon icon="emojione:flag-for-united-states" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.usa">MLS</span>
+                    </div>
+                    <div class="custom-select-option" data-value="LigaMX">
+                      <iconify-icon icon="emojione:flag-for-mexico" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.mexico">LigaMX</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Brazil Serie A">
+                      <iconify-icon icon="emojione:flag-for-brazil" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.brazil">Brazil Serie A</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Argentina Primera">
+                      <iconify-icon icon="emojione:flag-for-argentina" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.argentina">Argentina Primera</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Uruguay Primera">
+                      <iconify-icon icon="emojione:flag-for-uruguay" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.uruguay">Uruguay Primera</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Chile">
+                      <iconify-icon icon="emojione:flag-for-chile" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.chile">Chile</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Colombia">
+                      <iconify-icon icon="emojione:flag-for-colombia" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.colombia">Colombia</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Ecuador">
+                      <iconify-icon icon="emojione:flag-for-ecuador" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.ecuador">Ecuador</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Paraguay">
+                      <iconify-icon icon="emojione:flag-for-paraguay" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.paraguay">Paraguay</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Championship">
+                      <iconify-icon icon="emojione:flag-for-united-kingdom" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.championship">Championship</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Segunda Division">
+                      <iconify-icon icon="emojione:flag-for-spain" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.segundaDivision">Segunda Division</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Serie B">
+                      <iconify-icon icon="emojione:flag-for-italy" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.serieB">Serie B</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Bundesliga 2">
+                      <iconify-icon icon="emojione:flag-for-germany" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.bundesliga2">Bundesliga 2</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Ligue 2">
+                      <iconify-icon icon="emojione:flag-for-france" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.ligue2">Ligue 2</span>
+                    </div>
+                    <div class="custom-select-option" data-value="No Top 7">
+                      <iconify-icon icon="emojione:globe-showing-europe-africa" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.outsideTop7">Outside Top 7</span>
+                    </div>
+                    <div class="custom-select-option" data-value="South America">
+                      <iconify-icon icon="emojione:globe-showing-americas" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.southAmerica">South America</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Scandinavia">
+                      <iconify-icon icon="emojione:globe-showing-europe-africa" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.scandinavia">Scandinavia</span>
+                    </div>
+                    <div class="custom-select-option" data-value="Eastern Europe">
+                      <iconify-icon icon="emojione:globe-showing-europe-africa" width="18" height="18"></iconify-icon>
+                      <span data-i18n="leagues.easternEurope">Eastern Europe</span>
+                    </div>
+                  </div>
+                </div>
+                <!-- Custom Age Selector -->
+                <div class="custom-select-container" style="width: 80px;">
+                    <div class="custom-select-trigger" id="age-select-trigger">
+                        <span data-i18n="age.all">Age</span>
+                    </div>
+                    <div class="custom-select-options" id="age-select-options" style="display: none;">
+                        <div class="custom-select-option selected" data-value="">
+                            <span data-i18n="age.all">Age</span>
+                        </div>
+                        <div class="custom-select-option" data-value="17">
+                            <span>U17</span>
+                        </div>
+                        <div class="custom-select-option" data-value="18">
+                            <span>U18</span>
+                        </div>
+                        <div class="custom-select-option" data-value="19">
+                            <span>U19</span>
+                        </div>
+                        <div class="custom-select-option" data-value="20">
+                            <span>U20</span>
+                        </div>
+                        <div class="custom-select-option" data-value="21">
+                            <span>U21</span>
+                        </div>
+                        <div class="custom-select-option" data-value="22">
+                            <span>U22</span>
+                        </div>
+                        <div class="custom-select-option" data-value="23">
+                            <span>U23</span>
+                        </div>
+                        <div class="custom-select-option" data-value="24">
+                            <span>U24</span>
+                        </div>
+                        <div class="custom-select-option" data-value="25">
+                            <span>U25</span>
+                        </div>
+                        <div class="custom-select-option" data-value="26">
+                            <span>U26</span>
+                        </div>
+                        <div class="custom-select-option" data-value="27">
+                            <span>U27</span>
+                        </div>
+                        <div class="custom-select-option" data-value="28">
+                            <span>U28</span>
+                        </div>
+                        <div class="custom-select-option" data-value="29">
+                            <span>U29</span>
+                        </div>
+                        <div class="custom-select-option" data-value="30">
+                            <span>U30</span>
+                        </div>
+                        <div class="custom-select-option" data-value="35">
+                            <span>U35</span>
+                        
+                        </div>
+                    </div>
+                </div>
+                <select id="age" style="display: none;">
+                    <option value="" data-i18n="age.all">Age</option>
+                    <option value="17">U17</option>
+                    <option value="18">U18</option>
+                    <option value="19">U19</option>
+                    <option value="20">U20</option>
+                    <option value="21">U21</option>
+                    <option value="22">U22</option>
+                    <option value="23">U23</option>
+                    <option value="24">U24</option>
+                    <option value="25">U25</option>
+                    <option value="26">U26</option>
+                    <option value="27">U27</option>
+                    <option value="28">U28</option>
+                    <option value="29">U29</option>
+                    <option value="30">U30</option>
+                    <option value="35">U35</option>
+                </select>
+                <div class="metrics-toggle-button">
+                    <button type="button" id="toggleMetrics">
+                        <i class="ion-ios-stopwatch-outline"></i>
+                    </button>
+                    <span class="btn-tooltip-text">Click for total</span>
+                </div>
+                <div class="past-season-button">
+                    <button type="button" id="pastSeasonBtn">
+                        <i class="ion-calendar"></i>
+                    </button>
+                    <span class="btn-tooltip-text">Click for past season</span>
+                </div>
+            </div>
+            
+            <div class="result-container">
+                <table id="playerTable" style="display: none;">
+                    <tr><th id="metricHeader"></th></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+        <span class="toggle-icon"></span>
+    </div>
+
+
+    <script>
+let isPastSeason = false;
+let data;
+
+function loadData() {
+    const dataUrl = isPastSeason ? 'https://files.catbox.moe/t0hx4q.csv' : 'https://datamb.football/database/INDEX.csv';
+    
+    try {
+        const xhr = new XMLHttpRequest();
+        xhr.open('GET', dataUrl, false); // false for synchronous request
+        xhr.send(null);
+        
+        if (xhr.status !== 200) {
+            alert('Failed to load ' + (isPastSeason ? 'past season' : 'current season') + ' data. Status: ' + xhr.status);
+            return;
+        }
+        
+        data = xhr.responseText;
+        
+        let extraHeaderRow = 'Player,Team,League,Position,Age,Performance Index,Minutes played,Possessions won per 90,Defensive duels per 90,Aerial duels per 90,Sliding tackles per 90,Sliding tackles (PAdj),Shots blocked per 90,Interceptions per 90,Interceptions (PAdj),Successful attacking actions per 90,Goals per 90,Non-penalty goals per 90,xG per 90,Headed goals per 90,Shots per 90,Assists per 90,Crosses per 90,Crosses to box per 90,Dribbles attempted per 90,Offensive duels per 90,Touches in box per 90,Progressive carries per 90,Accelerations per 90,Fouls suffered per 90,Passes per 90,Forward passes per 90,Short passes per 90,Long passes per 90,Average pass length (m),xA per 90,Shot assists per 90,Key passes per 90,Passes to final third per 90,Passes to penalty box per 90,Through passes per 90,Deep completions per 90,Progressive passes per 90,Shots conceded per 90,Clean sheets,xG conceded per 90,Prevented goals per 90,Exits per 90,Defensive duels won %,Aerial duels won %,Shots on target %,Goal conversion %,Cross accuracy %,Dribble success rate %,Offensive duels won %,Pass completion %,Forward pass completion %,Short pass completion %,Long pass accuracy %,Pass completion (to final third) %,Pass completion (to penalty box) %,Through pass completion %,Progressive pass accuracy %,Save percentage %,Free kicks per 90,Direct free kicks per 90,Direct free kicks oT %,Corners per 90,Penalties attempted,Penalty success rate %,Matches played,Duels per 90,Duels won %,Possession +/-,Forward pass ratio,xA per 100 passes,Chance creation ratio,Inaccurate passes %,Goals + Assists per 90,NPG+A per 90,xG+xA per 90,xG/Shot,Goals - xG per 90,Goals per xG,Assists - xA per 90,Assists per xA,Successful dribbles per 90,Shots on target per 90,Accurate crosses per 90,Offensive duels won per 90,Defensive duels won per 90,Aerial duels won per 90,Passes completed per 90,Forward passes completed per 90,Short passes completed per 90,Long passes completed per 90,Accurate passes to final third per 90,Accurate passes to pen box per 90,Through passes completed per 90,Progressive passes completed per 90,Misplaced passes per 90,Saves per 90,Possessions lost per 90,Possessions won - lost per 90,Progressive actions per 90,Duels won per 90,Minutes per match,Backward pass ratio,Penalties scored,npxG per 90,npxG/Shot,npxG+xA per 90,Touches per 90,Progressive action rate,Progressive passes (PAdj),Ball-carrying frequency,xG per 100 touches,Shot frequency,Dribbles per 100 touches,Goals per 100 touches,Passes received per 90,Backward passes per 90,Pre-assists per 90';
+        data = extraHeaderRow + '\n' + data;
+        
+    } catch (error) {
+        alert('Error loading ' + (isPastSeason ? 'past season' : 'current season') + ' data: ' + error.message);
+    }
+}
+
+// Initial data load
+loadData();
+
+
+let originalDataArray = data.split('\n').map(row => row.split(','));
+
+const playerTable = document.getElementById('playerTable');
+const metricSelect = document.getElementById('metric');
+const positionSelect = document.getElementById('position');
+const leagueSelect = document.getElementById('league');
+const ageInput = document.getElementById('age');
+const metricHeader = document.getElementById('metricHeader');
+const toggleButton = document.getElementById('toggleMetrics');
+const toggleSortButton = document.getElementById('toggleSort'); // New button for toggling sort order
+
+let isToggled = false;
+let isAscending = false; // New state variable for sort order
+let currentDataArray = originalDataArray; // Initially set to original data
+
+const customMetricOrder = [
+ 
+    { text: "Performance Index", i18n: "metrics.performanceIndex" },
+    { text: "Minutes played", i18n: "metrics.minutesPlayed" },
+    { text: "Matches played", i18n: "metrics.matchesPlayed" },
+    { text: "Minutes per match", i18n: "metrics.minutesPerMatch" },
+
+    // Goal Scoring
+    { text: "CATEGORY: Goal Scoring", i18n: "categories.goalScoring" },
+    { text: "Goals per 90", i18n: "metrics.goalsPerNinety" },
+    { text: "Non-penalty goals per 90", i18n: "metrics.nonPenaltyGoals" },
+    { text: "xG per 90", i18n: "metrics.xgPerNinety" },
+    { text: "xG/Shot", i18n: "metrics.xgPerShot" },
+    { text: "npxG per 90", i18n: "metrics.npxgPerNinety" },
+    { text: "npxG/Shot", i18n: "metrics.npxgPerShot" },
+    { text: "Goals per 100 touches", i18n: "metrics.goalsPerTouches" },
+    { text: "xG per 100 touches", i18n: "metrics.xgPerTouches" },
+    { text: "Shot frequency", i18n: "metrics.shotFrequency" },
+    { text: "Shots per 90", i18n: "metrics.shotsPerNinety" },
+    { text: "Shots on target %", i18n: "metrics.shotsOnTarget" },
+    { text: "Shots on target per 90", i18n: "metrics.shotsOnTargetPerNinety" },
+    { text: "Goal conversion %", i18n: "metrics.goalConversion" },
+    { text: "Goals - xG per 90", i18n: "metrics.goalsMinusXg" },
+    { text: "Goals per xG", i18n: "metrics.goalsPerXg" },
+    { text: "Headed goals per 90", i18n: "metrics.headedGoals" },
+    { text: "Touches in box per 90", i18n: "metrics.touchesInBox" },
+
+    // Goal Creation
+    { text: "CATEGORY: Goal Creation", i18n: "categories.goalCreation" },
+    { text: "Assists per 90", i18n: "metrics.assistsPerNinety" },
+    { text: "xA per 90", i18n: "metrics.xaPerNinety" },
+    { text: "xA per 100 passes", i18n: "metrics.xaPerPasses" },
+    { text: "Goals + Assists per 90", i18n: "metrics.goalsAndAssists" },
+    { text: "NPG+A per 90", i18n: "metrics.npGoalsAndAssists" },
+    { text: "xG+xA per 90", i18n: "metrics.xgAndXa" },
+    { text: "npxG+xA per 90", i18n: "metrics.npxgAndXa" },
+    { text: "Key passes per 90", i18n: "metrics.keyPasses" },
+    { text: "Chance creation ratio", i18n: "metrics.chanceCreation" },
+    { text: "Assists - xA per 90", i18n: "metrics.assistsMinusXa" },
+    { text: "Assists per xA", i18n: "metrics.assistsPerXa" },
+    { text: "Shot assists per 90", i18n: "metrics.shotAssists" },
+    { text: "Pre-assists per 90", i18n: "metrics.preAssists" },
+    { text: "Crosses per 90", i18n: "metrics.crosses" },
+    { text: "Cross accuracy %", i18n: "metrics.crossAccuracy" },
+    { text: "Accurate crosses per 90", i18n: "metrics.accurateCrosses" },
+    { text: "Crosses to box per 90", i18n: "metrics.crossesToBox" },
+    { text: "Deep completions per 90", i18n: "metrics.deepCompletions" },
+
+    // Dribbling and Ball-Carrying
+    { text: "CATEGORY: Dribbling and Ball-Carrying", i18n: "categories.dribbling" },
+    { text: "Dribbles attempted per 90", i18n: "metrics.dribblesAttempted" },
+    { text: "Dribble success rate %", i18n: "metrics.dribbleSuccess" },
+    { text: "Successful dribbles per 90", i18n: "metrics.successfulDribbles" },
+    { text: "Dribbles per 100 touches", i18n: "metrics.dribblesPerTouches" },
+    { text: "Successful attacking actions per 90", i18n: "metrics.attackingActions" },
+    { text: "Offensive duels per 90", i18n: "metrics.offensiveDuels" },
+    { text: "Offensive duels won %", i18n: "metrics.offensiveDuelsWon" },
+    { text: "Offensive duels won per 90", i18n: "metrics.offensiveDuelsWonPerNinety" },
+    { text: "Progressive carries per 90", i18n: "metrics.progressiveCarries" },
+    { text: "Ball-carrying frequency", i18n: "metrics.ballCarrying" },
+    { text: "Accelerations per 90", i18n: "metrics.accelerations" },
+    { text: "Fouls suffered per 90", i18n: "metrics.foulsSuffered" },
+
+    // Passing
+    { text: "CATEGORY: Passing", i18n: "categories.passing" },
+    { text: "Passes per 90", i18n: "metrics.passes" },
+    { text: "Pass completion %", i18n: "metrics.passCompletion" },
+    { text: "Passes completed per 90", i18n: "metrics.passesCompleted" },
+    { text: "Forward passes per 90", i18n: "metrics.forwardPasses" },
+    { text: "Forward pass completion %", i18n: "metrics.forwardPassCompletion" },
+    { text: "Forward passes completed per 90", i18n: "metrics.forwardPassesCompleted" },
+    { text: "Short passes per 90", i18n: "metrics.shortPasses" },
+    { text: "Short pass completion %", i18n: "metrics.shortPassCompletion" },
+    { text: "Short passes completed per 90", i18n: "metrics.shortPassesCompleted" },
+    { text: "Long passes per 90", i18n: "metrics.longPasses" },
+    { text: "Long pass accuracy %", i18n: "metrics.longPassAccuracy" },
+    { text: "Long passes completed per 90", i18n: "metrics.longPassesCompleted" },
+    { text: "Progressive passes per 90", i18n: "metrics.progressivePasses" },
+    { text: "Progressive pass accuracy %", i18n: "metrics.progressivePassAccuracy" },
+    { text: "Progressive passes completed per 90", i18n: "metrics.progressivePassesCompleted" },
+    { text: "Progressive passes (PAdj)", i18n: "metrics.progressivePassesAdj" },
+    { text: "Passes to final third per 90", i18n: "metrics.passesToFinalThird" },
+    { text: "Pass completion (to final third) %", i18n: "metrics.passCompletionFinalThird" },
+    { text: "Accurate passes to final third per 90", i18n: "metrics.accuratePassesFinalThird" },
+    { text: "Passes to penalty box per 90", i18n: "metrics.passesToBox" },
+    { text: "Pass completion (to penalty box) %", i18n: "metrics.passCompletionToBox" },
+    { text: "Accurate passes to pen box per 90", i18n: "metrics.accuratePassesToBox" },
+    { text: "Through passes per 90", i18n: "metrics.throughPasses" },
+    { text: "Through pass completion %", i18n: "metrics.throughPassCompletion" },
+    { text: "Through passes completed per 90", i18n: "metrics.throughPassesCompleted" },
+    { text: "Average pass length (m)", i18n: "metrics.averagePassLength" },
+    { text: "Backward passes per 90", i18n: "metrics.backwardPasses" },
+    { text: "Misplaced passes per 90", i18n: "metrics.misplacedPasses" },
+    { text: "Forward pass ratio", i18n: "metrics.forwardPassRatio" },
+    { text: "Backward pass ratio", i18n: "metrics.backwardPassRatio" },
+
+    // Possession
+    { text: "CATEGORY: Possession", i18n: "categories.possession" },
+    { text: "Passes received per 90", i18n: "metrics.passesReceived" },
+    { text: "Touches per 90", i18n: "metrics.touches" },
+    { text: "Possessions lost per 90", i18n: "metrics.possessionsLost" },
+    { text: "Possessions won - lost per 90", i18n: "metrics.possessionsBalance" },
+    { text: "Possession +/-", i18n: "metrics.possessionPlusMinus" },
+    { text: "Duels per 90", i18n: "metrics.duels" },
+    { text: "Duels won %", i18n: "metrics.duelsWon" },
+    { text: "Duels won per 90", i18n: "metrics.duelsWonPerNinety" },
+    { text: "Progressive actions per 90", i18n: "metrics.progressiveActions" },
+    { text: "Progressive action rate", i18n: "metrics.progressiveActionRate" },
+
+    // Defending
+    { text: "CATEGORY: Defending", i18n: "categories.defending" },
+    { text: "Defensive duels per 90", i18n: "metrics.defensiveDuels" },
+    { text: "Defensive duels won %", i18n: "metrics.defensiveDuelsWon" },
+    { text: "Defensive duels won per 90", i18n: "metrics.defensiveDuelsWonPerNinety" },
+    { text: "Sliding tackles per 90", i18n: "metrics.slidingTackles" },
+    { text: "Sliding tackles (PAdj)", i18n: "metrics.slidingTacklesAdj" },
+    { text: "Interceptions per 90", i18n: "metrics.interceptions" },
+    { text: "Interceptions (PAdj)", i18n: "metrics.interceptionsAdj" },
+    { text: "Possessions won per 90", i18n: "metrics.possessionsWon" },
+    { text: "Aerial duels per 90", i18n: "metrics.aerialDuels" },
+    { text: "Aerial duels won %", i18n: "metrics.aerialDuelsWon" },
+    { text: "Aerial duels won per 90", i18n: "metrics.aerialDuelsWonPerNinety" },
+    { text: "Shots blocked per 90", i18n: "metrics.shotsBlocked" },
+
+    // Goalkeeping
+    { text: "CATEGORY: Goalkeeping", i18n: "categories.goalkeeping" },
+    { text: "Saves per 90", i18n: "metrics.saves" },
+    { text: "Save percentage %", i18n: "metrics.savePercentage" },
+    { text: "Prevented goals per 90", i18n: "metrics.preventedGoals" },
+    { text: "Shots conceded per 90", i18n: "metrics.shotsConceded" },
+    { text: "xG conceded per 90", i18n: "metrics.xgConceded" },
+    { text: "Clean sheets", i18n: "metrics.cleanSheets" },
+    { text: "Exits per 90", i18n: "metrics.exits" },
+
+    // Set Pieces
+    { text: "CATEGORY: Set Pieces", i18n: "categories.setPieces" },
+    { text: "Free kicks per 90", i18n: "metrics.freeKicks" },
+    { text: "Direct free kicks per 90", i18n: "metrics.directFreeKicks" },
+    { text: "Direct free kicks oT %", i18n: "metrics.directFreeKicksOnTarget" },
+    { text: "Corners per 90", i18n: "metrics.corners" },
+    { text: "Penalties attempted", i18n: "metrics.penaltiesAttempted" },
+    { text: "Penalties scored", i18n: "metrics.penaltiesScored" },
+    { text: "Penalty success rate %", i18n: "metrics.penaltySuccessRate" }
+];
+
+const columnIndexMap = {};
+originalDataArray[0].forEach((name, index) => {
+    columnIndexMap[name] = index;
+});
+
+metricSelect.innerHTML = ''; // Clear existing options
+
+customMetricOrder.forEach(metric => {
+    const option = document.createElement('option');
+    if (metric.text.startsWith("CATEGORY: ")) {
+        option.textContent = metric.text.replace("CATEGORY: ", "");
+        option.disabled = true;
+        option.style.fontWeight = "bold";
+        option.style.color = "#aaa";
+        option.setAttribute('data-i18n', metric.i18n);
+    } else {
+        const metricName = isToggled ? metric.text.replace(' per 90', '') : metric.text;
+        const index = currentDataArray[0].indexOf(metricName);
+        if (index !== -1) {
+            option.value = index;
+            option.textContent = metricName;
+            option.setAttribute('data-i18n', metric.i18n);
+        }
+    }
+    metricSelect.appendChild(option);
+});
+
+// Find and set Minutes played as the default selection
+const minutesPlayedIndex = currentDataArray[0].indexOf("Minutes played");
+if (minutesPlayedIndex !== -1) {
+  metricSelect.value = minutesPlayedIndex;
+}
+
+// These are now enabled by default since we're not starting with Performance Index
+// leagueSelect.querySelector('option[value="Top 5 Leagues"]').disabled = true;
+// leagueSelect.querySelector('option[value="Top 7 Leagues"]').disabled = true; 
+// leagueSelect.querySelector('option[value="All Leagues"]').disabled = true;
+// leagueSelect.querySelector('option[value="No Top 7"]').disabled = true;
+// positionSelect.querySelector('option[value="All"]').disabled = true;
+// leagueSelect.querySelector('option[value="South America"]').disabled = true;
+// leagueSelect.querySelector('option[value="Eastern Europe"]').disabled = true;
+// leagueSelect.querySelector('option[value="Scandinavia"]').disabled = true;
+metricSelect.dispatchEvent(new Event('change'));
+
+toggleSortButton.addEventListener('click', toggleSortOrder); // New event listener for sort order toggle
+metricSelect.addEventListener('change', () => {
+    isAscending = false; // Reset to default descending order
+    filterTable(); // Reapply filtering and sorting
+});positionSelect.addEventListener('change', filterTable);
+leagueSelect.addEventListener('change', filterTable);
+ageInput.addEventListener('input', filterTable);
+
+// Past Season Button Event Listener - moved to ensure DOM is ready
+function initPastSeasonButton() {
+    const pastSeasonBtn = document.getElementById('pastSeasonBtn');
+    if (!pastSeasonBtn) {
+        return;
+    }
+    
+    pastSeasonBtn.addEventListener('click', function() {
+        isPastSeason = !isPastSeason;
+        const button = this;
+        
+        // Toggle button active state and tooltip
+        const pastSeasonTooltip = document.querySelector('.past-season-button .btn-tooltip-text');
+        if (isPastSeason) {
+            button.classList.add('active');
+            pastSeasonTooltip.textContent = 'Click for current season';
+        } else {
+            button.classList.remove('active');
+            pastSeasonTooltip.textContent = 'Click for past season';
+        }
+        
+        // Reload data and refresh table
+        loadData();
+        
+        originalDataArray = data.split('\n').map(row => row.split(','));
+        currentDataArray = originalDataArray;
+        
+        // Rebuild column index map
+        originalDataArray[0].forEach((name, index) => {
+            columnIndexMap[name] = index;
+        });
+        
+        // Reapply any current toggle state
+        if (isToggled) {
+            toggleData();
+        }
+        
+        // Refresh the table
+        filterTable();
+    });
+}
+
+function toggleSortOrder() {
+    isAscending = !isAscending; // Toggle sort order
+    filterTable(); // Reapply filtering and sorting
+}
+
+function toggleData() {
+    // Toggle the state
+    isToggled = !isToggled;
+    
+    // Update button visual state
+    const toggleButton = document.getElementById('toggleMetrics');
+    if (toggleButton) {
+        if (isToggled) {
+            toggleButton.classList.add('active');
+        } else {
+            toggleButton.classList.remove('active');
+        }
+    }
+    const currentMetricValue = metricSelect.value;
+    
+    // Update tooltip based on new state
+    const toggleTooltip = document.querySelector('.metrics-toggle-button .btn-tooltip-text');
+    if (isToggled) {
+        toggleTooltip.textContent = 'Click for per 90';
+    } else {
+        toggleTooltip.textContent = 'Click for total';
+    }
+
+    if (isToggled) {
+        // Convert from per 90 to totals
+        currentDataArray = originalDataArray.map((row, index) => {
+            if (index === 0) {
+                // Header row - remove ' per 90' from column names
+                return row.map((cell, cellIndex) => {
+                    if (![11, 14, 34, 44, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63].includes(cellIndex)) {
+                        return cell.replace(' per 90', '');
+                    } else {
+                        return cell; // Keep other cells unchanged
+                    }
+                });
+            } else {
+                // Data rows - convert per 90 values to totals
+                const minutesPlayed = parseFloat(row[6]);
+                if (isNaN(minutesPlayed) || minutesPlayed === 0) {
+                    return row; // Skip rows with invalid minutes
+                }
+                
+                return row.map((cell, cellIndex) => {
+                    // Only convert per 90 stats to totals, skip other columns
+                    if (cellIndex > 4 && ![5, 6, 11, 14, 34, 44, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 66, 68, 69, 70, 72, 73, 74, 75, 76, 81, 83, 85, 106, 107, 108, 110, 113, 114, 115, 116, 117, 118, 119].includes(cellIndex)) {
+                        const cellValue = parseFloat(cell);
+                        if (isNaN(cellValue)) {
+                            return cell; // Keep non-numeric values as is
+                        }
+                        
+                        // Calculate total from per 90
+                        const totalValue = cellValue * minutesPlayed / 90;
+                        
+                        // Round appropriately based on column type
+                        if ([18, 35, 45, 46, 80, 82, 84, 109, 111].includes(cellIndex)) {
+                            return totalValue.toFixed(1);
+                        } else {
+                            return Math.round(totalValue).toString();
+                        }
+                    } else {
+                        return cell; // Keep other cells unchanged
+                    }
+                });
+            }
+        });
+    } else {
+        // Reset to original per 90 data
+        currentDataArray = originalDataArray.map(row => row.slice()); // Create a deep copy
+    }
+
+    // Apply conditional formatting for specific metrics
+    currentDataArray = currentDataArray.map(row => {
+        if (parseFloat(row[16]) === 0 && parseFloat(row[18]) === 0) {
+            row[82] = '';
+        }
+        return row;
+    });
+
+    currentDataArray = currentDataArray.map(row => {
+        if (parseFloat(row[21]) === 0 && parseFloat(row[35]) === 0) {
+            row[84] = '';
+        }
+        return row;
+    });
+
+    // Rebuild the hidden metric select options
+    metricSelect.innerHTML = '';
+    customMetricOrder.forEach(metric => {
+        const option = document.createElement('option');
+        if (metric.text.startsWith("CATEGORY: ")) {
+            option.textContent = metric.text.replace("CATEGORY: ", "");
+            option.disabled = true;
+            option.style.fontWeight = "bold";
+            option.style.color = "#aaa";
+            option.setAttribute('data-i18n', metric.i18n);
+        } else {
+            const metricName = isToggled ? metric.text.replace(' per 90', '') : metric.text;
+            const index = currentDataArray[0].indexOf(metricName);
+            if (index !== -1) {
+                option.value = index;
+                option.textContent = metricName;
+                option.setAttribute('data-i18n', metric.i18n);
+            }
+        }
+        metricSelect.appendChild(option);
+    });
+    metricSelect.value = currentMetricValue;
+    
+    // Update custom metric selector options
+    updateMetricOptions();
+    
+    // Find and update the selected option in the custom selector
+    const selectedMetricOption = metricOptions.querySelector(`[data-value="${currentMetricValue}"]`);
+    if (selectedMetricOption) {
+        // Clear all previous selections
+        metricOptions.querySelectorAll('.custom-select-option').forEach(opt => opt.classList.remove('selected'));
+        
+        // Mark the current option as selected
+        selectedMetricOption.classList.add('selected');
+        
+        // Update the trigger text to match the selected metric
+        const triggerSpan = metricTrigger.querySelector('span');
+        const optionSpan = selectedMetricOption.querySelector('span');
+        if (triggerSpan && optionSpan) {
+            triggerSpan.textContent = optionSpan.textContent;
+            triggerSpan.setAttribute('data-i18n', optionSpan.getAttribute('data-i18n'));
+        }
+    }
+    
+    // Reapply internationalization after toggling
+    const preferredLanguage = getPreferredLanguage();
+    applyLanguage(preferredLanguage);
+    
+    // Update selector restrictions after toggling
+    handleSelectorsChange();
+    
+    filterTable(); // Ensure filtering is always applied
+}
+
+function filterTable() {
+    let filteredData = currentDataArray.slice(1); // Exclude header row
+    const metricIndex = metricSelect.value;
+    const position = positionSelect.value;
+    const league = leagueSelect.value;
+    const age = ageInput.value;
+
+    if (metricIndex === '') {
+        metricHeader.style.display = 'none';
+    } else {
+        metricHeader.style.display = '';
+        // Sort by selected metric
+        if (isAscending) {
+            filteredData.sort((a, b) => parseFloat(a[metricIndex]) - parseFloat(b[metricIndex]));
+        } else {
+            filteredData.sort((a, b) => parseFloat(b[metricIndex]) - parseFloat(a[metricIndex]));
+        }    
+    }
+
+    filteredData = filteredData.filter(row => row[metricIndex] !== '');
+
+    filteredData = filteredData.map(row => {
+    if (parseFloat(row[16]) === 0 && parseFloat(row[18]) === 0) {
+        const targetColumn = isToggled ? 82 : 82;  // Adjust index if needed based on toggling
+        row[targetColumn] = '';
+    }
+    return row;
+});
+
+    filteredData = filteredData.map(row => {
+        if (parseFloat(row[16]) === 0 || parseFloat(row[18]) === 0) {
+            row[83] = '';
+        }
+        return row;
+    });
+
+
+    filteredData = filteredData.map(row => {
+    if (parseFloat(row[21]) === 0 && parseFloat(row[35]) === 0) {
+        const targetColumn = isToggled ? 84 : 84;  // Adjust index if needed based on toggling
+        row[targetColumn] = '';
+    }
+    return row;
+});
+
+    filteredData = filteredData.map(row => {
+        if (parseFloat(row[35]) === 0 || parseFloat(row[21]) === 0) {
+            row[85] = '';
+        }
+        return row;
+    });
+
+
+
+    filteredData = filteredData.map(row => {
+        if (parseFloat(row[18]) === 0 || parseFloat(row[20]) === 0) {
+            row[81] = '';
+        }
+        return row;
+    });
+
+
+    filteredData = filteredData.map(row => {
+        if (parseFloat(row[18]) === 0 || parseFloat(row[20]) === 0) {
+            row[110] = '';
+        }
+        return row;
+    });
+
+
+    if (position === 'All') {
+        // Filter out duplicates and select all players
+        const uniquePlayers = {};
+        filteredData = filteredData.filter(row => {
+            const key = `${row[0]} ${row[1]}`; // Assuming the first column contains player names
+            if (!uniquePlayers[key]) {
+                uniquePlayers[key] = true;
+                return true;
+            }
+            return false;
+        });
+    } else if (position !== '') {
+        // Filter by selected position
+        filteredData = filteredData.filter(row => row[3] === position);
+    }
+
+    if (league === 'Top 5 Leagues') {
+        // Filter data to include only players from the top 5 leagues
+        filteredData = filteredData.filter(row =>
+            ['Premier League', 'Bundesliga', 'La Liga', 'Ligue 1', 'Serie A'].includes(row[2])
+        );
+    } else if (league === 'Top 7 Leagues') {
+        // Filter data to include only players from the top 7 leagues
+        filteredData = filteredData.filter(row =>
+            ['Premier League', 'Bundesliga', 'La Liga', 'Ligue 1', 'Serie A', 'Eredivisie', 'Liga Portugal'].includes(row[2])
+        );
+    } else if (league === 'No Top 7') {
+        // Filter data to include only players from leagues outside the Top 7
+        filteredData = filteredData.filter(row =>
+            ['Greece','Poland','Ukraine','Russia','Israel','Ecuador','Paraguay','Chile','Colombia','Belgium Pro League', 'Scotland Premiership', 'Austrian Bundesliga', 'Swiss Super League', 'Süper Lig', 'Denmark Superliga', 'Sweden Allsvenskan', 'Norway Eliteserien', 'Croatia HNL', 'Serbia SuperLiga', 'Czech Fortuna Liga', 'Saudi Pro League', 'J1 League', 'K League 1', 'MLS', 'LigaMX', 'Brazil Serie A', 'Argentina Primera', 'Uruguay Primera', 'Championship', 'Segunda Division', 'Serie B', 'Bundesliga 2', 'Ligue 2'].includes(row[2])
+        );
+    } else if (league === 'All Leagues') {
+        // Filter data to include players from all available leagues
+        filteredData = filteredData.filter(row =>
+            ['Greece','Poland','Ukraine','Russia','Israel','Ecuador','Paraguay','Chile','Colombia','Premier League', 'Bundesliga', 'La Liga', 'Ligue 1', 'Serie A', 'Eredivisie', 'Liga Portugal', 'Belgium Pro League', 'Scotland Premiership', 'Austrian Bundesliga', 'Swiss Super League', 'Süper Lig', 'Denmark Superliga', 'Sweden Allsvenskan', 'Norway Eliteserien', 'Croatia HNL', 'Serbia SuperLiga', 'Czech Fortuna Liga', 'Saudi Pro League', 'J1 League', 'K League 1', 'MLS', 'LigaMX', 'Brazil Serie A', 'Argentina Primera', 'Uruguay Primera', 'Championship', 'Segunda Division', 'Serie B', 'Bundesliga 2', 'Ligue 2'].includes(row[2])
+        );
+    } else if (league === 'South America') {
+        // Filter data to include only players from South American leagues
+        filteredData = filteredData.filter(row =>
+            ["Brazil Serie A",
+             "Argentina Primera",
+             "Uruguay Primera",
+             "Colombia",
+             "Chile",
+             "Paraguay",
+             "Ecuador"].includes(row[2])
+        );
+    } else if (league === 'Scandinavia') {
+        // Filter data to include only players from Scandinavian leagues
+        filteredData = filteredData.filter(row =>
+            ["Norway Eliteserien",
+             "Denmark Superliga",
+             "Sweden Allsvenskan"].includes(row[2])
+        );
+    } else if (league === 'Eastern Europe') {
+        // Filter data to include only players from Eastern European leagues
+        filteredData = filteredData.filter(row =>
+            ["Czech Fortuna Liga",
+             "Serbia SuperLiga",
+             "Croatia HNL",
+             "Russia",
+             "Ukraine",
+             "Poland"].includes(row[2])
+        );
+    } else if (league !== '') {
+        // Filter data based on selected league
+        filteredData = filteredData.filter(row => row[2] === league);
+    }
+
+    if (age !== '') {
+    filteredData = filteredData.filter(row => row[4] <= age + 1);
+}
+
+
+    displayTable(filteredData);
+}
+
+function displayTable(data) {
+    // Clear existing table
+    playerTable.innerHTML = '';
+
+    if (metricSelect.value === '') {
+        playerTable.style.display = 'none'; // Hide the table if no metric is selected
+        return; // Exit the function
+    } else {
+        playerTable.style.display = ''; // Show the table if a metric is selected
+    }
+
+    // Sort the data first to ensure consistency in ranking
+    // Sort data based on the current sorting order
+    if (isAscending) {
+        data.sort((a, b) => parseFloat(a[metricSelect.value]) - parseFloat(b[metricSelect.value]));
+    } else {
+        data.sort((a, b) => parseFloat(b[metricSelect.value]) - parseFloat(a[metricSelect.value]));
+    }
+    let previousValue = null;
+    let previousIndex = 0;
+    let previousRankBarWidth = 100;
+    let previousRakim = 100;
+    let maxValue = Math.max(...data.map(row => parseFloat(row[metricSelect.value])));
+let minValue = Math.min(...data.map(row => parseFloat(row[metricSelect.value])));
+
+
+    // Add table data
+    data.forEach((row, index) => {
+    let rankBarWidth;
+    let rakim;
+    if (row[metricSelect.value] === previousValue) {
+        // If the current value is equal to the previous one, keep the same index and rank bar width
+        rankBarWidth = previousRankBarWidth;
+        rakim = previousRakim;
+    } else {
+        // If not tied, calculate rank bar width and index
+        if (row[metricSelect.value] === '0') {
+            rankBarWidth = 0;
+            rakim = 0;
+     } else {
+    if (metricSelect.value === "46" || metricSelect.value === "84" || metricSelect.value === "73" || metricSelect.value === "82" || metricSelect.value === "103") {
+        // Get min and max values from the entire dataset
+        const allValues = data.map(r => parseFloat(r[metricSelect.value]));
+        const minValue = Math.min(...allValues);
+        const maxValue = Math.max(...allValues);
+        const totalRange = maxValue - minValue;
+        
+        const value = parseFloat(row[metricSelect.value]);
+        // Scale from minValue (smallest bar) to maxValue (largest bar)
+        rankBarWidth = Math.max(((value - minValue) / totalRange * 100), 1.5);
+        rakim = ((data.length - index) / data.length) * 100;
+    } else if (metricSelect.value === "5") {
+        rankBarWidth = parseFloat(row[metricSelect.value]) * 100 / 99;
+        rakim = ((data.length - index) / data.length) * 100;
+    } else {
+        rankBarWidth = Math.max(((parseFloat(row[metricSelect.value])) / (maxValue) * 100), 1.5);
+        rakim = ((data.length - index) / data.length) * 100;
+    }
+}
+        previousValue = row[metricSelect.value];
+        previousIndex = index;
+        previousRankBarWidth = rankBarWidth;
+        previousRakim = rakim;
+    }
+
+    let red, green, blue;
+        if (isAscending) {
+            // Invert colors for ascending order: lower values are red, higher values are green
+            red = Math.round((255 * (1 - Math.pow(((100-rakim) / 100), 1.3))));
+            green = Math.round(100-rakim);
+            blue = Math.round((255 * Math.pow(((100-rakim) / 100), 1.3)));
+        } else {
+            // Default color logic for descending order: higher values are red, lower values are green
+            red = Math.round((255 * (1 - Math.pow((rakim / 100), 1.3))));
+            green = Math.round(rakim);
+            blue = Math.round((255 * Math.pow((rakim / 100), 1.3)));
+        }
+        const alpha = 0.835;
+        const color = `rgba(${red}, ${green}, ${blue}, ${alpha})`;
+
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+            <td>${previousIndex + 1}. ${row[0]}&nbsp;<span class="smaller-text">(${row[1]}, ${Math.round(row[4])})</span></td>
+            <th>${row[metricSelect.value]}</th>
+            <th>
+                <div class="rank-bar">
+                    <div class="rank-bar-fill" style="width: ${rankBarWidth}%; background-color: ${color}"></div>
+                </div>
+            </th>
+        `;
+        playerTable.appendChild(tr);
+    });
+}
+
+function handleSelectorsChange() {
+    const selectedMetricIndex = parseInt(metricSelect.value);
+    const selectedPosition = positionSelect.value;
+    const selectedLeague = leagueSelect.value;
+    const metricOptions = metricSelect.querySelectorAll('option');
+    const metricSelector = document.querySelector('.metric-selector');
+    
+    const combinationLeagues = ['Top 5 Leagues', 'Top 7 Leagues', 'No Top 7', 'All Leagues', 'South America', 'Eastern Europe', 'Scandinavia'];
+    const isPerformanceIndex = selectedMetricIndex === 5;
+    const isCombinationLeague = combinationLeagues.includes(selectedLeague);
+    const isAllPositions = selectedPosition === 'All';
+
+    // Show or hide the toggleSortButton and adjust metric selector width
+    if (selectedMetricIndex === 43 || selectedMetricIndex === 45 || selectedMetricIndex === 82 || selectedMetricIndex === 83 || selectedMetricIndex === 84 || selectedMetricIndex === 85) {
+        toggleSortButton.style.display = 'inline-block';
+        metricSelector.classList.add('with-toggle');
+    } else {
+        toggleSortButton.style.display = 'none';
+        metricSelector.classList.remove('with-toggle');
+    }
+
+    // Handle Performance Index restrictions
+    if (isPerformanceIndex) {
+        // Disable combination leagues when Performance Index is selected
+        combinationLeagues.forEach(optionValue => {
+            const option = leagueSelect.querySelector(`option[value="${optionValue}"]`);
+            if (option) option.disabled = true;
+        });
+        
+        // Disable "All positions" when Performance Index is selected
+        const positionAllOption = positionSelect.querySelector('option[value="All"]');
+        if (positionAllOption) positionAllOption.disabled = true;
+        
+        // Update custom selectors to reflect disabled state
+        updateCustomSelectorsDisabledState();
+    } else {
+        // Enable combination leagues when Performance Index is not selected
+        combinationLeagues.forEach(optionValue => {
+            const option = leagueSelect.querySelector(`option[value="${optionValue}"]`);
+            if (option) option.disabled = false;
+        });
+        
+        // Enable "All positions" when Performance Index is not selected
+        const positionAllOption = positionSelect.querySelector('option[value="All"]');
+        if (positionAllOption) positionAllOption.disabled = false;
+        
+        // Update custom selectors to reflect enabled state
+        updateCustomSelectorsDisabledState();
+    }
+
+    // Handle reverse restrictions - disable Performance Index when restricted options are selected
+    const performanceIndexOption = metricSelect.querySelector('option[value="5"]');
+    if (isCombinationLeague || isAllPositions) {
+        // Disable Performance Index when combination league or "All positions" is selected
+        if (performanceIndexOption) performanceIndexOption.disabled = true;
+        
+        // If Performance Index is currently selected, switch to another metric
+        if (isPerformanceIndex) {
+            metricSelect.value = "20"; // Default to "Shots per 90" or another safe metric
+            // Update custom metric selector
+            updateMetricCustomSelector();
+            filterTable();
+        }
+        
+        // Update custom metric selector to reflect disabled state
+        updateCustomMetricSelectorDisabledState();
+    } else {
+        // Enable Performance Index when no restricted options are selected
+        if (performanceIndexOption) performanceIndexOption.disabled = false;
+        
+        // Update custom metric selector to reflect enabled state
+        updateCustomMetricSelectorDisabledState();
+    }
+}
+
+// Helper function to update custom selectors disabled state
+function updateCustomSelectorsDisabledState() {
+    const combinationLeagues = ['Top 5 Leagues', 'Top 7 Leagues', 'No Top 7', 'All Leagues', 'South America', 'Eastern Europe', 'Scandinavia'];
+    
+    // Update league custom selector
+    const leagueCustomOptions = document.querySelectorAll('#league-select-options .custom-select-option');
+    leagueCustomOptions.forEach(option => {
+        const optionValue = option.getAttribute('data-value');
+        const isDisabled = combinationLeagues.includes(optionValue) && parseInt(metricSelect.value) === 5;
+        
+        if (isDisabled) {
+            option.style.opacity = '0.5';
+            option.style.pointerEvents = 'none';
+        } else {
+            option.style.opacity = '1';
+            option.style.pointerEvents = 'auto';
+        }
+    });
+    
+    // Update position custom selector
+    const positionCustomOptions = document.querySelectorAll('#position-select-options .custom-select-option');
+    positionCustomOptions.forEach(option => {
+        const optionValue = option.getAttribute('data-value');
+        const isDisabled = optionValue === 'All' && parseInt(metricSelect.value) === 5;
+        
+        if (isDisabled) {
+            option.style.opacity = '0.5';
+            option.style.pointerEvents = 'none';
+        } else {
+            option.style.opacity = '1';
+            option.style.pointerEvents = 'auto';
+        }
+    });
+}
+
+// Helper function to update custom metric selector disabled state
+function updateCustomMetricSelectorDisabledState() {
+    const metricCustomOptions = document.querySelectorAll('#metric-select-options .custom-select-option');
+    const isCombinationLeague = ['Top 5 Leagues', 'Top 7 Leagues', 'No Top 7', 'All Leagues', 'South America', 'Eastern Europe', 'Scandinavia'].includes(leagueSelect.value);
+    const isAllPositions = positionSelect.value === 'All';
+    
+    metricCustomOptions.forEach(option => {
+        const optionValue = option.getAttribute('data-value');
+        const isPerformanceIndex = optionValue === '5';
+        const isDisabled = isPerformanceIndex && (isCombinationLeague || isAllPositions);
+        
+        if (isDisabled) {
+            option.style.opacity = '0.5';
+            option.style.pointerEvents = 'none';
+        } else {
+            option.style.opacity = '1';
+            option.style.pointerEvents = 'auto';
+        }
+    });
+}
+
+// Helper function to update metric custom selector selection
+function updateMetricCustomSelector() {
+    const currentMetricValue = metricSelect.value;
+    const selectedMetricOption = document.querySelector(`#metric-select-options [data-value="${currentMetricValue}"]`);
+    
+    if (selectedMetricOption) {
+        // Clear all previous selections
+        document.querySelectorAll('#metric-select-options .custom-select-option').forEach(opt => opt.classList.remove('selected'));
+        
+        // Mark the current option as selected
+        selectedMetricOption.classList.add('selected');
+        
+        // Update the trigger text
+        const triggerSpan = document.querySelector('#metric-select-trigger span');
+        const optionSpan = selectedMetricOption.querySelector('span');
+        if (triggerSpan && optionSpan) {
+            triggerSpan.textContent = optionSpan.textContent;
+            triggerSpan.setAttribute('data-i18n', optionSpan.getAttribute('data-i18n'));
+        }
+    }
+}
+
+// Add event listener for all selectors
+metricSelect.addEventListener('change', handleSelectorsChange);
+positionSelect.addEventListener('change', handleSelectorsChange);
+leagueSelect.addEventListener('change', handleSelectorsChange);
+
+
+  // Set Premier League as default selection
+  leagueSelect.value = "Premier League";
+
+      // Initial display with Premier League filter applied
+filterTable();
+
+</script>
+	
+<script>
+    function toggleDarkMode() {
+      document.body.classList.toggle('dark-mode');
+      localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+    }
+    
+    // Check for saved dark mode preference on page load
+    document.addEventListener('DOMContentLoaded', (event) => {
+      if (localStorage.getItem('darkMode') === 'true') {
+        document.body.classList.add('dark-mode');
+      }
+    });
+</script>
+
+<div class="dark-mode-toggle" onclick="toggleDarkMode()">
+    <span class="toggle-icon"></span>
+  </div>
+  
+<script>
+
+  
+  function getPreferredLanguage() {
+    // PRIORITY 1: Check URL parameter first
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (langParam) {
+      return langParam;
+    }
+    // PRIORITY 2: Check localStorage
+    const storedLang = localStorage.getItem('preferredLanguage');
+    if (storedLang) {
+      return storedLang;
+    }
+    // PRIORITY 3: Use browser language
+    return getBrowserLanguage() || 'en';
+  }
+
+  function getBrowserLanguage() {
+    return navigator.language.slice(0, 2);
+  }
+
+  function applyLanguage(language) {
+    console.log(language);
+
+    if (language === 'en') {
+      return;
+    }
+
+    
+    fetch(`locales/${language}.json`)
+      .then(response => {
+        // Don't throw an error, just return null if response is not OK
+        return response.ok ? response.json() : null;
+      })
+      .then(translations => {
+        // Only proceed if translations exist
+        if (translations) {
+          document.querySelectorAll('[data-i18n]').forEach(element => {
+            const keys = element.getAttribute('data-i18n').split('.');
+            let value = translations;
+            for (const key of keys) {
+              if (value === undefined || value === null) break;
+              value = value[key];
+            }
+            if (value) {
+              if (element.tagName === 'OPTION' && element.parentElement.id === 'metric') {
+                const metricKey = element.getAttribute('data-i18n');
+                const originalMetric = customMetricOrder.find(m => m.i18n === metricKey);
+                
+                // Only add "per 90" if not toggled AND the original metric includes "per 90"
+                const shouldAddPerNinety = !isToggled && originalMetric && originalMetric.text.includes('per 90');
+                
+                // Get the translated version of "per 90" or use default English version
+                const per90Translation = translations.common && translations.common.per90 ? 
+                                        translations.common.per90 : " per 90";
+                
+                element.textContent = value + (shouldAddPerNinety ? per90Translation : '');
+            }
+              else if (element.tagName === 'META') {
+              element.setAttribute('content', value);
+          } else if (value.includes('<')) {
+              element.innerHTML = value;
+          } else if (element.classList.contains('toggle-button')) {
+              element.setAttribute('data-tooltip', value);
+          } else {
+              element.textContent = value;
+          }          }
+          });
+        }
+      })
+      .catch(() => {
+        // Completely empty catch block to silently ignore any errors
+      });
+  }
+  
+  const preferredLanguage = getPreferredLanguage();
+  applyLanguage(preferredLanguage);
+  
+    </script>
+    
+<script>
+// Custom Dropdown Logic
+const customSelectors = [
+  {
+    trigger: document.getElementById('league-select-trigger'),
+    options: document.getElementById('league-select-options'),
+    hiddenSelect: leagueSelect
+  },
+  {
+    trigger: document.getElementById('position-select-trigger'),
+    options: document.getElementById('position-select-options'),
+    hiddenSelect: positionSelect
+  },
+  {
+    trigger: document.getElementById('age-select-trigger'),
+    options: document.getElementById('age-select-options'),
+    hiddenSelect: ageInput
+  }
+];
+
+// Generic function to handle dropdown behavior
+function setupCustomSelector(selector) {
+  const { trigger, options, hiddenSelect } = selector;
+  
+  // Open/close dropdown
+  trigger.addEventListener('click', function(e) {
+    e.stopPropagation();
+    // Close other open dropdowns
+    document.querySelectorAll('.custom-select-trigger.open').forEach(openTrigger => {
+      if (openTrigger !== trigger) {
+        openTrigger.classList.remove('open');
+        openTrigger.nextElementSibling.style.display = 'none';
+      }
+    });
+    // Toggle this dropdown
+    const isOpen = trigger.classList.contains('open');
+    trigger.classList.toggle('open');
+    options.style.display = isOpen ? 'none' : 'block';
+  });
+  
+  // Option selection
+  options.querySelectorAll('.custom-select-option').forEach(option => {
+    option.addEventListener('click', function() {
+      // Update selected class
+      options.querySelectorAll('.custom-select-option').forEach(opt => opt.classList.remove('selected'));
+      option.classList.add('selected');
+      // Update trigger text and icon
+      const triggerSpan = trigger.querySelector('span');
+      const optionSpan = option.querySelector('span');
+      const optionIcon = option.querySelector('iconify-icon');
+      const optionScotlandFlag = option.querySelector('.scotland-flag-icon');
+      const triggerIcon = trigger.querySelector('iconify-icon');
+      
+      triggerSpan.textContent = optionSpan.textContent;
+      if (optionSpan.getAttribute('data-i18n')) {
+        triggerSpan.setAttribute('data-i18n', optionSpan.getAttribute('data-i18n'));
+      }
+      
+      // Clean up any existing Scotland flag
+      const existingScotlandFlag = trigger.querySelector('.scotland-flag-icon');
+      if (existingScotlandFlag) {
+        existingScotlandFlag.remove();
+      }
+      
+      // Handle regular iconify icons
+      if (optionIcon && triggerIcon) {
+        // Copy all attributes from option icon to trigger icon
+        triggerIcon.setAttribute('icon', optionIcon.getAttribute('icon'));
+        if (optionIcon.getAttribute('width')) {
+          triggerIcon.setAttribute('width', optionIcon.getAttribute('width'));
+        }
+        if (optionIcon.getAttribute('height')) {
+          triggerIcon.setAttribute('height', optionIcon.getAttribute('height'));
+        }
+        triggerIcon.style.display = 'inline-block';
+        trigger.classList.add('has-icon');
+      }
+      // Handle Scotland flag special case
+      else if (optionScotlandFlag && triggerIcon) {
+        // Replace iconify-icon with Scotland flag div
+        const scotlandDiv = optionScotlandFlag.cloneNode(true);
+        triggerIcon.style.display = 'none';
+        trigger.insertBefore(scotlandDiv, triggerSpan);
+        trigger.classList.add('has-icon');
+      }
+      
+    
+    
+      // Update hidden select
+      hiddenSelect.value = option.getAttribute('data-value');
+      hiddenSelect.dispatchEvent(new Event('change'));
+      
+      // Close dropdown
+      trigger.classList.remove('open');
+      options.style.display = 'none';
+      
+      // Update selector restrictions
+      if (typeof handleSelectorsChange === 'function') handleSelectorsChange();
+      
+      // Trigger filtering
+      if (typeof filterTable === 'function') filterTable();
+    });
+  });
+}
+
+// Setup all custom selectors
+customSelectors.forEach(setupCustomSelector);
+
+// Custom Metric Selector Logic (special handling due to dynamic options)
+const metricTrigger = document.getElementById('metric-select-trigger');
+const metricOptions = document.getElementById('metric-select-options');
+
+metricTrigger.addEventListener('click', function(e) {
+  e.stopPropagation();
+  // Close other open dropdowns
+  document.querySelectorAll('.custom-select-trigger.open').forEach(openTrigger => {
+    if (openTrigger !== metricTrigger) {
+      openTrigger.classList.remove('open');
+      openTrigger.nextElementSibling.style.display = 'none';
+    }
+  });
+  // Toggle this dropdown
+  const isOpen = metricTrigger.classList.contains('open');
+  metricTrigger.classList.toggle('open');
+  metricOptions.style.display = isOpen ? 'none' : 'block';
+});
+
+// Function to update custom selector display to match actual select value
+function updateCustomSelectorDisplay(triggerId, optionsId, value) {
+  const trigger = document.getElementById(triggerId);
+  const options = document.getElementById(optionsId);
+  const selectedOption = options.querySelector(`[data-value="${value}"]`);
+  
+  if (trigger && selectedOption) {
+    // Clear all previous selections
+    options.querySelectorAll('.custom-select-option').forEach(opt => opt.classList.remove('selected'));
+    
+    // Mark the current option as selected
+    selectedOption.classList.add('selected');
+    
+    // Update the trigger display
+    const triggerSpan = trigger.querySelector('span');
+    const optionSpan = selectedOption.querySelector('span');
+    const triggerIcon = trigger.querySelector('iconify-icon');
+    const optionIcon = selectedOption.querySelector('iconify-icon');
+    const optionScotlandFlag = selectedOption.querySelector('.scotland-flag-icon');
+    
+    if (triggerSpan && optionSpan) {
+      triggerSpan.textContent = optionSpan.textContent;
+      triggerSpan.setAttribute('data-i18n', optionSpan.getAttribute('data-i18n'));
+    }
+    
+    // Handle icons
+    const existingScotlandFlag = trigger.querySelector('.scotland-flag-icon');
+    if (existingScotlandFlag) {
+      existingScotlandFlag.remove();
+    }
+    
+    if (optionIcon && triggerIcon) {
+      triggerIcon.setAttribute('icon', optionIcon.getAttribute('icon'));
+      if (optionIcon.getAttribute('width')) {
+        triggerIcon.setAttribute('width', optionIcon.getAttribute('width'));
+      }
+      if (optionIcon.getAttribute('height')) {
+        triggerIcon.setAttribute('height', optionIcon.getAttribute('height'));
+      }
+      triggerIcon.style.display = 'inline-block';
+      trigger.classList.add('has-icon');
+    } else if (optionScotlandFlag && triggerIcon) {
+      const scotlandDiv = optionScotlandFlag.cloneNode(true);
+      triggerIcon.style.display = 'none';
+      trigger.insertBefore(scotlandDiv, triggerSpan);
+      trigger.classList.add('has-icon');
+    }
+  }
+}
+
+// Function to update metric options (called when toggling)
+function updateMetricOptions() {
+  const currentSelection = metricSelect.value; // Preserve current selection
+  metricOptions.innerHTML = '';
+  
+
+  customMetricOrder.forEach(metric => {
+    const option = document.createElement('div');
+    option.className = 'custom-select-option';
+    
+    if (metric.text.startsWith("CATEGORY: ")) {
+      option.className = 'metric-category-header';
+      option.innerHTML = `<span data-i18n="${metric.i18n}">${metric.text.replace("CATEGORY: ", "")}</span>`;
+    } else {
+      const metricName = isToggled ? metric.text.replace(' per 90', '') : metric.text;
+      const index = currentDataArray[0].indexOf(metricName);
+      if (index !== -1) {
+        option.setAttribute('data-value', index);
+        option.innerHTML = `<span data-i18n="${metric.i18n}">${metricName}</span>`;
+        
+        // Add click handler for metric options
+        option.addEventListener('click', function() {
+          if (option.style.pointerEvents === 'none') return;
+          
+          // Update selected class
+          metricOptions.querySelectorAll('.custom-select-option').forEach(opt => opt.classList.remove('selected'));
+          option.classList.add('selected');
+          
+          // Update trigger text
+          const triggerSpan = metricTrigger.querySelector('span');
+          const optionSpan = option.querySelector('span');
+          triggerSpan.textContent = optionSpan.textContent;
+          triggerSpan.setAttribute('data-i18n', optionSpan.getAttribute('data-i18n'));
+          
+          // Update hidden select
+          metricSelect.value = option.getAttribute('data-value');
+          metricSelect.dispatchEvent(new Event('change'));
+          
+          // Close dropdown
+          metricTrigger.classList.remove('open');
+          metricOptions.style.display = 'none';
+          
+          // Update selector restrictions
+          if (typeof handleSelectorsChange === 'function') handleSelectorsChange();
+          
+          // Trigger filtering
+          if (typeof filterTable === 'function') filterTable();
+        });
+      }
+    }
+    metricOptions.appendChild(option);
+  });
+  
+  // Restore selection if it exists, otherwise default to Minutes played
+  const minutesPlayedIndex = currentDataArray[0].indexOf("Minutes played");
+  const defaultIndex = minutesPlayedIndex !== -1 ? minutesPlayedIndex : "5";
+  const selectionToUse = currentSelection || defaultIndex;
+  const selectedOption = metricOptions.querySelector(`[data-value="${selectionToUse}"]`);
+  if (selectedOption) {
+    selectedOption.classList.add('selected');
+  }
+}
+
+// Initial setup
+updateMetricOptions();
+
+// Set initial metric selection in custom selector
+const minutesPlayedIndexForInit = currentDataArray[0].indexOf("Minutes played");
+const defaultMetricValue = minutesPlayedIndexForInit !== -1 ? minutesPlayedIndexForInit : "5";
+const defaultMetricOption = metricOptions.querySelector(`[data-value="${defaultMetricValue}"]`);
+if (defaultMetricOption) {
+  defaultMetricOption.classList.add('selected');
+  const triggerSpan = metricTrigger.querySelector('span');
+  const optionSpan = defaultMetricOption.querySelector('span');
+  triggerSpan.textContent = optionSpan.textContent;
+  triggerSpan.setAttribute('data-i18n', optionSpan.getAttribute('data-i18n'));
+}
+
+// Close dropdown on outside click
+document.addEventListener('click', function(e) {
+  const triggers = document.querySelectorAll('.custom-select-trigger');
+  const optionsContainers = document.querySelectorAll('.custom-select-options');
+
+  let clickedInsideDropdown = false;
+  
+  triggers.forEach(function(trigger, index) {
+    const options = optionsContainers[index];
+    
+    if (trigger && options && (trigger.contains(e.target) || options.contains(e.target))) {
+      clickedInsideDropdown = true;
+    }
+  });
+  
+  if (!clickedInsideDropdown) {
+    triggers.forEach(function(trigger, index) {
+      if (trigger && optionsContainers[index]) {
+        trigger.classList.remove('open');
+        optionsContainers[index].style.display = 'none';
+      }
+    });
+  }
+});
+
+// Ensure table loads on startup
+document.addEventListener('DOMContentLoaded', function() {
+  // Small delay to ensure all scripts have loaded
+  setTimeout(() => {
+    // Make sure all selectors are properly initialized
+    const minutesPlayedIndex = currentDataArray[0].indexOf("Minutes played");
+    if (minutesPlayedIndex !== -1) {
+      metricSelect.value = minutesPlayedIndex;
+    }
+    leagueSelect.value = "Premier League";
+    positionSelect.value = "Goalkeeper";
+    ageInput.value = "";
+    
+    // Update custom selectors to reflect the actual select values
+    updateCustomSelectorDisplay('league-select-trigger', 'league-select-options', leagueSelect.value);
+    updateCustomSelectorDisplay('position-select-trigger', 'position-select-options', positionSelect.value);
+    
+    // Update custom metric selector
+    updateMetricOptions();
+    const metricValue = metricSelect.value;
+    const selectedMetricOption = metricOptions.querySelector(`[data-value="${metricValue}"]`);
+    if (selectedMetricOption) {
+      metricOptions.querySelectorAll('.custom-select-option').forEach(opt => opt.classList.remove('selected'));
+      selectedMetricOption.classList.add('selected');
+      const triggerSpan = metricTrigger.querySelector('span');
+      const optionSpan = selectedMetricOption.querySelector('span');
+      triggerSpan.textContent = optionSpan.textContent;
+      triggerSpan.setAttribute('data-i18n', optionSpan.getAttribute('data-i18n'));
+    }
+    
+    // Initialize the past season button
+    initPastSeasonButton();
+    
+    // Initialize the toggle button event listener
+    const toggleButtonElement = document.getElementById('toggleMetrics');
+    if (toggleButtonElement) {
+      toggleButtonElement.addEventListener('click', function() {
+        toggleData();
+      });
+    }
+    
+    // Ensure tooltips are set correctly for initial state
+    const toggleTooltip = document.querySelector('.metrics-toggle-button .btn-tooltip-text');
+    const pastSeasonTooltip = document.querySelector('.past-season-button .btn-tooltip-text');
+    
+    // Set initial tooltip based on current state
+    // Default: isToggled = false (showing per 90), so tooltip should say "Click for total"
+    toggleTooltip.textContent = isToggled ? 'Click for per 90' : 'Click for total';
+    pastSeasonTooltip.textContent = isPastSeason ? 'Click for current season' : 'Click for past season';
+    
+    // Initialize the selector restrictions
+    handleSelectorsChange();
+    
+    // Trigger the initial filter
+    filterTable();
+  }, 50);
+});
+</script>
+    
+</body>
+</html>
 
