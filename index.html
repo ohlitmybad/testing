@@ -1,1 +1,369 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+	<meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@DataMB_">
+  <meta name="twitter:title" content="DataMB Pro">
+  <meta name="twitter:description" content="">
+  <meta name="twitter:image" content="https://datamb.football/vignettes/pro.png">
+  <meta property="og:image" content="https://datamb.football/vignettes/pro.png">
+	<meta name="robots" content="noindex">
+	<script>
+ (function() {
+    var width = window.innerWidth;
+
+    // Find the viewport meta tag
+    var viewportMeta = document.querySelector('meta[name="viewport"]');
+    if (viewportMeta) {
+        if (width < 701) {
+            var initialScale = width / 701;
+
+            viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + initialScale + ', maximum-scale=' + initialScale + ', user-scalable=no');
+        } else {
+            var fixedScale = 1;
+
+            viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + fixedScale + ', maximum-scale=' + fixedScale + ', user-scalable=no');
+        }
+    } 
+})();
+
+</script>
+<title>DataMB Pro</title>
+        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+	
+	<style>
+body, html {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    overflow: hidden;
+}
+
+.header {
+    font-family: system-ui;
+    height: 85px;  /* Increased from 60px */
+    text-align: center;
+    padding: 0px 20px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #1a1a1a;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+}
+
+.iframe-container {
+    position: fixed;
+    top: 86px;  /* Match new header height */
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    overflow: auto;
+}
+
+@media (max-width: 768px) {
+    .header {
+        height: 65px;  /* Increased from 40px for mobile */
+    }
+    
+    .iframe-container {
+        top: 66px;  /* Match new mobile header height */
+    }
+}
+
+.manage-account {
+    padding: 10px;
+    background-color: #555;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 40px;
+    font-family: 'Inter', sans-serif;
+    text-align: center;
+    height: auto; /* Maintain aspect ratio */
+    display: flex;
+    margin:  auto; 
+    flex-direction: column;
+    flex-wrap: wrap;
+    margin-right: 10px; /* Add margin to the right of the select element */
+
+ 
+}
+
+
+.centered-image {
+  max-width: 75%; /* Resize the image to 60% of its original size */
+  display: block; /* Remove extra space around the image */
+  margin: 0 auto; /* Center the image horizontally */
+}
+
+body {
+background: #1a1a1a;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+}
+
+.header .logo img {
+  width: 40px;
+  height: 40px;
+opacity: 0.84;
+}
+
+.header .logo-text {
+  margin-left: 10px;
+  font-size: 20px;
+color: #444444;
+  font-weight: 600;
+}
+
+
+
+.header .button {
+  margin: 0 10px;
+  padding: 0px 20px;
+  color: #DADADA;
+  text-decoration: none;
+  border-radius: 0px;
+font-size: 18px;
+}
+
+header a {
+      color: #DADADA;
+      text-decoration: none;
+
+    }
+
+.header .twitter-link svg {
+  width: 25px;
+  height: 24px;
+  fill: #444444;
+}
+#positionSelect {
+    height:38px;
+    font-size: 18px;
+    color: grey;
+    width: 40%;
+    border-radius: 40px;
+    text-align-last: center; /* Use text-align-last instead of text-align */
+    margin:  auto; 
+    cursor: pointer;
+    -webkit-appearance: none; /* Remove default arrow */
+    margin-right: 10px; /* Add margin to the right of the select element */
+
+}
+
+
+    </style>
+
+<header class="header">
+  <div class="logo">
+    <a href="https://datamb.football">
+        <img src="https://datamb.football/logopro.png" alt="DataMB Pro" /></a>
+    <div class="logo-text"><a href="https://datamb.football/pro">DataMB Pro</a></div>
+  </div>
+
+ 
+
+ <label for="positionSelect"></label>
+    <select id="positionSelect">
+      <option value="home" data-i18n="home">Home</option>
+        <option value="goalkeeper">Radars</option>
+        <option value="centreback">Plots</option>
+	<option value="fullback6">Rank (Top 7)</option>
+    <option value="fullback7">Rank (World)</option>
+        <option value="fullback">Search</option>
+        <option value="fullback3">Indexes</option>
+        <option value="teams">Teams</option>
+	           <option value="fullback4">AI (Beta)</option>
+	            <option value="fullback2">Guide</option>
+        <option value="fullback1" data-i18n="manage_account.option">Manage Account</option>
+
+    </select>
+    <button class="btn btn-primary manage-account" data-i18n="manage_account.button">Manage Account</button> 
+
+    
+    
+</header>
+
+	
+</head>
+
+
+<body>
+   <div class="iframe-container">
+       <iframe id="homeIframe" src="https://datamb.football/prohome/index.html" loading="lazy"></iframe>
+
+<iframe id="goalkeeperIframe" src="https://datamb.football/proradargk/index.html" style="display:none;" loading="lazy"></iframe>
+
+<iframe id="centrebackIframe" src="https://datamb.football/proplotgk24/index.html" style="display:none;" loading="lazy"></iframe>
+
+<iframe id="fullback6Iframe" src="https://datamb.football/rank7/index.html" style="display:none;" loading="lazy"></iframe>
+
+<iframe id="fullback7Iframe" src="https://datamb.football/testing1/index.html" style="display:none;" loading="lazy"></iframe>
+
+<iframe id="fullbackIframe" src="https://datamb.football/prosearchnew/index.html" style="display:none;" loading="lazy"></iframe>
+
+<iframe id="fullback3Iframe" src="https://datamb.football/proindex/index.html" style="display:none;" loading="lazy"></iframe>
+
+<iframe id="teamsIframe" src="https://datamb.football/proteamplot/index.html" style="display:none;" loading="lazy"></iframe>
+
+<iframe id="fullback4Iframe" src="https://datamb.football/chat/index.html" style="display:none;" loading="lazy"></iframe>
+
+<iframe id="fullback2Iframe" src="https://datamb.football/proguide/index.html" style="display:none;" loading="lazy"></iframe>
+
+<iframe id="fullback1Iframe" src="https://datamb.football/login/index.html" style="display:none;" loading="lazy"></iframe>
+
+  </div>
+
+<script>// JavaScript to handle the dropdown selection and reload the iframe
+    const positionSelect = document.getElementById('positionSelect');
+    const iframes = document.getElementsByTagName('iframe');
+    const darkModeBtn = document.querySelector('.dark-mode-btn');
+    const manageAccountBtn = document.querySelector('.manage-account');
+
+    
+    // Flag to track whether the iframe has been loaded before for each position
+    const iframeLoaded = {
+        home: false,
+        goalkeeper: false,
+        centreback: false,
+        fullback: false,
+        teams: false,
+        fullback1: false,
+        fullback2: false,
+        fullback3: false,
+        fullback4: false
+    };
+    
+    positionSelect.addEventListener('change', function () {
+        const selectedPosition = this.value;
+    
+        // Hide all iframes
+        for (const iframe of iframes) {
+            iframe.style.display = 'none';
+        }
+    
+        // Show and reload the selected iframe (if it hasn't been loaded before)
+        if (selectedPosition) {
+            const selectedIframes = document.querySelectorAll(`#${selectedPosition}Iframe`);
+            for (const iframe of selectedIframes) {
+                iframe.style.display = 'block';
+    
+                // Check if the iframe has been loaded before
+if (!iframeLoaded[selectedPosition] && selectedPosition !== "home" && selectedPosition !== "fullback1") {
+    // If not loaded before and not "Home" or "fullback1", set the flag to true and reload the iframe
+    iframeLoaded[selectedPosition] = true;
+    iframe.src = iframe.src; // This line will reload the iframe
+}
+        }
+    }
+
+	    
+        // Check if the selected position is "Home" and reload the iframe
+        if (selectedPosition === "home") {
+        const homeIframe = document.getElementById("homeIframe");
+        homeIframe.src = homeIframe.src;
+    }
+
+	    // Check if the selected position is "fullback" and reload the iframe
+if (selectedPosition === "fullback1") {
+    const fullback1Iframe = document.getElementById("fullback1Iframe");
+    fullback1Iframe.src = fullback1Iframe.src;
+}
+
+    });
+    
+    // Simulate a change event on page load to show the first iframe by default
+    positionSelect.dispatchEvent(new Event('change'));
+
+    manageAccountBtn.addEventListener('click', function () {
+        // Set the value of the position select to "fullback1" (Manage Account)
+        positionSelect.value = 'fullback1';
+        // Trigger the change event to update the iframe
+        positionSelect.dispatchEvent(new Event('change'));
+    });
+    
+
+</script>
+
+
+<script>
+
+  
+  function getPreferredLanguage() {
+    // PRIORITY 1: Check URL parameter first
+    const urlParams = new URLSearchParams(window.location.search);
+    const langParam = urlParams.get('lang');
+    if (langParam) {
+      return langParam;
+    }
+    // PRIORITY 2: Check localStorage
+    const storedLang = localStorage.getItem('preferredLanguage');
+    if (storedLang) {
+      return storedLang;
+    }
+    // PRIORITY 3: Use browser language
+    return getBrowserLanguage() || 'en';
+  }
+
+  function getBrowserLanguage() {
+    return navigator.language.slice(0, 2);
+  }
+
+  function applyLanguage(language) {
+    console.log(language);
+
+    if (language === 'en') {
+      return;
+    }
+
+    
+    fetch(`locales/${language}.json`)
+      .then(response => {
+        // Don't throw an error, just return null if response is not OK
+        return response.ok ? response.json() : null;
+      })
+      .then(translations => {
+        // Only proceed if translations exist
+        if (translations) {
+          document.querySelectorAll('[data-i18n]').forEach(element => {
+            const keys = element.getAttribute('data-i18n').split('.');
+            let value = translations;
+            for (const key of keys) {
+              if (value === undefined || value === null) break;
+              value = value[key];
+            }
+            if (value) {
+  
+              element.textContent = value;
+                 }
+          });
+        }
+      })
+      .catch(() => {
+        // Completely empty catch block to silently ignore any errors
+      });
+  }
+  
+  const preferredLanguage = getPreferredLanguage();
+  applyLanguage(preferredLanguage);
+  
+    </script>
+</body>
+</html>
 
