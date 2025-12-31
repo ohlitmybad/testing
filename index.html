@@ -40,6 +40,16 @@
           height: 600px;
         }
       }
+      
+      @media (max-width: 600px) and (hover: none) {
+        iframe {
+          height: 720px;
+        }
+        
+        .terms-disclaimer {
+          font-size: 10px;
+        }
+      }
 
 
 
@@ -768,7 +778,7 @@ display: block;
   <div id="stripeOption">
     <div class="payment-options-wrapper">
       <div class="stripe-section">
-        <span data-i18n="join.stripe.trouble">Trouble with Payment?</span> 
+        <span data-i18n="join.stripe.trouble">Trouble with payment?</span> 
         <a href="#" id="stripeDropLink" data-i18n="join.stripe.subscribe">Subscribe via Stripe</a>
         <div id="stripeDropdown">
           <a href="https://buy.stripe.com/fZubJ1c3h9IXaBxgYhcbC0a" data-i18n="join.stripe.monthly">Monthly (€9.99)</a>
