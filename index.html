@@ -869,6 +869,9 @@ body.dark-mode #autocompleteBoxmodal a, body.dark-mode #autocompleteBox2 a {
 <script>
     window.ezstandalone = window.ezstandalone || {};
     ezstandalone.cmd = ezstandalone.cmd || [];
+	ezstandalone.cmd.push(function () {
+        ezstandalone.showAds();
+    });
 
 </script>
 
@@ -892,11 +895,6 @@ body.dark-mode #autocompleteBoxmodal a, body.dark-mode #autocompleteBox2 a {
   
 
 <body>
-	<script>
-				    ezstandalone.cmd.push(function () {
-        ezstandalone.showAds();
-    });
-	</script>
 	<div class="dark-mode-toggle" onclick="toggleDarkMode()">
   <div class="toggle-icon"></div>
 </div>
