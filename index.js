@@ -1483,9 +1483,21 @@ function initIndexApp() {
         });
     }
 
-    document.getElementById('thresholdMin').addEventListener('input', function () {
+    const thresholdMinField = document.getElementById('thresholdMinField');
+    const thresholdMinInput = document.getElementById('thresholdMin');
+    function syncThresholdMinField() {
+        const empty = !thresholdMinInput.value.trim();
+        thresholdMinField.classList.toggle('is-empty', empty);
+    }
+    thresholdMinField.addEventListener('click', function () {
+        thresholdMinInput.focus();
+    });
+    thresholdMinInput.addEventListener('input', function () {
+        syncThresholdMinField();
         debounceFilter('threshold', 150);
     });
+    thresholdMinInput.addEventListener('blur', syncThresholdMinField);
+    syncThresholdMinField();
     const thresholdMode = document.getElementById('thresholdMode');
     if (thresholdMode) {
         thresholdMode.addEventListener('click', function (e) { e.stopPropagation(); });
