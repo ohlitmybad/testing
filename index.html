@@ -14,6 +14,7 @@
     <div class="container">
         <div class="chart-wrapper">
             <div class="toolbar">
+            <div class="toolbar-rows">
             <div class="selectors-container">
                 <div class="custom-select-container metric-selector">
                     <div class="custom-select-trigger" id="metric-select-trigger">
@@ -113,10 +114,10 @@
 
             <div class="filters-container">
                 <input type="search" id="playerSearch" placeholder="Search player or team" data-i18n="search.placeholder" autocomplete="off" spellcheck="false">
-                <div class="threshold-min-field">
+                <div class="threshold-min-field is-empty" id="thresholdMinField">
                     <span class="threshold-label" data-i18n="filters.min">Min</span>
                     <span class="threshold-gt" aria-hidden="true">&gt;</span>
-                    <input type="number" id="thresholdMin" min="0" step="any" inputmode="decimal" placeholder="x">
+                    <input type="number" id="thresholdMin" min="0" step="any" inputmode="decimal" placeholder="">
                 </div>
                 <div class="custom-select-container threshold-metric-selector">
                     <div class="custom-select-trigger" id="threshold-metric-trigger">
@@ -133,6 +134,7 @@
                         <div id="threshold-metric-list"></div>
                     </div>
                 </div>
+            </div>
             </div>
             </div>
             <div class="metric-legend" id="metricLegend" hidden></div>
